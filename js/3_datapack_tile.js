@@ -27,8 +27,12 @@ var datapack3 = [
 , "https://modrinth.com/datapack/nice-villager-data-command\"><img src=\"uploads/villager_data.png"
 , "https://modrinth.com/datapack/nice-end-mobs\"><img src=\"uploads/end_mobs.png"
 , "https://modrinth.com/datapack/nice-campfires\"><img src=\"uploads/campfires.png"
-, "https://modrinth.com/datapack/nice-keep-inventory\"><img src=\"uploads/keepinv.png"
 , "https://modrinth.com/datapack/nice-death-tweaks\"><img src=\"uploads/deathtweaks.png"
+, "https://modrinth.com/datapack/player-death-reworked\"><img src=\"uploads/pdr.jpg"
+, "https://modrinth.com/datapack/hats-on\"><img src=\"uploads/ho.png"
+, "https://modrinth.com/datapack/stonecutter-armor-stands\"><img src=\"uploads/sas.png"
+, "https://modrinth.com/datapack/halloween-stonecutter-miniblock-recipes\"><img src=\"uploads/halloween_stonecutter.png"
+, "https://modrinth.com/datapack/winter-stonecutter-miniblock-recipes\"><img src=\"uploads/winter_stonecutter.png"
 
 ];
 function getthirdDatapackTag() {
