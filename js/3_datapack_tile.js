@@ -1,6 +1,5 @@
 //Third Tile
 var datapack3 = [
-  "https://modrinth.com/datapack/villager-type-changer\"><img src=\"uploads/type_changer.png"
 , "https://modrinth.com/datapack/nice-villager-leashing\"><img src=\"uploads/villager_leashing.png"
 , "https://modrinth.com/datapack/nice-rarity-mobs\"><img src=\"uploads/rarity_mobs.png"
 , "https://modrinth.com/datapack/nice-swimming-mounts\"><img src=\"uploads/swimming_mounts.png"
