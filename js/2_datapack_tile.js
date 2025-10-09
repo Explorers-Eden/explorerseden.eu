@@ -1,12 +1,10 @@
 //Second Tile
 var datapack2 = [
-
-  "https://modrinth.com/datapack/nice-mobs-remastered\"><img src=\"uploads/nmr.png"
-, "https://modrinth.com/datapack/nice-villagers-remastered\"><img src=\"uploads/nvr.png"
+  "https://modrinth.com/datapack/nice-mobs\"><img src=\"uploads/nice_mobs.png"  
 , "https://modrinth.com/datapack/nice-keep-inventory\"><img src=\"uploads/keepinv.png"
-, "https://modrinth.com/datapack/astral-plane-dimension\"><img src=\"uploads/astral_plane.png"
-, "https://modrinth.com/datapack/nice-villager-master-trades\"><img src=\"uploads/master_trades.png"
+, "https://modrinth.com/datapack/nice-swimming-mounts\"><img src=\"uploads/swimming_mounts.png"
 , "https://modrinth.com/datapack/villager-type-changer\"><img src=\"uploads/type_changer.png"
+, "https://modrinth.com/datapack/nice-villager-master-trades\"><img src=\"uploads/master_trades.png"
 ];
 function getsecondDatapackTag() {
 var img = '<a target=\"_blank\" href=\"';
