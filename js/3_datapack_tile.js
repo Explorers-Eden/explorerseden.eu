@@ -3,6 +3,7 @@ var datapack3 = [
   "https://modrinth.com/datapack/nice-mob-manager\"><img src=\"uploads/mob_manager.png"
 , "https://modrinth.com/datapack/nice-actions\"><img src=\"uploads/actions.png"
 , "https://modrinth.com/datapack/nice-things-eden\"><img src=\"uploads/nice_things.png"
+, "https://modrinth.com/datapack/nice-mobs\"><img src=\"uploads/nice_mobs.png"  
 
 ];
 function getthirdDatapackTag() {

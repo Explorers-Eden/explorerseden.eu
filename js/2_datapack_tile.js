@@ -1,6 +1,6 @@
 //Second Tile
 var datapack2 = [
-  "https://modrinth.com/datapack/nice-mobs\"><img src=\"uploads/nice_mobs.png"  
+  "https://modrinth.com/datapack/nice-mob-variants\"><img src=\"uploads/mob_variants.png"  
 , "https://modrinth.com/datapack/nice-keep-inventory\"><img src=\"uploads/keepinv.png"
 , "https://modrinth.com/datapack/nice-swimming-mounts\"><img src=\"uploads/swimming_mounts.png"
 , "https://modrinth.com/datapack/villager-type-changer\"><img src=\"uploads/type_changer.png"
