@@ -88,7 +88,7 @@
 				</span>
 				<span>Made With Passion. Forever Free.</span> 
 				<div class="btn-ber">
-          <a class="learn_btn hvr-bounce-to-top ip" href="#"><i class="bi bi-dpad-fill"></i> 1.21.5 Java SMP</a>
+          <a class="learn_btn hvr-bounce-to-top ip" href="#"><i class="bi bi-dpad-fill"></i> 1.21.11 Java SMP</a>
 					<a class="learn_btn hvr-bounce-to-top" target="_blank" href="https://discord.com/servers/explorer-s-eden-878270685867311164"><i class="bi bi-discord"></i> Discord</a>
           <a class="learn_btn hvr-bounce-to-top" target="_blank" href="https://modrinth.com/organization/explorers-eden"><i class="bi bi-gear-fill"></i> Modrinth</a>
 				</div>
