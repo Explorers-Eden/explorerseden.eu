@@ -3,7 +3,6 @@ var datapack1 = [
   "https://modrinth.com/datapack/katters-structures\"><img src=\"uploads/ks.png"
 , "https://modrinth.com/datapack/enchantments-encore\"><img src=\"uploads/ee.png"
 , "https://modrinth.com/datapack/warping-wonders\"><img src=\"uploads/wawo.png"
-, "https://modrinth.com/datapack/automaticons\"><img src=\"uploads/am.png"
 , "https://modrinth.com/datapack/fabled-roots\"><img src=\"uploads/fabled_roots.png"
 ];
 function getfirstDatapackTag() {
