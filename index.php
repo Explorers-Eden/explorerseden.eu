@@ -17,7 +17,7 @@
     <meta property="og:description" content="Explorer's Eden is all about Java Minecraft. We create Data Packs, host a SMP Server and have a wonderful Discord community.">
     <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/5017a4ee-12d4-4ccd-a8bb-68238e8d912b.jpg?token=9UBrJzYxickRJh9aYq64QxyRq-pyzS6fIIVHsZCb9fQ&height=405&width=800&expires=33262758487">
     
-    <!-- Twitter Meta Tags -->
+    <!-- Twitter Meta Tags --> 
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="wiki.explorerseden.eu">
     <meta property="twitter:url" content="https://wiki.explorerseden.eu">
