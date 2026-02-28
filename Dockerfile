@@ -1,5 +1,4 @@
-FROM nginx:alpine
+FROM php:8.2-fpm
 
-COPY . /usr/share/nginx/html
-
-EXPOSE 80
+WORKDIR /var/www/html
+COPY . .
