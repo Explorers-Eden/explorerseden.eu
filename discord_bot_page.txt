@@ -1,0 +1,17 @@
+### 🛑 Before Creating a Ticket:
+- **Make sure to have used the Discord search function to see if your problem was already discussed on the server.**
+
+- **Take a look at [this FAQ](https://discord.com/channels/878270685867311164/1334914113305837699) when your issue is related to Katters Structures.**
+
+- * *Check your data pack/mod version and make sure it is the latest one. Older versions & Archived Data Packs/Mods are not supported. **
+
+- ** Looking for Minecraft Commands Help? Join the [Minecraft Commands Discord](https://discord.gg/QAFXFtZ) server and use their support channels.** 
+
+### 🐌 Please Be Patient!
+**We create data packs for free because it's fun - and we want to help you because we we want to and not because we have to. Please keep that in mind.**
+
+### :x: Data Packs/Mods not listed:
+**Data Packs/Mods not listed are no longer supported and archived. You can refer to ⁠user-help to ask other users for help.**
+
+### :ticket: How to create a Ticket:
+**Select the data pack/mod you're having trouble with from the Dropdown below and follow the instructions.**
