@@ -63,7 +63,7 @@
               <a class="nav-link js-scroll-trigger" target="_blank" href="https://wiki.explorerseden.eu"><i class="bi bi-journal-bookmark-fill"></i> Wiki</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" target="_blank" href="https://enchantments.explorerseden.eu/"><i class="bi bi-magic"></i> Enchantments Overview</a>
+              <a class="nav-link js-scroll-trigger" target="_blank" href="https://enchantments.explorerseden.eu/"><i class="bi bi-magic"></i> Enchantments</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" target="_blank" href="https://modrinth.com/organization/explorers-eden"><i class="bi bi-gear-fill"></i> Modrinth</a>
