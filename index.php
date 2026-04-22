@@ -53,7 +53,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" target="_blank" href="https://craftlist.org/explorerseden"><i class="bi bi-dpad-fill"></i> We're Online! • <span class="sip" data-ip="play.explorerseden.eu" data-port="25569">
+              <a class="nav-link js-scroll-trigger" target="_blank" href="https://modrinth.com/server/a-realm-recrafted"><i class="bi bi-dpad-fill"></i> We're Online! • <span class="sip" data-ip="play.explorerseden.eu" data-port="25569">
               </span> Playing</a>
             </li>
             <li class="nav-item">
@@ -63,10 +63,10 @@
               <a class="nav-link js-scroll-trigger" target="_blank" href="https://wiki.explorerseden.eu"><i class="bi bi-journal-bookmark-fill"></i> Wiki</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" target="_blank" href="https://map.explorerseden.eu/"><i class="bi bi-globe-americas"></i> Server Map</a>
+              <a class="nav-link js-scroll-trigger" target="_blank" href="https://enchantments.explorerseden.eu/"><i class="bi bi-magic"></i> Enchantments Overview</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" target="_blank" href="https://enchantments.explorerseden.eu/"><i class="bi bi-magic"></i> Enchantments</a>
+              <a class="nav-link js-scroll-trigger" target="_blank" href="https://modrinth.com/organization/explorers-eden"><i class="bi bi-gear-fill"></i> Modrinth</a>
             </li>
 			      <li class="nav-item">
               <a class="nav-link js-scroll-trigger" target="_blank" href="https://github.com/Explorers-Eden"><i class="bi bi-github"></i> Github</a>
@@ -87,11 +87,6 @@
 					<b>SMP SERVER</b>
 				</span>
 				<span>Made With Passion. Forever Free.</span> 
-				<div class="btn-ber">
-          <a class="learn_btn hvr-bounce-to-top ip" href="#"><i class="bi bi-dpad-fill"></i> 26.1.2 Java SMP</a>
-					<a class="learn_btn hvr-bounce-to-top" target="_blank" href="https://discord.gg/f2pMggfgVv"><i class="bi bi-discord"></i> Discord</a>
-          <a class="learn_btn hvr-bounce-to-top" target="_blank" href="https://modrinth.com/organization/explorers-eden"><i class="bi bi-gear-fill"></i> Modrinth</a>
-				</div>
 			</h3>
 
     <br><br>
