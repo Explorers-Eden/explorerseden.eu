@@ -32,7 +32,7 @@
     </a>
 
     <nav class="nav-links" aria-label="Main navigation">
-      <a target="_blank" rel="noreferrer" href="https://modrinth.com/server/a-realm-recrafted"><i class="bi bi-dpad-fill"></i> We're Online! • <span class="sip" data-ip="play.explorerseden.eu" data-port="25569"></span> Playing</a>
+      <a target="_blank" rel="noreferrer" href="https://modrinth.com/server/a-realm-recrafted"><i class="bi bi-dpad-fill"></i> We're Online! •<span class="sip" data-ip="play.explorerseden.eu" data-port="25569"></span> Playing</a>
       <a target="_blank" rel="noreferrer" href="https://discord.gg/f2pMggfgVv"><i class="bi bi-discord"></i> <?php include ('discord.php'); ?></a>
       <a target="_blank" rel="noreferrer" href="https://wiki.explorerseden.eu"><i class="bi bi-journal-bookmark-fill"></i> Wiki</a>
       <a target="_blank" rel="noreferrer" href="https://enchantments.explorerseden.eu/"><i class="bi bi-magic"></i> Enchantments</a>
