@@ -1,4 +1,39 @@
 const playerCount = document.querySelector('.sip');
+const discordCount = document.querySelector('.discord-count');
+
+function normalizeCounterText(element) {
+  if (!element) return;
+  element.textContent = String(element.textContent ?? '').replace(/\s+/g, ' ').trim();
+}
+
+function animateCounter(element, targetValue, duration = 650) {
+  if (!element) return;
+
+  const target = Number(targetValue) || 0;
+  const current = Number(String(element.textContent || '0').replace(/[^0-9.-]/g, '')) || 0;
+
+  if (current === target) {
+    element.textContent = String(target);
+    return;
+  }
+
+  const startTime = performance.now();
+
+  function tick(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const value = Math.round(current + (target - current) * eased);
+    element.textContent = String(value);
+
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    } else {
+      element.textContent = String(target);
+    }
+  }
+
+  requestAnimationFrame(tick);
+}
 
 async function fetchJson(url) {
   const response = await fetch(url, { cache: 'no-store' });
@@ -9,23 +44,31 @@ async function fetchJson(url) {
 async function updatePlayerCount() {
   if (!playerCount) return;
 
-  playerCount.textContent = '0';
-
   const ip = playerCount.dataset.ip;
   const port = playerCount.dataset.port || '25565';
-  if (!ip) return;
+  if (!ip) {
+    animateCounter(playerCount, 0);
+    return;
+  }
 
   try {
     const data = await fetchJson(`https://api.mcsrvstat.us/3/${ip}:${port}`);
-    playerCount.textContent = String(data?.players?.online ?? 0);
+    animateCounter(playerCount, data?.players?.online ?? 0);
   } catch {
     try {
       const data = await fetchJson(`https://api.bybilly.uk/api/players/${ip}/${port}`);
-      playerCount.textContent = String(data?.online ?? 0);
+      animateCounter(playerCount, data?.online ?? data?.players?.online ?? 0);
     } catch {
-      playerCount.textContent = '0';
+      animateCounter(playerCount, 0);
     }
   }
+}
+
+normalizeCounterText(playerCount);
+normalizeCounterText(discordCount);
+
+if (discordCount) {
+  animateCounter(discordCount, discordCount.dataset.count || discordCount.textContent || 0);
 }
 
 updatePlayerCount();

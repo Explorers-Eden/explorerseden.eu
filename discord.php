@@ -1,11 +1,11 @@
 <?php
-$online = json_decode(file_get_contents('https://discordapp.com/api/guilds/878270685867311164/widget.json'), true)['presence_count'];
-//echo " Discord • " . $online . " Online";
-if ($online >= 1) {
-echo " Discord • " . $online . " Online";
+$online = 0;
+$response = @file_get_contents('https://discordapp.com/api/guilds/878270685867311164/widget.json');
+if ($response !== false) {
+    $data = json_decode($response, true);
+    if (isset($data['presence_count'])) {
+        $online = (int) $data['presence_count'];
+    }
 }
-else {
-    echo " Discord";
-}
+echo '<span class="nav-counter-text">Discord • <span class="discord-count animated-counter" data-count="' . $online . '">' . $online . '</span> Online</span>';
 ?>
-
