@@ -1,149 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
- 
-    <meta name="keywords" content="minecraft, java, smp server, survival, data packs, mods, nice mobs remastered, katters structures, enchantments encore, discord, free">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="minecraft, java, smp server, survival, data packs, mods, nice mobs remastered, katters structures, enchantments encore, discord, free">
+  <meta name="description" content="Explorer's Eden is all about Java Minecraft. We create Data Packs, host a SMP Server and have a wonderful Discord community.">
 
-    <title>Explorer's Eden</title>
-    <meta name="description" content="Explorer's Eden is all about Java Minecraft. We create Data Packs, host a SMP Server and have a wonderful Discord community.">
-    
-    <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://wiki.explorerseden.eu">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Explorer's Eden">
-    <meta property="og:description" content="Explorer's Eden is all about Java Minecraft. We create Data Packs, host a SMP Server and have a wonderful Discord community.">
-    <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/5017a4ee-12d4-4ccd-a8bb-68238e8d912b.jpg?token=9UBrJzYxickRJh9aYq64QxyRq-pyzS6fIIVHsZCb9fQ&height=405&width=800&expires=33262758487">
-    
-    <!-- Twitter Meta Tags -->  
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="wiki.explorerseden.eu">
-    <meta property="twitter:url" content="https://wiki.explorerseden.eu">
-    <meta name="twitter:title" content="Explorer's Eden">
-    <meta name="twitter:description" content="Explorer's Eden is all about Java Minecraft. We create Data Packs, host a SMP Server and have a wonderful Discord community.">
-    <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/5017a4ee-12d4-4ccd-a8bb-68238e8d912b.jpg?token=9UBrJzYxickRJh9aYq64QxyRq-pyzS6fIIVHsZCb9fQ&height=405&width=800&expires=33262758487">
+  <title>Explorer's Eden</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/custom.css">
-	  <script src="js/modernizr.js"></script>
+  <meta property="og:url" content="https://wiki.explorerseden.eu">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Explorer's Eden">
+  <meta property="og:description" content="Explorer's Eden is all about Java Minecraft. We create Data Packs, host a SMP Server and have a wonderful Discord community.">
+  <meta name="twitter:card" content="summary_large_image">
 
+  <link rel="shortcut icon" href="assets/images/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="assets/images/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles/site.css">
 </head>
-<body id="page-top" class="politics_version">
-    <div id="preloader">
-        <div id="main-ld">
-			<div id="loader"></div>  
-		</div>
-      </div>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
-			<img class="img-fluid" src="images/logo.png" alt="" />
-		</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" target="_blank" href="https://modrinth.com/server/a-realm-recrafted"><i class="bi bi-dpad-fill"></i> We're Online! • <span class="sip" data-ip="play.explorerseden.eu" data-port="25569">
-              </span> Playing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" target="_blank" href="https://discord.gg/f2pMggfgVv"><i class="bi bi-discord"></i><?php include ('discord.php'); ?></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" target="_blank" href="https://wiki.explorerseden.eu"><i class="bi bi-journal-bookmark-fill"></i> Wiki</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" target="_blank" href="https://enchantments.explorerseden.eu/"><i class="bi bi-magic"></i> Enchantments</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" target="_blank" href="https://modrinth.com/organization/explorers-eden"><i class="bi bi-gear-fill"></i> Modrinth</a>
-            </li>
-			      <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" target="_blank" href="https://github.com/Explorers-Eden"><i class="bi bi-github"></i> Github</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+<body>
+  <div class="site-bg"></div>
+  <div class="starfield" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <header class="navbar">
+    <a class="brand" href="#page-top" aria-label="Explorer's Eden home">
+      <img src="assets/images/branding/ee_title_default.png" alt="Explorer's Eden">
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a target="_blank" rel="noreferrer" href="https://modrinth.com/server/a-realm-recrafted"><i class="bi bi-dpad-fill"></i> We're Online! • <span class="sip" data-ip="play.explorerseden.eu" data-port="25569"></span> Playing</a>
+      <a target="_blank" rel="noreferrer" href="https://discord.gg/f2pMggfgVv"><i class="bi bi-discord"></i> <?php include ('discord.php'); ?></a>
+      <a target="_blank" rel="noreferrer" href="https://wiki.explorerseden.eu"><i class="bi bi-journal-bookmark-fill"></i> Wiki</a>
+      <a target="_blank" rel="noreferrer" href="https://enchantments.explorerseden.eu/"><i class="bi bi-magic"></i> Enchantments</a>
+      <a target="_blank" rel="noreferrer" href="https://modrinth.com/organization/explorers-eden"><i class="bi bi-gear-fill"></i> Modrinth</a>
+      <a target="_blank" rel="noreferrer" href="https://github.com/Explorers-Eden"><i class="bi bi-github"></i> Github</a>
     </nav>
-	
-	<script src="js/background.js"></script>
-		<div class="heading">
-      <script src="js/logo.js"></script>
-			<br><br>
-			<h3 class="cd-headline clip is-full-width">
-				<span class="cd-words-wrapper">
-					<b class="is-visible">DATA PACKS</b>
-					<b>DISCORD</b>
-					<b>SMP SERVER</b>
-				</span>
-				<span>Made With Passion. Forever Free.</span> 
-			</h3>
+  </header>
 
-    <br><br>
+  <main id="page-top" class="hero">
+    <img class="hero-logo" src="assets/images/branding/hi_res_banner_3d.png" alt="Explorer's Eden">
 
-    <div class="container">
-			
-			<div class="gallery-menu row">
-				<div class="col-md-12">
-				</div>
-			</div>
-			
-			<div class="gallery-list row">
-        
-				<div class="col-md-4 col-sm-6 gallery-grid gal_a gal_b">
-          <div class="gallery-single fix">
-            <script src="js/1_datapack_tile.js"></script>
-						<div class="img-overlay">
-						</div>
-					</div>
-          </a>
-				</div>
-				
-				<div class="col-md-4 col-sm-6 gallery-grid gal_c gal_b">
-          <div class="gallery-single fix">
-            <script src="js/2_datapack_tile.js"></script>
-              <div class="img-overlay">
-              </div>
-            </div>
-            </a>
-				</div>
-				
-				<div class="col-md-4 col-sm-6 gallery-grid gal_a gal_c">
-          <div class="gallery-single fix">
-            <script src="js/3_datapack_tile.js"></script>
-              <div class="img-overlay">
-              </div>
-            </div>
-            </a>
-				</div>
-				
-			</div>
-			</div>
-		</div>
-  
+    <section class="mod-list" id="mod-list" aria-label="Explorer's Eden data packs" data-modrinth-source="modrinth-projects.php">
+      <article class="mod-card mod-card--loading" aria-live="polite">
+        <div class="mod-icon-placeholder" aria-hidden="true"></div>
+        <div class="mod-content">
+          <h2>Loading data packs…</h2>
+          <p>Fetching the latest Explorer's Eden data packs from Modrinth.</p>
         </div>
-	</section>
+      </article>
+    </section>
+  </main>
 
-  <script src="js/all.js"></script>
-	<script src="js/jquery.mobile.customized.min.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script> 
-	<script src="js/parallaxie.js"></script>
-	<script src="js/headline.js"></script>
-  <script src="js/jqBootstrapValidation.js"></script>
-  <script src="js/custom.js"></script>
-  <script src="js/jquery.vide.js"></script>
+  <footer class="site-footer">Explorer's Eden is in no way affiliated with Minecraft, Mojang AB and/or Notch Development AB.</footer>
+
+  <script src="assets/scripts/site.js"></script>
   <script src="js/smp_server.js"></script>
-  <script src="js/discord.js"></script>
-
 </body>
 </html>
