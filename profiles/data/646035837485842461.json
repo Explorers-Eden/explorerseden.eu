@@ -1,0 +1,119 @@
+{
+  "discordId": "646035837485842461",
+  "uuid": "d5b386ad-c740-4545-bd9a-c165a4510165",
+  "name": "Eightgamer96",
+  "skinIcon": "/assets/images/generated/player-skins/d5b386ad-c740-4545-bd9a-c165a4510165.png",
+  "headIcon": "/assets/images/generated/player-heads/d5b386ad-c740-4545-bd9a-c165a4510165.png",
+  "race": "Moonshroud",
+  "class": "Builder",
+  "advancementsCompleted": 1,
+  "advancementsDetailed": [
+    {
+      "category": "Adventure",
+      "items": [
+        {
+          "label": "Adventuring Time",
+          "description": "Discover every biome",
+          "done": false
+        }
+      ],
+      "doneCount": 0
+    },
+    {
+      "category": "Katters Structures (General)",
+      "items": [
+        {
+          "label": "Katters Structures",
+          "description": "Brand new vanilla like structures!",
+          "done": true
+        }
+      ],
+      "doneCount": 1
+    }
+  ],
+  "stats": {
+    "playtimeHours": 0,
+    "deaths": 0,
+    "mobKillsTotal": 0,
+    "blocksMinedTotal": 0
+  },
+  "statsDetailed": [
+    {
+      "category": "General",
+      "items": [
+        {
+          "label": "Fly",
+          "value": "56 blocks",
+          "raw": 5622
+        },
+        {
+          "label": "Sprint",
+          "value": "35 blocks",
+          "raw": 3483
+        },
+        {
+          "label": "Time Since Rest",
+          "value": "3 min",
+          "raw": 3251
+        },
+        {
+          "label": "Total World Time",
+          "value": "3 min",
+          "raw": 3251
+        },
+        {
+          "label": "Play Time",
+          "value": "3 min",
+          "raw": 3251
+        },
+        {
+          "label": "Time Since Death",
+          "value": "3 min",
+          "raw": 3251
+        },
+        {
+          "label": "Walk",
+          "value": "15 blocks",
+          "raw": 1499
+        },
+        {
+          "label": "Fall",
+          "value": "13 blocks",
+          "raw": 1325
+        },
+        {
+          "label": "Walk On Water",
+          "value": "3 blocks",
+          "raw": 274
+        },
+        {
+          "label": "Jump",
+          "value": "17",
+          "raw": 17
+        },
+        {
+          "label": "Leave Game",
+          "value": "1",
+          "raw": 1
+        }
+      ]
+    },
+    {
+      "category": "Items Used",
+      "items": [
+        {
+          "label": "Goggles",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Leather Leggings",
+          "value": "1",
+          "raw": 1
+        }
+      ]
+    }
+  ],
+  "claims": [],
+  "waypoints": []
+}
