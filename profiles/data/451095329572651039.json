@@ -1,0 +1,104 @@
+{
+  "discordId": "451095329572651039",
+  "uuid": "e800ad35-9fe0-4de4-95db-2d88f4b11140",
+  "name": "kzhe",
+  "skinIcon": "/assets/images/generated/player-skins/e800ad35-9fe0-4de4-95db-2d88f4b11140.png",
+  "headIcon": "/assets/images/generated/player-heads/e800ad35-9fe0-4de4-95db-2d88f4b11140.png",
+  "race": "Netherian",
+  "class": "Scout",
+  "advancementsCompleted": 1,
+  "advancementsDetailed": [
+    {
+      "category": "Adventure",
+      "items": [
+        {
+          "label": "Adventuring Time",
+          "description": "Discover every biome",
+          "done": false
+        }
+      ],
+      "doneCount": 0
+    },
+    {
+      "category": "Katters Structures (General)",
+      "items": [
+        {
+          "label": "Katters Structures",
+          "description": "Brand new vanilla like structures!",
+          "done": true
+        }
+      ],
+      "doneCount": 1
+    }
+  ],
+  "stats": {
+    "playtimeHours": 0.1,
+    "deaths": 0,
+    "mobKillsTotal": 0,
+    "blocksMinedTotal": 0
+  },
+  "statsDetailed": [
+    {
+      "category": "General",
+      "items": [
+        {
+          "label": "Time Since Rest",
+          "value": "5 min",
+          "raw": 5642
+        },
+        {
+          "label": "Total World Time",
+          "value": "5 min",
+          "raw": 5642
+        },
+        {
+          "label": "Play Time",
+          "value": "5 min",
+          "raw": 5642
+        },
+        {
+          "label": "Time Since Death",
+          "value": "5 min",
+          "raw": 5642
+        },
+        {
+          "label": "Walk",
+          "value": "2 blocks",
+          "raw": 172
+        },
+        {
+          "label": "Crouch",
+          "value": "1 blocks",
+          "raw": 69
+        },
+        {
+          "label": "Sneak Time",
+          "value": "0 min",
+          "raw": 35
+        },
+        {
+          "label": "Leave Game",
+          "value": "4",
+          "raw": 4
+        }
+      ]
+    },
+    {
+      "category": "Items Used",
+      "items": [
+        {
+          "label": "Spyglass",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Goggles",
+          "value": "1",
+          "raw": 1
+        }
+      ]
+    }
+  ],
+  "claims": [],
+  "waypoints": []
+}

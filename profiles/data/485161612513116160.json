@@ -1,0 +1,2553 @@
+{
+  "discordId": "485161612513116160",
+  "uuid": "32a99052-4916-4d86-aee4-7901e1ae498d",
+  "name": "Blaetterhaus",
+  "skinIcon": "/assets/images/generated/player-skins/32a99052-4916-4d86-aee4-7901e1ae498d.png",
+  "headIcon": "/assets/images/generated/player-heads/32a99052-4916-4d86-aee4-7901e1ae498d.png",
+  "race": "Orebringer",
+  "class": "Miner",
+  "advancementsCompleted": 27,
+  "advancementsDetailed": [
+    {
+      "category": "Adventure",
+      "items": [
+        {
+          "label": "Adventure",
+          "description": "Adventure, exploration and combat",
+          "done": true
+        },
+        {
+          "label": "Adventuring Time",
+          "description": "Discover every biome",
+          "done": false
+        },
+        {
+          "label": "Monster Hunter",
+          "description": "Kill any hostile monster",
+          "done": true
+        },
+        {
+          "label": "Monsters Hunted",
+          "description": "Kill one of every hostile monster",
+          "done": false
+        },
+        {
+          "label": "Sweet Dreams",
+          "description": "Sleep in a Bed to change your respawn point",
+          "done": true
+        },
+        {
+          "label": "Take Aim",
+          "description": "Shoot something with an Arrow",
+          "done": true
+        },
+        {
+          "label": "Voluntary Exile",
+          "description": "Kill a raid captain.\nMaybe consider staying away from villages for the time being...",
+          "done": true
+        },
+        {
+          "label": "What a Deal!",
+          "description": "Successfully trade with a Villager",
+          "done": true
+        }
+      ],
+      "doneCount": 6
+    },
+    {
+      "category": "Husbandry",
+      "items": [
+        {
+          "label": "A Balanced Diet",
+          "description": "Eat everything that is edible, even if it's not good for you",
+          "done": false
+        },
+        {
+          "label": "A Seedy Place",
+          "description": "Plant a seed and watch it grow",
+          "done": true
+        },
+        {
+          "label": "Best Friends Forever",
+          "description": "Tame an animal",
+          "done": true
+        },
+        {
+          "label": "Fishy Business",
+          "description": "Catch a fish",
+          "done": true
+        },
+        {
+          "label": "Husbandry",
+          "description": "The world is full of friends and food",
+          "done": true
+        },
+        {
+          "label": "The Parrots and the Bats",
+          "description": "Breed two animals together",
+          "done": true
+        },
+        {
+          "label": "Two by Two",
+          "description": "Breed all the animals!",
+          "done": false
+        }
+      ],
+      "doneCount": 5
+    },
+    {
+      "category": "Katters Structures (Ambient)",
+      "items": [
+        {
+          "label": "Seafaring Shacks",
+          "description": "Discover tiny villager boats dotting the ocean.",
+          "done": true
+        }
+      ],
+      "doneCount": 1
+    },
+    {
+      "category": "Katters Structures (Dungeon)",
+      "items": [
+        {
+          "label": "Armory Arsenal",
+          "description": "Uncover a hidden underground chamber filled with a warrior's dream: a vast collection of armor.",
+          "done": true
+        }
+      ],
+      "doneCount": 1
+    },
+    {
+      "category": "Katters Structures (General)",
+      "items": [
+        {
+          "label": "Katters Structures",
+          "description": "Brand new vanilla like structures!",
+          "done": true
+        },
+        {
+          "label": "The Wandering Trader's Rest",
+          "description": "Discover an outpost where wandering traders find respite.",
+          "done": true
+        }
+      ],
+      "doneCount": 2
+    },
+    {
+      "category": "Nether",
+      "items": [
+        {
+          "label": "Hot Tourist Destinations",
+          "description": "Explore all Nether biomes",
+          "done": false
+        },
+        {
+          "label": "Nether",
+          "description": "Bring summer clothes",
+          "done": true
+        }
+      ],
+      "doneCount": 1
+    },
+    {
+      "category": "Story",
+      "items": [
+        {
+          "label": "Acquire Hardware",
+          "description": "Smelt an Iron Ingot",
+          "done": true
+        },
+        {
+          "label": "Cover Me with Diamonds",
+          "description": "Diamond armor saves lives",
+          "done": true
+        },
+        {
+          "label": "Diamonds!",
+          "description": "Acquire diamonds",
+          "done": true
+        },
+        {
+          "label": "Enchanter",
+          "description": "Enchant an item at an Enchanting Table",
+          "done": true
+        },
+        {
+          "label": "Getting an Upgrade",
+          "description": "Construct a better Pickaxe",
+          "done": true
+        },
+        {
+          "label": "Ice Bucket Challenge",
+          "description": "Obtain a block of Obsidian",
+          "done": true
+        },
+        {
+          "label": "Isn't It Iron Pick",
+          "description": "Upgrade your Pickaxe",
+          "done": true
+        },
+        {
+          "label": "Minecraft",
+          "description": "The heart and story of the game",
+          "done": true
+        },
+        {
+          "label": "Stone Age",
+          "description": "Mine Stone with your new Pickaxe",
+          "done": true
+        },
+        {
+          "label": "Suit Up",
+          "description": "Protect yourself with a piece of iron armor",
+          "done": true
+        },
+        {
+          "label": "We Need to Go Deeper",
+          "description": "Build, light, and enter a Nether Portal",
+          "done": true
+        }
+      ],
+      "doneCount": 11
+    }
+  ],
+  "stats": {
+    "playtimeHours": 16.7,
+    "deaths": 2,
+    "mobKillsTotal": 111,
+    "blocksMinedTotal": 39266
+  },
+  "statsDetailed": [
+    {
+      "category": "General",
+      "items": [
+        {
+          "label": "Walk",
+          "value": "29,534 blocks",
+          "raw": 2953386
+        },
+        {
+          "label": "Sprint",
+          "value": "25,978 blocks",
+          "raw": 2597801
+        },
+        {
+          "label": "Fly",
+          "value": "14,167 blocks",
+          "raw": 1416680
+        },
+        {
+          "label": "Total World Time",
+          "value": "16.7 h",
+          "raw": 1203294
+        },
+        {
+          "label": "Play Time",
+          "value": "16.7 h",
+          "raw": 1203294
+        },
+        {
+          "label": "Time Since Death",
+          "value": "16.1 h",
+          "raw": 1162526
+        },
+        {
+          "label": "Boat",
+          "value": "7,198 blocks",
+          "raw": 719822
+        },
+        {
+          "label": "Swim",
+          "value": "3,753 blocks",
+          "raw": 375289
+        },
+        {
+          "label": "Fall",
+          "value": "3,234 blocks",
+          "raw": 323408
+        },
+        {
+          "label": "Climb",
+          "value": "871 blocks",
+          "raw": 87090
+        },
+        {
+          "label": "Walk On Water",
+          "value": "815 blocks",
+          "raw": 81460
+        },
+        {
+          "label": "Time Since Rest",
+          "value": "51 min",
+          "raw": 61791
+        },
+        {
+          "label": "Crouch",
+          "value": "575 blocks",
+          "raw": 57494
+        },
+        {
+          "label": "Walk Under Water",
+          "value": "489 blocks",
+          "raw": 48860
+        },
+        {
+          "label": "Sneak Time",
+          "value": "18 min",
+          "raw": 21437
+        },
+        {
+          "label": "Damage Dealt",
+          "value": "18,105",
+          "raw": 18105
+        },
+        {
+          "label": "Jump",
+          "value": "9,804",
+          "raw": 9804
+        },
+        {
+          "label": "Horse",
+          "value": "48 blocks",
+          "raw": 4817
+        },
+        {
+          "label": "Damage Taken",
+          "value": "4,446",
+          "raw": 4446
+        },
+        {
+          "label": "Open Chest",
+          "value": "905",
+          "raw": 905
+        },
+        {
+          "label": "Interact With Furnace",
+          "value": "400",
+          "raw": 400
+        },
+        {
+          "label": "Interact With Crafting Table",
+          "value": "131",
+          "raw": 131
+        },
+        {
+          "label": "Mob Kills",
+          "value": "112",
+          "raw": 112
+        },
+        {
+          "label": "Talked To Villager",
+          "value": "64",
+          "raw": 64
+        },
+        {
+          "label": "Traded With Villager",
+          "value": "56",
+          "raw": 56
+        },
+        {
+          "label": "Drop",
+          "value": "54",
+          "raw": 54
+        },
+        {
+          "label": "Fish Caught",
+          "value": "41",
+          "raw": 41
+        },
+        {
+          "label": "Sleep In Bed",
+          "value": "39",
+          "raw": 39
+        },
+        {
+          "label": "Enchant Item",
+          "value": "19",
+          "raw": 19
+        },
+        {
+          "label": "Leave Game",
+          "value": "12",
+          "raw": 12
+        },
+        {
+          "label": "Interact With Anvil",
+          "value": "7",
+          "raw": 7
+        },
+        {
+          "label": "Interact With Stonecutter",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Interact With Grindstone",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Bell Ring",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Deaths",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Animals Bred",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Interact With Lectern",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Open Barrel",
+          "value": "1",
+          "raw": 1
+        }
+      ]
+    },
+    {
+      "category": "Blocks Mined",
+      "items": [
+        {
+          "label": "Stone",
+          "value": "26,418",
+          "raw": 26418
+        },
+        {
+          "label": "Deepslate",
+          "value": "3,014",
+          "raw": 3014
+        },
+        {
+          "label": "Copper Ore",
+          "value": "1,635",
+          "raw": 1635
+        },
+        {
+          "label": "Granite",
+          "value": "1,360",
+          "raw": 1360
+        },
+        {
+          "label": "Dirt",
+          "value": "1,009",
+          "raw": 1009
+        },
+        {
+          "label": "Coal Ore",
+          "value": "1,008",
+          "raw": 1008
+        },
+        {
+          "label": "Grass Block",
+          "value": "767",
+          "raw": 767
+        },
+        {
+          "label": "Gravel",
+          "value": "713",
+          "raw": 713
+        },
+        {
+          "label": "Tuff",
+          "value": "368",
+          "raw": 368
+        },
+        {
+          "label": "Iron Ore",
+          "value": "341",
+          "raw": 341
+        },
+        {
+          "label": "Carrots",
+          "value": "256",
+          "raw": 256
+        },
+        {
+          "label": "Oak Log",
+          "value": "254",
+          "raw": 254
+        },
+        {
+          "label": "Pumpkin",
+          "value": "237",
+          "raw": 237
+        },
+        {
+          "label": "Wheat",
+          "value": "193",
+          "raw": 193
+        },
+        {
+          "label": "Cobblestone",
+          "value": "183",
+          "raw": 183
+        },
+        {
+          "label": "Andesite",
+          "value": "181",
+          "raw": 181
+        },
+        {
+          "label": "Short Grass",
+          "value": "173",
+          "raw": 173
+        },
+        {
+          "label": "Potatoes",
+          "value": "160",
+          "raw": 160
+        },
+        {
+          "label": "Deepslate Redstone Ore",
+          "value": "119",
+          "raw": 119
+        },
+        {
+          "label": "Deepslate Gold Ore",
+          "value": "75",
+          "raw": 75
+        },
+        {
+          "label": "Oak Leaves",
+          "value": "69",
+          "raw": 69
+        },
+        {
+          "label": "Deepslate Diamond Ore",
+          "value": "61",
+          "raw": 61
+        },
+        {
+          "label": "Dripstone Block",
+          "value": "56",
+          "raw": 56
+        },
+        {
+          "label": "Deepslate Tiles",
+          "value": "51",
+          "raw": 51
+        },
+        {
+          "label": "Sugar Cane",
+          "value": "49",
+          "raw": 49
+        },
+        {
+          "label": "Torch",
+          "value": "46",
+          "raw": 46
+        },
+        {
+          "label": "Deepslate Iron Ore",
+          "value": "41",
+          "raw": 41
+        },
+        {
+          "label": "Tall Grass",
+          "value": "39",
+          "raw": 39
+        },
+        {
+          "label": "Wall Torch",
+          "value": "38",
+          "raw": 38
+        },
+        {
+          "label": "Diorite",
+          "value": "26",
+          "raw": 26
+        },
+        {
+          "label": "Emerald Ore",
+          "value": "23",
+          "raw": 23
+        },
+        {
+          "label": "Bookshelf",
+          "value": "22",
+          "raw": 22
+        },
+        {
+          "label": "Deepslate Lapis Ore",
+          "value": "19",
+          "raw": 19
+        },
+        {
+          "label": "Soul Lantern",
+          "value": "18",
+          "raw": 18
+        },
+        {
+          "label": "Chest",
+          "value": "17",
+          "raw": 17
+        },
+        {
+          "label": "Obsidian",
+          "value": "15",
+          "raw": 15
+        },
+        {
+          "label": "Pointed Dripstone",
+          "value": "15",
+          "raw": 15
+        },
+        {
+          "label": "White Bed",
+          "value": "13",
+          "raw": 13
+        },
+        {
+          "label": "Lapis Ore",
+          "value": "11",
+          "raw": 11
+        },
+        {
+          "label": "Crafting Table",
+          "value": "10",
+          "raw": 10
+        },
+        {
+          "label": "Copper Block",
+          "value": "10",
+          "raw": 10
+        },
+        {
+          "label": "Oak Door",
+          "value": "10",
+          "raw": 10
+        },
+        {
+          "label": "Lectern",
+          "value": "8",
+          "raw": 8
+        },
+        {
+          "label": "Tall Dry Grass",
+          "value": "8",
+          "raw": 8
+        },
+        {
+          "label": "Deepslate Copper Ore",
+          "value": "7",
+          "raw": 7
+        },
+        {
+          "label": "Gold Ore",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Beetroots",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Composter",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Redstone Ore",
+          "value": "5",
+          "raw": 5
+        },
+        {
+          "label": "Oak Slab",
+          "value": "5",
+          "raw": 5
+        },
+        {
+          "label": "Moss Block",
+          "value": "5",
+          "raw": 5
+        },
+        {
+          "label": "Furnace",
+          "value": "5",
+          "raw": 5
+        },
+        {
+          "label": "Spruce Leaves",
+          "value": "5",
+          "raw": 5
+        },
+        {
+          "label": "Dirt Path",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Birch Log",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Deepslate Bricks",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Gold Block",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Fern",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Dandelion",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Deepslate Coal Ore",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Tall Seagrass",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Cobbled Deepslate",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Spruce Log",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Powder Snow Cauldron",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Oak Sapling",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Cornflower",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Vine",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Weathered Copper Chest",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Decorated Pot",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Birch Door",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Yellow Bed",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Cobblestone Stairs",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Glow Lichen",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Makeshift Claim Anchor",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Coal Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Oxidized Copper Chest",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Attached Pumpkin Stem",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Flowering Azalea",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Large Fern",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Lilac",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Azalea",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Stone Bricks",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Emeradic Claim Anchor",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Hay Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Cracked Stone Bricks",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Moss Carpet",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Cobblestone Slab",
+          "value": "1",
+          "raw": 1
+        }
+      ]
+    },
+    {
+      "category": "Items Crafted",
+      "items": [
+        {
+          "label": "Copper Ingot",
+          "value": "6,454",
+          "raw": 6454
+        },
+        {
+          "label": "Raw Copper",
+          "value": "3,456",
+          "raw": 3456
+        },
+        {
+          "label": "Oak Planks",
+          "value": "852",
+          "raw": 852
+        },
+        {
+          "label": "Raw Copper Block",
+          "value": "792",
+          "raw": 792
+        },
+        {
+          "label": "Copper Block",
+          "value": "716",
+          "raw": 716
+        },
+        {
+          "label": "Torch",
+          "value": "632",
+          "raw": 632
+        },
+        {
+          "label": "Stick",
+          "value": "300",
+          "raw": 300
+        },
+        {
+          "label": "Baked Potato",
+          "value": "168",
+          "raw": 168
+        },
+        {
+          "label": "Iron Ingot",
+          "value": "161",
+          "raw": 161
+        },
+        {
+          "label": "Cobblestone Slab",
+          "value": "126",
+          "raw": 126
+        },
+        {
+          "label": "Pumpkin Seeds",
+          "value": "68",
+          "raw": 68
+        },
+        {
+          "label": "Cobblestone Stairs",
+          "value": "64",
+          "raw": 64
+        },
+        {
+          "label": "Gold Ingot",
+          "value": "58",
+          "raw": 58
+        },
+        {
+          "label": "Chest",
+          "value": "58",
+          "raw": 58
+        },
+        {
+          "label": "Emerald",
+          "value": "54",
+          "raw": 54
+        },
+        {
+          "label": "Stone",
+          "value": "54",
+          "raw": 54
+        },
+        {
+          "label": "Ladder",
+          "value": "48",
+          "raw": 48
+        },
+        {
+          "label": "Cooked Cod",
+          "value": "38",
+          "raw": 38
+        },
+        {
+          "label": "Bookshelf",
+          "value": "23",
+          "raw": 23
+        },
+        {
+          "label": "Furnace",
+          "value": "19",
+          "raw": 19
+        },
+        {
+          "label": "Oak Slab",
+          "value": "18",
+          "raw": 18
+        },
+        {
+          "label": "Birch Planks",
+          "value": "16",
+          "raw": 16
+        },
+        {
+          "label": "Cooked Salmon",
+          "value": "14",
+          "raw": 14
+        },
+        {
+          "label": "Redstone Block",
+          "value": "13",
+          "raw": 13
+        },
+        {
+          "label": "Oak Door",
+          "value": "12",
+          "raw": 12
+        },
+        {
+          "label": "Spruce Planks",
+          "value": "12",
+          "raw": 12
+        },
+        {
+          "label": "Diamond Pickaxe",
+          "value": "9",
+          "raw": 9
+        },
+        {
+          "label": "Stone Bricks",
+          "value": "8",
+          "raw": 8
+        },
+        {
+          "label": "Birch Door",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Stone Slab",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Iron Shovel",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Crafting Table",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Iron Pickaxe",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Iron Block",
+          "value": "5",
+          "raw": 5
+        },
+        {
+          "label": "Deepslate Bricks",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Gold Block",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Iron Axe",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Diamond Boots",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Oak Boat",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Cooked Chicken",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Emerald Block",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Enchanted Book",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Diamond Block",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Raw Gold Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Iron Chestplate",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Iron Helmet",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Bucket",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Lapis Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Diamond Shovel",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Iron Hoe",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Village Core",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Enchanting Table",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Iron Sword",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Fishing Rod",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Shears",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Coal Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Iron Boots",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Anvil",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Cooked Beef",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Stonecutter",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Composter",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Diamond Chestplate",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Diamond Sword",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Crystal Upgrade Kit",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Grindstone",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Emeradic Upgrade Kit",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Glistening Upgrade Kit",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Diamond Helmet",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Raw Iron Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "White Bed",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Reinforced Upgrade Kit",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Lectern",
+          "value": "1",
+          "raw": 1
+        }
+      ]
+    },
+    {
+      "category": "Items Used",
+      "items": [
+        {
+          "label": "Diamond Pickaxe",
+          "value": "34,205",
+          "raw": 34205
+        },
+        {
+          "label": "Deepslate Tiles",
+          "value": "2,181",
+          "raw": 2181
+        },
+        {
+          "label": "Iron Shovel",
+          "value": "1,320",
+          "raw": 1320
+        },
+        {
+          "label": "Cobblestone",
+          "value": "1,221",
+          "raw": 1221
+        },
+        {
+          "label": "Diamond Shovel",
+          "value": "884",
+          "raw": 884
+        },
+        {
+          "label": "Iron Pickaxe",
+          "value": "882",
+          "raw": 882
+        },
+        {
+          "label": "Torch",
+          "value": "839",
+          "raw": 839
+        },
+        {
+          "label": "Iron Axe",
+          "value": "566",
+          "raw": 566
+        },
+        {
+          "label": "Copper Block",
+          "value": "450",
+          "raw": 450
+        },
+        {
+          "label": "Diamond Sword",
+          "value": "280",
+          "raw": 280
+        },
+        {
+          "label": "Carrot",
+          "value": "270",
+          "raw": 270
+        },
+        {
+          "label": "Wheat Seeds",
+          "value": "231",
+          "raw": 231
+        },
+        {
+          "label": "Potato",
+          "value": "184",
+          "raw": 184
+        },
+        {
+          "label": "Iron Hoe",
+          "value": "169",
+          "raw": 169
+        },
+        {
+          "label": "Stone Pickaxe",
+          "value": "127",
+          "raw": 127
+        },
+        {
+          "label": "Dirt",
+          "value": "87",
+          "raw": 87
+        },
+        {
+          "label": "Chest",
+          "value": "72",
+          "raw": 72
+        },
+        {
+          "label": "Baked Potato",
+          "value": "71",
+          "raw": 71
+        },
+        {
+          "label": "Pumpkin Seeds",
+          "value": "53",
+          "raw": 53
+        },
+        {
+          "label": "Oak Planks",
+          "value": "53",
+          "raw": 53
+        },
+        {
+          "label": "Fishing Rod",
+          "value": "48",
+          "raw": 48
+        },
+        {
+          "label": "Ladder",
+          "value": "42",
+          "raw": 42
+        },
+        {
+          "label": "Cooked Cod",
+          "value": "41",
+          "raw": 41
+        },
+        {
+          "label": "Cobblestone Stairs",
+          "value": "36",
+          "raw": 36
+        },
+        {
+          "label": "Andesite",
+          "value": "35",
+          "raw": 35
+        },
+        {
+          "label": "Oak Sapling",
+          "value": "35",
+          "raw": 35
+        },
+        {
+          "label": "Gold Block",
+          "value": "29",
+          "raw": 29
+        },
+        {
+          "label": "Gravel",
+          "value": "26",
+          "raw": 26
+        },
+        {
+          "label": "Furnace",
+          "value": "24",
+          "raw": 24
+        },
+        {
+          "label": "Bookshelf",
+          "value": "22",
+          "raw": 22
+        },
+        {
+          "label": "Soul Lantern",
+          "value": "19",
+          "raw": 19
+        },
+        {
+          "label": "Bucket",
+          "value": "19",
+          "raw": 19
+        },
+        {
+          "label": "Cobbled Deepslate",
+          "value": "18",
+          "raw": 18
+        },
+        {
+          "label": "Water Bucket",
+          "value": "18",
+          "raw": 18
+        },
+        {
+          "label": "Crafting Table",
+          "value": "16",
+          "raw": 16
+        },
+        {
+          "label": "Oak Log",
+          "value": "15",
+          "raw": 15
+        },
+        {
+          "label": "Cobblestone Slab",
+          "value": "15",
+          "raw": 15
+        },
+        {
+          "label": "White Bed",
+          "value": "14",
+          "raw": 14
+        },
+        {
+          "label": "Cooked Salmon",
+          "value": "14",
+          "raw": 14
+        },
+        {
+          "label": "Sand",
+          "value": "13",
+          "raw": 13
+        },
+        {
+          "label": "Tuff",
+          "value": "12",
+          "raw": 12
+        },
+        {
+          "label": "Oak Door",
+          "value": "12",
+          "raw": 12
+        },
+        {
+          "label": "Apple",
+          "value": "11",
+          "raw": 11
+        },
+        {
+          "label": "Sugar Cane",
+          "value": "11",
+          "raw": 11
+        },
+        {
+          "label": "Glow Berries",
+          "value": "10",
+          "raw": 10
+        },
+        {
+          "label": "Bread",
+          "value": "10",
+          "raw": 10
+        },
+        {
+          "label": "Obsidian",
+          "value": "10",
+          "raw": 10
+        },
+        {
+          "label": "Iron Sword",
+          "value": "9",
+          "raw": 9
+        },
+        {
+          "label": "Lectern",
+          "value": "9",
+          "raw": 9
+        },
+        {
+          "label": "Oak Boat",
+          "value": "8",
+          "raw": 8
+        },
+        {
+          "label": "Oak Slab",
+          "value": "7",
+          "raw": 7
+        },
+        {
+          "label": "Composter",
+          "value": "7",
+          "raw": 7
+        },
+        {
+          "label": "Bow",
+          "value": "5",
+          "raw": 5
+        },
+        {
+          "label": "Deepslate Bricks",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Makeshift Claim Anchor",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Beetroot Seeds",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Dripstone Block",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Birch Door",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Weathered Copper Chest",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Granite",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Diorite",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Village Core",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Yellow Bed",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Coal Block",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Iron Boots",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Cooked Chicken",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Raw Copper Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Stone Bricks",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Beetroot",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Raw Gold Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Hay Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Cracked Stone Bricks",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Reinforced Upgrade Kit",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Stone",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Stonecutter",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Emeradic Upgrade Kit",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Raw Iron Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Grindstone",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Lapis Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Crystal Upgrade Kit",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Cod",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Goggles",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Moss Carpet",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Emeradic Claim Anchor",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Anvil",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Glistening Upgrade Kit",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Redstone Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Cooked Beef",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Iron Helmet",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Enchanting Table",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Egg",
+          "value": "1",
+          "raw": 1
+        }
+      ]
+    },
+    {
+      "category": "Items Broken",
+      "items": [
+        {
+          "label": "Iron Shovel",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Iron Pickaxe",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Iron Axe",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Diamond Pickaxe",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Stone Pickaxe",
+          "value": "1",
+          "raw": 1
+        }
+      ]
+    },
+    {
+      "category": "Items Picked Up",
+      "items": [
+        {
+          "label": "Cobblestone",
+          "value": "27,863",
+          "raw": 27863
+        },
+        {
+          "label": "Raw Copper",
+          "value": "10,773",
+          "raw": 10773
+        },
+        {
+          "label": "Cobbled Deepslate",
+          "value": "2,510",
+          "raw": 2510
+        },
+        {
+          "label": "Coal",
+          "value": "1,673",
+          "raw": 1673
+        },
+        {
+          "label": "Dirt",
+          "value": "1,650",
+          "raw": 1650
+        },
+        {
+          "label": "Granite",
+          "value": "1,142",
+          "raw": 1142
+        },
+        {
+          "label": "Carrot",
+          "value": "914",
+          "raw": 914
+        },
+        {
+          "label": "Gravel",
+          "value": "712",
+          "raw": 712
+        },
+        {
+          "label": "Wheat Seeds",
+          "value": "682",
+          "raw": 682
+        },
+        {
+          "label": "Redstone",
+          "value": "644",
+          "raw": 644
+        },
+        {
+          "label": "Raw Iron",
+          "value": "609",
+          "raw": 609
+        },
+        {
+          "label": "Potato",
+          "value": "578",
+          "raw": 578
+        },
+        {
+          "label": "Torch",
+          "value": "289",
+          "raw": 289
+        },
+        {
+          "label": "Tuff",
+          "value": "266",
+          "raw": 266
+        },
+        {
+          "label": "Oak Log",
+          "value": "256",
+          "raw": 256
+        },
+        {
+          "label": "Pumpkin",
+          "value": "237",
+          "raw": 237
+        },
+        {
+          "label": "Lapis Lazuli",
+          "value": "191",
+          "raw": 191
+        },
+        {
+          "label": "Wheat",
+          "value": "185",
+          "raw": 185
+        },
+        {
+          "label": "Andesite",
+          "value": "180",
+          "raw": 180
+        },
+        {
+          "label": "Sugar Cane",
+          "value": "153",
+          "raw": 153
+        },
+        {
+          "label": "Raw Gold",
+          "value": "116",
+          "raw": 116
+        },
+        {
+          "label": "Cobblestone Slab",
+          "value": "112",
+          "raw": 112
+        },
+        {
+          "label": "Clay Ball",
+          "value": "96",
+          "raw": 96
+        },
+        {
+          "label": "Diamond",
+          "value": "81",
+          "raw": 81
+        },
+        {
+          "label": "Iron Ingot",
+          "value": "68",
+          "raw": 68
+        },
+        {
+          "label": "Book",
+          "value": "66",
+          "raw": 66
+        },
+        {
+          "label": "Flint",
+          "value": "59",
+          "raw": 59
+        },
+        {
+          "label": "Dripstone Block",
+          "value": "57",
+          "raw": 57
+        },
+        {
+          "label": "Stick",
+          "value": "56",
+          "raw": 56
+        },
+        {
+          "label": "Pointed Dripstone",
+          "value": "55",
+          "raw": 55
+        },
+        {
+          "label": "Oak Sapling",
+          "value": "55",
+          "raw": 55
+        },
+        {
+          "label": "Rotten Flesh",
+          "value": "53",
+          "raw": 53
+        },
+        {
+          "label": "Deepslate Tiles",
+          "value": "51",
+          "raw": 51
+        },
+        {
+          "label": "Cod",
+          "value": "46",
+          "raw": 46
+        },
+        {
+          "label": "Emerald",
+          "value": "43",
+          "raw": 43
+        },
+        {
+          "label": "Bone",
+          "value": "39",
+          "raw": 39
+        },
+        {
+          "label": "Player Head",
+          "value": "39",
+          "raw": 39
+        },
+        {
+          "label": "Moss Block",
+          "value": "38",
+          "raw": 38
+        },
+        {
+          "label": "Soul Lantern",
+          "value": "37",
+          "raw": 37
+        },
+        {
+          "label": "Oak Door",
+          "value": "31",
+          "raw": 31
+        },
+        {
+          "label": "Cobblestone Stairs",
+          "value": "30",
+          "raw": 30
+        },
+        {
+          "label": "Stone",
+          "value": "29",
+          "raw": 29
+        },
+        {
+          "label": "Arrow",
+          "value": "28",
+          "raw": 28
+        },
+        {
+          "label": "Gold Block",
+          "value": "27",
+          "raw": 27
+        },
+        {
+          "label": "Brick",
+          "value": "24",
+          "raw": 24
+        },
+        {
+          "label": "Obsidian",
+          "value": "24",
+          "raw": 24
+        },
+        {
+          "label": "Beetroot Seeds",
+          "value": "22",
+          "raw": 22
+        },
+        {
+          "label": "Moss Carpet",
+          "value": "22",
+          "raw": 22
+        },
+        {
+          "label": "Diorite",
+          "value": "22",
+          "raw": 22
+        },
+        {
+          "label": "Salmon",
+          "value": "20",
+          "raw": 20
+        },
+        {
+          "label": "Gold Ingot",
+          "value": "20",
+          "raw": 20
+        },
+        {
+          "label": "Chest",
+          "value": "17",
+          "raw": 17
+        },
+        {
+          "label": "Pumpkin Seeds",
+          "value": "15",
+          "raw": 15
+        },
+        {
+          "label": "Sand",
+          "value": "13",
+          "raw": 13
+        },
+        {
+          "label": "White Bed",
+          "value": "13",
+          "raw": 13
+        },
+        {
+          "label": "Crafting Table",
+          "value": "13",
+          "raw": 13
+        },
+        {
+          "label": "White Wool",
+          "value": "12",
+          "raw": 12
+        },
+        {
+          "label": "Pufferfish",
+          "value": "12",
+          "raw": 12
+        },
+        {
+          "label": "Oak Planks",
+          "value": "11",
+          "raw": 11
+        },
+        {
+          "label": "Beef",
+          "value": "11",
+          "raw": 11
+        },
+        {
+          "label": "Glow Berries",
+          "value": "10",
+          "raw": 10
+        },
+        {
+          "label": "Leather",
+          "value": "10",
+          "raw": 10
+        },
+        {
+          "label": "Copper Block",
+          "value": "10",
+          "raw": 10
+        },
+        {
+          "label": "Gunpowder",
+          "value": "10",
+          "raw": 10
+        },
+        {
+          "label": "Dandelion",
+          "value": "9",
+          "raw": 9
+        },
+        {
+          "label": "Beetroot",
+          "value": "9",
+          "raw": 9
+        },
+        {
+          "label": "Oak Boat",
+          "value": "9",
+          "raw": 9
+        },
+        {
+          "label": "String",
+          "value": "8",
+          "raw": 8
+        },
+        {
+          "label": "Lectern",
+          "value": "8",
+          "raw": 8
+        },
+        {
+          "label": "Oak Slab",
+          "value": "8",
+          "raw": 8
+        },
+        {
+          "label": "Cornflower",
+          "value": "7",
+          "raw": 7
+        },
+        {
+          "label": "Poisonous Potato",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Composter",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Cauldron",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Furnace",
+          "value": "5",
+          "raw": 5
+        },
+        {
+          "label": "Spider Eye",
+          "value": "5",
+          "raw": 5
+        },
+        {
+          "label": "Apple",
+          "value": "5",
+          "raw": 5
+        },
+        {
+          "label": "Tropical Fish",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Azalea",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Deepslate Bricks",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Feather",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Flowering Azalea",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Porkchop",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Birch Log",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Glass Bottle",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Bow",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Spruce Log",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Weathered Copper Chest",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Cooked Cod",
+          "value": "3",
+          "raw": 3
+        },
+        {
+          "label": "Oxidized Copper Chest",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Saddle",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Lilac",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Ender Eye",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Makeshift Claim Anchor",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Potion",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Birch Door",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Spruce Sapling",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Chicken",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Yellow Bed",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Bone Meal",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Tipped Arrow",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Brown Egg",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Written Book",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Shears",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Iron Sword",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Bowl",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Hay Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Egg",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Light Blue Bundle",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Stone Bricks",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Fishing Rod",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Emeradic Claim Anchor",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Mud",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Coal Block",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Ominous Bottle",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Village Core",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Iron Hoe",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Cracked Stone Bricks",
+          "value": "1",
+          "raw": 1
+        }
+      ]
+    },
+    {
+      "category": "Items Dropped",
+      "items": [
+        {
+          "label": "Raw Copper",
+          "value": "167",
+          "raw": 167
+        },
+        {
+          "label": "Cobblestone",
+          "value": "143",
+          "raw": 143
+        },
+        {
+          "label": "Granite",
+          "value": "25",
+          "raw": 25
+        },
+        {
+          "label": "Carrot",
+          "value": "23",
+          "raw": 23
+        },
+        {
+          "label": "Dirt",
+          "value": "18",
+          "raw": 18
+        },
+        {
+          "label": "Potato",
+          "value": "13",
+          "raw": 13
+        },
+        {
+          "label": "Moss Carpet",
+          "value": "11",
+          "raw": 11
+        },
+        {
+          "label": "Andesite",
+          "value": "8",
+          "raw": 8
+        },
+        {
+          "label": "Gravel",
+          "value": "8",
+          "raw": 8
+        },
+        {
+          "label": "Wheat Seeds",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Birch Door",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Diorite",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Bone",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Arrow",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Rotten Flesh",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Pointed Dripstone",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Bow",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Tropical Fish",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Player Head",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Iron Axe",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Iron Shovel",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Wheat",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Cobblestone Slab",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Oak Sapling",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Bone Meal",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Beetroot Seeds",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Cornflower",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Crafting Table",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Baked Potato",
+          "value": "1",
+          "raw": 1
+        }
+      ]
+    },
+    {
+      "category": "Mobs Killed",
+      "items": [
+        {
+          "label": "Zombie",
+          "value": "28",
+          "raw": 28
+        },
+        {
+          "label": "Skeleton",
+          "value": "24",
+          "raw": 24
+        },
+        {
+          "label": "Cod",
+          "value": "18",
+          "raw": 18
+        },
+        {
+          "label": "Spider",
+          "value": "12",
+          "raw": 12
+        },
+        {
+          "label": "Creeper",
+          "value": "6",
+          "raw": 6
+        },
+        {
+          "label": "Pillager",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Salmon",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Cow",
+          "value": "4",
+          "raw": 4
+        },
+        {
+          "label": "Tropical Fish",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Horse",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Chicken",
+          "value": "2",
+          "raw": 2
+        },
+        {
+          "label": "Stray",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Pig",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Witch",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Zombie Villager",
+          "value": "1",
+          "raw": 1
+        },
+        {
+          "label": "Wolf",
+          "value": "1",
+          "raw": 1
+        }
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "dimension": "Overworld",
+      "x": -2212,
+      "y": 78,
+      "z": 5040,
+      "anchorType": "Emeradic Claim Anchor",
+      "trusted": []
+    }
+  ],
+  "waypoints": []
+}
