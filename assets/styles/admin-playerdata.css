@@ -1,0 +1,340 @@
+/* ── Admin Playerdata Inspector ────────────────────────────────────────────── */
+
+.admin-playerdata-shell {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 64px 0 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.admin-pd-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-pd-hero__tools {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Positions the clear button inside .waypoint-search-wrap - mirrors
+   #clear-waypoint-search in waypoint-hubs.css (that rule is ID-scoped to its
+   own button, so this page's differently-ID'd button needs its own copy). */
+#admin-pd-clear-search {
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255,255,255,.1);
+  font-size: 20px;
+  line-height: 1;
+}
+
+#admin-pd-clear-search:hover {
+  background: rgba(255,255,255,.18);
+}
+
+.admin-pd-status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.admin-pd-status.is-error {
+  color: #ffb4b4;
+}
+
+.admin-pd-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(5,7,13,.5);
+  box-shadow: 0 10px 24px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.1);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease;
+}
+
+.admin-pd-refresh:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: rgba(5,7,13,.66);
+}
+
+.admin-pd-refresh:disabled {
+  opacity: .55;
+  cursor: default;
+}
+
+.admin-pd-refresh i.is-spinning {
+  animation: admin-pd-spin 0.8s linear infinite;
+}
+
+@keyframes admin-pd-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Player list ───────────────────────────────────────────────────────────── */
+
+.admin-pd-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-pd-empty {
+  margin: 0;
+  padding: 30px;
+  text-align: center;
+  color: var(--muted);
+  border-radius: 20px;
+  background: rgba(5,7,13,.4);
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.admin-pd-card {
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(5,7,13,.46);
+  box-shadow: 0 14px 32px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.06);
+  overflow: hidden;
+}
+
+.admin-pd-card summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  transition: background .14s ease;
+}
+
+.admin-pd-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.admin-pd-card summary:hover {
+  background: rgba(255,255,255,.03);
+}
+
+.admin-pd-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(5,7,13,.4);
+  image-rendering: pixelated;
+  flex: 0 0 auto;
+}
+
+.admin-pd-card__name {
+  color: #fff;
+  font-weight: 900;
+  font-size: 14px;
+  flex: 0 0 auto;
+}
+
+.admin-pd-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.admin-pd-card__arrow {
+  color: var(--muted);
+  transition: transform .18s ease;
+  flex: 0 0 auto;
+}
+
+.admin-pd-card[open] .admin-pd-card__arrow {
+  transform: rotate(180deg);
+}
+
+.admin-pd-card__body {
+  padding: 4px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── Info tiles (home / safe pos / death / status) ────────────────────────── */
+
+.admin-pd-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.admin-pd-tile {
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.095);
+  background:
+    linear-gradient(135deg, rgba(10,12,22,.6), rgba(3,5,10,.68)),
+    rgba(5,7,13,.46);
+}
+
+.admin-pd-tile__title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.admin-pd-tile__title i {
+  color: var(--accent);
+}
+
+.admin-pd-tile__coords {
+  margin: 0;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.admin-pd-tile__sub {
+  margin: 4px 0 0;
+  color: rgba(239,247,255,.7);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.admin-pd-tile--empty {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Section headers within a card body ───────────────────────────────────── */
+
+.admin-pd-section__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.admin-pd-section__title i {
+  color: var(--accent);
+}
+
+/* ── Grave status badges ───────────────────────────────────────────────────── */
+
+.admin-pd-grave-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 12px;
+}
+
+.admin-pd-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.14);
+  color: var(--muted);
+}
+
+.admin-pd-badge--warn {
+  color: #ffd9a0;
+  background: rgba(255,193,110,.12);
+  border-color: rgba(255,193,110,.3);
+}
+
+.admin-pd-badge--muted {
+  color: #b7f7c4;
+  background: rgba(75,224,122,.14);
+  border-color: rgba(75,224,122,.3);
+}
+
+/* ── Grave contents grid ───────────────────────────────────────────────────── */
+
+.admin-pd-item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 8px;
+}
+
+.admin-pd-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.07);
+  font-size: 11px;
+}
+
+.admin-pd-item i {
+  color: var(--accent);
+  flex: 0 0 auto;
+  font-size: 13px;
+}
+
+.admin-pd-item__name {
+  color: #fff;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.admin-pd-item__count {
+  color: var(--accent-2);
+  font-weight: 900;
+  flex: 0 0 auto;
+}
+
+.admin-pd-item--enchanted i {
+  color: var(--accent-2);
+}
+
+.admin-pd-enchant-tip {
+  margin: 8px 0 0;
+  color: rgba(239,247,255,.65);
+  font-size: 10.5px;
+  font-style: italic;
+}

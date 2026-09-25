@@ -1,0 +1,25 @@
+**/.DS_Store
+CLAUDE.md
+.git/
+.chache/
+.cache/
+.claude/
+node_modules/
+package-lock.json
+local.env.php
+.env
+assets/cache/*.json
+
+# Generated data that now lives in Postgres instead of the repo (see
+# tools/scripts/publish-generated-data.js / db/migrations/0003_generated_site_data.sql).
+# CI writes these locally just long enough to publish them, then deletes them -
+# these entries are a safety net against ever re-committing them by accident.
+enchantments/data/enchantments.json
+recipes/data/recipes.manifest.json
+structures/structure-viewers.manifest.json
+data-pack-configurator/data/pack-data.json
+resource-pack-assembler/data/pack-data.json
+overview/data/readme.html
+waypoint-hubs/data/waypoint-hubs.manifest.json
+profiles/data/*.json
+admin-playerdata/data/players.json
