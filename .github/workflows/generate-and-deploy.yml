@@ -273,7 +273,15 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          fetch-depth: 1
+          # Must be >1: the step below sometimes does `git commit --amend` on
+          # HEAD. With fetch-depth 1 (only the tip commit present), the
+          # amended commit has no parent object available at all - amending
+          # then produces a genuinely parentless commit, and the
+          # --force-with-lease push permanently collapses this branch's
+          # entire history on GitHub down to that one rootless commit (this
+          # bit us for real - happened twice). Depth 2 gives the amend a real
+          # parent to carry forward.
+          fetch-depth: 2
           token: ${{ secrets.REPO_TOKEN }}
       - name: Wipe regen target directories so old files don't survive
         shell: bash
