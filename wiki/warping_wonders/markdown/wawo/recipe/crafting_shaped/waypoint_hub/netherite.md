@@ -1,0 +1,17 @@
+# Netherite Waypoint Hub
+
+**Type:** Crafting: Shaped
+
+**Recipe ID:** `wawo:crafting_shaped/waypoint_hub/netherite`
+
+## Pattern
+
+<table class="ee-recipe-grid">
+<tbody>
+<tr><td></td><td>Ender Pearl</td><td></td></tr>
+<tr><td>Raw Gold</td><td>Purple Carpet</td><td>Raw Gold</td></tr>
+<tr><td>Block of Netherite</td><td>Block of Netherite</td><td>Block of Netherite</td></tr>
+</tbody>
+</table>
+
+**Result:** Netherite Waypoint Hub

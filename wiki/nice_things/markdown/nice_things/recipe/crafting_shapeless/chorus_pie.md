@@ -6,7 +6,7 @@
 
 ## Ingredients
 
-- Apple
+- Chorus Fruit
 - Sugar
 - #minecraft:eggs
 

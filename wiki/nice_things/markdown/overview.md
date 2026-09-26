@@ -133,6 +133,13 @@ Dark Prismarine Display Case
 </td>
 
 <td align="center">
+<a href="/nice_things/items/emerald_on_a_stick">
+<img src="https://explorerseden.eu/wiki/nice_things/images/items/nice_things/emerald_on_a_stick.png" width="96"><br>
+Emerald on a Stick
+</a>
+</td>
+
+<td align="center">
 <a href="/nice_things/items/exposed_copper_display_case">
 <img src="https://explorerseden.eu/wiki/nice_things/images/items/nice_things/exposed_copper_display_case.png" width="96"><br>
 Exposed Copper Display Case
@@ -145,16 +152,16 @@ Exposed Copper Display Case
 Fan
 </a>
 </td>
+</tr>
 
+<tr>
 <td align="center">
 <a href="/nice_things/items/golden">
 <img src="https://explorerseden.eu/wiki/nice_things/images/items/nice_things/groups/golden.png" width="96"><br>
 Golden
 </a>
 </td>
-</tr>
 
-<tr>
 <td align="center">
 <a href="/nice_things/items/golden_chorus_fruit">
 <img src="https://explorerseden.eu/wiki/nice_things/images/items/nice_things/golden_chorus_fruit.png" width="96"><br>
@@ -196,16 +203,16 @@ Iron Display Case
 Jungle Display Case
 </a>
 </td>
+</tr>
 
+<tr>
 <td align="center">
 <a href="/nice_things/items/kaleidoscope">
 <img src="https://explorerseden.eu/wiki/nice_things/images/items/nice_things/kaleidoscope.png" width="96"><br>
 Kaleidoscope
 </a>
 </td>
-</tr>
 
-<tr>
 <td align="center">
 <a href="/nice_things/items/mangrove_display_case">
 <img src="https://explorerseden.eu/wiki/nice_things/images/items/nice_things/mangrove_display_case.png" width="96"><br>
@@ -247,16 +254,16 @@ Oxidized Copper Display Case
 Pale Oak Display Case
 </a>
 </td>
+</tr>
 
+<tr>
 <td align="center">
 <a href="/nice_things/items/poplar_display_case">
 <img src="https://explorerseden.eu/wiki/nice_things/images/items/nice_things/poplar_display_case.png" width="96"><br>
 Poplar Display Case
 </a>
 </td>
-</tr>
 
-<tr>
 <td align="center">
 <a href="/nice_things/items/sculk_harness">
 <img src="https://explorerseden.eu/wiki/nice_things/images/items/nice_things/sculk_harness.png" width="96"><br>
@@ -298,16 +305,16 @@ Sweet Berry Cookie
 Unlit Campfire
 </a>
 </td>
+</tr>
 
+<tr>
 <td align="center">
 <a href="/nice_things/items/unlit_soul_campfire">
 <img src="https://explorerseden.eu/wiki/nice_things/images/items/nice_things/unlit_soul_campfire.png" width="96"><br>
 Unlit Soul Campfire
 </a>
 </td>
-</tr>
 
-<tr>
 <td align="center">
 <a href="/nice_things/items/warped_display_case">
 <img src="https://explorerseden.eu/wiki/nice_things/images/items/nice_things/warped_display_case.png" width="96"><br>
@@ -326,12 +333,6 @@ Weathered Copper Display Case
 <a href="/nice_things/items/wrench">
 <img src="https://explorerseden.eu/wiki/nice_things/images/items/nice_things/wrench.png" width="96"><br>
 Wrench
-</a>
-</td>
-
-<td align="center">
-<a href="/nice_things/items/">
-
 </a>
 </td>
 
