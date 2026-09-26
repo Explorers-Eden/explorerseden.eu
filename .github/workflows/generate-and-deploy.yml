@@ -3,7 +3,10 @@ name: Generate Files and Deploy
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'  # every hour
+    # :17 rather than :00 - GitHub explicitly recommends offsetting off the
+    # top of the hour, the single most congested slot for scheduled workflows
+    # platform-wide, to avoid runs being delayed/dropped under high load.
+    - cron: '17 * * * *'  # every hour, offset from the busiest slot
 
 permissions:
   contents: write
