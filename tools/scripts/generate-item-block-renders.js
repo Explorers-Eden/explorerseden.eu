@@ -700,7 +700,30 @@ async function main() {
 
   if (done) console.log(`Rendered ${done} item/block PNG(s) (${animated} animated) in ${outRoot}.`);
   if (errors) console.warn(`${errors} item/block render error(s).`);
+  stripMissingItemIcons();
   if (done === 0 && items.length > 0) process.exitCode = 1;
+}
+
+// Loot/structure markdown links item icons before this phase runs. Drop the
+// <img> for any icon that could not be rendered (e.g. modded items without
+// textures) so published pages don't show broken images.
+function stripMissingItemIcons() {
+  const wikiOutputRoot = process.env.WIKI_OUTPUT_ROOT;
+  if (!wikiOutputRoot) return;
+  const markdownRoot = process.env.WIKI_MARKDOWN_OUTPUT_ROOT || path.join(wikiOutputRoot, 'markdown');
+  const wikiParent = path.dirname(path.resolve(wikiOutputRoot));
+  const iconTag = /<img src="https:\/\/explorerseden\.eu\/wiki\/([^"]+\/images\/items\/[^"]+\.png)"[^>]*> ?/g;
+  const missing = new Set();
+  for (const file of walkFiles(markdownRoot, '.md')) {
+    const text = fs.readFileSync(file, 'utf8');
+    const next = text.replace(iconTag, (tag, rel) => {
+      if (exists(path.join(wikiParent, rel))) return tag;
+      missing.add(rel);
+      return '';
+    });
+    if (next !== text) fs.writeFileSync(file, next);
+  }
+  if (missing.size) console.warn(`Removed links to ${missing.size} item icon(s) that could not be rendered: ${[...missing].map(r => path.basename(r, '.png')).join(', ')}`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

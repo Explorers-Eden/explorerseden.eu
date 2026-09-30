@@ -255,8 +255,11 @@ function main() {
       runNode('generate-recipe-images.js', cloneDir, env);
     }
 
+    // Also run when earlier phases requested icons (e.g. vanilla loot items),
+    // even if the pack ships no item definitions of its own.
     if (shouldRun('item-renders') &&
-        hasFiles(path.join(cloneDir, 'assets'), [p => /\/items\/[^/]+\.json$/.test(p)])) {
+        (hasFiles(path.join(cloneDir, 'assets'), [p => /\/items\/[^/]+\.json$/.test(p)]) ||
+         exists(path.join(outputRoot, 'images', 'items', '.item-icon-requests.json')))) {
       runNode('generate-item-block-renders.js', cloneDir, env);
     }
 
@@ -309,9 +312,3 @@ function main() {
 }
 
 main();
-
-
-// v20 patch: keep pale oak leaves untinted
-const __v20_pale_oak_untinted = new Set([
-  'minecraft:pale_oak_leaves'
-]);

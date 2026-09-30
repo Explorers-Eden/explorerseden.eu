@@ -23,6 +23,10 @@ function getEntryFunctions(entry) {
 function getFunctionId(fn) {
   return fn?.function ?? fn?.type ?? null;
 }
+// MC 26.3+ tag entries reference their tag via "items" instead of "name".
+function getTagId(entry) {
+  return entry?.items ?? entry?.name ?? null;
+}
 
 const IGNORED_BLOCKS = new Set([
   "minecraft:air",
@@ -806,7 +810,7 @@ async function getItemName(entry, seenLootTables = new Set(), details = null) {
   }
 
   if (entry.type === "minecraft:tag") {
-    const tagId = entry.name ?? "unknown";
+    const tagId = getTagId(entry) ?? "unknown";
     const cleaned = cleanTag(tagId);
     const [ns, rawName] = cleaned.includes(":") ? cleaned.split(":") : ["minecraft", cleaned];
     const display = `#${ns}:${normalizeTagPath(rawName)}`;
@@ -889,6 +893,16 @@ async function flattenEntries(
       continue;
     }
 
+    // An expanded tag behaves like one item entry per tag member, each with the tag entry's weight.
+    if (entry.type === "minecraft:tag" && entry.expand) {
+      const tagItems = resolveItemTag(cleanTag(getTagId(entry) ?? ""));
+      if (tagItems.length) {
+        const expanded = tagItems.map(id => ({ ...entry, type: "minecraft:item", name: id, items: undefined, expand: undefined }));
+        result.push(...await flattenEntries(expanded, inheritedWeight, inheritedFunctions, seenLootTables, details));
+        continue;
+      }
+    }
+
     if (entry.type === "minecraft:loot_table") {
       const lootTable = cleanTag(entry.value ?? entry.name ?? "unknown");
 
@@ -917,19 +931,25 @@ async function flattenEntries(
       const nextSeenLootTables = new Set(seenLootTables);
       nextSeenLootTables.add(lootTable);
 
+      // Each roll of the outer entry pulls one item from the nested pool, so scale
+      // each inner item by (inner_weight / inner_total) rather than the full outer weight.
       for (const nestedPool of nestedJson.pools ?? []) {
-        result.push(
-          ...await flattenEntries(
-            nestedPool.entries ?? [],
-            combinedWeight,
-            [
-              ...entryFunctions,
-              ...getEntryFunctions(nestedPool)
-            ],
-            nextSeenLootTables,
-            details
-          )
+        const innerEntries = await flattenEntries(
+          nestedPool.entries ?? [],
+          1,
+          [
+            ...entryFunctions,
+            ...getEntryFunctions(nestedPool)
+          ],
+          nextSeenLootTables,
+          details
         );
+        const innerTotal = innerEntries.reduce((sum, e) => sum + e.weight, 0);
+        if (innerTotal > 0) {
+          for (const e of innerEntries) {
+            result.push({ ...e, weight: combinedWeight * (e.weight / innerTotal) });
+          }
+        }
       }
 
       continue;
@@ -1447,6 +1467,7 @@ async function main() {
     }
 
     removeStaleOutputFiles(validOutputFiles, namespaces);
+    writeItemIconManifest();
     return;
   }
 

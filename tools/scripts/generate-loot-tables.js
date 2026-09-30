@@ -20,6 +20,10 @@ function getEntryFunctions(entry) {
 function getFunctionId(fn) {
   return fn?.function ?? fn?.type ?? null;
 }
+// MC 26.3+ tag entries reference their tag via "items" instead of "name".
+function getTagId(entry) {
+  return entry?.items ?? entry?.name ?? null;
+}
 
 function walk(dir) {
   let files = [];
@@ -749,7 +753,7 @@ async function getItemName(entry, seenLootTables = new Set(), details = null) {
   }
 
   if (entry.type === "minecraft:tag") {
-    const tagId = entry.name ?? "unknown";
+    const tagId = getTagId(entry) ?? "unknown";
     const cleaned = cleanTag(tagId);
     const [ns, rawName] = cleaned.includes(":") ? cleaned.split(":") : ["minecraft", cleaned];
     const display = `#${ns}:${normalizeTagPath(rawName)}`;
@@ -818,6 +822,16 @@ async function flattenEntries(entries, inheritedWeight = 1, inheritedFunctions =
     ) {
       result.push(...await flattenEntries(entry.children ?? [], combinedWeight, entryFunctions, details, seenLootTables));
       continue;
+    }
+
+    // An expanded tag behaves like one item entry per tag member, each with the tag entry's weight.
+    if (entry.type === "minecraft:tag" && entry.expand) {
+      const tagItems = resolveItemTag(cleanTag(getTagId(entry) ?? ""));
+      if (tagItems.length) {
+        const expanded = tagItems.map(id => ({ ...entry, type: "minecraft:item", name: id, items: undefined, expand: undefined }));
+        result.push(...await flattenEntries(expanded, inheritedWeight, inheritedFunctions, details, seenLootTables));
+        continue;
+      }
     }
 
     if (entry.type === "minecraft:loot_table") {
