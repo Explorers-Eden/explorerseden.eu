@@ -21,9 +21,9 @@ There is one loot table used in this structure:
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/harness_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Harness of Roots | 1 | 2 | 1 | 16.7% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Hatchet | 1 | 2 | 1 | 16.7% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Hatchet | 1 | 2 | 1 | 16.7% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/journal_5B7B4D.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Journal | 1 | 3 | 3600 | 99.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/oakhearted_horn.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Horn of Roots | 1 | 3 | 2 | 0.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/buried_treasure_map.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> item.minecraft.buried_treasure_map | 1 | 3 | 2 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/journal_5B7B4D.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Journal | 1 | 3 | 9 | 60.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/oakhearted_horn.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Horn of Roots | 1 | 3 | 2 | 13.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/buried_treasure_map.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> item.minecraft.buried_treasure_map | 1 | 3 | 2 | 13.3% |
 
 </details>
 

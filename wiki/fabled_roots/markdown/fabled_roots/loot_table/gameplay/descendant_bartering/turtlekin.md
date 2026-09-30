@@ -2,29 +2,68 @@
 
 | Item | Stack Size | Pool | Weight | Chance |
 |:-----|:----------:|:----:|:------:|:------:|
-| #minecraft:unknown | 1 | 1 | 60 | 25.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/kelp.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Kelp | 1 - 4 | 1 | 30 | 12.7% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/dark_prismarine.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Dark Prismarine | 1 - 2 | 1 | 20 | 8.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/prismarine.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Prismarine | 1 - 3 | 1 | 20 | 8.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bundle_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bundle of Roots | 1 | 1 | 15 | 6.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/emerald.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Emerald | 1 - 2 | 1 | 10 | 4.2% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (#minecraft:tradeable) | 1 | 1 | 10 | 4.2% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/buried_treasure_map.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> item.minecraft.buried_treasure_map | 1 | 1 | 10 | 4.2% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 10 | 4.2% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/prismarine_crystals.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Prismarine Crystals | 1 - 2 | 1 | 10 | 4.2% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/prismarine_shard.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Prismarine Shard | 1 - 2 | 1 | 10 | 4.2% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/scroll.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Scroll | 1 | 1 | 10 | 4.2% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/turtle_scute.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Turtle Scute | 1 | 1 | 10 | 4.2% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/wooden_axe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Axe | 1 | 1 | 1.36 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/wooden_sword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Sword | 1 | 1 | 1.36 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Broadsword | 1 | 1 | 0.9 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Club | 1 | 1 | 0.9 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Hatchet | 1 | 1 | 0.9 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Rapier | 1 | 1 | 0.9 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Scimitar | 1 | 1 | 0.9 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Scythe | 1 | 1 | 0.9 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/wooden_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Spear | 1 | 1 | 0.9 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Throwing Knife | 1 | 1 | 0.9 | 0.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/coal.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Coal | 1 | 1 | 30 | 5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/kelp.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Kelp | 1 - 4 | 1 | 30 | 5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/dark_prismarine.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Dark Prismarine | 1 - 2 | 1 | 20 | 3.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/prismarine.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Prismarine | 1 - 3 | 1 | 20 | 3.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bundle_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bundle of Roots | 1 | 1 | 15 | 2.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/baked_potato.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Baked Potato | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/beef.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Beef | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/beetroot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Beetroot | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/black_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Black Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/blue_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Blue Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/brown_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Brown Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Carrot | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/chicken.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chicken | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/chorus_fruit.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chorus Fruit | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/cod.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Cod | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/cyan_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Cyan Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/emerald.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Emerald | 1 - 2 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (#minecraft:tradeable) | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/feather.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Feather | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/flint.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Flint | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/gravel.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Gravel | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/gray_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Gray Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/green_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Green Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/iron_ingot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Ingot | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/iron_nugget.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Nugget | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/buried_treasure_map.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> item.minecraft.buried_treasure_map | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/light_blue_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Light Blue Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/light_gray_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Light Gray Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lime_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lime Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/magenta_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Magenta Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/mutton.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Mutton | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/orange_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Orange Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/pink_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Pink Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/porkchop.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Porkchop | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/potato.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potato | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/prismarine_crystals.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Prismarine Crystals | 1 - 2 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/prismarine_shard.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Prismarine Shard | 1 - 2 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/purple_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Purple Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/rabbit.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Rabbit | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/red_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Red Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/salmon.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Salmon | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/scroll.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Scroll | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/stick.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stick | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/string.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> String | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/sweet_berries.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Sweet Berries | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/tropical_fish.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Tropical Fish | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/tropical_fish_bucket.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Tropical Fish Bucket | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/turtle_scute.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Turtle Scute | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/white_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> White Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/yellow_dye.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Yellow Dye | 1 | 1 | 10 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/wooden_axe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Axe | 1 | 1 | 1.36 | 0.2% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/wooden_sword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Sword | 1 | 1 | 1.36 | 0.2% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Broadsword | 1 | 1 | 0.9 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Club | 1 | 1 | 0.9 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Hatchet | 1 | 1 | 0.9 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Rapier | 1 | 1 | 0.9 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Scimitar | 1 | 1 | 0.9 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Scythe | 1 | 1 | 0.9 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/wooden_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Spear | 1 | 1 | 0.9 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Throwing Knife | 1 | 1 | 0.9 | 0.1% |
 
 #### Enchantment Tags
 

@@ -7,33 +7,33 @@ There are 10 loot tables used in this structure:
 
 | Item | Stack Size | Pool | Weight | Chance |
 |:-----|:----------:|:----:|:------:|:------:|
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/wooden_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Spear | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/stone_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Spear | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Spear | 1 | 1 | 50 | 7.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/copper_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Spear | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/iron_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Spear | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/diamond_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Spear | 1 | 1 | 16 | 2.4% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 10 | 1.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_A8FCFF.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Cloudy Balcony) | 1 | 1 | 5 | 0.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/netherite_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Spear | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 60 | 42.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 0.7% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 18.2% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 9.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_A8FCFF.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Cloudy Balcony) | 1 | 1 | 1 | 4.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 0.84 | 3.8% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 0.63 | 2.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/wooden_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Spear | 1 | 1 | 0.55 | 2.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 0.42 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/stone_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Spear | 1 | 1 | 0.41 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Spear | 1 | 1 | 0.34 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/copper_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Spear | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/iron_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Spear | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/diamond_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Spear | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/netherite_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Spear | 1 | 1 | 0.03 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 0.25 | 5.0% |
 
 </details>
 
@@ -42,33 +42,33 @@ There are 10 loot tables used in this structure:
 
 | Item | Stack Size | Pool | Weight | Chance |
 |:-----|:----------:|:----:|:------:|:------:|
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Scimitar | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Scimitar | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Scimitar | 1 | 1 | 50 | 7.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Scimitar | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Scimitar | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Scimitar | 1 | 1 | 16 | 2.4% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 10 | 1.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_C2A76D.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Wanderlust) | 1 | 1 | 5 | 0.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Scimitar | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 60 | 42.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 0.7% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 18.2% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 9.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_C2A76D.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Wanderlust) | 1 | 1 | 1 | 4.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 0.84 | 3.8% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 0.63 | 2.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Scimitar | 1 | 1 | 0.55 | 2.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 0.42 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Scimitar | 1 | 1 | 0.41 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Scimitar | 1 | 1 | 0.34 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Scimitar | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Scimitar | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Scimitar | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_scimitar.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Scimitar | 1 | 1 | 0.03 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 0.25 | 5.0% |
 
 </details>
 
@@ -77,33 +77,33 @@ There are 10 loot tables used in this structure:
 
 | Item | Stack Size | Pool | Weight | Chance |
 |:-----|:----------:|:----:|:------:|:------:|
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Scythe | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Scythe | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Scythe | 1 | 1 | 50 | 7.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Scythe | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Scythe | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Scythe | 1 | 1 | 16 | 2.4% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 10 | 1.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_5D3A9B.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Tent) | 1 | 1 | 5 | 0.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Scythe | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 60 | 42.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 0.7% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 18.2% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 9.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_5D3A9B.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Tent) | 1 | 1 | 1 | 4.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 0.84 | 3.8% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 0.63 | 2.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Scythe | 1 | 1 | 0.55 | 2.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 0.42 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Scythe | 1 | 1 | 0.41 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Scythe | 1 | 1 | 0.34 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Scythe | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Scythe | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Scythe | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Scythe | 1 | 1 | 0.03 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 0.25 | 5.0% |
 
 </details>
 
@@ -112,33 +112,33 @@ There are 10 loot tables used in this structure:
 
 | Item | Stack Size | Pool | Weight | Chance |
 |:-----|:----------:|:----:|:------:|:------:|
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Club | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Club | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Club | 1 | 1 | 50 | 7.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Club | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Club | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Club | 1 | 1 | 16 | 2.4% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 10 | 1.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_A9D6E5.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Shelter) | 1 | 1 | 5 | 0.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Club | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 60 | 42.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 0.7% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 18.2% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 9.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_A9D6E5.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Shelter) | 1 | 1 | 1 | 4.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 0.84 | 3.8% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 0.63 | 2.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Club | 1 | 1 | 0.55 | 2.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 0.42 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Club | 1 | 1 | 0.41 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Club | 1 | 1 | 0.34 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Club | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Club | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Club | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_club.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Club | 1 | 1 | 0.03 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 0.25 | 5.0% |
 
 </details>
 
@@ -147,33 +147,33 @@ There are 10 loot tables used in this structure:
 
 | Item | Stack Size | Pool | Weight | Chance |
 |:-----|:----------:|:----:|:------:|:------:|
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Throwing Knife | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Throwing Knife | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Throwing Knife | 1 | 1 | 50 | 7.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Throwing Knife | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Throwing Knife | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Throwing Knife | 1 | 1 | 16 | 2.4% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 10 | 1.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_B0B7D6.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Evoker) | 1 | 1 | 5 | 0.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Throwing Knife | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 60 | 42.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 0.7% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 18.2% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 9.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_B0B7D6.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Evoker) | 1 | 1 | 1 | 4.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 0.84 | 3.8% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 0.63 | 2.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Throwing Knife | 1 | 1 | 0.55 | 2.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 0.42 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Throwing Knife | 1 | 1 | 0.41 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Throwing Knife | 1 | 1 | 0.34 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Throwing Knife | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Throwing Knife | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Throwing Knife | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Throwing Knife | 1 | 1 | 0.03 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 0.25 | 5.0% |
 
 </details>
 
@@ -182,33 +182,33 @@ There are 10 loot tables used in this structure:
 
 | Item | Stack Size | Pool | Weight | Chance |
 |:-----|:----------:|:----:|:------:|:------:|
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Broadsword | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Broadsword | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Broadsword | 1 | 1 | 50 | 7.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Broadsword | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Broadsword | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Broadsword | 1 | 1 | 16 | 2.4% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 10 | 1.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_B23333.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Ghast) | 1 | 1 | 5 | 0.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Broadsword | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 60 | 42.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 0.7% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 18.2% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 9.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_B23333.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Ghast) | 1 | 1 | 1 | 4.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 0.84 | 3.8% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 0.63 | 2.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Broadsword | 1 | 1 | 0.55 | 2.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 0.42 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Broadsword | 1 | 1 | 0.41 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Broadsword | 1 | 1 | 0.34 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Broadsword | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Broadsword | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Broadsword | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_broadsword.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Broadsword | 1 | 1 | 0.03 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 0.25 | 5.0% |
 
 </details>
 
@@ -217,33 +217,33 @@ There are 10 loot tables used in this structure:
 
 | Item | Stack Size | Pool | Weight | Chance |
 |:-----|:----------:|:----:|:------:|:------:|
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Hatchet | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Hatchet | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Hatchet | 1 | 1 | 50 | 7.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Hatchet | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Hatchet | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Hatchet | 1 | 1 | 16 | 2.4% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 10 | 1.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_5B7B4D.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Panda Temple) | 1 | 1 | 5 | 0.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Hatchet | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 60 | 42.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 0.7% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 18.2% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 9.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_5B7B4D.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Panda Temple) | 1 | 1 | 1 | 4.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 0.84 | 3.8% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 0.63 | 2.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Hatchet | 1 | 1 | 0.55 | 2.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 0.42 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Hatchet | 1 | 1 | 0.41 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Hatchet | 1 | 1 | 0.34 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Hatchet | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Hatchet | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Hatchet | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_hatchet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Hatchet | 1 | 1 | 0.03 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 0.25 | 5.0% |
 
 </details>
 
@@ -252,29 +252,29 @@ There are 10 loot tables used in this structure:
 
 | Item | Stack Size | Pool | Weight | Chance |
 |:-----|:----------:|:----:|:------:|:------:|
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 80 | 15.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/mace.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Mace | 1 | 1 | 80 | 15.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 60 | 11.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/blaze_mace.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Blaze Mace | 1 | 1 | 40 | 7.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 40 | 7.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/breeze_mace.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Breeze Mace | 1 | 1 | 40 | 7.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 40 | 7.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 40 | 7.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 40 | 7.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 40 | 7.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 10 | 1.9% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_857A6F.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Dank Cave) | 1 | 1 | 5 | 0.9% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 0.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 0.4% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 60 | 42.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 0.7% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 18.2% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 9.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/mace.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Mace | 1 | 1 | 1 | 4.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_857A6F.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Dank Cave) | 1 | 1 | 1 | 4.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 0.84 | 3.8% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 0.63 | 2.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/blaze_mace.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Blaze Mace | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/breeze_mace.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Breeze Mace | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 0.42 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 0.25 | 5.0% |
 
 </details>
 
@@ -283,33 +283,33 @@ There are 10 loot tables used in this structure:
 
 | Item | Stack Size | Pool | Weight | Chance |
 |:-----|:----------:|:----:|:------:|:------:|
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Rapier | 1 | 1 | 80 | 12.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Rapier | 1 | 1 | 60 | 9.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Rapier | 1 | 1 | 50 | 7.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Rapier | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Rapier | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 40 | 6.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Rapier | 1 | 1 | 16 | 2.4% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 10 | 1.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_E8DADA.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Spoopy) | 1 | 1 | 5 | 0.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Rapier | 1 | 1 | 4 | 0.6% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 0.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 60 | 42.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 0.7% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 18.2% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 9.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_E8DADA.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Spoopy) | 1 | 1 | 1 | 4.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 0.84 | 3.8% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 0.63 | 2.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/wooden_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Wooden Rapier | 1 | 1 | 0.55 | 2.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 0.42 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/stone_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Stone Rapier | 1 | 1 | 0.41 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Rapier | 1 | 1 | 0.34 | 1.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Rapier | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Rapier | 1 | 1 | 0.28 | 1.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Rapier | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/netherite_rapier.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Netherite Rapier | 1 | 1 | 0.03 | 0.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 0.25 | 5.0% |
 
 </details>
 
@@ -318,27 +318,27 @@ There are 10 loot tables used in this structure:
 
 | Item | Stack Size | Pool | Weight | Chance |
 |:-----|:----------:|:----:|:------:|:------:|
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 80 | 21.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 60 | 16.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 40 | 10.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 40 | 10.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 40 | 10.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 40 | 10.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 40 | 10.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 10 | 2.7% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_3C92A4.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Twilight Cavern) | 1 | 1 | 5 | 1.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 1.1% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 0.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 0.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 0.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/trident.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Trident | 1 | 1 | 2 | 0.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 60 | 42.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 20 | 14.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 0.7% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (Random) | 1 | 1 | 4 | 18.2% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bow_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bow of Roots | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 2–4 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/shield.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Shield | 1 | 1 | 3 | 13.6% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/golden_carrot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Carrot | 1–2 | 1 | 2 | 9.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/trident.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Trident | 1 | 1 | 2 | 9.1% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_3C92A4.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Twilight Cavern) | 1 | 1 | 1 | 4.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 1 | 0.84 | 3.8% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 1 | 0.63 | 2.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Leggings of Roots | 1 | 1 | 0.5 | 2.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/golden_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor of Roots | 1 | 1 | 0.42 | 1.9% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/diamond_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor of Roots | 1 | 1 | 0.11 | 0.5% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/crown_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Crown of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_sword_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Sword of Roots | 1 | 2 | 1 | 20.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Boots of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Chestplate of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Helmet of Roots | 1 | 2 | 0.25 | 5.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/reinforced_leggings_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Reinforced Leggings of Roots | 1 | 2 | 0.25 | 5.0% |
 
 </details>
 

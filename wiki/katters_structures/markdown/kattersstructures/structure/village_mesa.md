@@ -12,7 +12,7 @@ There are 10 loot tables used in this structure:
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/red_sand.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Red Sand | 1–4 | 1 | 2 | 20.0% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/emerald.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Emerald | 1 | 1 | 1 | 10.0% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/iron_helmet.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Helmet | 1 | 1 | 1 | 10.0% |
-| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 3 | 100.0% |
+| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 1 | 100.0% |
 
 </details>
 
@@ -49,7 +49,7 @@ There are 10 loot tables used in this structure:
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/feather.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Feather | 1 | 1 | 1 | 3.2% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/glass_bottle.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Glass Bottle | 1–2 | 1 | 1 | 3.2% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/gold_nugget.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Gold Nugget | 1–3 | 1 | 1 | 3.2% |
-| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 3 | 100.0% |
+| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 1 | 100.0% |
 
 </details>
 
@@ -82,7 +82,7 @@ There are 10 loot tables used in this structure:
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/egg.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Egg | 1–3 | 1 | 2 | 8.3% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/red_sand.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Red Sand | 1–4 | 1 | 2 | 8.3% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/emerald.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Emerald | 1 | 1 | 1 | 4.2% |
-| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 3 | 100.0% |
+| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 1 | 100.0% |
 
 </details>
 
@@ -99,7 +99,7 @@ There are 10 loot tables used in this structure:
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/feather.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Feather | 1 | 1 | 1 | 4.3% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/glass_bottle.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Glass Bottle | 1–2 | 1 | 1 | 4.3% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/gold_nugget.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Gold Nugget | 1–3 | 1 | 1 | 4.3% |
-| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 3 | 100.0% |
+| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 1 | 100.0% |
 
 </details>
 
@@ -117,7 +117,7 @@ There are 10 loot tables used in this structure:
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/feather.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Feather | 1 | 1 | 1 | 4.0% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/glass_bottle.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Glass Bottle | 1–2 | 1 | 1 | 4.0% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/gold_nugget.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Gold Nugget | 1–3 | 1 | 1 | 4.0% |
-| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 3 | 100.0% |
+| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 1 | 100.0% |
 
 </details>
 
@@ -135,7 +135,7 @@ There are 10 loot tables used in this structure:
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/feather.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Feather | 1 | 1 | 1 | 3.7% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/glass_bottle.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Glass Bottle | 2–4 | 1 | 1 | 3.7% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/gold_nugget.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Gold Nugget | 1–3 | 1 | 1 | 3.7% |
-| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 3 | 100.0% |
+| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 1 | 100.0% |
 
 </details>
 
@@ -153,7 +153,7 @@ There are 10 loot tables used in this structure:
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/coal.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Coal | 1–3 | 1 | 1 | 1.8% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/diamond.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond | 1–3 | 1 | 1 | 1.8% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/gold_ingot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Gold Ingot | 1–3 | 1 | 1 | 1.8% |
-| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 3 | 100.0% |
+| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 1 | 100.0% |
 
 </details>
 
@@ -178,7 +178,7 @@ There are 10 loot tables used in this structure:
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/diamond_horse_armor.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond Horse Armor | 1 | 1 | 1 | 1.3% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/golden_horse_armor.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Golden Horse Armor | 1 | 1 | 1 | 1.3% |
 | <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/iron_horse_armor.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor | 1 | 1 | 1 | 1.3% |
-| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 3 | 100.0% |
+| <img src="https://explorerseden.eu/wiki/katters_structures/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 2 | 1 | 100.0% |
 
 </details>
 

@@ -19,8 +19,8 @@ There is one loot table used in this structure:
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/tripwire_hook.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Tripwire Hook | 1–3 | 4 | 3 | 13.6% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/enchanted_book.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Enchanted Book (#minecraft:on_random_loot) | 1 | 4 | 1 | 4.5% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/dunesworn_horn.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Horn of Roots | 1 | 5 | 1 | 100.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/journal_C2A76D.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Journal | 1 | 6 | 2400 | 99.8% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/buried_treasure_map.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> item.minecraft.buried_treasure_map | 1 | 6 | 1 | 0.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/journal_C2A76D.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Journal | 1 | 6 | 6 | 60.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/buried_treasure_map.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> item.minecraft.buried_treasure_map | 1 | 6 | 1 | 10.0% |
 
 #### Enchantment Tags
 
