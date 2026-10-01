@@ -56,7 +56,7 @@
 - Wither Aspect
 - Angry Aura
 - Aquatic Aura
-- Demonic Aura
+- Flaming Aura
 - Echoing Aura
 - Enchanted Aura
 - Ender Aura
@@ -87,6 +87,7 @@
 - Curse of Spider Vision
 - Curse of Void Vision
 - Curse of Welfare
+- Curse of Undying
 - Day Protection
 - End Protection
 - Nether Protection
@@ -106,7 +107,6 @@
 - Fetch
 - Forge Shot
 - Gallop
-- Ghost Spirit
 - Growth
 - Guard
 - Handyman
@@ -168,7 +168,9 @@
 - Curse of Spider Vision
 - Curse of Void Vision
 - Curse of Welfare
+- Curse of Undying
 - Bear Spirit
+- Ghost Spirit
 - Boar Spirit
 - Boltbringer
 - Bomber

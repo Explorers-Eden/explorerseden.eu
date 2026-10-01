@@ -26,7 +26,7 @@
     "displayName": "Building (1)",
     "structureId": "nice_mob_variants:barn",
     "blocks": 628,
-    "uniqueBlocks": 44,
+    "uniqueBlocks": 38,
     "url": "structures/nice_mob_variants/nice_mob_variants/barn/barn/building_1/index.html",
     "previews": [
       "/wiki/nice_mob_variants/images/structures/nice_mob_variants/barn/barn/building_1/north.png",
@@ -44,7 +44,7 @@
     "displayName": "Building (2)",
     "structureId": "nice_mob_variants:barn",
     "blocks": 625,
-    "uniqueBlocks": 42,
+    "uniqueBlocks": 38,
     "url": "structures/nice_mob_variants/nice_mob_variants/barn/barn/building_2/index.html",
     "previews": [
       "/wiki/nice_mob_variants/images/structures/nice_mob_variants/barn/barn/building_2/north.png",
@@ -62,7 +62,7 @@
     "displayName": "Building (3)",
     "structureId": "nice_mob_variants:barn",
     "blocks": 623,
-    "uniqueBlocks": 39,
+    "uniqueBlocks": 38,
     "url": "structures/nice_mob_variants/nice_mob_variants/barn/barn/building_3/index.html",
     "previews": [
       "/wiki/nice_mob_variants/images/structures/nice_mob_variants/barn/barn/building_3/north.png",
@@ -151,7 +151,7 @@
     "id": "nice_mob_variants:creeper_ruins",
     "displayName": "Creeper Ruins",
     "structureId": "nice_mob_variants:creeper_ruins",
-    "blocks": 290,
+    "blocks": 291,
     "uniqueBlocks": 9,
     "url": "structures/nice_mob_variants/nice_mob_variants/creeper_ruins/index.html",
     "previews": [
@@ -169,8 +169,8 @@
     "id": "nice_mob_variants:end_farm",
     "displayName": "End Farm",
     "structureId": "nice_mob_variants:end_farm",
-    "blocks": 1546,
-    "uniqueBlocks": 16,
+    "blocks": 2116,
+    "uniqueBlocks": 18,
     "url": "structures/nice_mob_variants/nice_mob_variants/end_farm/index.html",
     "previews": [
       "/wiki/nice_mob_variants/images/structures/nice_mob_variants/end_farm/north.png",
@@ -223,8 +223,8 @@
     "id": "nice_mob_variants:graveyard",
     "displayName": "Graveyard",
     "structureId": "nice_mob_variants:graveyard",
-    "blocks": 538,
-    "uniqueBlocks": 28,
+    "blocks": 542,
+    "uniqueBlocks": 29,
     "url": "structures/nice_mob_variants/nice_mob_variants/graveyard/index.html",
     "previews": [
       "/wiki/nice_mob_variants/images/structures/nice_mob_variants/graveyard/north.png",
@@ -547,8 +547,8 @@
     "id": "nice_mob_variants:potato_farm",
     "displayName": "Potato Farm",
     "structureId": "nice_mob_variants:potato_farm",
-    "blocks": 497,
-    "uniqueBlocks": 16,
+    "blocks": 540,
+    "uniqueBlocks": 20,
     "url": "structures/nice_mob_variants/nice_mob_variants/potato_farm/index.html",
     "previews": [
       "/wiki/nice_mob_variants/images/structures/nice_mob_variants/potato_farm/north.png",

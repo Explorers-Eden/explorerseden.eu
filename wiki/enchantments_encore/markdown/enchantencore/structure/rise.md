@@ -51,7 +51,9 @@ There is one loot table used in this structure:
 - Curse of Spider Vision
 - Curse of Void Vision
 - Curse of Welfare
+- Curse of Undying
 - Bear Spirit
+- Ghost Spirit
 - Boar Spirit
 - Boltbringer
 - Bomber
@@ -113,7 +115,9 @@ There is one loot table used in this structure:
 - Curse of Spider Vision
 - Curse of Void Vision
 - Curse of Welfare
+- Curse of Undying
 - Bear Spirit
+- Ghost Spirit
 - Boar Spirit
 - Boltbringer
 - Bomber
@@ -171,6 +175,7 @@ There is one loot table used in this structure:
 - Curse of Spider Vision
 - Curse of Void Vision
 - Curse of Welfare
+- Curse of Undying
 - Day Protection
 - End Protection
 - Nether Protection
@@ -183,7 +188,6 @@ There is one loot table used in this structure:
 - Crop Dance
 - Cushion
 - Fetch
-- Ghost Spirit
 - Guard
 - Handyman
 - Hardened
@@ -233,7 +237,7 @@ There is one loot table used in this structure:
 - Wither Aspect
 - Angry Aura
 - Aquatic Aura
-- Demonic Aura
+- Flaming Aura
 - Echoing Aura
 - Enchanted Aura
 - Ender Aura
@@ -264,6 +268,7 @@ There is one loot table used in this structure:
 - Curse of Spider Vision
 - Curse of Void Vision
 - Curse of Welfare
+- Curse of Undying
 - Day Protection
 - End Protection
 - Nether Protection
@@ -283,7 +288,6 @@ There is one loot table used in this structure:
 - Fetch
 - Forge Shot
 - Gallop
-- Ghost Spirit
 - Growth
 - Guard
 - Handyman
@@ -340,7 +344,7 @@ There is one loot table used in this structure:
 - Wither Aspect
 - Angry Aura
 - Aquatic Aura
-- Demonic Aura
+- Flaming Aura
 - Echoing Aura
 - Enchanted Aura
 - Ender Aura
@@ -450,7 +454,6 @@ There is one loot table used in this structure:
 - Fetch
 - Flare
 - Forge Shot
-- Ghost Spirit
 - Gluttony
 - Guard
 - Handyman
