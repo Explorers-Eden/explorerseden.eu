@@ -3,19 +3,19 @@
 There is one loot table used in this structure:
 
 <details>
-<summary><strong>fabled_roots:structure/oakhearted/treasure</strong> (1 use)</summary>
+<summary><strong>fabled_roots:structure/netherian/treasure</strong> (1 use)</summary>
 
 | Item | Stack Size | Pool | Weight | Chance |
 |:-----|:----------:|:----:|:------:|:------:|
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_B23333.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Ghast) | 1 | 1 | 1 | 50.0% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/mojam_disc.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Mojam) | 1 | 1 | 1 | 50.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/roots_disc_5B7B4D.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc (Peter Hont - Panda Temple) | 1 | 1 | 1 | 50.0% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/iron_ingot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Ingot | 1–4 | 2 | 20 | 57.1% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/gold_ingot.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Gold Ingot | 1–4 | 2 | 10 | 28.6% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/music_disc_5.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Music Disc 5 | 1–2 | 2 | 5 | 14.3% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/diamond.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Diamond | 1–2 | 3 | 5 | 33.3% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/lapis_lazuli.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Lapis Lazuli | 4–8 | 3 | 5 | 33.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/vine.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Vine | 1–5 | 3 | 5 | 33.3% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/bee_shell.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Bee Shell | 1 | 4 | 1 | 33.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/magma_cream.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Magma Cream | 1–5 | 3 | 5 | 33.3% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/ghast_shell.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Ghast Shell | 1 | 4 | 1 | 33.3% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/boots_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Boots of Roots | 1 | 4 | 0.25 | 8.3% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/chestplate_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Chestplate of Roots | 1 | 4 | 0.25 | 8.3% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/helmet_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Helmet of Roots | 1 | 4 | 0.25 | 8.3% |
@@ -31,8 +31,8 @@ There is one loot table used in this structure:
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_scythe.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Scythe | 1 | 4 | 0.07 | 2.5% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/iron_spear.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Spear | 1 | 4 | 0.07 | 2.5% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_throwing_knife.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Throwing Knife | 1 | 4 | 0.07 | 2.5% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/apple.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Apple | 2–4 | 5 | 1 | 50.0% |
-| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/pumpkin_pie.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Pumpkin Pie | 2–4 | 5 | 1 | 50.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/cooked_porkchop.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Cooked Porkchop | 2–4 | 5 | 1 | 50.0% |
+| <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/porkchop.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Porkchop | 2–4 | 5 | 1 | 50.0% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/minecraft/potion.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Potion | 1 | 6 | 1 | 100.0% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/copper_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Copper Horse Armor of Roots | 1 | 7 | 0.42 | 42.1% |
 | <img src="https://explorerseden.eu/wiki/fabled_roots/images/items/fabled_roots/iron_horse_armor_of_roots.png" height="16" style="vertical-align:middle; image-rendering:pixelated"> Iron Horse Armor of Roots | 1 | 7 | 0.32 | 31.6% |
@@ -70,7 +70,7 @@ The structure part is composed of the following blocks: Chest.
 
 | Loot Table | Count |
 |:-----|:-----:|
-| fabled_roots:structure/oakhearted/treasure | 1 |
+| fabled_roots:structure/netherian/treasure | 1 |
 
 
 </details>

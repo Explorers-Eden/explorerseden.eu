@@ -56,7 +56,9 @@
 - Curse of Spider Vision
 - Curse of Void Vision
 - Curse of Welfare
+- Curse of Undying
 - Bear Spirit
+- Ghost Spirit
 - Boar Spirit
 - Boltbringer
 - Bomber
