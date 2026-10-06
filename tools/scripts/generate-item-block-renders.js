@@ -16,6 +16,8 @@ const vanillaRoot = process.env.VANILLA_ASSET_ROOT ||
   path.join(workflowRoot, '.cache', 'vanilla-assets', 'active');
 const ICON_SIZE = Number(process.env.ITEM_RENDER_ICON_SIZE || 256);
 const CELL = 32;
+// Max enlargement of a trimmed 3D model render (see normalize).
+const MESH_MAX_UPSCALE = 1.5;
 // Fixed atlas width — UV coordinates are stable regardless of registration order.
 // Using a single-row atlas means V is always [0,1]; only U shifts per slot.
 const ATLAS_COLS = 32;
@@ -147,6 +149,28 @@ function encodeApng(frameBuffers, delayMs = 100) {
   }
   chunks.push(pngChunk('IEND'));
   return Buffer.concat(chunks);
+}
+
+// Expand animation frames for textures with "interpolate": true. Minecraft blends each
+// frame into the next over its whole frametime; approximate with up to 12 blended
+// sub-frames per frame. Returns { frames, frametime } with frametime in ms.
+const MAX_INTERPOLATION_STEPS = 12;
+function expandAnimation(frameBuffers, meta) {
+  const frametime = (meta.frametime || 1) * 50;
+  if (!meta.interpolate || frameBuffers.length < 2) return { frames: frameBuffers, frametime };
+  const steps = Math.min(meta.frametime || 1, MAX_INTERPOLATION_STEPS);
+  const decoded = frameBuffers.map(b => PNG.sync.read(b));
+  const frames = [];
+  for (let i = 0; i < decoded.length; i++) {
+    const a = decoded[i], b = decoded[(i + 1) % decoded.length];
+    for (let k = 0; k < steps; k++) {
+      const t = k / steps;
+      const out = new PNG({ width: a.width, height: a.height });
+      for (let j = 0; j < a.data.length; j++) out.data[j] = Math.round(a.data[j] + (b.data[j] - a.data[j]) * t);
+      frames.push(PNG.sync.write(out));
+    }
+  }
+  return { frames, frametime: Math.round(frametime / steps) };
 }
 
 // Normalize Blockbench-exported block model JSON to standard Minecraft format.
@@ -312,10 +336,17 @@ function rasterMesh(mesh, atlas, size = ICON_SIZE) {
   }
   return PNG.sync.write(dst);
 }
-async function normalize(buf, size = ICON_SIZE) {
+// Trim transparent borders and scale the content to fill the icon. maxUpscale caps how far
+// sparse content may be enlarged (e.g. 3D models that only show a strap or monocle), so it
+// keeps roughly its in-game proportions instead of being blown up to the full icon size.
+async function normalize(buf, size = ICON_SIZE, { maxUpscale = Infinity } = {}) {
   let trimmed = buf;
   try { trimmed = await sharp(buf).ensureAlpha().trim({ background: { r: 0, g: 0, b: 0, alpha: 0 }, threshold: 1 }).png().toBuffer(); } catch { }
-  const resized = await sharp(trimmed).resize(size, size, { fit: 'inside', kernel: 'nearest', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
+  const { width: tw, height: th } = await sharp(trimmed).metadata();
+  const capped = Math.min(size / tw, size / th) > maxUpscale;
+  const resized = capped
+    ? await sharp(trimmed).resize(Math.round(tw * maxUpscale), Math.round(th * maxUpscale), { fit: 'fill', kernel: 'nearest' }).png().toBuffer()
+    : await sharp(trimmed).resize(size, size, { fit: 'inside', kernel: 'nearest', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
   return sharp({ create: { width: size, height: size, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
     .composite([{ input: resized, gravity: 'center' }]).png().toBuffer();
 }
@@ -468,7 +499,6 @@ async function renderFlatItem(item, size = ICON_SIZE) {
     const indices = meta.frames
       ? meta.frames.map(fr => (typeof fr === 'object' ? fr.index : fr))
       : Array.from({ length: frameCount }, (_, k) => k);
-    const frametime = (meta.frametime || 1) * 50;
     const frames = await Promise.all(indices.map(idx =>
       sharp(directTex).ensureAlpha()
         .extract({ left: 0, top: idx * frameH, width, height: frameH })
@@ -476,9 +506,9 @@ async function renderFlatItem(item, size = ICON_SIZE) {
         .png().toBuffer()
     ));
     const normed = await Promise.all(frames.map(f => normalize(f, size)));
-    return normed.length === 1
-      ? { buf: normed[0], animated: false }
-      : { buf: encodeApng(normed, frametime), animated: true };
+    if (normed.length === 1) return { buf: normed[0], animated: false };
+    const anim = expandAnimation(normed, meta);
+    return { buf: encodeApng(anim.frames, anim.frametime), animated: true };
   }
 
   // Step 2 — resolve each model ref through the models/ chain and collect texture layers.
@@ -527,7 +557,7 @@ async function renderFlatItem(item, size = ICON_SIZE) {
         .resize(size, size, { fit: 'inside', kernel: 'nearest', background: { r: 0, g: 0, b: 0, alpha: 0 } })
         .png().toBuffer();
       if (tintRgb) buf = await sharp(buf).tint({ r: tintRgb[0], g: tintRgb[1], b: tintRgb[2] }).png().toBuffer();
-      return { frames: [buf], frametime: 100 };
+      return { frames: [buf], frametime: 0 };
     }
     const { width } = await sharp(f).metadata();
     const frameH = meta.height || meta.width || width;
@@ -535,7 +565,6 @@ async function renderFlatItem(item, size = ICON_SIZE) {
     const indices = meta.frames
       ? meta.frames.map(fr => (typeof fr === 'object' ? fr.index : fr))
       : Array.from({ length: frameCount }, (_, k) => k);
-    const frametime = (meta.frametime || 1) * 50;
     const frames = await Promise.all(indices.map(async idx => {
       let buf = await sharp(f).ensureAlpha()
         .extract({ left: 0, top: idx * frameH, width, height: frameH })
@@ -544,11 +573,12 @@ async function renderFlatItem(item, size = ICON_SIZE) {
       if (tintRgb) buf = await sharp(buf).tint({ r: tintRgb[0], g: tintRgb[1], b: tintRgb[2] }).png().toBuffer();
       return buf;
     }));
-    return { frames, frametime };
+    return expandAnimation(frames, meta);
   }));
 
   const maxFrames = Math.max(...layerFrames.map(l => l.frames.length), 1);
-  const frametime = layerFrames.reduce((best, l) => l.frametime > 0 ? Math.min(best, l.frametime) : best, 100);
+  const minFrametime = layerFrames.reduce((best, l) => l.frametime > 0 ? Math.min(best, l.frametime) : best, Infinity);
+  const frametime = Number.isFinite(minFrametime) ? minFrametime : 100;
   const outputFrames = [];
   for (let fi = 0; fi < maxFrames; fi++) {
     const comps = [];
@@ -604,7 +634,7 @@ async function renderItem(itemId, size, components) {
       const mesh = DS.ItemRenderer.getItemMesh(stack, res, { display_context: 'gui' });
       if (mesh && !mesh.isEmpty()) {
         const atlas = await res.buildAtlas();
-        if (atlas) return { buf: await normalize(rasterMesh(mesh, atlas, size), size), animated: false };
+        if (atlas) return { buf: await normalize(rasterMesh(mesh, atlas, size), size, { maxUpscale: MESH_MAX_UPSCALE }), animated: false };
       }
     } catch { /* fall through */ }
   }
