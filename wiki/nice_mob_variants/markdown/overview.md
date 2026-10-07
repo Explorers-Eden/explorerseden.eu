@@ -523,6 +523,13 @@ Dark
 </td>
 
 <td align="center">
+<a href="/nice_mob_variants/variants/pig/dyed">
+<img src="https://explorerseden.eu/wiki/nice_mob_variants/images/entity/pig/dyed/adult.png" width="96"><br>
+Dyed
+</a>
+</td>
+
+<td align="center">
 <a href="/nice_mob_variants/variants/pig/ender">
 <img src="https://explorerseden.eu/wiki/nice_mob_variants/images/entity/pig/ender/adult.png" width="96"><br>
 Ender
@@ -549,16 +556,16 @@ Muddy Cold
 Muddy Creamy
 </a>
 </td>
+</tr>
 
+<tr>
 <td align="center">
 <a href="/nice_mob_variants/variants/pig/muddy_dark">
 <img src="https://explorerseden.eu/wiki/nice_mob_variants/images/entity/pig/muddy_dark/adult.png" width="96"><br>
 Muddy Dark
 </a>
 </td>
-</tr>
 
-<tr>
 <td align="center">
 <a href="/nice_mob_variants/variants/pig/muddy_pale">
 <img src="https://explorerseden.eu/wiki/nice_mob_variants/images/entity/pig/muddy_pale/adult.png" width="96"><br>
@@ -600,16 +607,16 @@ Muddy Wild
 Pale
 </a>
 </td>
+</tr>
 
+<tr>
 <td align="center">
 <a href="/nice_mob_variants/variants/pig/potato">
 <img src="https://explorerseden.eu/wiki/nice_mob_variants/images/entity/pig/potato/adult.png" width="96"><br>
 Potato
 </a>
 </td>
-</tr>
 
-<tr>
 <td align="center">
 <a href="/nice_mob_variants/variants/pig/red">
 <img src="https://explorerseden.eu/wiki/nice_mob_variants/images/entity/pig/red/adult.png" width="96"><br>
@@ -651,16 +658,16 @@ Spotted Pale
 Spotted Red
 </a>
 </td>
+</tr>
 
+<tr>
 <td align="center">
 <a href="/nice_mob_variants/variants/pig/spotted_temperate">
 <img src="https://explorerseden.eu/wiki/nice_mob_variants/images/entity/pig/spotted_temperate/adult.png" width="96"><br>
 Spotted Temperate
 </a>
 </td>
-</tr>
 
-<tr>
 <td align="center">
 <a href="/nice_mob_variants/variants/pig/spotted_warm">
 <img src="https://explorerseden.eu/wiki/nice_mob_variants/images/entity/pig/spotted_warm/adult.png" width="96"><br>
@@ -686,12 +693,6 @@ Wild
 <a href="/nice_mob_variants/variants/pig/zombified">
 <img src="https://explorerseden.eu/wiki/nice_mob_variants/images/entity/pig/zombified/adult.png" width="96"><br>
 Zombified
-</a>
-</td>
-
-<td align="center">
-<a href="/nice_mob_variants/variants/pig/">
-
 </a>
 </td>
 

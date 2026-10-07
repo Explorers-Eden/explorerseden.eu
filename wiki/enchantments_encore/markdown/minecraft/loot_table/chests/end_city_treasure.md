@@ -42,6 +42,7 @@
 - Curse of Breeze
 - Curse of Caravan
 - Curse of Color Blindness
+- Curse of Corrosion
 - Curse of Crank
 - Curse of Creeper Vision
 - Curse of Death
@@ -58,6 +59,7 @@
 - Curse of Welfare
 - Curse of Undying
 - Bear Spirit
+- Emberweave
 - Ghost Spirit
 - Boar Spirit
 - Boltbringer
@@ -78,19 +80,27 @@
 - Leaf Jumper
 - Leech
 - Magma Walker
+- Meteor
 - Moonwalk
+- Moonweave
 - Ominous Healing
 - Ominous Rain
 - Pacifier
 - Path Speed
+- Rainweave
 - Rejuvenation
 - Sacrifice
 - Sand Speed
 - Scorpion Spirit
 - Shulker Shell
+- Refuel
 - Sonic
 - Summer Walker
+- Sunweave
 - Switch
+- Tideweave
 - Trial Runner
+- Updraft
+- Voidweave
 
 </details>

@@ -32,6 +32,7 @@
 - Curse of Breeze
 - Curse of Caravan
 - Curse of Color Blindness
+- Curse of Corrosion
 - Curse of Crank
 - Curse of Creeper Vision
 - Curse of Death
@@ -48,6 +49,7 @@
 - Curse of Welfare
 - Curse of Undying
 - Bear Spirit
+- Emberweave
 - Ghost Spirit
 - Boar Spirit
 - Boltbringer
@@ -68,20 +70,28 @@
 - Leaf Jumper
 - Leech
 - Magma Walker
+- Meteor
 - Moonwalk
+- Moonweave
 - Ominous Healing
 - Ominous Rain
 - Pacifier
 - Path Speed
+- Rainweave
 - Rejuvenation
 - Sacrifice
 - Sand Speed
 - Scorpion Spirit
 - Shulker Shell
+- Refuel
 - Sonic
 - Summer Walker
+- Sunweave
 - Switch
+- Tideweave
 - Trial Runner
+- Updraft
+- Voidweave
 
 </details>
 
@@ -96,6 +106,7 @@
 - Curse of Breeze
 - Curse of Caravan
 - Curse of Color Blindness
+- Curse of Corrosion
 - Curse of Crank
 - Curse of Creeper Vision
 - Curse of Death
@@ -112,6 +123,7 @@
 - Curse of Welfare
 - Curse of Undying
 - Bear Spirit
+- Emberweave
 - Ghost Spirit
 - Boar Spirit
 - Boltbringer
@@ -132,20 +144,28 @@
 - Leaf Jumper
 - Leech
 - Magma Walker
+- Meteor
 - Moonwalk
+- Moonweave
 - Ominous Healing
 - Ominous Rain
 - Pacifier
 - Path Speed
+- Rainweave
 - Rejuvenation
 - Sacrifice
 - Sand Speed
 - Scorpion Spirit
 - Shulker Shell
+- Refuel
 - Sonic
 - Summer Walker
+- Sunweave
 - Switch
+- Tideweave
 - Trial Runner
+- Updraft
+- Voidweave
 
 </details>
 
@@ -156,6 +176,7 @@
 - Curse of Breeze
 - Curse of Caravan
 - Curse of Color Blindness
+- Curse of Corrosion
 - Curse of Crank
 - Curse of Creeper Vision
 - Curse of Death
@@ -182,13 +203,17 @@
 - Bane of Raiders
 - Crop Dance
 - Cushion
+- Dismount
 - Fetch
 - Guard
 - Handyman
 - Hardened
+- Harpoon
 - Haste
 - Illumination
+- Impale Rush
 - Implosion
+- Jousting
 - Lingering
 - Pegasus
 - Phantom Menace
@@ -202,6 +227,7 @@
 - Safe Landing
 - Scent
 - Scholar of Blocks
+- Scholar of Fishing
 - Scholar of Mobs
 - Sea Breeze
 - Seeker
@@ -209,6 +235,7 @@
 - Surfer
 - Thorns Protection
 - Wither Protection
+- Yoink
 
 </details>
 
@@ -249,6 +276,7 @@
 - Curse of Breeze
 - Curse of Caravan
 - Curse of Color Blindness
+- Curse of Corrosion
 - Curse of Crank
 - Curse of Creeper Vision
 - Curse of Death
@@ -277,6 +305,8 @@
 - Crab Claw
 - Crop Dance
 - Cushion
+- Dismount
+- Emberweave
 - Ender Shot
 - Enderscape
 - Evokers Wrath
@@ -287,12 +317,17 @@
 - Guard
 - Handyman
 - Hardened
+- Harpoon
 - Haste
 - Heroes Crown
 - Illumination
+- Impale Rush
 - Implosion
 - Incognito
+- Jousting
 - Lingering
+- Meteor
+- Moonweave
 - Pegasus
 - Phantom Menace
 - Pickpocket
@@ -300,22 +335,29 @@
 - Propeller
 - Pufferfish
 - Rabbit Foot
+- Rainweave
 - Replenish
 - Sacrifice
 - Safe Landing
 - Scent
 - Scholar of Blocks
+- Scholar of Fishing
 - Scholar of Mobs
 - Sea Breeze
 - Seeker
 - Shrinkage
 - Strafe
+- Sunweave
 - Surfer
 - Swift Slash
 - Thorns Protection
+- Tideweave
 - Trial Runner
+- Updraft
 - Velocity
+- Voidweave
 - Wither Protection
+- Yoink
 
 </details>
 
@@ -363,7 +405,9 @@
 - Crab Claw
 - Crop Dance
 - Cushion
+- Dismount
 - Electric Walker
+- Emberweave
 - Ender Shot
 - Enderscape
 - Evokers Wrath
@@ -375,15 +419,20 @@
 - Growth
 - Guard
 - Hardened
+- Harpoon
 - Haste
 - Illumination
+- Impale Rush
 - Implosion
 - Incognito
 - Invisibility Cloak
+- Jousting
 - Lightning Bolt
 - Lingering
 - Magma Walker
+- Meteor
 - Moonwalk
+- Moonweave
 - Pegasus
 - Phantom Menace
 - Pickpocket
@@ -392,12 +441,14 @@
 - Propeller
 - Pufferfish
 - Rabbit Foot
+- Rainweave
 - Regrowth
 - Replenish
 - Sacrifice
 - Safe Landing
 - Scent
 - Scholar of Blocks
+- Scholar of Fishing
 - Scholar of Mobs
 - Scorpion Spirit
 - Sea Breeze
@@ -405,10 +456,15 @@
 - Shrinkage
 - Strafe
 - Summer Walker
+- Sunweave
 - Surfer
 - Swift Slash
 - Thorns Protection
+- Tideweave
+- Updraft
+- Voidweave
 - Wither Protection
+- Yoink
 
 </details>
 
@@ -443,6 +499,7 @@
 - Bunny Hop
 - Crop Dance
 - Cushion
+- Dismount
 - Ender Shot
 - Enderscape
 - Evokers Wrath
@@ -453,9 +510,12 @@
 - Guard
 - Handyman
 - Hardened
+- Harpoon
 - Haste
 - Illumination
+- Impale Rush
 - Implosion
+- Jousting
 - Leaf Jumper
 - Leech
 - Lingering
@@ -474,6 +534,7 @@
 - Safe Landing
 - Scent
 - Scholar of Blocks
+- Scholar of Fishing
 - Scholar of Mobs
 - Sea Breeze
 - Seeker
@@ -483,6 +544,7 @@
 - Thorns Protection
 - Velocity
 - Wither Protection
+- Yoink
 
 </details>
 
