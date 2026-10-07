@@ -66,6 +66,8 @@ Rise
 
 <td><a href="/enchantments_encore/enchantments/color_blindness_curse">Curse of Color Blindness</a></td>
 
+<td><a href="/enchantments_encore/enchantments/corrosion_curse">Curse of Corrosion</a></td>
+
 <td><a href="/enchantments_encore/enchantments/crank_curse">Curse of Crank</a></td>
 
 <td><a href="/enchantments_encore/enchantments/creeper_vision_curse">Curse of Creeper Vision</a></td>
@@ -73,11 +75,11 @@ Rise
 <td><a href="/enchantments_encore/enchantments/death_curse">Curse of Death</a></td>
 
 <td><a href="/enchantments_encore/enchantments/ender_vision_curse">Curse of Ender Vision</a></td>
-
-<td><a href="/enchantments_encore/enchantments/fragility_curse">Curse of Fragility</a></td>
 </tr>
 
 <tr>
+<td><a href="/enchantments_encore/enchantments/fragility_curse">Curse of Fragility</a></td>
+
 <td><a href="/enchantments_encore/enchantments/hiding_curse">Curse of Hiding</a></td>
 
 <td><a href="/enchantments_encore/enchantments/mirror_vision_curse">Curse of Mirror Vision</a></td>
@@ -89,11 +91,11 @@ Rise
 <td><a href="/enchantments_encore/enchantments/reach_curse">Curse of Reach</a></td>
 
 <td><a href="/enchantments_encore/enchantments/shortsight_curse">Curse of Shortsight</a></td>
-
-<td><a href="/enchantments_encore/enchantments/spider_vision_curse">Curse of Spider Vision</a></td>
 </tr>
 
 <tr>
+<td><a href="/enchantments_encore/enchantments/spider_vision_curse">Curse of Spider Vision</a></td>
+
 <td><a href="/enchantments_encore/enchantments/undying_curse">Curse of Undying</a></td>
 
 <td><a href="/enchantments_encore/enchantments/void_vision_curse">Curse of Void Vision</a></td>
@@ -105,27 +107,31 @@ Rise
 <td><a href="/enchantments_encore/enchantments/darkness_alloy">Darkness Alloy</a></td>
 
 <td><a href="/enchantments_encore/enchantments/day_protection">Day Protection</a></td>
-
-<td><a href="/enchantments_encore/enchantments/echoing_aura">Echoing Aura</a></td>
 </tr>
 
 <tr>
+<td><a href="/enchantments_encore/enchantments/dismount">Dismount</a></td>
+
+<td><a href="/enchantments_encore/enchantments/echoing_aura">Echoing Aura</a></td>
+
 <td><a href="/enchantments_encore/enchantments/electric_walker">Electric Walker</a></td>
+
+<td><a href="/enchantments_encore/enchantments/emberweave">Emberweave</a></td>
 
 <td><a href="/enchantments_encore/enchantments/enchanted_aura">Enchanted Aura</a></td>
 
 <td><a href="/enchantments_encore/enchantments/end_protection">End Protection</a></td>
 
 <td><a href="/enchantments_encore/enchantments/end_speed">End Speed</a></td>
+</tr>
 
+<tr>
 <td><a href="/enchantments_encore/enchantments/ender_aura">Ender Aura</a></td>
 
 <td><a href="/enchantments_encore/enchantments/ender_shot">Ender Shot</a></td>
 
 <td><a href="/enchantments_encore/enchantments/enderscape">Enderscape</a></td>
-</tr>
 
-<tr>
 <td><a href="/enchantments_encore/enchantments/evokers_wrath">Evokers Wrath</a></td>
 
 <td><a href="/enchantments_encore/enchantments/fetch">Fetch</a></td>
@@ -133,15 +139,15 @@ Rise
 <td><a href="/enchantments_encore/enchantments/fire_alloy">Fire Alloy</a></td>
 
 <td><a href="/enchantments_encore/enchantments/flaming_aura">Flaming Aura</a></td>
+</tr>
 
+<tr>
 <td><a href="/enchantments_encore/enchantments/flare">Flare</a></td>
 
 <td><a href="/enchantments_encore/enchantments/forge_shot">Forge Shot</a></td>
 
 <td><a href="/enchantments_encore/enchantments/gallop">Gallop</a></td>
-</tr>
 
-<tr>
 <td><a href="/enchantments_encore/enchantments/ghost_spirit">Ghost Spirit</a></td>
 
 <td><a href="/enchantments_encore/enchantments/gluttony">Gluttony</a></td>
@@ -149,36 +155,44 @@ Rise
 <td><a href="/enchantments_encore/enchantments/grass_walker">Grass Walker</a></td>
 
 <td><a href="/enchantments_encore/enchantments/growth">Growth</a></td>
+</tr>
 
+<tr>
 <td><a href="/enchantments_encore/enchantments/guard">Guard</a></td>
 
 <td><a href="/enchantments_encore/enchantments/handyman">Handyman</a></td>
 
 <td><a href="/enchantments_encore/enchantments/hardened">Hardened</a></td>
-</tr>
 
-<tr>
+<td><a href="/enchantments_encore/enchantments/harpoon">Harpoon</a></td>
+
 <td><a href="/enchantments_encore/enchantments/haste">Haste</a></td>
 
 <td><a href="/enchantments_encore/enchantments/heavenly_aura">Heavenly Aura</a></td>
 
 <td><a href="/enchantments_encore/enchantments/heroes_crown">Heroes Crown</a></td>
+</tr>
 
+<tr>
 <td><a href="/enchantments_encore/enchantments/hunger_aspect">Hunger Aspect</a></td>
 
 <td><a href="/enchantments_encore/enchantments/ice_alloy">Ice Alloy</a></td>
 
 <td><a href="/enchantments_encore/enchantments/illumination">Illumination</a></td>
 
-<td><a href="/enchantments_encore/enchantments/implosion">Implosion</a></td>
-</tr>
+<td><a href="/enchantments_encore/enchantments/impale_rush">Impale Rush</a></td>
 
-<tr>
+<td><a href="/enchantments_encore/enchantments/implosion">Implosion</a></td>
+
 <td><a href="/enchantments_encore/enchantments/incognito">Incognito</a></td>
 
 <td><a href="/enchantments_encore/enchantments/infested_aspect">Infested Aspect</a></td>
+</tr>
 
+<tr>
 <td><a href="/enchantments_encore/enchantments/invisibility_cloak">Invisibility Cloak</a></td>
+
+<td><a href="/enchantments_encore/enchantments/jousting">Jousting</a></td>
 
 <td><a href="/enchantments_encore/enchantments/leaf_jumper">Leaf Jumper</a></td>
 
@@ -187,25 +201,29 @@ Rise
 <td><a href="/enchantments_encore/enchantments/levitation_aspect">Levitation Aspect</a></td>
 
 <td><a href="/enchantments_encore/enchantments/lightning_bolt">Lightning Bolt</a></td>
+
+<td><a href="/enchantments_encore/enchantments/lingering">Lingering</a></td>
 </tr>
 
 <tr>
-<td><a href="/enchantments_encore/enchantments/lingering">Lingering</a></td>
-
 <td><a href="/enchantments_encore/enchantments/lovely_aura">Lovely Aura</a></td>
 
 <td><a href="/enchantments_encore/enchantments/lush_aura">Lush Aura</a></td>
 
 <td><a href="/enchantments_encore/enchantments/magma_walker">Magma Walker</a></td>
 
+<td><a href="/enchantments_encore/enchantments/meteor">Meteor</a></td>
+
 <td><a href="/enchantments_encore/enchantments/moonwalk">Moonwalk</a></td>
 
-<td><a href="/enchantments_encore/enchantments/muddy_aura">Muddy Aura</a></td>
+<td><a href="/enchantments_encore/enchantments/moonweave">Moonweave</a></td>
 
-<td><a href="/enchantments_encore/enchantments/nether_protection">Nether Protection</a></td>
+<td><a href="/enchantments_encore/enchantments/muddy_aura">Muddy Aura</a></td>
 </tr>
 
 <tr>
+<td><a href="/enchantments_encore/enchantments/nether_protection">Nether Protection</a></td>
+
 <td><a href="/enchantments_encore/enchantments/night_protection">Night Protection</a></td>
 
 <td><a href="/enchantments_encore/enchantments/night_vision">Night Vision</a></td>
@@ -217,11 +235,11 @@ Rise
 <td><a href="/enchantments_encore/enchantments/ominous_rain">Ominous Rain</a></td>
 
 <td><a href="/enchantments_encore/enchantments/oozing_aspect">Oozing Aspect</a></td>
-
-<td><a href="/enchantments_encore/enchantments/pacifier">Pacifier</a></td>
 </tr>
 
 <tr>
+<td><a href="/enchantments_encore/enchantments/pacifier">Pacifier</a></td>
+
 <td><a href="/enchantments_encore/enchantments/pale_aura">Pale Aura</a></td>
 
 <td><a href="/enchantments_encore/enchantments/path_speed">Path Speed</a></td>
@@ -233,11 +251,11 @@ Rise
 <td><a href="/enchantments_encore/enchantments/pickpocket">Pickpocket</a></td>
 
 <td><a href="/enchantments_encore/enchantments/ping_tag">Ping Tag</a></td>
-
-<td><a href="/enchantments_encore/enchantments/plow">Plow</a></td>
 </tr>
 
 <tr>
+<td><a href="/enchantments_encore/enchantments/plow">Plow</a></td>
+
 <td><a href="/enchantments_encore/enchantments/poison_aspect">Poison Aspect</a></td>
 
 <td><a href="/enchantments_encore/enchantments/propeller">Propeller</a></td>
@@ -246,14 +264,16 @@ Rise
 
 <td><a href="/enchantments_encore/enchantments/rabbit_foot">Rabbit Foot</a></td>
 
+<td><a href="/enchantments_encore/enchantments/rainweave">Rainweave</a></td>
+
 <td><a href="/enchantments_encore/enchantments/regrowth">Regrowth</a></td>
-
-<td><a href="/enchantments_encore/enchantments/rejuvenation">Rejuvenation</a></td>
-
-<td><a href="/enchantments_encore/enchantments/replenish">Replenish</a></td>
 </tr>
 
 <tr>
+<td><a href="/enchantments_encore/enchantments/rejuvenation">Rejuvenation</a></td>
+
+<td><a href="/enchantments_encore/enchantments/replenish">Replenish</a></td>
+
 <td><a href="/enchantments_encore/enchantments/sacrifice">Sacrifice</a></td>
 
 <td><a href="/enchantments_encore/enchantments/safe_landing">Safe Landing</a></td>
@@ -263,13 +283,15 @@ Rise
 <td><a href="/enchantments_encore/enchantments/scent">Scent</a></td>
 
 <td><a href="/enchantments_encore/enchantments/scholar_of_blocks">Scholar of Blocks</a></td>
+</tr>
+
+<tr>
+<td><a href="/enchantments_encore/enchantments/scholar_of_fishing">Scholar of Fishing</a></td>
 
 <td><a href="/enchantments_encore/enchantments/scholar_of_mobs">Scholar of Mobs</a></td>
 
 <td><a href="/enchantments_encore/enchantments/scorpion_spirit">Scorpion Spirit</a></td>
-</tr>
 
-<tr>
 <td><a href="/enchantments_encore/enchantments/sea_breeze">Sea Breeze</a></td>
 
 <td><a href="/enchantments_encore/enchantments/seeker">Seeker</a></td>
@@ -277,21 +299,25 @@ Rise
 <td><a href="/enchantments_encore/enchantments/shrinkage">Shrinkage</a></td>
 
 <td><a href="/enchantments_encore/enchantments/shulker_shell">Shulker Shell</a></td>
+</tr>
 
+<tr>
 <td><a href="/enchantments_encore/enchantments/slowness_aspect">Slowness Aspect</a></td>
 
 <td><a href="/enchantments_encore/enchantments/sonic">Sonic</a></td>
 
 <td><a href="/enchantments_encore/enchantments/sparking_aura">Sparking Aura</a></td>
-</tr>
 
-<tr>
 <td><a href="/enchantments_encore/enchantments/sticky_aura">Sticky Aura</a></td>
 
 <td><a href="/enchantments_encore/enchantments/strafe">Strafe</a></td>
 
 <td><a href="/enchantments_encore/enchantments/summer_walker">Summer Walker</a></td>
 
+<td><a href="/enchantments_encore/enchantments/sunweave">Sunweave</a></td>
+</tr>
+
+<tr>
 <td><a href="/enchantments_encore/enchantments/surfer">Surfer</a></td>
 
 <td><a href="/enchantments_encore/enchantments/swift_slash">Swift Slash</a></td>
@@ -299,14 +325,20 @@ Rise
 <td><a href="/enchantments_encore/enchantments/switch">Switch</a></td>
 
 <td><a href="/enchantments_encore/enchantments/thorns_protection">Thorns Protection</a></td>
-</tr>
 
-<tr>
+<td><a href="/enchantments_encore/enchantments/tideweave">Tideweave</a></td>
+
 <td><a href="/enchantments_encore/enchantments/trial_aura">Trial Aura</a></td>
 
 <td><a href="/enchantments_encore/enchantments/trial_runner">Trial Runner</a></td>
+</tr>
+
+<tr>
+<td><a href="/enchantments_encore/enchantments/updraft">Updraft</a></td>
 
 <td><a href="/enchantments_encore/enchantments/velocity">Velocity</a></td>
+
+<td><a href="/enchantments_encore/enchantments/voidweave">Voidweave</a></td>
 
 <td><a href="/enchantments_encore/enchantments/weakness_aspect">Weakness Aspect</a></td>
 
@@ -320,7 +352,7 @@ Rise
 <tr>
 <td><a href="/enchantments_encore/enchantments/wither_protection">Wither Protection</a></td>
 
-<td></td>
+<td><a href="/enchantments_encore/enchantments/yoink">Yoink</a></td>
 
 <td></td>
 

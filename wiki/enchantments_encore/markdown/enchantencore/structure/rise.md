@@ -37,6 +37,7 @@ There is one loot table used in this structure:
 - Curse of Breeze
 - Curse of Caravan
 - Curse of Color Blindness
+- Curse of Corrosion
 - Curse of Crank
 - Curse of Creeper Vision
 - Curse of Death
@@ -53,6 +54,7 @@ There is one loot table used in this structure:
 - Curse of Welfare
 - Curse of Undying
 - Bear Spirit
+- Emberweave
 - Ghost Spirit
 - Boar Spirit
 - Boltbringer
@@ -73,11 +75,14 @@ There is one loot table used in this structure:
 - Leaf Jumper
 - Leech
 - Magma Walker
+- Meteor
 - Moonwalk
+- Moonweave
 - Ominous Healing
 - Ominous Rain
 - Pacifier
 - Path Speed
+- Rainweave
 - Rejuvenation
 - Sacrifice
 - Sand Speed
@@ -85,8 +90,12 @@ There is one loot table used in this structure:
 - Shulker Shell
 - Sonic
 - Summer Walker
+- Sunweave
 - Switch
+- Tideweave
 - Trial Runner
+- Updraft
+- Voidweave
 
 </details>
 
@@ -101,6 +110,7 @@ There is one loot table used in this structure:
 - Curse of Breeze
 - Curse of Caravan
 - Curse of Color Blindness
+- Curse of Corrosion
 - Curse of Crank
 - Curse of Creeper Vision
 - Curse of Death
@@ -117,6 +127,7 @@ There is one loot table used in this structure:
 - Curse of Welfare
 - Curse of Undying
 - Bear Spirit
+- Emberweave
 - Ghost Spirit
 - Boar Spirit
 - Boltbringer
@@ -137,11 +148,14 @@ There is one loot table used in this structure:
 - Leaf Jumper
 - Leech
 - Magma Walker
+- Meteor
 - Moonwalk
+- Moonweave
 - Ominous Healing
 - Ominous Rain
 - Pacifier
 - Path Speed
+- Rainweave
 - Rejuvenation
 - Sacrifice
 - Sand Speed
@@ -149,8 +163,12 @@ There is one loot table used in this structure:
 - Shulker Shell
 - Sonic
 - Summer Walker
+- Sunweave
 - Switch
+- Tideweave
 - Trial Runner
+- Updraft
+- Voidweave
 
 </details>
 
@@ -161,6 +179,7 @@ There is one loot table used in this structure:
 - Curse of Breeze
 - Curse of Caravan
 - Curse of Color Blindness
+- Curse of Corrosion
 - Curse of Crank
 - Curse of Creeper Vision
 - Curse of Death
@@ -187,13 +206,17 @@ There is one loot table used in this structure:
 - Bane of Raiders
 - Crop Dance
 - Cushion
+- Dismount
 - Fetch
 - Guard
 - Handyman
 - Hardened
+- Harpoon
 - Haste
 - Illumination
+- Impale Rush
 - Implosion
+- Jousting
 - Lingering
 - Pegasus
 - Phantom Menace
@@ -207,6 +230,7 @@ There is one loot table used in this structure:
 - Safe Landing
 - Scent
 - Scholar of Blocks
+- Scholar of Fishing
 - Scholar of Mobs
 - Sea Breeze
 - Seeker
@@ -214,6 +238,7 @@ There is one loot table used in this structure:
 - Surfer
 - Thorns Protection
 - Wither Protection
+- Yoink
 
 </details>
 
@@ -254,6 +279,7 @@ There is one loot table used in this structure:
 - Curse of Breeze
 - Curse of Caravan
 - Curse of Color Blindness
+- Curse of Corrosion
 - Curse of Crank
 - Curse of Creeper Vision
 - Curse of Death
@@ -282,6 +308,8 @@ There is one loot table used in this structure:
 - Crab Claw
 - Crop Dance
 - Cushion
+- Dismount
+- Emberweave
 - Ender Shot
 - Enderscape
 - Evokers Wrath
@@ -292,12 +320,17 @@ There is one loot table used in this structure:
 - Guard
 - Handyman
 - Hardened
+- Harpoon
 - Haste
 - Heroes Crown
 - Illumination
+- Impale Rush
 - Implosion
 - Incognito
+- Jousting
 - Lingering
+- Meteor
+- Moonweave
 - Pegasus
 - Phantom Menace
 - Pickpocket
@@ -305,22 +338,29 @@ There is one loot table used in this structure:
 - Propeller
 - Pufferfish
 - Rabbit Foot
+- Rainweave
 - Replenish
 - Sacrifice
 - Safe Landing
 - Scent
 - Scholar of Blocks
+- Scholar of Fishing
 - Scholar of Mobs
 - Sea Breeze
 - Seeker
 - Shrinkage
 - Strafe
+- Sunweave
 - Surfer
 - Swift Slash
 - Thorns Protection
+- Tideweave
 - Trial Runner
+- Updraft
 - Velocity
+- Voidweave
 - Wither Protection
+- Yoink
 
 </details>
 
@@ -368,7 +408,9 @@ There is one loot table used in this structure:
 - Crab Claw
 - Crop Dance
 - Cushion
+- Dismount
 - Electric Walker
+- Emberweave
 - Ender Shot
 - Enderscape
 - Evokers Wrath
@@ -380,15 +422,20 @@ There is one loot table used in this structure:
 - Growth
 - Guard
 - Hardened
+- Harpoon
 - Haste
 - Illumination
+- Impale Rush
 - Implosion
 - Incognito
 - Invisibility Cloak
+- Jousting
 - Lightning Bolt
 - Lingering
 - Magma Walker
+- Meteor
 - Moonwalk
+- Moonweave
 - Pegasus
 - Phantom Menace
 - Pickpocket
@@ -397,12 +444,14 @@ There is one loot table used in this structure:
 - Propeller
 - Pufferfish
 - Rabbit Foot
+- Rainweave
 - Regrowth
 - Replenish
 - Sacrifice
 - Safe Landing
 - Scent
 - Scholar of Blocks
+- Scholar of Fishing
 - Scholar of Mobs
 - Scorpion Spirit
 - Sea Breeze
@@ -410,10 +459,15 @@ There is one loot table used in this structure:
 - Shrinkage
 - Strafe
 - Summer Walker
+- Sunweave
 - Surfer
 - Swift Slash
 - Thorns Protection
+- Tideweave
+- Updraft
+- Voidweave
 - Wither Protection
+- Yoink
 
 </details>
 
@@ -448,6 +502,7 @@ There is one loot table used in this structure:
 - Bunny Hop
 - Crop Dance
 - Cushion
+- Dismount
 - Ender Shot
 - Enderscape
 - Evokers Wrath
@@ -458,9 +513,12 @@ There is one loot table used in this structure:
 - Guard
 - Handyman
 - Hardened
+- Harpoon
 - Haste
 - Illumination
+- Impale Rush
 - Implosion
+- Jousting
 - Leaf Jumper
 - Leech
 - Lingering
@@ -479,6 +537,7 @@ There is one loot table used in this structure:
 - Safe Landing
 - Scent
 - Scholar of Blocks
+- Scholar of Fishing
 - Scholar of Mobs
 - Sea Breeze
 - Seeker
@@ -488,6 +547,7 @@ There is one loot table used in this structure:
 - Thorns Protection
 - Velocity
 - Wither Protection
+- Yoink
 
 </details>
 

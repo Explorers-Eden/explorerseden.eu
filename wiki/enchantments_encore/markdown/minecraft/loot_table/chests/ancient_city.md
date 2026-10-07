@@ -73,6 +73,7 @@
 - Curse of Breeze
 - Curse of Caravan
 - Curse of Color Blindness
+- Curse of Corrosion
 - Curse of Crank
 - Curse of Creeper Vision
 - Curse of Death
@@ -101,6 +102,8 @@
 - Crab Claw
 - Crop Dance
 - Cushion
+- Dismount
+- Emberweave
 - Ender Shot
 - Enderscape
 - Evokers Wrath
@@ -111,12 +114,17 @@
 - Guard
 - Handyman
 - Hardened
+- Harpoon
 - Haste
 - Heroes Crown
 - Illumination
+- Impale Rush
 - Implosion
 - Incognito
+- Jousting
 - Lingering
+- Meteor
+- Moonweave
 - Pegasus
 - Phantom Menace
 - Pickpocket
@@ -124,22 +132,29 @@
 - Propeller
 - Pufferfish
 - Rabbit Foot
+- Rainweave
 - Replenish
 - Sacrifice
 - Safe Landing
 - Scent
 - Scholar of Blocks
+- Scholar of Fishing
 - Scholar of Mobs
 - Sea Breeze
 - Seeker
 - Shrinkage
 - Strafe
+- Sunweave
 - Surfer
 - Swift Slash
 - Thorns Protection
+- Tideweave
 - Trial Runner
+- Updraft
 - Velocity
+- Voidweave
 - Wither Protection
+- Yoink
 
 </details>
 
@@ -154,6 +169,7 @@
 - Curse of Breeze
 - Curse of Caravan
 - Curse of Color Blindness
+- Curse of Corrosion
 - Curse of Crank
 - Curse of Creeper Vision
 - Curse of Death
@@ -170,6 +186,7 @@
 - Curse of Welfare
 - Curse of Undying
 - Bear Spirit
+- Emberweave
 - Ghost Spirit
 - Boar Spirit
 - Boltbringer
@@ -190,11 +207,14 @@
 - Leaf Jumper
 - Leech
 - Magma Walker
+- Meteor
 - Moonwalk
+- Moonweave
 - Ominous Healing
 - Ominous Rain
 - Pacifier
 - Path Speed
+- Rainweave
 - Rejuvenation
 - Sacrifice
 - Sand Speed
@@ -202,7 +222,11 @@
 - Shulker Shell
 - Sonic
 - Summer Walker
+- Sunweave
 - Switch
+- Tideweave
 - Trial Runner
+- Updraft
+- Voidweave
 
 </details>
