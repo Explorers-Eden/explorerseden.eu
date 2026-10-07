@@ -264,6 +264,16 @@ async function loadTextureTile(f) {
   return sharp(f).ensureAlpha().extract({ left: 0, top: 0, width, height: fh })
     .resize(CELL, CELL, { fit: 'fill', kernel: 'nearest' }).png().toBuffer();
 }
+// Load a texture at size×size, using only the first frame of animated (.mcmeta) strips.
+async function loadFirstFrame(f, size) {
+  const meta = readMcmeta(f);
+  let img = sharp(f).ensureAlpha();
+  if (meta) {
+    const { width } = await sharp(f).metadata();
+    img = img.extract({ left: 0, top: 0, width, height: meta.height || meta.width || width });
+  }
+  return img.resize(size,size,{fit:'inside',kernel:'nearest',background:{r:0,g:0,b:0,alpha:0}}).png().toBuffer();
+}
 function normalizeBlockModelJson(obj) {
   if (!obj || typeof obj !== 'object') return obj;
   const m = Object.assign({}, obj);
@@ -543,7 +553,7 @@ async function renderFlatItem(item, size) {
   if (!allLayers.length) return null;
   const comps = [];
   for (const { texFile: f, tintRgb } of allLayers) {
-    let buf = await sharp(f).ensureAlpha().resize(size,size,{fit:'inside',kernel:'nearest',background:{r:0,g:0,b:0,alpha:0}}).png().toBuffer();
+    let buf = await loadFirstFrame(f, size);
     if (tintRgb) buf = await multiplyTint(buf, tintRgb);
     comps.push({ input:buf, left:0, top:0 });
   }
@@ -687,13 +697,13 @@ async function renderItemInner(itemId, size, components) {
   const [ins, iname] = idParts(itemId);
   const tex = findAsset(mns,'textures',`item/${mname}`,'.png') || findAsset(mns,'textures',`block/${mname}`,'.png')
     || findAsset(ins,'textures',`item/${iname}`,'.png') || findAsset(ins,'textures',`block/${iname}`,'.png');
-  if (tex) return { buf: await normItem(await sharp(tex).ensureAlpha().resize(size,size,{fit:'inside',kernel:'nearest',background:{r:0,g:0,b:0,alpha:0}}).png().toBuffer(), size), animated: false };
+  if (tex) return { buf: await normItem(await loadFirstFrame(tex, size), size), animated: false };
   const { def } = readItemsDef(item);
   if (def?.model) {
     const blockRefs = collectFlatModelRefs(def.model, ins);
     if (blockRefs) for (const { modelRef: bref } of blockRefs) {
       const btex = extractFirstBlockTexture(bref);
-      if (btex) return { buf: await normItem(await sharp(btex).ensureAlpha().resize(size,size,{fit:'inside',kernel:'nearest',background:{r:0,g:0,b:0,alpha:0}}).png().toBuffer(), size), animated: false };
+      if (btex) return { buf: await normItem(await loadFirstFrame(btex, size), size), animated: false };
     }
   }
   return null;
