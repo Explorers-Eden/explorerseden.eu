@@ -473,13 +473,25 @@ function readItemsDef(item) {
   const [ns, name] = idParts(ref);
   return { def: readJson(findAsset(ns, 'items', name, '.json') ?? '') ?? null, ns, name };
 }
+// Convert a tint color (packed 0xRRGGBB int, or [r, g, b] floats 0–1) to [r, g, b] bytes.
+function colorToRgb(v) {
+  if (typeof v === 'number') return v < 0 ? null : [(v >> 16) & 255, (v >> 8) & 255, v & 255];
+  if (Array.isArray(v) && v.length >= 3) return v.slice(0, 3).map(c => Math.round(Number(c) * 255));
+  return null;
+}
+
+// Multiply each pixel by the tint color, like Minecraft does (sharp's tint() would greyscale it).
+function multiplyTint(buf, rgb) {
+  return sharp(buf).ensureAlpha().linear([rgb[0] / 255, rgb[1] / 255, rgb[2] / 255, 1], [0, 0, 0, 0]).png().toBuffer();
+}
+
 function resolveTintColor(tintEntry, components) {
   if (!tintEntry) return null;
   const type = s(tintEntry.type).replace(/^minecraft:/, '');
   if (type === 'dye') {
     const dc = components?.['minecraft:dyed_color'] || components?.dyed_color;
     const rgb = dc != null ? (typeof dc === 'number' ? dc : (dc?.rgb ?? -1)) : (tintEntry.default ?? -1);
-    return rgb < 0 ? null : [(rgb>>16)&255,(rgb>>8)&255,rgb&255];
+    return colorToRgb(rgb);
   }
   if (type === 'constant') {
     const val = tintEntry.value;
@@ -491,7 +503,7 @@ function resolveTintColor(tintEntry, components) {
   if (type === 'potion') {
     const pc = components?.['minecraft:potion_contents'] || components?.potion_contents;
     const rgb = pc?.custom_color != null ? Number(pc.custom_color) : (tintEntry.default ?? -1);
-    return rgb < 0 ? null : [(rgb>>16)&255,(rgb>>8)&255,rgb&255];
+    return colorToRgb(rgb);
   }
   return null;
 }
@@ -532,7 +544,7 @@ async function renderFlatItem(item, size) {
   const comps = [];
   for (const { texFile: f, tintRgb } of allLayers) {
     let buf = await sharp(f).ensureAlpha().resize(size,size,{fit:'inside',kernel:'nearest',background:{r:0,g:0,b:0,alpha:0}}).png().toBuffer();
-    if (tintRgb) buf = await sharp(buf).tint({ r:tintRgb[0], g:tintRgb[1], b:tintRgb[2] }).png().toBuffer();
+    if (tintRgb) buf = await multiplyTint(buf, tintRgb);
     comps.push({ input:buf, left:0, top:0 });
   }
   if (!comps.length) return null;

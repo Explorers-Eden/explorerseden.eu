@@ -97,7 +97,7 @@ async function renderSimpleGenerated(item,size=ICON_SIZE){
     const tex=resolveTextureFromSimple(`#${key}`,textures,model.__ns||'minecraft');
     if(!tex) continue;
     let buf=await sharp(tex).ensureAlpha().resize(size,size,{fit:'inside',kernel:'nearest',background:{r:0,g:0,b:0,alpha:0}}).png().toBuffer();
-    if(tint && key==='layer0') buf=await sharp(buf).ensureAlpha().tint({r:tint[0],g:tint[1],b:tint[2]}).png().toBuffer();
+    if(tint && key==='layer0') buf=await sharp(buf).ensureAlpha().linear([tint[0]/255,tint[1]/255,tint[2]/255,1],[0,0,0,0]).png().toBuffer();
     comps.push({input:buf,left:0,top:0});
   }
   if(!comps.length) return null;
