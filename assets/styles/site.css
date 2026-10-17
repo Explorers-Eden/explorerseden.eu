@@ -14,7 +14,7 @@
 html { scroll-behavior: smooth; min-height: 100%; }
 
 /* Every `type="search"` input on the site (enchantments, waypoint hubs, the
-   admin Playerdata Inspector, ...) pairs with its own custom clear "x"
+   ...) pairs with its own custom clear "x"
    button - suppress the browser's native one (WebKit shows its own by
    default) so there's never a duplicate. */
 input[type="search"]::-webkit-search-cancel-button,

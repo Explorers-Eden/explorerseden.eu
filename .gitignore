@@ -20,6 +20,4 @@ structures/structure-viewers.manifest.json
 data-pack-configurator/data/pack-data.json
 resource-pack-assembler/data/pack-data.json
 overview/data/readme.html
-waypoint-hubs/data/waypoint-hubs.manifest.json
 profiles/data/*.json
-admin-playerdata/data/players.json

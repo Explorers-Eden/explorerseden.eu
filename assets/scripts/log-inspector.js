@@ -61,7 +61,7 @@
 
   const CRASH_PATTERNS = [
     /----\s*Minecraft Crash Report/i,
-    /\[FATAL\]/,
+    /\[(?:[^\]\/]*\/)?FATAL\]/,          // "[FATAL]" or "[main/FATAL]"
     /java\.lang\.OutOfMemoryError/,
     /java\.lang\.StackOverflowError/,
     /FATAL ERROR/i,
@@ -72,7 +72,7 @@
   ];
 
   const ERROR_PATTERNS = [
-    /\[ERROR\]/,
+    /\[(?:[^\]\/]*\/)?ERROR\]/,          // "[ERROR]" or "[main/ERROR]"
     /\bException\b/,
     /\bError\b:/,
     /java\.\w+\.\w*Error\b/,
@@ -160,7 +160,7 @@
     let crashingModId   = null;
     let crashingModName = null;
 
-    const mixinRe = /\$([a-z][a-z0-9_]+)\$/g;
+    const mixinRe = /\$([a-z][a-z0-9_]+)(?=\$)/g;
     let mixinM;
     // Prefer a candidate that appears in the known mod list
     const mixinCandidates = [];
@@ -177,6 +177,9 @@
         }
       }
     }
+
+    // NeoForge/Forge stack frames carry the mod id: "at TRANSFORMER/modid@1.0/..."
+    if (!crashingModId) crashingModId = frameMods(text)[0] || null;
 
     // If still nothing, look for the first non-vanilla package in the stack
     if (!crashingModId) {
@@ -217,9 +220,21 @@
     const memM      = text.match(/up to (\d+) bytes \((\d+) MiB\)/);
     const maxMemMiB = memM ? parseInt(memM[2]) : null;
 
+    // Where the crashing mod first shows up: its mixin marker or its stack frame
+    let crashingModLine = null;
+    if (crashingModId) {
+      const lines = text.split('\n');
+      const idx   = lines.findIndex(l => l.includes(`$${crashingModId}$`) || l.includes(`/${crashingModId}@`));
+      const at    = idx >= 0 ? idx : lines.findIndex(l => /^\s+at /.test(l) && l.includes(crashingModId));
+      if (at >= 0) crashingModLine = at + 1;
+    }
+
     return {
       description:     descM ? descM[1].trim() : null,
+      descriptionLine: descM ? lineAt(text, descM.index) : null,
       exception:       excM  ? excM[1].trim()  : null,
+      exceptionLine:   excM  ? lineAt(text, excM.index) : null,
+      crashingModLine,
       crashingModId,
       crashingModName,
       modsMap,
@@ -315,13 +330,249 @@
     return [...names];
   }
 
+  // ── Mod attribution ───────────────────────────────────────────────────────
+  // Turns class names, stack frames and loader messages into mod names so a
+  // tip can say which mods are involved, not just what went wrong.
+
+  // Package prefix -> friendly name for mods that other mods commonly ship
+  // optional compat patches for. Anything else falls back to its package root.
+  const KNOWN_MOD_PACKAGES = [
+    ['net.caffeinemc.mods.sodium', 'Sodium'], ['net.caffeinemc.sodium', 'Sodium'], ['me.jellysquid.mods.sodium', 'Sodium'],
+    ['net.caffeinemc.mods.lithium', 'Lithium'], ['me.jellysquid.mods.lithium', 'Lithium'],
+    ['net.irisshaders', 'Iris'], ['net.coderbot.iris', 'Iris'], ['net.optifine', 'OptiFine'],
+    ['dev.emi.emi', 'EMI'], ['me.shedaniel.rei', 'REI'], ['mezz.jei', 'JEI'], ['snownee.jade', 'Jade'],
+    ['xaero.common', 'Xaero\'s Minimap'], ['xaero.minimap', 'Xaero\'s Minimap'], ['xaero.map', 'Xaero\'s World Map'],
+    ['journeymap', 'JourneyMap'], ['dev.latvian.mods.kubejs', 'KubeJS'], ['com.simibubi.create', 'Create'],
+    ['net.fabricmc.fabric', 'Fabric API'], ['net.vulkanmod', 'VulkanMod'], ['dev.tr7zw.skinlayers', '3D Skin Layers'],
+    ['top.theillusivec4.curios', 'Curios'], ['dev.emi.trinkets', 'Trinkets'], ['dev.architectury', 'Architectury API'],
+    ['vazkii.quark', 'Quark (pre-1.20 version)'], ['org.violetmoon.quark', 'Quark'],
+    ['mod.azure.azurelibarmor', 'AzureLib Armor'], ['mod.azure.azurelib', 'AzureLib'], ['software.bernie.geckolib', 'GeckoLib'],
+    ['me.shedaniel.clothconfig', 'Cloth Config'], ['dev.isxander.yacl', 'YetAnotherConfigLib'],
+    ['com.terraformersmc.modmenu', 'Mod Menu'], ['net.dries007.tfc', 'TerraFirmaCraft'],
+    ['einstein.subtle_effects', 'Subtle Effects'], ['it.hurts.octostudios.octolib', 'OctoLib'], ['it.hurts.sskirillss.relics', 'Relics'],
+    ['org.jetbrains.annotations', 'JetBrains Annotations (a code library, not a mod)'],
+  ].sort((a, b) => b[0].length - a[0].length);
+
+  const GENERIC_PKG_SEGMENTS = new Set(['common', 'client', 'server', 'core', 'api', 'impl', 'mixin', 'mixins', 'util', 'utils', 'mod', 'mods', 'minecraft', 'mc']);
+  // Multi-loader mods sometimes prefix their packages with the loader name
+  const LOADER_PKG_PREFIX = /^(?:neoforge|forge|fabric|quilt)\./;
+
+  // Loader, vanilla and library ids that show up in stack frames but are never the culprit
+  const NON_CULPRIT_IDS = /^(?:minecraft|neoforge|forge|fml\w*|java\.\w+|jdk\.\w+|mixinextras|mixin|sponge-?mixin|fabric-?loader|fabricloader|client|server|intermediary|knot|cpw\.mods\.\w+|bootstraplauncher|securejarhandler|modlauncher|datafixerupper|brigadier|authlib|lwjgl\w*|netty\w*|guava|gson|blaze3d|\d[\w.-]*)(?:$|[-_.])/i;
+
+  const VANILLA_PKG_RE = /^(?:net\.minecraft|com\.mojang|java\.|javax\.|jdk\.|sun\.|com\.sun\.|net\.fabricmc\.loader|net\.neoforged|net\.minecraftforge|cpw\.mods|org\.spongepowered|com\.llamalad7|org\.lwjgl|io\.netty|com\.google|org\.apache|org\.slf4j|it\.unimi|knot\/\/net\.minecraft)/;
+
+  // "net/caffeinemc/mods/sodium/client/gui/SodiumOptionsGUI" -> "Sodium"
+  function modFromClass(className) {
+    const cls = className.replace(/\//g, '.').replace(/\$.*$/, '');
+    for (const [prefix, name] of KNOWN_MOD_PACKAGES) {
+      if (cls === prefix || cls.startsWith(prefix + '.')) return name;
+    }
+    // Unknown mod: guess its name from the package. "net.blay09.mods.trashslot.client"
+    // -> skip the domain ("net") and author ("blay09"), then generic words -> "trashslot"
+    const segs = cls.replace(LOADER_PKG_PREFIX, '').split('.').filter(s => /^[a-z_][a-z0-9_]*$/.test(s));
+    if (segs.length === 0) return cls;
+    if (segs[0].length > 3 || segs.length < 3) return segs[0];
+    const rest = segs.slice(2).find(s => !GENERIC_PKG_SEGMENTS.has(s));
+    return rest || segs[1];
+  }
+
+  // Mod ids from NeoForge/Forge frames ("at TRANSFORMER/modid@1.2/pkg.Class.method")
+  // and jar names from Fabric frames ("~[modname-1.2.jar:?]"), in stack order.
+  function frameMods(text) {
+    const mods = [];
+    let m;
+    const frameRe = /^\s*at (?:[\w-]+\/)?([a-z][\w.-]*)@[^\/\s]+\//gm;
+    while ((m = frameRe.exec(text)) !== null) {
+      if (!NON_CULPRIT_IDS.test(m[1])) mods.push(m[1]);
+    }
+    const jarRe = /^\s*at .*\[([^\]\s:\/\\]+)\.jar[:\]]/gm;
+    while ((m = jarRe.exec(text)) !== null) {
+      const jar = m[1].replace(/[-_+]v?\d[\w.+-]*$/, '');
+      if (!NON_CULPRIT_IDS.test(jar)) mods.push(jar);
+    }
+    return mods;
+  }
+
+  // Every mod a block of log text points at, most specific evidence first
+  function extractModsInvolved(text) {
+    const mods = new Set();
+    let m;
+
+    const fromModRe = /from mod ([\w.-]*\w)/g;
+    while ((m = fromModRe.exec(text)) !== null) mods.add(m[1]);
+
+    // Mixin conflicts / cancellations name the other side by class only
+    const mixinClassRe = /(?:previously written by|Cancelled mixin(?: method)?) ([\w.$]+\w)/g;
+    while ((m = mixinClassRe.exec(text)) !== null) mods.add(modFromClass(m[1]));
+
+    const providedRe = /provided by '([^']+)'/g;
+    while ((m = providedRe.exec(text)) !== null) mods.add(m[1]);
+
+    // Mixin handler names carry the owning mod id: "handler$beg000$modid$method"
+    const handlerRe = /\$([a-z][a-z_]{2,})\$/g;
+    while ((m = handlerRe.exec(text)) !== null) {
+      if (!NON_CULPRIT_IDS.test(m[1])) mods.add(m[1]);
+    }
+
+    for (const mod of frameMods(text)) mods.add(mod);
+
+    // Last resort: the first non-vanilla package in the stack
+    if (mods.size === 0) {
+      const pkgRe = /^\s*at (?:[\w-]+\/[^\/\s]*\/|knot\/\/)?([a-z][\w]*(?:\.[a-z][\w]*){2,})\.[A-Z]/gm;
+      while ((m = pkgRe.exec(text)) !== null) {
+        if (!VANILLA_PKG_RE.test(m[1])) { mods.add(modFromClass(m[1])); break; }
+      }
+    }
+
+    return [...mods];
+  }
+
+  // A real missing class: name the mod that is missing and the mod that wanted it
+  function extractMissingClassMods(text) {
+    const out = new Set();
+    let m;
+    const re = /(?:ClassNotFoundException|NoClassDefFoundError):? ([\w.$\/]+)/g;
+    while ((m = re.exec(text)) !== null) out.add(`${modFromClass(m[1])} (missing)`);
+    for (const mod of extractModsInvolved(text)) out.add(`${mod} (needs it)`);
+    return [...out];
+  }
+
+  // Fabric's "Incompatible mods found!" block lists each problem on its own
+  // " - Mod 'X' (x) requires ..." line, which the parser keeps as separate info lines.
+  function extractFabricFailures(text, rawText) {
+    const out = new Set(extractModsInvolved(text));
+    const re = /^\s*-\s+((?:Mod '[^']+'|Install|Replace|Remove) [^\r\n]+)/gm;
+    let m;
+    while ((m = re.exec(rawText)) !== null) out.add(m[1].replace(/[.!]\s*$/, ''));
+    return [...out];
+  }
+
+  // Forge/NeoForge name the failing mod in dependency lists and "-- MOD x --" crash sections
+  function extractFmlFailures(text, rawText) {
+    const out = new Set();
+    let m;
+    const depRe = /Mod ID: '([^']+)', Requested by: '([^']+)'[^\r\n]*?Actual version: '([^']+)'/g;
+    while ((m = depRe.exec(rawText)) !== null) {
+      out.add(`${m[1]} - needed by ${m[2]}${m[3] === '[MISSING]' ? ', not installed' : `, installed ${m[3]}`}`);
+    }
+    const sectionRe = /^-- MOD (\S+) --/gm;
+    while ((m = sectionRe.exec(rawText)) !== null) out.add(m[1]);
+    const fileRe = /Mod File: [^\r\n]*?([^\\\/\r\n]+\.jar)/g;
+    while ((m = fileRe.exec(rawText)) !== null) out.add(m[1]);
+    const failRe = /Failure message: ([^\r\n]+)/g;
+    while ((m = failRe.exec(rawText)) !== null) out.add(m[1].trim().slice(0, 160));
+    for (const mod of extractModsInvolved(text)) out.add(mod);
+    return [...out];
+  }
+
+  // "Missing sound for event: irons_spellbooks:entity.swing" -> "irons_spellbooks:entity.swing".
+  // The part before the colon is the mod (or resource pack) the asset belongs to.
+  function extractAssetIds(text) {
+    const ids = new Set();
+    const message = text.replace(/^.*?\]: /, '');
+    const re = /\b([a-z_][a-z0-9_.-]*):([a-z0-9_][a-z0-9_.\/-]*)/g;
+    let m;
+    while ((m = re.exec(message)) !== null) {
+      if (!/^(?:https?|file|jar|union)$/.test(m[1])) ids.add(`${m[1]}:${m[2]}`);
+    }
+    return [...ids];
+  }
+
+  // ── Mixin compat probes ───────────────────────────────────────────────────
+  // Mods ship optional patches for other mods ("if Sodium is installed, also
+  // patch Sodium"). When that other mod isn't installed, Mixin logs
+  // "Error loading class: ... ClassNotFoundException" and "@Mixin target ... was
+  // not found" as warnings and skips the patch. These look alarming but are
+  // harmless, so they're grouped into one explained tip instead of matching the
+  // generic missing-class rule.
+
+  const MIXIN_PROBE_RE = /Error loading class: \S+ \(java\.lang\.ClassNotFoundException|@Mixin target \S+ was not found/;
+
+  function analyzeMixinProbes(text) {
+    const requesters = new Map();   // missing class -> { mods: Set(mods that tried to patch it), lines: [] }
+    const probe = cls => {
+      if (!requesters.has(cls)) requesters.set(cls, { mods: new Set(), lines: [] });
+      return requesters.get(cls);
+    };
+    const targetRe = /@Mixin target (\S+) was not found (\S+?):\S+(?: from mod (\S+))?/;
+    const loadRe   = /Error loading class: (\S+) \(java\.lang\.ClassNotFoundException/;
+    text.split('\n').forEach((line, i) => {
+      let m;
+      if ((m = targetRe.exec(line))) {
+        const mod = (m[3] || '').replace(/[^\w-]+$/, '') || m[2].replace(/^mixins?\.|[.-]?mixins?\.json$|\.json$/g, '');
+        const p   = probe(m[1]);
+        p.mods.add(mod);
+        p.lines.push(i + 1);
+      } else if ((m = loadRe.exec(line))) {
+        probe(m[1].replace(/\//g, '.')).lines.push(i + 1);
+      }
+    });
+
+    const optional      = new Map();   // absent mod -> Set(mods with a patch for it)
+    const sideOnly      = new Set();   // mods patching vanilla classes missing on this side
+    const optionalLines = [];
+    const sideOnlyLines = [];
+    for (const [cls, { mods, lines }] of requesters) {
+      if (/^(?:net\.minecraft|com\.mojang)\./.test(cls)) {
+        for (const mod of mods) sideOnly.add(mod);
+        sideOnlyLines.push(...lines);
+        continue;
+      }
+      const target = modFromClass(cls);
+      if (!optional.has(target)) optional.set(target, new Set());
+      for (const mod of mods) optional.get(target).add(mod);
+      optionalLines.push(...lines);
+    }
+    return { optional, sideOnly, optionalLines, sideOnlyLines };
+  }
+
+  function mixinProbeTips(text) {
+    const { optional, sideOnly, optionalLines, sideOnlyLines } = analyzeMixinProbes(text);
+    const tips = [];
+
+    if (optional.size > 0) {
+      tips.push({
+        id: 'mixincompat', severity: 'info',
+        title: 'Some mods skipped optional extras',
+        what: 'Some of your mods have bonus features that only switch on when another mod is installed too (for example "if Sodium is installed, also speed up Sodium"). You don\'t have those other mods, so the bonus features stay off. That is what all the "Error loading class" and "ClassNotFoundException" lines in your log are about.',
+        how:  'Nothing. You do not need to install the mods below - they are only listed to explain the warnings.',
+        sourcesLabel: `Mods you don't have (${optional.size})`,
+        sourcesIcon: 'bi-puzzle',
+        sources: [...optional.entries()]
+          .sort((a, b) => a[0].localeCompare(b[0]))
+          .map(([target, by]) => ({ name: target, note: by.size ? `extra in ${[...by].join(', ')}` : '' })),
+        lines: optionalLines,
+      });
+    }
+
+    if (sideOnly.size > 0) {
+      tips.push({
+        id: 'mixintarget', severity: 'warn',
+        title: 'A mod is installed on the wrong side (client or server)',
+        what: 'Some mods only make sense in the game client (graphics, menus, HUD) or only on a server. A mod tried to change something that doesn\'t exist on this side, so that change was skipped. It does not cause a crash.',
+        how:  'Nothing, if the game runs fine. On a server you can remove client-only mods (graphics, HUD, menu mods) to clean up the log.',
+        sourcesLabel: 'Mods involved',
+        sourcesIcon: 'bi-puzzle',
+        sources: [...sideOnly].sort(),
+        lines: sideOnlyLines,
+      });
+    }
+
+    return tips;
+  }
+
   // ── Tip database ─────────────────────────────────────────────────────────
+
+  // Shared by every tip whose cause is a mod, so the card names the mods involved
+  const MOD_SOURCES = { contextExtract: extractModsInvolved, sourcesLabel: 'Mods involved', sourcesIcon: 'bi-puzzle' };
 
   const TIPS = [
     // ── Crash report ─────────────────────────────────────────────────────
 
     {
       id: 'nullpointer', severity: 'crash',
+      ...MOD_SOURCES,
       patterns: ['NullPointerException'],
       title: 'A mod or the game encountered an unexpected crash',
       what: 'Something the game expected to exist was missing at the wrong moment. This is almost always a bug in a mod - often because a mod is incompatible with another mod, or was made for a different Minecraft version.',
@@ -329,6 +580,7 @@
     },
     {
       id: 'illegalstate', severity: 'crash',
+      ...MOD_SOURCES,
       patterns: ['IllegalStateException'],
       title: 'A mod ran into an illegal state',
       what: 'A mod tried to do something it wasn\'t allowed to do at that point - usually because of a version mismatch or interaction with another mod.',
@@ -336,6 +588,7 @@
     },
     {
       id: 'renderingcrash', severity: 'crash',
+      ...MOD_SOURCES,
       patterns: ['Rendering entity in world', 'Rendering screen', 'Rendering overlay'],
       title: 'Game crashed while drawing something on screen',
       what: 'The crash happened while Minecraft was trying to display an entity, screen, or visual effect. A mod that changes how things look is the most likely cause.',
@@ -427,6 +680,7 @@
 
     {
       id: 'nosuchmethod', severity: 'error',
+      ...MOD_SOURCES,
       patterns: ['NoSuchMethodError', 'NoSuchFieldError'],
       title: 'Mod version mismatch',
       what: 'A mod is trying to use something that doesn\'t exist in the version you\'re running.',
@@ -434,13 +688,17 @@
     },
     {
       id: 'classnotfound', severity: 'error',
-      patterns: ['ClassNotFoundException'],
+      patterns: ['ClassNotFoundException', 'NoClassDefFoundError'],
       title: 'A required mod or library is missing',
       what: 'Something was expected to be installed, but Minecraft can\'t find it.',
       how:  'Check if the mod requires another mod (a "dependency") and make sure that mod is also in your mods folder.',
+      contextExtract: extractMissingClassMods,
+      sourcesLabel: 'Mods involved',
+      sourcesIcon: 'bi-puzzle',
     },
     {
       id: 'classcast', severity: 'error',
+      ...MOD_SOURCES,
       patterns: ['ClassCastException'],
       title: 'Two mods have incompatible versions',
       what: 'A mod received data in a format it doesn\'t understand, usually because versions don\'t match.',
@@ -448,6 +706,7 @@
     },
     {
       id: 'abstractmethod', severity: 'error',
+      ...MOD_SOURCES,
       patterns: ['AbstractMethodError', 'IncompatibleClassChangeError'],
       title: 'Mod API changed between versions',
       what: 'A mod was built against an older version of another mod it depends on.',
@@ -455,6 +714,7 @@
     },
     {
       id: 'concurrentmod', severity: 'error',
+      ...MOD_SOURCES,
       patterns: ['ConcurrentModificationException'],
       title: 'Two mods clashing at the same time',
       what: 'Two mods tried to change the same game data at exactly the same moment.',
@@ -462,6 +722,7 @@
     },
     {
       id: 'initexception', severity: 'error',
+      ...MOD_SOURCES,
       patterns: ['ExceptionInInitializerError'],
       title: 'A mod failed during startup',
       what: 'Something went wrong while a mod was setting itself up when the game launched.',
@@ -469,6 +730,7 @@
     },
     {
       id: 'linkageerror', severity: 'error',
+      ...MOD_SOURCES,
       patterns: ['LinkageError'],
       title: 'Two mods include the same library at different versions',
       what: 'Multiple mods are bundling the same code but in conflicting versions.',
@@ -476,48 +738,65 @@
     },
     {
       id: 'fmlload', severity: 'crash',
-      patterns: ['ModLoadingException', 'FMLLoadingException', 'fml.loading'],
+      patterns: [/net\.minecraftforge\.fml\.[\w.]*(?:ModLoadingException|LoadingFailedException|LoadingException)/],
+      contextExtract: extractFmlFailures,
+      sourcesLabel: 'Mods involved',
+      sourcesIcon: 'bi-puzzle',
       title: 'A Forge mod failed to load',
       what: 'One of your Forge mods crashed during the game\'s startup process.',
       how:  'The error usually names the mod causing the problem. Try removing that mod and check if it\'s compatible with your Forge version.',
     },
     {
       id: 'fabricload', severity: 'crash',
-      patterns: ['fabric.loader', 'net.fabricmc'],
+      patterns: ['net.fabricmc.loader.impl.FormattedException', 'Incompatible mods found!', 'Mod resolution failed',
+                 /Could not execute entrypoint stage '[^']+' due to errors/],
+      contextExtract: extractFabricFailures,
+      sourcesLabel: 'Mods involved',
+      sourcesIcon: 'bi-puzzle',
       title: 'A Fabric mod failed to load',
       what: 'One of your Fabric mods couldn\'t start correctly.',
       how:  'Check that all mods match your Fabric Loader version and that Fabric API is installed and up to date.',
     },
     {
       id: 'neoforgeload', severity: 'crash',
-      patterns: ['neoforge.fml', 'net.neoforged'],
+      patterns: [/net\.neoforged\.fml\.[\w.]*(?:ModLoadingException|LoadingFailedException|LoadingException)/, 'Loading errors encountered'],
+      contextExtract: extractFmlFailures,
+      sourcesLabel: 'Mods involved',
+      sourcesIcon: 'bi-puzzle',
       title: 'A NeoForge mod failed to load',
       what: 'One of your NeoForge mods crashed during startup.',
       how:  'The error usually names the problem mod. Remove it and verify it supports your NeoForge version.',
     },
 
+    {
+      id: 'missingdep', severity: 'crash',
+      patterns: ['Missing or unsupported mandatory dependencies'],
+      contextExtract: extractFmlFailures,
+      sourcesLabel: 'Missing dependencies',
+      sourcesIcon: 'bi-puzzle',
+      title: 'A mod needs another mod that isn\'t installed',
+      what: 'A mod can\'t start because a mod it depends on is missing or the wrong version.',
+      how:  'Install the missing mod (or the version shown) listed below, then launch again.',
+    },
+
     // ── Fabric / loader warnings ──────────────────────────────────────────
+    // "@Mixin target ... was not found" is handled by mixinProbeTips().
 
     {
-      id: 'mixintarget', severity: 'warn',
-      patterns: ['@Mixin target', 'was not found'],
-      title: 'Client-only mod loaded on a server',
-      what: 'A mod tried to patch a class that only exists in the game client (e.g. a rendering or GUI class). Fabric warns about this but skips the patch safely - it does not cause a crash.',
-      how: 'No action needed if the server runs normally. To clean up the log, remove client-only mods (rendering mods, HUD mods, etc.) from the server\'s mods folder.',
-    },
-    {
       id: 'mixinconflict', severity: 'warn',
+      ...MOD_SOURCES,
       patterns: ['Method overwrite conflict', 'Skipping method'],
-      title: 'Two mods conflict over the same game code',
-      what: 'Two mods both tried to replace the same piece of game logic, and only one could win. The losing mod\'s change was silently dropped, which can cause that mod\'s feature to stop working correctly.',
-      how: 'Check which mods are named in the warning. Update both to their latest versions - authors sometimes coordinate fixes for known conflicts. If it persists, report it to both mod authors.',
+      title: 'Two mods tried to change the same thing',
+      what: 'Two mods both wanted to change the same bit of the game. Only one change can be used, so a small part of the other mod is switched off.',
+      how:  'Usually nothing. If a feature from one of these mods seems broken, update both mods to their latest versions.',
     },
     {
       id: 'cancelledmixin', severity: 'warn',
+      ...MOD_SOURCES,
       patterns: ['Cancelled mixin'],
-      title: 'A mod patch was cancelled at startup',
-      what: 'A mixin (code patch) from a mod was cancelled during startup, usually because it conflicts with another mod or targets a class that changed in this Minecraft version.',
-      how: 'Update the mod shown in the message. If the problem persists after updating, check if a recently added mod is conflicting with it and report the issue to the mod author.',
+      title: 'A mod switched off part of another mod',
+      what: 'To avoid a clash, one mod deliberately turned off a small piece of another mod. This is on purpose and normally fine.',
+      how:  'Usually nothing. If one of these mods behaves strangely, update it to its latest version.',
     },
     {
       id: 'invalidmodjson', severity: 'warn',
@@ -542,6 +821,7 @@
     },
     {
       id: 'commandreg', severity: 'warn',
+      ...MOD_SOURCES,
       patterns: ['Could not register', 'command:', 'cannot access a member of class'],
       title: 'A mod failed to register a command',
       what: 'A mod tried to add a server command but ran into an access error, usually because of a mod loader version mismatch or a mod using an internal API that changed.',
@@ -597,25 +877,37 @@
 
     {
       id: 'texture', severity: 'warn',
-      patterns: ['Failed to load texture', 'Missing texture', 'unable to load texture'],
-      title: 'Missing texture',
-      what: 'A resource pack is pointing to an image file that doesn\'t exist.',
-      how:  'Reinstall or disable the resource pack mentioned in the error. If it\'s a mod\'s texture, update or reinstall that mod.',
+      patterns: ['Failed to load texture', /Missing texture(?!s in model| references in model)/, 'unable to load texture'],
+      contextExtract: extractAssetIds,
+      groupByNamespace: true,
+      sourcesLabel: 'From',
+      sourcesIcon: 'bi-image',
+      title: 'Some textures are missing',
+      what: 'A mod or resource pack points to an image that doesn\'t exist. That thing may show up as a purple-and-black checkerboard in-game.',
+      how:  'Only matters if you actually see a broken texture. Then update or reinstall the mod or pack named below ("minecraft" usually means a resource pack).',
     },
     {
       id: 'model', severity: 'warn',
       patterns: ['Failed to load model', 'Missing model', 'Could not load model',
                  'Missing block model', 'Missing textures in model', 'Missing texture references in model'],
-      title: 'Missing 3D model or texture',
-      what: 'A resource pack or mod references a 3D model or texture file that can\'t be found. This often means the pack was built for a different Minecraft version.',
-      how:  'Reinstall or update the resource pack. If the model names start with a specific namespace prefix (like "wasd:" or "tcc:"), that identifies which pack to update.',
+      contextExtract: extractAssetIds,
+      groupByNamespace: true,
+      sourcesLabel: 'From',
+      sourcesIcon: 'bi-box',
+      title: 'Some 3D models are missing',
+      what: 'A mod or resource pack points to a model or texture that doesn\'t exist, often because it was made for a different Minecraft version. Affected items or blocks may look broken.',
+      how:  'Only matters if something looks wrong in-game. Then update the mod or pack named below ("minecraft" usually means a resource pack).',
     },
     {
       id: 'sound', severity: 'warn',
       patterns: ['Failed to load sound', 'Missing sound', 'Sound event', 'Unable to play'],
-      title: 'Missing sound',
-      what: 'A sound referenced by a resource pack or mod doesn\'t exist.',
-      how:  'Reinstall the resource pack or mod that adds that sound.',
+      contextExtract: extractAssetIds,
+      groupByNamespace: true,
+      sourcesLabel: 'From',
+      sourcesIcon: 'bi-volume-up',
+      title: 'Some sounds are missing',
+      what: 'A mod or resource pack tries to play a sound that doesn\'t exist. You just won\'t hear that sound.',
+      how:  'Usually nothing. If it bothers you, update the mod or pack named below ("minecraft" usually means a resource pack).',
     },
     {
       id: 'invalidmodel', severity: 'warn',
@@ -744,6 +1036,7 @@
     },
     {
       id: 'illegalaccess', severity: 'error',
+      ...MOD_SOURCES,
       patterns: ['IllegalAccessError', 'InaccessibleObjectException'],
       title: 'Java version incompatibility',
       what: 'An older mod doesn\'t work with the version of Java you\'re running.',
@@ -781,11 +1074,14 @@
 
   // ── Tip extraction ────────────────────────────────────────────────────────
 
-  function extractTips(groups) {
+  function extractTips(groups, rawText) {
     const seen    = new Map();
     const nonInfo = groups.filter(g => g.level !== 'info');
 
     for (const group of nonInfo) {
+      // Mixin compat probes get their own grouped tip below
+      if (group.stack.length === 0 && MIXIN_PROBE_RE.test(group.text)) continue;
+
       const haystack = group.text + '\n' + group.stack.join('\n');
       for (const tip of TIPS) {
         const matched = tip.patterns.some(p =>
@@ -793,16 +1089,19 @@
         );
         if (!matched) continue;
 
-        if (!seen.has(tip.id)) seen.set(tip.id, { ...tip, sources: [] });
+        if (!seen.has(tip.id)) seen.set(tip.id, { ...tip, sources: [], lines: [] });
         const instance = seen.get(tip.id);
+        if (!instance.lines.includes(group.lineNo)) instance.lines.push(group.lineNo);
 
         if (tip.contextExtract) {
-          for (const val of tip.contextExtract(haystack)) {
+          for (const val of tip.contextExtract(haystack, rawText)) {
             if (!instance.sources.includes(val)) instance.sources.push(val);
           }
         }
       }
     }
+
+    for (const tip of mixinProbeTips(rawText)) seen.set(tip.id, tip);
 
     const rank = { crash: 0, error: 1, warn: 2, info: 3 };
     return [...seen.values()].sort((a, b) => rank[a.severity] - rank[b.severity]);
@@ -821,6 +1120,13 @@
     if (cls) e.className = cls;
     if (html !== undefined) e.innerHTML = html;
     return e;
+  }
+
+  // 1-based line number of a character offset
+  function lineAt(text, index) {
+    let n = 1;
+    for (let i = 0; i < index; i++) if (text.charCodeAt(i) === 10) n++;
+    return n;
   }
 
   function detectVersion(text) {
@@ -866,7 +1172,7 @@
     const crashes   = groups.filter(g => g.level === 'crash');
     const errors    = groups.filter(g => g.level === 'error');
     const warnings  = groups.filter(g => g.level === 'warn');
-    const tips      = extractTips(groups);
+    const tips      = extractTips(groups, rawText);
     const structure = analyzeStructure(rawText);
     const version   = detectVersion(rawText);
     const logDate   = detectLogDate(filename);
@@ -908,9 +1214,10 @@
     statsRow.appendChild(statCard('Warnings', warnings.length,
       warnings.length > 0 ? 'Minor issues logged' : 'No warnings found',
       warnings.length > 0 ? 'warn' : 'ok'));
+    const tipsToFix = tips.filter(t => t.severity === 'crash' || t.severity === 'error').length;
     statsRow.appendChild(statCard('Fix Tips', tips.length,
-      tips.length > 0 ? 'Suggestions available below' : 'Nothing specific to suggest',
-      tips.length > 0 ? 'error' : 'ok'));
+      tipsToFix > 0 ? `${tipsToFix} need${tipsToFix === 1 ? 's' : ''} fixing` : (tips.length > 0 ? 'Nothing urgent' : 'Nothing specific to suggest'),
+      tipsToFix > 0 ? 'error' : (tips.length > 0 ? 'warn' : 'ok')));
     resultsEl.appendChild(statsRow);
 
     // ── Clean bill of health ──────────────────────────────────────────────
@@ -939,7 +1246,13 @@
       // What was happening
       if (cr.description) {
         body.appendChild(el('div', 'log-crash-row',
-          `<i class="bi bi-info-circle"></i><div><strong>What was happening:</strong> ${esc(cr.description)}</div>`));
+          `<i class="bi bi-info-circle"></i><div><strong>What was happening:</strong> ${esc(cr.description)}${lineRefsInline([cr.descriptionLine])}</div>`));
+      }
+
+      // The exception that ended the game
+      if (cr.exception) {
+        body.appendChild(el('div', 'log-crash-row',
+          `<i class="bi bi-bug"></i><div><strong>Error:</strong> <code class="log-crash-exc">${esc(cr.exception)}</code>${lineRefsInline([cr.exceptionLine])}</div>`));
       }
 
       // Which mod caused it
@@ -955,7 +1268,7 @@
         fixHtml = 'Try updating Minecraft and all your mods. If the crash happens repeatedly in the same situation, try removing recently added mods one at a time until it stops.';
       }
       body.appendChild(el('div', 'log-crash-row',
-        `<i class="bi bi-puzzle"></i><div><strong>Likely cause:</strong> ${modHtml}</div>`));
+        `<i class="bi bi-puzzle"></i><div><strong>Likely cause:</strong> ${modHtml}${lineRefsInline([cr.crashingModLine])}</div>`));
       body.appendChild(el('div', 'log-crash-row log-crash-fix',
         `<i class="bi bi-wrench"></i><div><strong>Fix:</strong> ${fixHtml}</div>`));
 
@@ -974,6 +1287,7 @@
       }
 
       card.appendChild(body);
+      bindLineRefs(body);
       resultsEl.appendChild(card);
     }
 
@@ -981,25 +1295,7 @@
 
     if (tips.length > 0) {
       const card = makeCard('bi-lightbulb', 'Fix Suggestions');
-      const list = el('div', 'log-tips-list');
-
-      for (const tip of tips) {
-        const div = el('div', `log-tip ${tip.severity}`);
-        const sourcesHtml = tip.sources && tip.sources.length > 0
-          ? `<div class="log-tip-sources"><i class="bi bi-file-earmark-zip"></i><span>Found in: <strong>${esc(tip.sources.slice(0, 5).join(', '))}${tip.sources.length > 5 ? ` +${tip.sources.length - 5} more` : ''}</strong></span></div>`
-          : '';
-        div.innerHTML = `
-          <i class="bi ${tipIcon(tip.severity)} log-tip-icon"></i>
-          <div class="log-tip-body">
-            <div class="log-tip-title">${esc(tip.title)}</div>
-            <div class="log-tip-what">${esc(tip.what)}</div>
-            <div class="log-tip-how">${esc(tip.how)}</div>
-            ${sourcesHtml}
-          </div>
-        `;
-        list.appendChild(div);
-      }
-      card.appendChild(list);
+      card.appendChild(renderTips(tips));
       resultsEl.appendChild(card);
     }
 
@@ -1135,6 +1431,188 @@
     renderFullLog(rawText, groups);
   }
 
+  // ── Fix suggestions ───────────────────────────────────────────────────────
+  // Tips are sorted into what the player has to do about them, so the first
+  // thing they read is whether anything is actually wrong.
+
+  const TIP_GROUPS = [
+    { severities: ['crash', 'error'], level: 'error', icon: 'bi-wrench-adjustable', title: 'Needs fixing',
+      hint: 'These can stop the game from starting or break a mod. Start with the first one - it often causes the others.' },
+    { severities: ['warn'], level: 'warn', icon: 'bi-eye', title: 'Worth a look',
+      hint: 'The game still runs. Only look into these if something in-game seems broken.' },
+    { severities: ['info'], level: 'info', icon: 'bi-check-circle', title: 'Safe to ignore',
+      hint: 'Normal messages that look scary in a log. Nothing to do.' },
+  ];
+
+  const CHIPS_SHOWN = 8;
+
+  function renderTips(tips) {
+    const wrap     = el('div', 'log-tips-list');
+    const toFix    = tips.filter(t => t.severity === 'crash' || t.severity === 'error').length;
+    const toCheck  = tips.filter(t => t.severity === 'warn').length;
+
+    const verdict = toFix > 0
+      ? `<i class="bi bi-exclamation-octagon"></i><span><strong>${toFix} problem${toFix !== 1 ? 's' : ''} to fix.</strong> They are listed first, with what to do for each.</span>`
+      : `<i class="bi bi-check2-circle"></i><span><strong>Nothing here stops your game from running.</strong>${toCheck > 0 ? ` ${toCheck} thing${toCheck !== 1 ? 's are' : ' is'} worth a look if something in-game seems off.` : ' Everything below is safe to ignore.'}</span>`;
+    wrap.appendChild(el('div', `log-tips-verdict ${toFix > 0 ? 'error' : 'ok'}`, verdict));
+
+    for (const group of TIP_GROUPS) {
+      const inGroup = tips.filter(t => group.severities.includes(t.severity));
+      if (inGroup.length === 0) continue;
+
+      const section = el('section', `log-tip-group ${group.level}`);
+      section.appendChild(el('div', 'log-tip-group-head', `
+        <i class="bi ${group.icon}"></i>
+        <span class="log-tip-group-title">${esc(group.title)}</span>
+        <span class="log-tip-group-count">${inGroup.length}</span>
+        <span class="log-tip-group-hint">${esc(group.hint)}</span>
+      `));
+      for (const tip of inGroup) section.appendChild(renderTip(tip));
+      wrap.appendChild(section);
+    }
+
+    return wrap;
+  }
+
+  function renderTip(tip) {
+    const div = el('div', `log-tip ${tip.severity}`);
+    div.innerHTML = `
+      <i class="bi ${tipIcon(tip.severity)} log-tip-icon"></i>
+      <div class="log-tip-body">
+        <div class="log-tip-title">${esc(tip.title)}</div>
+        <div class="log-tip-row"><span class="log-tip-label">What happened</span><span>${esc(tip.what)}</span></div>
+        <div class="log-tip-row log-tip-how"><span class="log-tip-label">What to do</span><span>${esc(tip.how)}</span></div>
+      </div>
+    `;
+    const chips = tipChips(tip);
+    if (chips.length > 0) div.querySelector('.log-tip-body').appendChild(renderChips(tip, chips));
+    if (tip.lines && tip.lines.length > 0) div.querySelector('.log-tip-body').appendChild(renderLineRefs(tip.lines));
+    return div;
+  }
+
+  // ── Line references ───────────────────────────────────────────────────────
+  // Line numbers link into the Full Log card, so the player can see the raw
+  // lines a tip or summary row is based on.
+
+  const LINES_SHOWN        = 12;
+  const FULL_LOG_MAX_LINES = 5000;
+
+  // Collapses sorted line numbers into runs: [4,5,6,9] -> [[4,6],[9,9]]
+  function lineRuns(lines) {
+    const sorted = [...new Set(lines.filter(Boolean))].sort((a, b) => a - b);
+    const runs   = [];
+    for (const n of sorted) {
+      const last = runs[runs.length - 1];
+      if (last && n === last[1] + 1) last[1] = n;
+      else runs.push([n, n]);
+    }
+    return runs;
+  }
+
+  function lineRefHtml([from, to]) {
+    const label = from === to ? String(from) : `${from}-${to}`;
+    // Lines past the Full Log cut-off aren't rendered, so there is nothing to jump to
+    if (from > FULL_LOG_MAX_LINES) return `<span class="log-line-ref is-static">${label}</span>`;
+    return `<button type="button" class="log-line-ref" data-line="${from}" title="Show in full log">${label}</button>`;
+  }
+
+  function lineRefsInline(lines) {
+    const runs = lineRuns(lines);
+    if (runs.length === 0) return '';
+    return `<span class="log-line-refs-inline">${runs.length === 1 && runs[0][0] === runs[0][1] ? 'line' : 'lines'} ${runs.map(lineRefHtml).join(', ')}</span>`;
+  }
+
+  function renderLineRefs(lines) {
+    const runs  = lineRuns(lines);
+    const count = runs.reduce((n, [a, b]) => n + b - a + 1, 0);
+    const box   = el('div', 'log-tip-lines');
+    box.appendChild(el('span', 'log-tip-label', count === 1 ? 'Seen on line' : `Seen on ${count} lines`));
+
+    const list = el('span', 'log-line-ref-list', runs.map(lineRefHtml).join(''));
+    box.appendChild(list);
+
+    const hiddenCount = runs.length - LINES_SHOWN;
+    if (hiddenCount > 0) {
+      const refs = [...list.children];
+      refs.forEach((r, i) => { if (i >= LINES_SHOWN) r.hidden = true; });
+      const btn = el('button', 'log-chip-more', `+${hiddenCount} more`);
+      btn.type = 'button';
+      btn.addEventListener('click', () => {
+        const expand = btn.dataset.expanded !== 'true';
+        refs.forEach((r, i) => { if (i >= LINES_SHOWN) r.hidden = !expand; });
+        btn.dataset.expanded = String(expand);
+        btn.textContent = expand ? 'Show fewer' : `+${hiddenCount} more`;
+      });
+      box.appendChild(btn);
+    }
+
+    bindLineRefs(box);
+    return box;
+  }
+
+  function bindLineRefs(root) {
+    root.querySelectorAll('.log-line-ref').forEach(btn => {
+      btn.addEventListener('click', () => jumpToLine(Number(btn.dataset.line)));
+    });
+  }
+
+  function jumpToLine(lineNo) {
+    const card = document.getElementById('log-full-card');
+    const row  = document.getElementById(`log-line-${lineNo}`);
+    if (!card || !row) return;
+    card.open = true;
+    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    row.classList.remove('is-target');
+    void row.offsetWidth;   // restart the highlight animation
+    row.classList.add('is-target');
+  }
+
+  // Sources are strings or { name, note }. Asset ids ("modid:path") are grouped
+  // per mod so the player sees "irons_spellbooks - 2 missing" instead of every path.
+  function tipChips(tip) {
+    const sources = tip.sources || [];
+    if (!tip.groupByNamespace) {
+      return sources.map(s => typeof s === 'string' ? { name: s, note: '' } : s);
+    }
+    const counts = new Map();
+    for (const id of sources) {
+      const ns = id.split(':')[0];
+      counts.set(ns, (counts.get(ns) || 0) + 1);
+    }
+    return [...counts.entries()]
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .map(([ns, n]) => ({ name: ns, note: `${n} missing` }));
+  }
+
+  function renderChips(tip, chips) {
+    const box  = el('div', 'log-tip-sources');
+    box.appendChild(el('div', 'log-tip-sources-label',
+      `<i class="bi ${tip.sourcesIcon || 'bi-file-earmark-zip'}"></i>${esc(tip.sourcesLabel || 'Found in')}`));
+
+    const list = el('ul', 'log-chip-list');
+    chips.forEach((chip, i) => {
+      const li = el('li', 'log-chip',
+        `<span class="log-chip-name">${esc(chip.name)}</span>${chip.note ? `<span class="log-chip-note">${esc(chip.note)}</span>` : ''}`);
+      if (i >= CHIPS_SHOWN) li.hidden = true;
+      list.appendChild(li);
+    });
+    box.appendChild(list);
+
+    const hiddenCount = chips.length - CHIPS_SHOWN;
+    if (hiddenCount > 0) {
+      const btn = el('button', 'log-chip-more', `Show ${hiddenCount} more`);
+      btn.type = 'button';
+      btn.addEventListener('click', () => {
+        const expand = btn.dataset.expanded !== 'true';
+        list.querySelectorAll('.log-chip').forEach((li, i) => { if (i >= CHIPS_SHOWN) li.hidden = !expand; });
+        btn.dataset.expanded = String(expand);
+        btn.textContent = expand ? 'Show fewer' : `Show ${hiddenCount} more`;
+      });
+      box.appendChild(btn);
+    }
+    return box;
+  }
+
   // ── Issue list ────────────────────────────────────────────────────────────
 
   function issueList(groups) {
@@ -1173,9 +1651,10 @@
 
   function renderFullLog(rawText, groups) {
     const card = makeCard('bi-file-text', 'Full Log');
+    card.id   = 'log-full-card';
     card.open = false;
 
-    const MAX_LINES = 5000;
+    const MAX_LINES = FULL_LOG_MAX_LINES;
     const allLines  = rawText.split('\n');
     const shown     = allLines.slice(0, MAX_LINES);
 
@@ -1197,6 +1676,7 @@
 
       const level = levelByLine.get(lineNo) || classifyLine(text);
       const row   = el('div', `log-full-line ${level}`);
+      row.id      = `log-line-${lineNo}`;
       row.innerHTML = `<span class="log-line-num">${lineNo}</span><span class="log-line-text">${esc(text)}</span>`;
       fragment.appendChild(row);
     }
@@ -1218,7 +1698,7 @@
     const card = el('div', 'log-stat-card');
     card.innerHTML = `
       <div class="log-stat-label">${esc(label)}</div>
-      <div class="log-stat-value ${level}">${esc(String(value))}</div>
+      <div class="log-stat-value level-${level}">${esc(String(value))}</div>
       <div class="log-stat-sub">${esc(sub)}</div>
     `;
     return card;

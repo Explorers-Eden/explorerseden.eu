@@ -26,7 +26,7 @@ jobs:
           set -euo pipefail
           mkdir -p .cache/wiki-node-deps
           npm --prefix .cache/wiki-node-deps init -y >/dev/null
-          npm --prefix .cache/wiki-node-deps install --no-save --package-lock=false prismarine-nbt pngjs sharp js-yaml deepslate jszip pg marked ssh2-sftp-client
+          npm --prefix .cache/wiki-node-deps install --no-save --package-lock=false prismarine-nbt pngjs sharp js-yaml deepslate jszip pg marked
       - name: Save node deps cache
         uses: actions/cache/save@v5
         with:
@@ -72,13 +72,13 @@ jobs:
       NODE_PATH: ${{ github.workspace }}/.cache/wiki-node-deps/node_modules
       REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
       TRANSLATIONS_DATABASE_URL: ${{ secrets.TRANSLATIONS_DATABASE_URL }}
-      SFTP_HOST: ${{ secrets.SFTP_HOST }}
-      SFTP_PORT: ${{ secrets.SFTP_PORT }}
-      SFTP_USER: ${{ secrets.SFTP_USER }}
-      SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
-      WAYPOINT_SFTP_REMOTE_PATH: ${{ secrets.WAYPOINT_SFTP_REMOTE_PATH }}
-      SMP_WORLD_SFTP_REMOTE_PATH: ${{ secrets.SMP_WORLD_SFTP_REMOTE_PATH }}
-      SMP_CONFIG_SFTP_REMOTE_PATH: ${{ secrets.SMP_CONFIG_SFTP_REMOTE_PATH }}
+      # Everything about the SMP from the Nice Control Center panel's database: Discord links, land claims,
+      # market listings, and the world's player data (tags, stats, advancements) and command storage.
+      PANEL_DATABASE_URL: ${{ secrets.PANEL_DATABASE_URL }}
+      # Which command storage holds the waypoint hubs, homes and graves (a repository variable; default "eden").
+      PANEL_WAYPOINT_STORAGE: ${{ vars.PANEL_WAYPOINT_STORAGE }}
+      # The panel's public info page address, for market item icons (a repository variable).
+      PANEL_PUBLIC_URL: ${{ vars.PANEL_PUBLIC_URL }}
       # Single seed used for all phases this run, so jigsaw expansion decisions
       # made in 'structure-md' are reproduced by 'structure-previews' and
       # 'structure-viewers'. Varies per workflow run.
@@ -206,24 +206,16 @@ jobs:
         shell: bash
         run: node tools/scripts/generate-server-readme.js
 
-      - name: Fetch waypoint hub data via SFTP
+      - name: Read each player's waypoint hubs, home and last grave
         shell: bash
         run: node tools/scripts/generate-waypoint-hubs.js
 
       - name: Generate SMP player profile data
         shell: bash
-        # A Mojang/SFTP hiccup here shouldn't block the rest of the deploy -
+        # A Mojang/database hiccup here shouldn't block the rest of the deploy -
         # profiles just stay stale until the next scheduled run.
         continue-on-error: true
         run: node tools/scripts/generate-player-profiles.js
-
-      - name: Fetch admin playerdata (SMP Player Inspector)
-        shell: bash
-        # Home/death/grave locations + full grave inventories - admin-only,
-        # published to Postgres (never committed) by the publish step below.
-        # Same reasoning as the step above: don't block the deploy on a hiccup.
-        continue-on-error: true
-        run: node tools/scripts/fetch-admin-playerdata.js
 
       - name: Generate homepage skin lineup poses (new linked players only)
         shell: bash
@@ -235,7 +227,7 @@ jobs:
       - name: Publish generated data to Postgres
         shell: bash
         # Upserts enchantments/recipes/structures/configurator/resource-pack/
-        # waypoint-hubs/overview-readme/player-profiles into Postgres and
+        # overview-readme/player-profiles into Postgres and
         # deletes the local JSON, so the commit step below never sees them -
         # see tools/scripts/publish-generated-data.js for why (Watchtower's
         # once-a-day pull otherwise ties data freshness to image redeploys,
@@ -257,7 +249,6 @@ jobs:
             data-pack-configurator/data
             resource-pack-assembler/data
             overview/data
-            waypoint-hubs/data
             profiles/data
             assets/images/generated/player-skins
             assets/images/generated/player-skins-home
@@ -292,7 +283,7 @@ jobs:
         # broken (stale) data to the live site.
         run: |
           set -euo pipefail
-          rm -rf wiki structures enchantments/data enchantments/assets recipes/data data-pack-configurator/data resource-pack-assembler/data overview/data waypoint-hubs/data profiles/data assets/images/generated/player-skins assets/images/generated/player-skins-home assets/images/generated/player-heads
+          rm -rf wiki structures enchantments/data enchantments/assets recipes/data data-pack-configurator/data resource-pack-assembler/data overview/data profiles/data assets/images/generated/player-skins assets/images/generated/player-skins-home assets/images/generated/player-heads
           # enchantments/data and player-heads are never populated again (the
           # former's two files now live in Postgres, the latter is replaced by
           # mc-heads.net URLs computed from a uuid) - recreated empty so the
@@ -327,7 +318,6 @@ jobs:
           [ -d data-pack-configurator/data ] && git add -A data-pack-configurator/data
           [ -d resource-pack-assembler/data ] && git add -A resource-pack-assembler/data
           [ -d overview/data ] && git add -A overview/data
-          [ -d waypoint-hubs/data ] && git add -A waypoint-hubs/data
           [ -d profiles/data ] && git add -A profiles/data
           [ -d assets/images/generated/player-skins ] && git add -A assets/images/generated/player-skins
           [ -d assets/images/generated/player-skins-home ] && git add -A assets/images/generated/player-skins-home

@@ -32,12 +32,6 @@
     const profileItem = user.hasProfile
       ? `<a href="/profile/" role="menuitem"><i class="bi bi-person-fill"></i> My SMP Profile</a>`
       : '';
-    const adminItem = user.role === 'admin'
-      ? `
-        <div class="nav-dropdown__divider"></div>
-        <a href="/admin-playerdata/" role="menuitem"><i class="bi bi-clipboard-data"></i> SMP Player Inspector</a>
-      `
-      : '';
     root.innerHTML = `
       <div class="nav-dropdown">
         <button class="nav-dropdown__trigger" type="button" aria-haspopup="true">
@@ -47,7 +41,6 @@
         <div class="nav-dropdown__menu nav-dropdown__menu--right" role="menu">
           ${profileItem}
           <a href="/translate/?mine=1" role="menuitem"><i class="bi bi-list-check"></i> My Translation Suggestions</a>
-          ${adminItem}
           <div class="nav-dropdown__divider"></div>
           <button type="button" id="nav-logout-btn" role="menuitem"><i class="bi bi-box-arrow-right"></i> Log Out</button>
         </div>

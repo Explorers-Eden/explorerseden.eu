@@ -3,34 +3,33 @@
 
 /**
  * Builds one profiles/data/<discordId>.json per SMP player who has linked
- * their Discord account (via the DiscordJustSync mod, which already requires
- * this before a player can even join) AND has actually played (has a
- * world/players/data/<uuid>.dat file).
+ * their Discord account (through the Nice Control Center panel's Discord
+ * bridge, which requires this before a player can even join) AND has actually
+ * played (has a player file in the world).
  *
- * Sources (all fetched via SFTP in CI, or read from local directories for
- * testing - see SMP_LOCAL_WORLD_DIR / SMP_LOCAL_CONFIG_DIR below):
- *   config/discord-js/discord-justsync.player-links.json  - discordId <-> uuid map
- *   world/players/data/<uuid>.dat                          - race/class tags
- *   world/players/advancements/<uuid>.json                 - advancement progress
- *   world/players/stats/<uuid>.json                        - stats
- *   world/dimensions/<ns>/<dim>/data/cardinal-components/world.dat - goml land claims
- *   .cache/waypoint-hubs-by-owner.json                     - written by
+ * Sources - all from the panel's database (PANEL_DATABASE_URL), which the panel
+ * keeps up to date from the world files (see lib/panel-data.js and lib/smp-world.js;
+ * SMP_LOCAL_WORLD_DIR reads a local world folder instead, for testing):
+ *   discord_links, claims, market_listings      - discordId <-> uuid links, land claims, market listings
+ *   smp_players.tags                            - race/class tags
+ *   smp_players.advancements                    - advancement progress
+ *   smp_players.stats                           - stats
+ *   .cache/waypoint-hubs-by-owner.json          - written by
  *     generate-waypoint-hubs.js in the same CI job (public+private hubs per owner)
- *   .cache/player-homes-by-name.json                       - written by
+ *   .cache/player-homes-by-name.json            - written by
  *     generate-waypoint-hubs.js in the same CI job (home location per username)
- *   .cache/player-graves-by-name.json                      - written by
+ *   .cache/player-graves-by-name.json           - written by
  *     generate-waypoint-hubs.js in the same CI job (last grave per username)
  *
- * Run during CI after "Fetch waypoint hub data via SFTP" (needs its scratch file).
+ * Run during CI after "Fetch waypoint hub data" (needs its scratch files).
  */
 
 const fs = require('fs');
 const path = require('path');
-const nbt = require('prismarine-nbt');
-const { decodeBlockPosLong, decodeUuidIntArray } = require('./lib/mc-id-codec');
 const { renderSkinBufferToPng } = require('./lib/skin-render');
 const { humanize, prettifyDimension } = require('./lib/mc-format');
-const { DIMENSION_FILES, formatAnchorType, decodeClaimOwners, decodeClaimTrusted, loadAllClaims } = require('./lib/goml-claims');
+const { loadPanelData } = require('./lib/panel-data');
+const { loadSmpPlayers } = require('./lib/smp-world');
 
 const ROOT = path.join(__dirname, '..', '..');
 const OUT_DIR = path.join(ROOT, 'profiles', 'data');
@@ -50,83 +49,6 @@ function warn(msg) { console.warn('[player-profiles] WARNING:', msg); }
 function fail(msg) {
   console.error('[player-profiles] ERROR:', msg);
   process.exit(1);
-}
-
-// ── Data source: local override or SFTP ──────────────────────────────────────
-
-async function prepareDataDirs() {
-  if (process.env.SMP_LOCAL_WORLD_DIR && process.env.SMP_LOCAL_CONFIG_DIR) {
-    log(`Using local directories (test mode, no SFTP): ${process.env.SMP_LOCAL_WORLD_DIR}, ${process.env.SMP_LOCAL_CONFIG_DIR}`);
-    return { worldDir: process.env.SMP_LOCAL_WORLD_DIR, configDir: process.env.SMP_LOCAL_CONFIG_DIR };
-  }
-
-  const SftpClient = require('ssh2-sftp-client');
-  const host = process.env.SFTP_HOST;
-  const port = Number(process.env.SFTP_PORT || 22);
-  const username = process.env.SFTP_USER;
-  const password = process.env.SFTP_PASSWORD;
-  const remoteWorld = process.env.SMP_WORLD_SFTP_REMOTE_PATH;
-  const remoteConfig = process.env.SMP_CONFIG_SFTP_REMOTE_PATH;
-
-  if (!host || !username || !password || !remoteWorld || !remoteConfig) {
-    fail('Missing one or more required env vars: SFTP_HOST, SFTP_USER, SFTP_PASSWORD, SMP_WORLD_SFTP_REMOTE_PATH, SMP_CONFIG_SFTP_REMOTE_PATH.');
-  }
-
-  const worldDir = path.join(ROOT, '.cache', 'smp-players', 'world');
-  const configDir = path.join(ROOT, '.cache', 'smp-players', 'config');
-
-  // Explicitly pre-create every destination directory rather than relying on
-  // downloadDir()'s own directory-creation step - observed a "not exist" race
-  // from ssh2-sftp-client when it didn't run first for a large directory.
-  async function downloadDirRobust(remoteDir, localDir, filter) {
-    fs.mkdirSync(localDir, { recursive: true });
-    try {
-      await sftp.downloadDir(remoteDir, localDir, { filter });
-    } catch (err) {
-      warn(`downloadDir(${remoteDir}) failed (${err.message}), retrying once.`);
-      fs.mkdirSync(localDir, { recursive: true });
-      await sftp.downloadDir(remoteDir, localDir, { filter });
-    }
-  }
-
-  const sftp = new SftpClient();
-  try {
-    await sftp.connect({ host, port, username, password, readyTimeout: 15000 });
-    log(`Connected to ${host}:${port}, downloading player data.`);
-
-    // Skip .dat_old backups - only the live .dat/.json files are needed.
-    const skipBackups = (filePath) => !filePath.endsWith('_old');
-
-    await downloadDirRobust(`${remoteWorld}/players/data`, path.join(worldDir, 'players', 'data'), skipBackups);
-    await downloadDirRobust(`${remoteWorld}/players/advancements`, path.join(worldDir, 'players', 'advancements'), skipBackups);
-    await downloadDirRobust(`${remoteWorld}/players/stats`, path.join(worldDir, 'players', 'stats'), skipBackups);
-
-    for (const dim of DIMENSION_FILES) {
-      const localFile = path.join(worldDir, dim.rel);
-      fs.mkdirSync(path.dirname(localFile), { recursive: true });
-      try {
-        await sftp.get(`${remoteWorld}/${dim.rel}`, localFile);
-      } catch (err) {
-        warn(`Could not fetch claims file for ${dim.label} (${err.message}) - skipping.`);
-      }
-    }
-
-    const linksFile = path.join(configDir, 'discord-js', 'discord-justsync.player-links.json');
-    fs.mkdirSync(path.dirname(linksFile), { recursive: true });
-    await sftp.get(`${remoteConfig}/discord-js/discord-justsync.player-links.json`, linksFile);
-  } finally {
-    await sftp.end();
-  }
-
-  return { worldDir, configDir };
-}
-
-// ── NBT helpers ───────────────────────────────────────────────────────────────
-
-async function readNbtFile(file) {
-  const buffer = fs.readFileSync(file);
-  const parsed = await nbt.parse(buffer);
-  return nbt.simplify(parsed.parsed);
 }
 
 // ── Race / Class ──────────────────────────────────────────────────────────────
@@ -150,20 +72,6 @@ function extractRaceAndClass(tags) {
 function readJsonSafe(file) {
   try {
     return JSON.parse(fs.readFileSync(file, 'utf8'));
-  } catch {
-    return null;
-  }
-}
-
-// Discord snowflake IDs are 64-bit integers, well beyond JS's safe integer
-// range (2^53) - plain JSON.parse silently rounds them (e.g.
-// 432453958355779594 -> 432453958355779600), corrupting the very ID this
-// whole feature keys everything off. Quote the digits before parsing so they
-// come through as exact strings instead.
-function readPlayerLinksSafe(file) {
-  try {
-    const raw = fs.readFileSync(file, 'utf8').replace(/"discordId":\s*(\d+)/g, '"discordId": "$1"');
-    return JSON.parse(raw);
   } catch {
     return null;
   }
@@ -467,15 +375,6 @@ async function resolveMojangProfile(uuid) {
   return promise;
 }
 
-async function resolveNamesFor(uuids) {
-  const names = {};
-  for (const uuid of uuids) {
-    const profile = await resolveMojangProfile(uuid);
-    names[uuid] = profile?.name || 'Unknown';
-  }
-  return names;
-}
-
 // ── Skin render ───────────────────────────────────────────────────────────────
 
 async function renderAndSaveSkin(uuid, skinUrl) {
@@ -509,80 +408,45 @@ function ensureHtaccess() {
 async function main() {
   ensureHtaccess();
 
-  const { worldDir, configDir } = await prepareDataDirs();
+  const players = await loadSmpPlayers(log);
 
-  const linksFile = path.join(configDir, 'discord-js', 'discord-justsync.player-links.json');
-  const links = readPlayerLinksSafe(linksFile) || [];
-  log(`Loaded ${links.length} Discord<->Minecraft link(s).`);
+  const { links, claimsByOwner, listingsBySeller, market } = await loadPanelData(log);
 
   const byOwnerHubs = readJsonSafe(BY_OWNER_SCRATCH_FILE) || {};
   const homesByName = readJsonSafe(HOMES_SCRATCH_FILE) || {};
   const gravesByName = readJsonSafe(GRAVES_SCRATCH_FILE) || {};
 
-  const allClaims = await loadAllClaims(
-    async (rel) => {
-      const file = path.join(worldDir, rel);
-      return fs.existsSync(file) ? fs.readFileSync(file) : null;
-    },
-    warn
-  );
-  log(`Loaded ${allClaims.length} claim(s) across ${DIMENSION_FILES.length} dimension file(s).`);
 
   const datapackAdvancementIndex = loadDatapackAdvancementIndex();
   log(`Loaded ${datapackAdvancementIndex.size} data pack advancement definition(s) from ${fs.existsSync(SOURCE_REPOS_DIR) ? 'cloned repos' : 'nowhere (no local clones found)'}.`);
 
   let written = 0;
   for (const link of links) {
-    const uuid = link.playerId;
+    const uuid = link.uuid;
     const discordId = String(link.discordId);
     if (!uuid || !discordId) continue;
 
-    const playerDatFile = path.join(worldDir, 'players', 'data', `${uuid}.dat`);
-    if (!fs.existsSync(playerDatFile)) continue; // linked in Discord, never actually joined
+    const player = players.get(uuid);
+    if (!player) continue; // linked in Discord, never actually joined
 
-    let playerNbt;
-    try {
-      playerNbt = await readNbtFile(playerDatFile);
-    } catch (err) {
-      warn(`Could not parse player data for ${uuid} (${err.message}) - skipping.`);
-      continue;
-    }
+    const { race, class: playerClass } = extractRaceAndClass(player.tags);
 
-    const { race, class: playerClass } = extractRaceAndClass(playerNbt.Tags);
-
-    const advancements = readJsonSafe(path.join(worldDir, 'players', 'advancements', `${uuid}.json`));
-    const advancementsDetailed = await extractDetailedAdvancements(advancements, datapackAdvancementIndex, playerNbt.DataVersion);
+    const advancements = player.advancements;
+    const advancementsDetailed = await extractDetailedAdvancements(advancements, datapackAdvancementIndex, player.dataVersion);
     const advancementsCompleted = advancementsDetailed.reduce((sum, g) => sum + g.doneCount, 0);
 
-    const statsJson = readJsonSafe(path.join(worldDir, 'players', 'stats', `${uuid}.json`));
+    const statsJson = player.stats;
     const stats = extractStatsSummary(statsJson);
     const statsDetailed = extractDetailedStats(statsJson);
 
     const mojangProfile = await resolveMojangProfile(uuid);
-    const name = mojangProfile?.name || link.playerId;
+    const name = mojangProfile?.name || link.name || link.uuid;
     const skinIcon = mojangProfile?.skinUrl ? await renderAndSaveSkin(uuid, mojangProfile.skinUrl) : null;
     // No local render/storage needed - mc-heads.net already holds the raw
     // skin texture and crops the face server-side from the uuid alone.
     const headIcon = `https://mc-heads.net/avatar/${uuid}/64`;
 
-    const ownedClaims = [];
-    for (const claim of allClaims) {
-      const owners = decodeClaimOwners(claim);
-      if (!owners.includes(uuid)) continue;
-      const trustedUuids = decodeClaimTrusted(claim);
-      const trustedNames = Object.values(await resolveNamesFor(trustedUuids));
-      const pos = Array.isArray(claim.Box?.OriginPos) && claim.Box.OriginPos.length === 2
-        ? decodeBlockPosLong(claim.Box.OriginPos[0], claim.Box.OriginPos[1])
-        : { x: 0, y: 0, z: 0 };
-      ownedClaims.push({
-        dimension: claim.__dimension,
-        x: pos.x,
-        y: pos.y,
-        z: pos.z,
-        anchorType: formatAnchorType(claim.Type),
-        trusted: trustedNames,
-      });
-    }
+    const ownedClaims = claimsByOwner[uuid] || [];
 
     const waypoints = byOwnerHubs[uuid] || [];
 
@@ -606,6 +470,9 @@ async function main() {
       stats,
       statsDetailed,
       claims: ownedClaims,
+      // What the player has on the market right now (/market in game).
+      marketListings: listingsBySeller[uuid] || [],
+      market,
       waypoints,
       home,
       lastGrave,

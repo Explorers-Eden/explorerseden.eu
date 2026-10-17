@@ -173,23 +173,55 @@
   }
 
   function claimCardHtml(claim) {
+    const size = `${claim.width} × ${claim.length}`;
+    const members = claim.members || [];
     return `
-      <article class="profile-claim-card">
+      <article class="profile-claim-card" style="--claim-color: ${/^#[0-9a-fA-F]{6}$/.test(claim.color || '') ? claim.color : '#f2b233'}">
         <div class="profile-claim-card__header">
-          <h3>${esc(claim.anchorType)}</h3>
+          <h3><span class="profile-claim-card__swatch"></span>${esc(claim.name || 'Unnamed claim')}</h3>
           <span class="profile-claim-card__dimension">${esc(claim.dimension)}</span>
         </div>
-        <p class="profile-claim-card__coords"><i class="bi bi-geo-alt-fill"></i> ${claim.x}, ${claim.y}, ${claim.z}</p>
+        <p class="profile-claim-card__coords"><i class="bi bi-geo-alt-fill"></i> ${claim.x}, ${claim.z}
+          <span class="profile-claim-card__size">${size} (${Number(claim.area).toLocaleString()} blocks)${claim.subclaims ? ` · ${claim.subclaims} subclaim${claim.subclaims === 1 ? '' : 's'}` : ''}</span></p>
         <div class="profile-claim-card__trusted">
-          <strong>Trusted:</strong>
-          ${claim.trusted.length ? claim.trusted.map((n) => `<span class="profile-badge profile-badge--small">${esc(n)}</span>`).join('') : '<span class="profile-empty-note">Nobody trusted yet</span>'}
+          <strong>Members:</strong>
+          ${members.length ? members.map((m) => `<span class="profile-badge profile-badge--small" title="${esc(m.role)}">${esc(m.name)} · ${esc(m.role)}</span>`).join('') : '<span class="profile-empty-note">No members yet</span>'}
         </div>
       </article>
     `;
   }
 
-  // ── Group 4: Last Grave (reuses the admin Playerdata Inspector's item/badge
-  // classes from admin-playerdata.css, loaded site-wide, for a consistent look) ─
+  // ── Group: Market listings (/market in game) ─────────────────────────────
+
+  function marketGroup() {
+    const listings = profile.marketListings || [];
+    const summaryHtml = `<span class="profile-group__title"><i class="bi bi-shop"></i> Market</span><span class="profile-count-badge">${listings.length}</span>`;
+    const bodyHtml = listings.length
+      ? `<div class="profile-market-grid">${listings.map(listingCardHtml).join('')}</div>`
+      : '<p class="profile-empty-note">Nothing for sale right now. Type /market in game to sell something.</p>';
+    return group('market', summaryHtml, bodyHtml, false);
+  }
+
+  function listingCardHtml(l) {
+    const market = profile.market || {};
+    const coin = market.currencyIconUrl ? `<img class="profile-market-card__coin" src="${esc(market.currencyIconUrl)}" alt="" loading="lazy">` : '';
+    const currency = market.currencyName || 'Diamond';
+    const extra = [...(l.enchantments || []), ...(l.lore || [])];
+    const days = Math.max(0, Math.ceil((new Date(l.expires).getTime() - Date.now()) / 86400000));
+    return `
+      <article class="profile-market-card">
+        ${l.iconUrl ? `<img class="profile-market-card__icon" src="${esc(l.iconUrl)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-box"></i></span>'}
+        <div class="profile-market-card__body">
+          <h3>${esc(l.name)} <span class="profile-market-card__amount">×${Number(l.amount).toLocaleString()}</span></h3>
+          ${extra.length ? `<p class="profile-market-card__extra">${extra.map(esc).join(' · ')}</p>` : ''}
+          <p class="profile-market-card__price">${coin}${Number(l.price).toLocaleString()} ${esc(l.price === 1 ? currency : currency + 's')} each
+            <span class="profile-market-card__left">· ${days === 1 ? '1 day' : `${days} days`} left</span></p>
+        </div>
+      </article>
+    `;
+  }
+
+  // ── Group 4: Last Grave (badge and item classes in profile.css) ─────────
 
   function graveGroup() {
     const summaryHtml = `<span class="profile-group__title"><i class="bi bi-flower1"></i> Last Grave</span>`;
@@ -200,32 +232,32 @@
 
     const badges = [
       grave.removed
-        ? '<span class="admin-pd-badge admin-pd-badge--muted"><i class="bi bi-check-circle"></i> Cleared</span>'
-        : '<span class="admin-pd-badge admin-pd-badge--warn"><i class="bi bi-exclamation-circle"></i> Still standing</span>',
+        ? '<span class="profile-grave-badge profile-grave-badge--muted"><i class="bi bi-check-circle"></i> Cleared</span>'
+        : '<span class="profile-grave-badge profile-grave-badge--warn"><i class="bi bi-exclamation-circle"></i> Still standing</span>',
     ];
     if (grave.openedBy === 'expired') {
-      badges.push('<span class="admin-pd-badge admin-pd-badge--warn"><i class="bi bi-hourglass-split"></i> Expired unopened</span>');
+      badges.push('<span class="profile-grave-badge profile-grave-badge--warn"><i class="bi bi-hourglass-split"></i> Expired unopened</span>');
     } else if (grave.openedBy) {
-      badges.push(`<span class="admin-pd-badge"><i class="bi bi-door-open"></i> Opened by ${esc(grave.openedBy)}</span>`);
+      badges.push(`<span class="profile-grave-badge"><i class="bi bi-door-open"></i> Opened by ${esc(grave.openedBy)}</span>`);
     }
 
     const itemHtml = (item) => {
       const icon = item.isHead ? 'bi-person-bounding-box' : (item.enchantments.length ? 'bi-stars' : 'bi-box-seam');
       const tip = item.enchantments.length ? ` title="${esc(item.enchantments.join(', '))}"` : '';
       return `
-        <div class="admin-pd-item${item.enchantments.length ? ' admin-pd-item--enchanted' : ''}"${tip}>
+        <div class="profile-grave-item${item.enchantments.length ? ' profile-grave-item--enchanted' : ''}"${tip}>
           <i class="bi ${icon}"></i>
-          <span class="admin-pd-item__name">${esc(item.displayName)}</span>
-          <span class="admin-pd-item__count">×${item.count}</span>
+          <span class="profile-grave-item__name">${esc(item.displayName)}</span>
+          <span class="profile-grave-item__count">×${item.count}</span>
         </div>
       `;
     };
 
     const bodyHtml = `
       <p class="waypoint-card__coords"><i class="bi bi-geo-alt-fill"></i> ${grave.x}, ${grave.y}, ${grave.z} · ${esc(grave.dimension)}</p>
-      <div class="admin-pd-grave-badges">${badges.join('')}</div>
+      <div class="profile-grave-grave-badges">${badges.join('')}</div>
       ${grave.contents.length
-        ? `<div class="admin-pd-item-grid">${grave.contents.map(itemHtml).join('')}</div>`
+        ? `<div class="profile-grave-item-grid">${grave.contents.map(itemHtml).join('')}</div>`
         : '<p class="profile-empty-note">Grave is empty.</p>'}
     `;
     return group('grave', summaryHtml, bodyHtml, false);
@@ -281,6 +313,7 @@
     playerGroup(),
     waypointsGroup(),
     claimsGroup(),
+    marketGroup(),
     graveGroup(),
     statsDetailGroup(),
     advancementsDetailGroup(),

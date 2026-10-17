@@ -39,8 +39,6 @@ const SINGLETON_FILES = {
   'structures-manifest': { file: 'structures/structure-viewers.manifest.json' },
   'data-pack-configurator': { file: 'data-pack-configurator/data/pack-data.json' },
   'resource-pack-assembler': { file: 'resource-pack-assembler/data/pack-data.json' },
-  'waypoint-hubs-manifest': { file: 'waypoint-hubs/data/waypoint-hubs.manifest.json' },
-  'admin-playerdata': { file: 'admin-playerdata/data/players.json' },
   'overview-readme': { file: 'overview/data/readme.html', wrap: (raw) => ({ html: raw }) },
 };
 
@@ -68,6 +66,15 @@ async function publishSingletons(client) {
     }
   }
   return published;
+}
+
+// Keys of features that are gone. Their last rows are deleted so nothing stale (or, for the old admin
+// Playerdata Inspector, sensitive: homes, deaths, grave contents) stays in the database.
+const RETIRED_KEYS = ['admin-playerdata'];
+
+async function removeRetired(client) {
+  const { rowCount } = await client.query('DELETE FROM generated_data WHERE key = ANY($1)', [RETIRED_KEYS]);
+  if (rowCount) log(`Removed ${rowCount} row(s) of retired data (${RETIRED_KEYS.join(', ')}).`);
 }
 
 async function publishPlayerProfiles(client) {
@@ -111,6 +118,7 @@ async function main() {
   try {
     const singletons = await publishSingletons(client);
     const profiles = await publishPlayerProfiles(client);
+    await removeRetired(client);
     log(`Done: ${singletons} singleton key(s), ${profiles} player profile(s).`);
   } finally {
     await client.end();

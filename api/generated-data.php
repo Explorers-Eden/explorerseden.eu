@@ -10,7 +10,6 @@ const ALLOWED_KEYS = [
   'structures-manifest',
   'data-pack-configurator',
   'resource-pack-assembler',
-  'waypoint-hubs-manifest',
 ];
 
 $key = $_GET['key'] ?? '';

@@ -73,12 +73,6 @@ $routes = [
     'bodyClass' => 'overview-page',
     'file' => __DIR__ . '/pages/overview.php',
   ],
-  'waypoint-hubs' => [
-    'title' => "Explorer's Eden: Waypoint Hubs",
-    'description' => "Browse the public Waypoint Hubs on the A Realm Recrafted SMP.",
-    'bodyClass' => 'waypoint-hubs-page',
-    'file' => __DIR__ . '/pages/waypoint-hubs.php',
-  ],
   'profile' => [
     'title' => "Explorer's Eden: My Profile",
     'description' => "Your A Realm Recrafted SMP profile - waypoints, claims, advancements and stats.",
@@ -90,12 +84,6 @@ $routes = [
     'description' => "Community-wide stats for the A Realm Recrafted SMP - totals, leaderboards, and race/class breakdowns.",
     'bodyClass' => 'statistics-page',
     'file' => __DIR__ . '/pages/statistics.php',
-  ],
-  'admin-playerdata' => [
-    'title' => "Explorer's Eden: Playerdata Inspector",
-    'description' => "Admin-only live inspector for A Realm Recrafted SMP player data.",
-    'bodyClass' => 'admin-playerdata-page',
-    'file' => __DIR__ . '/pages/admin-playerdata.php',
   ],
 ];
 
@@ -145,10 +133,8 @@ $current = $routes[$page];
   <link rel="stylesheet" href="/assets/styles/log-inspector.css?v=<?php echo filemtime(__DIR__.'/assets/styles/log-inspector.css'); ?>">
   <link rel="stylesheet" href="/assets/styles/translate.css?v=<?php echo filemtime(__DIR__.'/assets/styles/translate.css'); ?>">
   <link rel="stylesheet" href="/assets/styles/overview.css?v=<?php echo filemtime(__DIR__.'/assets/styles/overview.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/waypoint-hubs.css?v=<?php echo filemtime(__DIR__.'/assets/styles/waypoint-hubs.css'); ?>">
   <link rel="stylesheet" href="/assets/styles/profile.css?v=<?php echo filemtime(__DIR__.'/assets/styles/profile.css'); ?>">
   <link rel="stylesheet" href="/assets/styles/statistics.css?v=<?php echo filemtime(__DIR__.'/assets/styles/statistics.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/admin-playerdata.css?v=<?php echo filemtime(__DIR__.'/assets/styles/admin-playerdata.css'); ?>">
 </head>
 <body class="<?= htmlspecialchars($current['bodyClass'], ENT_QUOTES) ?>">
   <div class="site-bg"></div>
@@ -169,7 +155,7 @@ $current = $routes[$page];
           <div class="nav-dropdown__menu" role="menu">
             <a href="/overview/" role="menuitem"><i class="bi bi-info-circle"></i> Overview</a>
             <a href="/statistics/" role="menuitem"><i class="bi bi-bar-chart-fill"></i> Statistics</a>
-            <a href="/waypoint-hubs/" role="menuitem"><i class="bi bi-signpost-split"></i> Waypoint Hubs</a>
+            <a target="_blank" rel="noreferrer" href="https://serverinfo.explorerseden.eu/" role="menuitem"><i class="bi bi-journal-text"></i> Server Info</a>
             <a target="_blank" rel="noreferrer" href="https://map.explorerseden.eu/" role="menuitem"><i class="bi bi-map"></i> World Map</a>
           </div>
         </div>
@@ -253,15 +239,11 @@ $current = $routes[$page];
     <script src="/assets/scripts/translate-voting.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/translate-voting.js'); ?>"></script>
   <?php elseif ($page === 'overview'): ?>
     <script src="/assets/scripts/server-overview.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/server-overview.js'); ?>"></script>
-  <?php elseif ($page === 'waypoint-hubs'): ?>
-    <script src="/assets/scripts/waypoint-hubs.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/waypoint-hubs.js'); ?>"></script>
   <?php elseif ($page === 'profile'): ?>
     <script src="/assets/scripts/profile.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/profile.js'); ?>"></script>
   <?php elseif ($page === 'statistics'): ?>
     <script src="/assets/scripts/server-overview.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/server-overview.js'); ?>"></script>
     <script src="/assets/scripts/statistics.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/statistics.js'); ?>"></script>
-  <?php elseif ($page === 'admin-playerdata'): ?>
-    <script src="/assets/scripts/admin-playerdata.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/admin-playerdata.js'); ?>"></script>
   <?php endif; ?>
 </body>
 </html>

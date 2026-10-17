@@ -1,9 +1,8 @@
 /*
  * Small formatting helpers shared by the SMP-data generators
- * (generate-waypoint-hubs.js, generate-player-profiles.js,
- * fetch-admin-playerdata.js) - dimension names, item ids, and the grave/
- * inventory item shape shown on both the admin Playerdata Inspector and
- * My SMP Profile's Last Grave section.
+ * (generate-waypoint-hubs.js, generate-player-profiles.js) - dimension
+ * names, item ids, and the grave/inventory item shape shown on My SMP
+ * Profile's Last Grave section.
  */
 'use strict';
 
