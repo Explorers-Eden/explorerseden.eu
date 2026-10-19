@@ -30,15 +30,6 @@ if (!is_array($data) || isset($data['error'])) {
     exit;
 }
 
-/** Minecraft colour and format codes (§3, §l…) out of names, lore and enchantments: the page shows plain text. */
-function plain($text) {
-    return trim(preg_replace('/\x{00A7}[0-9a-fk-orA-FK-OR]/u', '', (string) $text));
-}
-
-function plain_list($list) {
-    return array_values(array_map('plain', array_filter((array) $list, 'is_string')));
-}
-
 function item_icon($base, $hash) {
     return is_string($hash) && preg_match('/^[0-9a-f]{20,80}$/', $hash) ? $base . '/info/items/' . $hash . '.png' : null;
 }
@@ -60,10 +51,10 @@ $out = [
 ];
 foreach (($m['listings'] ?? []) as $l) {
     $out['listings'][] = [
-        'name' => plain($l['name'] ?? ''),
+        'name' => (string) ($l['name'] ?? ''),
         'item' => (string) ($l['item'] ?? ''),
-        'lore' => plain_list($l['lore'] ?? []),
-        'enchantments' => plain_list($l['enchantments'] ?? []),
+        'lore' => array_values(array_filter((array) ($l['lore'] ?? []), 'is_string')),
+        'enchantments' => array_values(array_filter((array) ($l['enchantments'] ?? []), 'is_string')),
         'amount' => (int) ($l['amount'] ?? 0),
         'price' => (int) ($l['price'] ?? 0),
         'per' => max(1, (int) ($l['per'] ?? 1)),

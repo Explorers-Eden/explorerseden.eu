@@ -1,9 +1,8 @@
-.market-tools { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 16px; }
-.market-search { flex: 1 1 260px; display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 10px;
-  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.7); }
-.market-search input { flex: 1; min-width: 0; border: 0; background: transparent; color: #fff; font: inherit; outline: none; }
-.market-tools select { padding: 8px 12px; border-radius: 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: #fff; font: inherit; }
-.market-tools select option { color: #111; }
+/* Search and order use the shared search-wrap and filter-chip look of the other pages (enchantments.css). */
+.market-tools { margin: 0 0 16px; }
+#market-clear { position:absolute; right:7px; top:50%; transform:translateY(-50%); width:28px; height:28px; border:0; border-radius:999px; cursor:pointer; color:#fff; background:rgba(255,255,255,.10); font-size:20px; line-height:1; }
+#market-clear:hover { background:rgba(255,255,255,.18); }
+.market-tools .filter-chip i { color: var(--accent); }
 
 /* The market page has no status card between the banner and what follows. */
 .market-shell .statistics-subtitle { margin-top: 18px; }
