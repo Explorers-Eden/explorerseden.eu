@@ -252,6 +252,8 @@ jobs:
             profiles/data
             assets/images/generated/player-skins
             assets/images/generated/player-skins-home
+            assets/images/generated/hub-icons
+            assets/images/generated/pet-heads
           if-no-files-found: warn
           retention-days: 7
 
@@ -283,7 +285,7 @@ jobs:
         # broken (stale) data to the live site.
         run: |
           set -euo pipefail
-          rm -rf wiki structures enchantments/data enchantments/assets recipes/data data-pack-configurator/data resource-pack-assembler/data overview/data profiles/data assets/images/generated/player-skins assets/images/generated/player-skins-home assets/images/generated/player-heads
+          rm -rf wiki structures enchantments/data enchantments/assets recipes/data data-pack-configurator/data resource-pack-assembler/data overview/data profiles/data assets/images/generated/player-skins assets/images/generated/player-skins-home assets/images/generated/hub-icons assets/images/generated/pet-heads assets/images/generated/player-heads
           # enchantments/data and player-heads are never populated again (the
           # former's two files now live in Postgres, the latter is replaced by
           # mc-heads.net URLs computed from a uuid) - recreated empty so the
@@ -321,6 +323,8 @@ jobs:
           [ -d profiles/data ] && git add -A profiles/data
           [ -d assets/images/generated/player-skins ] && git add -A assets/images/generated/player-skins
           [ -d assets/images/generated/player-skins-home ] && git add -A assets/images/generated/player-skins-home
+          [ -d assets/images/generated/hub-icons ] && git add -A assets/images/generated/hub-icons
+          [ -d assets/images/generated/pet-heads ] && git add -A assets/images/generated/pet-heads
           [ -d assets/images/generated/player-heads ] && git add -A assets/images/generated/player-heads
 
           if git diff --cached --quiet; then
