@@ -244,6 +244,12 @@ async function tabOf(id, datapackIndex, dataVersion) {
   let current = id;
   let label = null;
   for (let depth = 0; current && depth < 64; depth++) {
+    // Vanilla advancements live in their tab's folder (minecraft:adventure/…): no need to look further (or to fetch
+    // vanilla definitions, which fails for a save version the mirror doesn't know).
+    if (current.startsWith('minecraft:')) {
+      label = humanize(current.slice('minecraft:'.length).split('/')[0]);
+      break;
+    }
     const resolved = await getAdvancementDefinition(current, datapackIndex, dataVersion);
     if (!resolved) break;
     const parent = resolved.def.parent;

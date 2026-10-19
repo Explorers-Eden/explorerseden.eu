@@ -71,17 +71,22 @@ function iconUrl(icon) {
   return base && icon ? `${base}/info/items/${encodeURIComponent(icon)}.png` : null;
 }
 
+/** Minecraft colour and format codes (§3, §l…) out of a text: the pages show plain text. */
+function plain(text) {
+  return String(text ?? '').replace(/\u00a7[0-9a-fk-or]/gi, '').trim();
+}
+
 /** One listing as the profile pages show it. */
 function listingRecord(l) {
   return {
     id: l.id,
-    name: l.name,
+    name: plain(l.name),
     item: l.item,
     iconUrl: iconUrl(l.icon),
     amount: l.amount,
     price: l.price,
-    lore: l.lore || [],
-    enchantments: l.enchantments || [],
+    lore: (l.lore || []).map(plain),
+    enchantments: (l.enchantments || []).map(plain),
     expires: l.expires,
     // The price is for this many, bought that many at a time.
     per: l.per || 1,

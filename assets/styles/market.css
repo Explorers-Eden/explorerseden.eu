@@ -4,3 +4,6 @@
 .market-search input { flex: 1; min-width: 0; border: 0; background: transparent; color: #fff; font: inherit; outline: none; }
 .market-tools select { padding: 8px 12px; border-radius: 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: #fff; font: inherit; }
 .market-tools select option { color: #111; }
+
+/* The market page has no status card between the banner and the subtitle. */
+.market-shell .statistics-subtitle { margin-top: 18px; }
