@@ -79,6 +79,12 @@ $routes = [
     'bodyClass' => 'profile-page',
     'file' => __DIR__ . '/pages/profile.php',
   ],
+  'market' => [
+    'title' => "Explorer's Eden: SMP Market",
+    'description' => "What players and the server sell on the A Realm Recrafted SMP right now.",
+    'bodyClass' => 'statistics-page',
+    'file' => __DIR__ . '/pages/market.php',
+  ],
   'statistics' => [
     'title' => "Explorer's Eden: Statistics",
     'description' => "Community-wide stats for the A Realm Recrafted SMP - totals, leaderboards, and race/class breakdowns.",
@@ -135,6 +141,7 @@ $current = $routes[$page];
   <link rel="stylesheet" href="/assets/styles/overview.css?v=<?php echo filemtime(__DIR__.'/assets/styles/overview.css'); ?>">
   <link rel="stylesheet" href="/assets/styles/profile.css?v=<?php echo filemtime(__DIR__.'/assets/styles/profile.css'); ?>">
   <link rel="stylesheet" href="/assets/styles/statistics.css?v=<?php echo filemtime(__DIR__.'/assets/styles/statistics.css'); ?>">
+  <link rel="stylesheet" href="/assets/styles/market.css?v=<?php echo filemtime(__DIR__.'/assets/styles/market.css'); ?>">
 </head>
 <body class="<?= htmlspecialchars($current['bodyClass'], ENT_QUOTES) ?>">
   <div class="site-bg"></div>
@@ -155,6 +162,7 @@ $current = $routes[$page];
           <div class="nav-dropdown__menu" role="menu">
             <a href="/overview/" role="menuitem"><i class="bi bi-info-circle"></i> Overview</a>
             <a href="/statistics/" role="menuitem"><i class="bi bi-bar-chart-fill"></i> Statistics</a>
+            <a href="/market/" role="menuitem"><i class="bi bi-shop"></i> Market</a>
             <a target="_blank" rel="noreferrer" href="https://serverinfo.explorerseden.eu/" role="menuitem"><i class="bi bi-journal-text"></i> Server Info</a>
             <a target="_blank" rel="noreferrer" href="https://map.explorerseden.eu/" role="menuitem"><i class="bi bi-map"></i> World Map</a>
           </div>
@@ -241,6 +249,8 @@ $current = $routes[$page];
     <script src="/assets/scripts/server-overview.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/server-overview.js'); ?>"></script>
   <?php elseif ($page === 'profile'): ?>
     <script src="/assets/scripts/profile.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/profile.js'); ?>"></script>
+  <?php elseif ($page === 'market'): ?>
+    <script src="/assets/scripts/market.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/market.js'); ?>"></script>
   <?php elseif ($page === 'statistics'): ?>
     <script src="/assets/scripts/server-overview.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/server-overview.js'); ?>"></script>
     <script src="/assets/scripts/statistics.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/statistics.js'); ?>"></script>

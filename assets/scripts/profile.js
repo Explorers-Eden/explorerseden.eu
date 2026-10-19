@@ -148,7 +148,7 @@
 
   function waypointCardHtml(wp) {
     return `
-      <article class="waypoint-card">
+      <article class="waypoint-card"${/^#[0-9a-f]{6}$/i.test(wp.color || '') ? ` style="border-left: 3px solid ${wp.color}"` : ''}>
         <img class="waypoint-card__avatar" src="${esc(wp.icon || '')}" alt="" loading="lazy">
         <div class="waypoint-card__body">
           <div class="profile-waypoint-title-row">
@@ -214,11 +214,49 @@
         <div class="profile-market-card__body">
           <h3>${esc(l.name)} <span class="profile-market-card__amount">×${Number(l.amount).toLocaleString()}</span></h3>
           ${extra.length ? `<p class="profile-market-card__extra">${extra.map(esc).join(' · ')}</p>` : ''}
-          <p class="profile-market-card__price">${coin}${Number(l.price).toLocaleString()} ${esc(l.price === 1 ? currency : currency + 's')} each
+          <p class="profile-market-card__price">${coin}${Number(l.price).toLocaleString()} ${esc(l.price === 1 ? currency : currency + 's')} ${(l.per || 1) > 1 ? `per ${Number(l.per).toLocaleString()}` : 'each'}
             <span class="profile-market-card__left">· ${days === 1 ? '1 day' : `${days} days`} left</span></p>
         </div>
       </article>
     `;
+  }
+
+  // ── Group: Market mailbox (what waits in /market) ─────────────────────────
+
+  function inboxGroup() {
+    const inbox = profile.marketInbox || { currency: 0, parcels: [] };
+    const market = profile.market || {};
+    const currency = market.currencyName || 'Diamond';
+    const coin = market.currencyIconUrl ? `<img class="profile-market-card__icon" src="${esc(market.currencyIconUrl)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-coin"></i></span>';
+    const count = (inbox.currency > 0 ? 1 : 0) + (inbox.parcels || []).length;
+    const summaryHtml = `<span class="profile-group__title"><i class="bi bi-mailbox"></i> Market Inbox</span><span class="profile-count-badge">${count}</span>`;
+    const cards = [];
+    if (inbox.currency > 0) {
+      cards.push(`<article class="profile-market-card">${coin}<div class="profile-market-card__body"><h3>${Number(inbox.currency).toLocaleString()} ${esc(inbox.currency === 1 ? currency : currency + 's')}</h3>
+        <p class="profile-market-card__extra">Earnings from sales</p></div></article>`);
+    }
+    for (const p of inbox.parcels || []) {
+      cards.push(`<article class="profile-market-card">${p.iconUrl ? `<img class="profile-market-card__icon" src="${esc(p.iconUrl)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-box"></i></span>'}
+        <div class="profile-market-card__body"><h3>${esc(p.name)} <span class="profile-market-card__amount">×${Number(p.amount).toLocaleString()}</span></h3></div></article>`);
+    }
+    const bodyHtml = cards.length
+      ? `<p class="profile-empty-note">Collect it with /market in game.</p><div class="profile-market-grid">${cards.join('')}</div>`
+      : '<p class="profile-empty-note">Nothing waiting. Earnings, items you took off the market and buys that didn\'t fit in your inventory show up here.</p>';
+    return group('inbox', summaryHtml, bodyHtml, false);
+  }
+
+  // ── Group: Pets ────────────────────────────────────────────────────────────
+
+  function petsGroup() {
+    const pets = profile.pets || [];
+    const summaryHtml = `<span class="profile-group__title"><i class="bi bi-emoji-smile"></i> Pets</span><span class="profile-count-badge">${pets.length}</span>`;
+    const bodyHtml = pets.length
+      ? `<div class="profile-market-grid">${pets.map((p) => `<article class="profile-market-card">
+          ${p.icon ? `<img class="profile-market-card__icon profile-pet-head" src="${esc(p.icon)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-emoji-smile"></i></span>'}
+          <div class="profile-market-card__body"><h3>${esc(p.name)}${p.active ? ' <span class="profile-access-badge profile-access-badge--public">Out</span>' : ''}</h3>
+            ${p.since ? `<p class="profile-market-card__extra">Since ${esc(new Date(p.since).toLocaleDateString(undefined, { dateStyle: 'medium' }))}</p>` : ''}</div></article>`).join('')}</div>`
+      : '<p class="profile-empty-note">No pets yet. Get one in the Server shop of /market in game.</p>';
+    return group('pets', summaryHtml, bodyHtml, false);
   }
 
   // ── Group 4: Last Grave (badge and item classes in profile.css) ─────────
@@ -314,6 +352,8 @@
     waypointsGroup(),
     claimsGroup(),
     marketGroup(),
+    inboxGroup(),
+    petsGroup(),
     graveGroup(),
     statsDetailGroup(),
     advancementsDetailGroup(),

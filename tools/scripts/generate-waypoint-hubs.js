@@ -22,6 +22,7 @@ const path = require('path');
 const { decodeUuidIntArray } = require('./lib/mc-id-codec');
 const { prettifyDimension, describeItem } = require('./lib/mc-format');
 const { loadCommandStorage } = require('./lib/smp-world');
+const { skinHash, faceIcon } = require('./lib/head-icon');
 
 const ROOT = path.join(__dirname, '..', '..');
 
@@ -58,21 +59,35 @@ function ownerUuidOf(hub) {
   }
 }
 
-function extractHubsByOwner(simplified) {
+// The hub's own head (the icon picked by left-clicking it in game, else its owner's skin), drawn from the
+// skin texture into assets/images/generated/hub-icons/<hash>.png once (see lib/head-icon.js).
+const HUB_ICONS_DIR = path.join(ROOT, 'assets', 'images', 'generated', 'hub-icons');
+const HUB_ICONS_URL = '/assets/images/generated/hub-icons';
+
+function hubTexture(hub) {
+  if (hub.icon) return hub.icon;
+  const prop = (hub.profile?.properties || []).find((p) => p?.name === 'textures');
+  return prop?.value || null;
+}
+
+async function extractHubsByOwner(simplified) {
   const hubs = simplified?.data?.contents?.database?.waypoints?.hubs || {};
   const allHubs = Object.values(hubs).sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
   const byOwner = {};
   for (const hub of allHubs) {
     const ownerUuid = ownerUuidOf(hub);
     if (!ownerUuid) continue;
+    const hash = skinHash(hubTexture(hub));
     (byOwner[ownerUuid] ||= []).push({
       id: hub.id,
       name: hub.waypoint_name || 'Unnamed Waypoint',
       description: (hub.waypoint_description || '').trim(),
       owner: hub.profile?.name || 'Unknown',
       access: hub.access || 'private',
-      // The owner's face (mc-heads.net crops it from their skin, like the profile's own head).
-      icon: `https://mc-heads.net/avatar/${ownerUuid}/64`,
+      // The hub's own head; the owner's face (mc-heads.net) only when that can't be drawn.
+      icon: (hash && await faceIcon(hash, HUB_ICONS_DIR, HUB_ICONS_URL, warn)) || `https://mc-heads.net/avatar/${ownerUuid}/64`,
+      // The colour of the hub's title in game (dyed with a dye).
+      color: /^#[0-9a-f]{6}$/i.test(hub.color || '') ? hub.color : null,
       x: hub.pos?.x ?? 0,
       y: hub.pos?.y ?? 0,
       z: hub.pos?.z ?? 0,
@@ -129,7 +144,7 @@ async function main() {
   const storage = process.env.PANEL_WAYPOINT_STORAGE || 'eden';
   const simplified = await loadCommandStorage(storage, log);
   if (!simplified) fail(`The panel's database has no "${storage}" command storage (yet): is the panel 1.12.32 or newer and the server's world saved once?`);
-  const byOwner = extractHubsByOwner(simplified);
+  const byOwner = await extractHubsByOwner(simplified);
   const homesByName = extractHomesByName(simplified);
   const gravesByName = extractGravesByName(simplified);
 

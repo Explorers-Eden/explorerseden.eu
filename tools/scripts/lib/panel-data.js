@@ -2,7 +2,7 @@
  * Discord links, land claims and market listings from the Nice Control Center panel, used by
  * generate-player-profiles.js (My SMP Profile). Replaces the DiscordJustSync player-links file
  * and GOML's claim data: the panel copies all of it into its Postgres database
- * (tables discord_links, claims, claim_members, market_listings, market_sync), which CI reads
+ * (tables discord_links, claims, claim_members, market_listings, market_sync, market_mail, pets_owned), which CI reads
  * through PANEL_DATABASE_URL.
  *
  * Item icons are served by the panel's public info page: set PANEL_PUBLIC_URL to its address
@@ -83,6 +83,8 @@ function listingRecord(l) {
     lore: l.lore || [],
     enchantments: l.enchantments || [],
     expires: l.expires,
+    // The price is for this many, bought that many at a time.
+    per: l.per || 1,
   };
 }
 
@@ -119,16 +121,29 @@ async function fromDatabase(connectionString) {
     let listings = [];
     let market = null;
     try {
-      listings = (await client.query(`SELECT id, seller_uuid, item_id, item_name, lore, enchantments, amount, price, expires_at, icon FROM market_listings`)).rows
+      listings = (await client.query(`SELECT id, seller_uuid, item_id, item_name, lore, enchantments, amount, price, per, expires_at, icon FROM market_listings`)).rows
         .map((r) => ({ id: r.id, seller: r.seller_uuid, item: r.item_id, name: r.item_name, lore: r.lore, enchantments: r.enchantments,
-          amount: r.amount, price: r.price, expires: new Date(r.expires_at).toISOString(), icon: r.icon }));
+          amount: r.amount, price: r.price, per: r.per, expires: new Date(r.expires_at).toISOString(), icon: r.icon }));
       const sync = (await client.query('SELECT currency, currency_icon FROM market_sync WHERE id = 1')).rows[0];
       if (sync && sync.currency) market = { currency: sync.currency, currencyIcon: sync.currency_icon };
     } catch (err) {
       // The market tables come with panel 1.9.0, icons with 1.10.0.
       listings = [];
     }
-    return { links, claims, listings, market };
+    // Market mailboxes and pets come with panel 1.13.0 (tables market_mail, pets_owned).
+    const mail = {};
+    try {
+      for (const r of (await client.query('SELECT player_uuid, currency, parcels FROM market_mail')).rows) {
+        mail[r.player_uuid] = { currency: r.currency, parcels: (r.parcels || []).map((p) => ({ item: p.item_id, name: p.item_name, amount: p.amount, iconUrl: iconUrl(p.icon) })) };
+      }
+    } catch (err) { /* older panel */ }
+    const pets = {};
+    try {
+      for (const r of (await client.query('SELECT player_uuid, pet_id, pet_name, head, since, active FROM pets_owned ORDER BY since')).rows) {
+        (pets[r.player_uuid] ||= []).push({ id: r.pet_id, name: r.pet_name, head: r.head, since: r.since ? new Date(r.since).toISOString() : null, active: r.active });
+      }
+    } catch (err) { /* older panel */ }
+    return { links, claims, listings, market, mail, pets };
   } finally {
     await client.end();
   }
@@ -162,7 +177,7 @@ function fromLocalFiles() {
     }
     market = { currency: process.env.PANEL_LOCAL_MARKET_CURRENCY || 'minecraft:diamond', currencyIcon: null };
   }
-  return { links, claims, listings, market };
+  return { links, claims, listings, market, mail: {}, pets: {} };
 }
 
 /**
@@ -184,7 +199,8 @@ async function loadPanelData(log = () => {}) {
   const market = data.market
     ? { currency: data.market.currency, currencyName: itemName(data.market.currency), currencyIconUrl: iconUrl(data.market.currencyIcon) }
     : null;
-  return { links: data.links, claimsByOwner: groupByOwner(data.claims), listingsBySeller: listingsBySeller(data.listings), market };
+  return { links: data.links, claimsByOwner: groupByOwner(data.claims), listingsBySeller: listingsBySeller(data.listings), market,
+    mailByPlayer: data.mail || {}, petsByPlayer: data.pets || {} };
 }
 
 module.exports = { loadPanelData };

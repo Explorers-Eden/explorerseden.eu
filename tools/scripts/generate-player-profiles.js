@@ -30,6 +30,10 @@ const { renderSkinBufferToPng } = require('./lib/skin-render');
 const { humanize, prettifyDimension } = require('./lib/mc-format');
 const { loadPanelData } = require('./lib/panel-data');
 const { loadSmpPlayers } = require('./lib/smp-world');
+const { faceIcon } = require('./lib/head-icon');
+
+const PET_ICONS_DIR = path.join(__dirname, '..', '..', 'assets', 'images', 'generated', 'pet-heads');
+const PET_ICONS_URL = '/assets/images/generated/pet-heads';
 
 const ROOT = path.join(__dirname, '..', '..');
 const OUT_DIR = path.join(ROOT, 'profiles', 'data');
@@ -230,6 +234,30 @@ function resolveText(component, langMap) {
   return '';
 }
 
+// The in-game tab of an advancement: follows "parent" up to the root. A vanilla root ("minecraft:story/root")
+// names the tab after its folder (Story, Nether, The End, Adventure, Husbandry); a data pack's own root is named
+// by its title. Null when the chain can't be followed.
+const tabCache = new Map();
+async function tabOf(id, datapackIndex, dataVersion) {
+  const key = `${dataVersion}:${id}`;
+  if (tabCache.has(key)) return tabCache.get(key);
+  let current = id;
+  let label = null;
+  for (let depth = 0; current && depth < 64; depth++) {
+    const resolved = await getAdvancementDefinition(current, datapackIndex, dataVersion);
+    if (!resolved) break;
+    const parent = resolved.def.parent;
+    if (!parent) {
+      const [ns, ...rest] = current.split(':');
+      label = ns === 'minecraft' ? humanize(rest.join(':').split('/')[0]) : resolveText(resolved.def.display?.title, resolved.lang) || null;
+      break;
+    }
+    current = parent.includes(':') ? parent : `minecraft:${parent}`;
+  }
+  tabCache.set(key, label);
+  return label;
+}
+
 // Shows every known advancement definition (from the data packs, plus
 // whatever vanilla ones the player has touched), not just the ones this
 // specific player has made progress on - so freshly-added advancements
@@ -254,7 +282,10 @@ async function extractDetailedAdvancements(advancements, datapackIndex, fallback
     const advPath = rest.join(':');
     const parts = advPath.split('/');
     const category = parts.length > 1 ? parts[0] : 'general';
-    const groupLabel = namespace === 'minecraft' ? humanize(category) : `${humanizeNamespace(namespace)} (${humanize(category)})`;
+    // The tab it shows in in game: data pack advancements whose parents lead to a vanilla tab (Nice Things'
+    // "vanilla/…" and "eden:adventure/…" ones) belong to that tab, not to a group of their own.
+    const groupLabel = (await tabOf(id, datapackIndex, dataVersion))
+      || (namespace === 'minecraft' ? humanize(category) : `${humanizeNamespace(namespace)} (${humanize(category)})`);
 
     const fallbackLabel = humanize((parts.length > 1 ? parts.slice(1) : parts).join(' '));
     const title = resolveText(resolved.def.display.title, resolved.lang) || fallbackLabel;
@@ -410,7 +441,7 @@ async function main() {
 
   const players = await loadSmpPlayers(log);
 
-  const { links, claimsByOwner, listingsBySeller, market } = await loadPanelData(log);
+  const { links, claimsByOwner, listingsBySeller, market, mailByPlayer, petsByPlayer } = await loadPanelData(log);
 
   const byOwnerHubs = readJsonSafe(BY_OWNER_SCRATCH_FILE) || {};
   const homesByName = readJsonSafe(HOMES_SCRATCH_FILE) || {};
@@ -473,6 +504,15 @@ async function main() {
       // What the player has on the market right now (/market in game).
       marketListings: listingsBySeller[uuid] || [],
       market,
+      // What waits for them in /market's mailbox: earnings and items (sold-out leftovers, purchases that didn't fit).
+      marketInbox: mailByPlayer[uuid] || null,
+      // The pets they own (heads drawn from the skins, like the hub icons).
+      pets: await Promise.all((petsByPlayer[uuid] || []).map(async (p) => ({
+        name: p.name || p.id,
+        since: p.since,
+        active: !!p.active,
+        icon: p.head ? await faceIcon(p.head, PET_ICONS_DIR, PET_ICONS_URL, warn) : null,
+      }))),
       waypoints,
       home,
       lastGrave,

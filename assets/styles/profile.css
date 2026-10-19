@@ -754,3 +754,6 @@ details.profile-detail-section > .profile-stat-rows {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Pet heads: pixel art, kept sharp. */
+.profile-pet-head { image-rendering: pixelated; border-radius: 6px; }

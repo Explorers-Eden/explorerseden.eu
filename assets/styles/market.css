@@ -1,0 +1,6 @@
+.market-tools { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 16px; }
+.market-search { flex: 1 1 260px; display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 10px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.7); }
+.market-search input { flex: 1; min-width: 0; border: 0; background: transparent; color: #fff; font: inherit; outline: none; }
+.market-tools select { padding: 8px 12px; border-radius: 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: #fff; font: inherit; }
+.market-tools select option { color: #111; }
