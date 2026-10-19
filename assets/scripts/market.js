@@ -89,11 +89,13 @@
       const json = await res.json();
       if (json.error) throw new Error(json.error);
       data = json;
-      subtitle.textContent = !data.open ? 'The market is closed right now.'
-        : `What players and the server sell right now. Type /market in game to buy or sell; everything is paid in ${currencyName(2).toLowerCase()}.`;
+      // Only says something when there's something to say (closed, or an error below).
+      subtitle.textContent = data.open ? '' : 'The market is closed right now.';
+      subtitle.hidden = data.open;
       render();
     } catch (err) {
       subtitle.textContent = err.message || "The market can't be reached right now.";
+      subtitle.hidden = false;
     }
   }
 
