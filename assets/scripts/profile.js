@@ -285,7 +285,9 @@
     const bodyHtml = pets.length
       ? `<div class="profile-market-grid">${pets.map((p) => `<article class="profile-market-card">
           ${p.icon ? `<img class="profile-market-card__icon profile-pet-head" src="${esc(p.icon)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-emoji-smile"></i></span>'}
-          <div class="profile-market-card__body"><h3>${esc(p.name)}${p.active ? ' <span class="profile-access-badge profile-access-badge--public">Out</span>' : ''}</h3>
+          <div class="profile-market-card__body"><h3>${p.nickname ? `<span${p.nameColor ? ` style="color:${esc(p.nameColor)}"` : ''}>${esc(p.nickname)}</span> <span class="profile-pet-kind">(${esc(p.name)})</span>` : esc(p.name)}${p.active ? ' <span class="profile-access-badge profile-access-badge--public">Out</span>' : ''}</h3>
+            ${p.level != null ? `<p class="profile-market-card__extra">Bond level ${Number(p.level)}</p>` : ''}
+            ${(p.perks || []).length ? `<p class="profile-pet-perks">${p.perks.map((k) => `<span class="profile-pet-perk${k.unlocked ? '' : ' is-locked'}" title="${esc(k.description + (k.unlocked ? '' : ` (unlocks at bond level ${k.level})`))}">${k.unlocked ? '' : '<i class="bi bi-lock"></i> '}${esc(k.label)}</span>`).join('')}</p>` : ''}
             ${p.since ? `<p class="profile-market-card__extra">Since ${esc(new Date(p.since).toLocaleDateString(undefined, { dateStyle: 'medium' }))}</p>` : ''}</div></article>`).join('')}</div>`
       : '<p class="profile-empty-note">No pets yet. Get one in the Server shop of /market in game.</p>';
     return group('pets', summaryHtml, bodyHtml, false);

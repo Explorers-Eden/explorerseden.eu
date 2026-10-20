@@ -138,11 +138,20 @@ async function fromDatabase(connectionString) {
       }
     } catch (err) { /* older panel */ }
     const pets = {};
+    // Names, bond levels and perks come with panel 1.16.2 (database V12); older panels only have the rest.
+    let petRows = null;
     try {
-      for (const r of (await client.query('SELECT player_uuid, pet_id, pet_name, head, since, active FROM pets_owned ORDER BY since')).rows) {
-        (pets[r.player_uuid] ||= []).push({ id: r.pet_id, name: r.pet_name, head: r.head, since: r.since ? new Date(r.since).toISOString() : null, active: r.active });
-      }
-    } catch (err) { /* older panel */ }
+      petRows = (await client.query('SELECT player_uuid, pet_id, pet_name, head, since, active, nickname, name_color, bond_level, perks FROM pets_owned ORDER BY since')).rows;
+    } catch (err) {
+      try {
+        petRows = (await client.query('SELECT player_uuid, pet_id, pet_name, head, since, active FROM pets_owned ORDER BY since')).rows;
+      } catch (err2) { /* older panel */ }
+    }
+    for (const r of petRows || []) {
+      (pets[r.player_uuid] ||= []).push({ id: r.pet_id, name: r.pet_name, head: r.head, since: r.since ? new Date(r.since).toISOString() : null, active: r.active,
+        nickname: r.nickname || null, nameColor: r.name_color || null, level: r.bond_level ?? null,
+        perks: (r.perks || []).map((k) => ({ label: k.label, description: k.description, level: k.level, unlocked: !!k.unlocked })) });
+    }
     return { links, claims, listings, market, mail, pets };
   } finally {
     await client.end();

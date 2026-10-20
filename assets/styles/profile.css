@@ -757,3 +757,14 @@ details.profile-detail-section > .profile-stat-rows {
 
 /* Pet heads: pixel art, kept sharp. */
 .profile-pet-head { image-rendering: pixelated; border-radius: 6px; }
+.profile-pet-kind { color: var(--muted); font-weight: 400; font-size: 0.85em; }
+.profile-pet-perks { display: flex; flex-wrap: wrap; gap: 4px; margin: 5px 0 0; }
+.profile-pet-perk {
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(185, 167, 255, 0.45);
+  color: #d8ceff;
+  font-size: 11px;
+  cursor: help;
+}
+.profile-pet-perk.is-locked { opacity: 0.55; border-style: dashed; }

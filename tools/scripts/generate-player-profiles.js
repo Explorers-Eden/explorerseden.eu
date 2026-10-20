@@ -515,6 +515,11 @@ async function main() {
       // The pets they own (heads drawn from the skins, like the hub icons).
       pets: await Promise.all((petsByPlayer[uuid] || []).map(async (p) => ({
         name: p.name || p.id,
+        // The name the player gave it (shown in its colour), its bond level and perks (null / empty while those are off).
+        nickname: p.nickname || null,
+        nameColor: /^#[0-9a-fA-F]{6}$/.test(p.nameColor || '') ? p.nameColor : null,
+        level: p.level ?? null,
+        perks: p.perks || [],
         since: p.since,
         active: !!p.active,
         icon: p.head ? await faceIcon(p.head, PET_ICONS_DIR, PET_ICONS_URL, warn) : null,
