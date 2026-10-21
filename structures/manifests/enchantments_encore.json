@@ -7,8 +7,8 @@
     "id": "enchantencore:rise/rise/rise_big",
     "displayName": "Rise Big",
     "structureId": "enchantencore:rise",
-    "blocks": 8168,
-    "uniqueBlocks": 51,
+    "blocks": 8414,
+    "uniqueBlocks": 57,
     "url": "structures/enchantments_encore/enchantencore/rise/rise/rise_big/index.html",
     "previews": [
       "/wiki/enchantments_encore/images/structures/enchantencore/rise/rise/rise_big/north.png",
@@ -25,7 +25,7 @@
     "id": "enchantencore:rise/rise/rise_small",
     "displayName": "Rise Small",
     "structureId": "enchantencore:rise",
-    "blocks": 3858,
+    "blocks": 3824,
     "uniqueBlocks": 47,
     "url": "structures/enchantments_encore/enchantencore/rise/rise/rise_small/index.html",
     "previews": [
