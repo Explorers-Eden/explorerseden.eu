@@ -1,4 +1,8 @@
-FROM php:8.2-apache
+# Pinned to the patch release so security fixes are explicit, not whatever a
+# cached 8.2-apache tag happens to resolve to. 8.2.35 fixes CVE-2026-109618
+# and CVE-2026-109619 (unauthenticated RCE, Oct 2026). PHP 8.2 is EOL on
+# 2026-12-31 - move to 8.4 before then.
+FROM php:8.2.35-apache
 
 # Build-time arg: the commit SHA the deploy job is shipping. Baked into
 # /var/www/html/version.txt so `curl /version.txt` always returns the truth

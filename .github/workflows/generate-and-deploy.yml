@@ -373,6 +373,9 @@ jobs:
           # but contents are stale" symptom we keep hitting — Docker can
           # reuse the COPY . . layer if it thinks the context is unchanged.
           no-cache: true
+          # Always pull the base image so a PHP security release on Docker Hub
+          # is picked up even if the runner has an older copy locally.
+          pull: true
           # Pass the resolved commit SHA into the build so /version.txt
           # contains exactly what was deployed. Verify a deploy with:
           #   curl https://explorerseden.eu/version.txt
