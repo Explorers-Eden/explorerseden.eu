@@ -82,6 +82,12 @@ foreach ((is_array($data['pets'] ?? null) ? $data['pets'] : []) as $p) {
         'until' => isset($p['until']) ? (int) $p['until'] : null,
         'left' => isset($p['left']) ? (int) $p['left'] : -1,
         'icon' => head_icon($base, $p['head'] ?? null),
+        // What the pet learns as its bond grows (panel 1.16.2+; empty before that).
+        'perks' => array_values(array_map(fn($k) => [
+            'label' => (string) ($k['label'] ?? ''),
+            'description' => (string) ($k['description'] ?? ''),
+            'level' => (int) ($k['level'] ?? 0),
+        ], array_filter((array) ($p['perks'] ?? []), 'is_array'))),
     ];
 }
 

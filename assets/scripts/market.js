@@ -70,6 +70,11 @@
       : `<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi ${fallback}"></i></span>`;
   }
 
+  // Same chips as a pet on My SMP Profile, hover for what each perk does.
+  function perks(list) {
+    return (list || []).length ? `<p class="profile-pet-perks">${list.map((k) => `<span class="profile-pet-perk" title="${esc(`${k.description} (unlocks at bond level ${k.level})`)}">${esc(k.label)}</span>`).join('')}</p>` : '';
+  }
+
   function until(t) {
     return t ? ` · on sale until ${esc(new Date(t).toLocaleDateString(undefined, { dateStyle: 'medium' }))}` : '';
   }
@@ -97,7 +102,7 @@
     }[sort];
     const listings = data.listings.filter((l) => hit(l.name, l.item, l.seller, ...l.enchantments, ...l.lore)).sort(order);
     const server = data.server.filter((o) => hit(o.name, o.description));
-    const pets = data.pets.filter((p) => hit(p.name, p.description, 'pet'));
+    const pets = data.pets.filter((p) => hit(p.name, p.description, 'pet', ...(p.perks || []).map((k) => k.label)));
     const out = [];
     out.push(group('players', `<span class="profile-group__title"><i class="bi bi-bag"></i> From Players</span><span class="profile-count-badge">${listings.length}</span>`,
       listings.length ? `<div class="profile-market-grid">${listings.map(listingCard).join('')}</div>`
@@ -110,6 +115,7 @@
         .concat(pets.map((p) => `<article class="profile-market-card">${icon(p.icon, 'bi-emoji-smile')}
           <div class="profile-market-card__body"><h3>${esc(p.name)} <span class="profile-market-card__amount">Pet</span></h3>
             ${p.description ? `<p class="profile-market-card__extra">${esc(p.description)}</p>` : ''}
+            ${perks(p.perks)}
             <p class="profile-market-card__price">${price(p.price, 0)}<span class="profile-market-card__left">${p.left > 0 ? ` · ${p.left} left` : ''}${until(p.until)}</span></p></div></article>`));
       out.push(group('server', `<span class="profile-group__title"><i class="bi bi-shop-window"></i> From ${esc(data.serverName)}</span><span class="profile-count-badge">${cards.length}</span>`,
         cards.length ? `<div class="profile-market-grid">${cards.join('')}</div>` : '<p class="profile-empty-note">Nothing matches.</p>'));
