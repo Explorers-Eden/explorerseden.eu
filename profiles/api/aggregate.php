@@ -18,7 +18,7 @@ if (is_file($cacheFile) && (time() - filemtime($cacheFile) < $cacheTtl)) {
   exit;
 }
 
-// The 5 headline metrics shown on a single player's own profile page
+// The headline metrics shown on a single player's own profile page
 // (playerGroup() in profile.js) - mirrored here as community totals plus a
 // top-3 leaderboard for each, so the two pages read as the same stats at
 // different scales.
@@ -29,22 +29,45 @@ const METRICS = [
   'mobKillsTotal' => ['field' => 'mobKillsTotal', 'label' => 'Mobs Killed', 'icon' => 'bi-crosshair'],
   'damageDealt' => ['field' => 'damageDealt', 'label' => 'Damage Dealt', 'icon' => 'bi-lightning-charge-fill'],
   'blocksMinedTotal' => ['field' => 'blocksMinedTotal', 'label' => 'Blocks Mined', 'icon' => 'bi-hammer'],
+  'fishCaught' => ['field' => 'fishCaught', 'label' => 'Fish Caught', 'icon' => 'bi-water'],
+  'itemsEnchanted' => ['field' => 'itemsEnchanted', 'label' => 'Items Enchanted', 'icon' => 'bi-magic'],
+  'saplingsPlanted' => ['field' => 'saplingsPlanted', 'label' => 'Saplings Planted', 'icon' => 'bi-tree-fill'],
 ];
 
-// "Damage Dealt" isn't one of the 4 fields on a player's stats summary - it
-// only lives inside statsDetailed's General category (as a plain count, via
-// the same raw field aggregateDetailedStats() reads) - pulled out here once
-// per player so it can be treated like any other top-level metric below.
-function damageDealt(array $player): int {
+// Damage Dealt, Fish Caught, Items Enchanted and Saplings Planted aren't
+// fields on a player's stats summary - they only live inside statsDetailed
+// (as plain counts, via the same raw field aggregateDetailedStats() reads) -
+// pulled out here once per player so they can be treated like any other
+// top-level metric below. $matches picks which labels in $category to sum.
+function detailedStatSum(array $player, string $category, callable $matches): int {
+  $sum = 0;
   foreach (($player['statsDetailed'] ?? []) as $cat) {
-    if ($cat['category'] !== 'General') continue;
+    if ($cat['category'] !== $category) continue;
     foreach ($cat['items'] as $item) {
-      if ($item['label'] === 'Damage Dealt') {
-        return (int) ($item['raw'] ?? 0);
+      if ($matches($item['label'])) {
+        $sum += (int) ($item['raw'] ?? 0);
       }
     }
   }
-  return 0;
+  return $sum;
+}
+
+// Derived metrics read from statsDetailed - "Saplings Planted" is every
+// sapling's "Items Used" count plus the mangrove propagule (the one tree
+// sapling not named "... Sapling").
+const DERIVED_METRICS = [
+  'damageDealt' => ['General', 'Damage Dealt'],
+  'fishCaught' => ['General', 'Fish Caught'],
+  'itemsEnchanted' => ['General', 'Enchant Item'],
+  'saplingsPlanted' => ['Items Used', null],
+];
+
+function derivedMetric(array $player, string $key): int {
+  [$category, $label] = DERIVED_METRICS[$key];
+  $matches = $label !== null
+    ? fn($l) => $l === $label
+    : fn($l) => str_ends_with($l, ' Sapling') || $l === 'Mangrove Propagule';
+  return detailedStatSum($player, $category, $matches);
 }
 
 // Matches the category order generate-player-profiles.js's STAT_CATEGORY_LABELS
@@ -151,7 +174,9 @@ try {
     if (!is_array($decoded) || !isset($decoded['stats'])) {
       continue;
     }
-    $decoded['damageDealt'] = damageDealt($decoded);
+    foreach (array_keys(DERIVED_METRICS) as $key) {
+      $decoded[$key] = derivedMetric($decoded, $key);
+    }
     $players[] = $decoded;
   }
 
@@ -162,6 +187,9 @@ try {
     'mobKillsTotal' => 0,
     'blocksMinedTotal' => 0,
     'damageDealt' => 0,
+    'fishCaught' => 0,
+    'itemsEnchanted' => 0,
+    'saplingsPlanted' => 0,
   ];
   $raceCounts = [];
   $classCounts = [];
@@ -172,7 +200,9 @@ try {
     $totals['deaths'] += $p['stats']['deaths'] ?? 0;
     $totals['mobKillsTotal'] += $p['stats']['mobKillsTotal'] ?? 0;
     $totals['blocksMinedTotal'] += $p['stats']['blocksMinedTotal'] ?? 0;
-    $totals['damageDealt'] += $p['damageDealt'];
+    foreach (array_keys(DERIVED_METRICS) as $key) {
+      $totals[$key] += $p[$key];
+    }
 
     if (!empty($p['race'])) {
       $raceCounts[$p['race']] = ($raceCounts[$p['race']] ?? 0) + 1;
@@ -183,12 +213,11 @@ try {
   }
   $totals['playtimeHours'] = round($totals['playtimeHours'], 1);
 
-  // advancementsCompleted and damageDealt live outside $p['stats'] (top
-  // level / derived respectively) - the other 4 metrics live under stats
-  // directly. One accessor covers all of them.
+  // advancementsCompleted and the derived metrics live outside $p['stats']
+  // (top level / derived respectively) - the other 4 metrics live under
+  // stats directly. One accessor covers all of them.
   $metricValue = function ($p, $field) {
-    if ($field === 'advancementsCompleted') return $p['advancementsCompleted'] ?? 0;
-    if ($field === 'damageDealt') return $p['damageDealt'] ?? 0;
+    if ($field === 'advancementsCompleted' || isset(DERIVED_METRICS[$field])) return $p[$field] ?? 0;
     return $p['stats'][$field] ?? 0;
   };
 

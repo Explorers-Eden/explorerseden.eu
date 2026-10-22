@@ -29,9 +29,10 @@
     `;
   }
 
-  // Same 6 headline metrics as the single-player profile page's summary
-  // tiles (profile.js's playerGroup()), so the two pages read as the same
-  // stats at different scales.
+  // The single-player profile page's 6 summary tiles (profile.js's
+  // playerGroup()), so the two pages read as the same stats at different
+  // scales - plus 3 community-only metrics derived server-side in
+  // profiles/api/aggregate.php.
   const METRICS = [
     { key: 'advancementsCompleted', label: 'Advancements Completed', icon: 'bi-trophy-fill' },
     { key: 'playtimeHours', label: 'Hours Played', icon: 'bi-clock-history' },
@@ -39,6 +40,9 @@
     { key: 'mobKillsTotal', label: 'Mobs Killed', icon: 'bi-crosshair' },
     { key: 'damageDealt', label: 'Damage Dealt', icon: 'bi-lightning-charge-fill' },
     { key: 'blocksMinedTotal', label: 'Blocks Mined', icon: 'bi-hammer' },
+    { key: 'fishCaught', label: 'Fish Caught', icon: 'bi-water' },
+    { key: 'itemsEnchanted', label: 'Items Enchanted', icon: 'bi-magic' },
+    { key: 'saplingsPlanted', label: 'Saplings Planted', icon: 'bi-tree-fill' },
   ];
 
   function statTile(icon, label, value) {
