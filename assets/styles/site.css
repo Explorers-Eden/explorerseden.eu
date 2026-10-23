@@ -1419,7 +1419,10 @@ a { color: inherit; text-decoration: none; }
   color: rgba(228,241,246,.82);
   background: rgba(5,7,13,.86);
   border-top: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 -12px 30px rgba(0,0,0,.22);
+  /* Second shadow: page height is often fractional (e.g. 2341.6px) but scroll
+     height rounds up, leaving a sub-pixel strip under the footer at max scroll.
+     A shadow paints into it without adding to the scrollable area. */
+  box-shadow: 0 -12px 30px rgba(0,0,0,.22), 0 4px 0 rgba(5,7,13,.86);
   backdrop-filter: blur(10px);
   font-size: 12px;
   font-weight: 700;
