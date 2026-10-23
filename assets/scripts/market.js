@@ -13,6 +13,8 @@
   let account = null;
   let accountUuid = null;
   let note = null;
+  // Whether the bank's details are unfolded (kept when the page is drawn again).
+  let bankOpen = false;
   // What the Buy buttons point at, by "kind:id".
   const buyables = new Map();
 
@@ -53,9 +55,9 @@
   const mcPlain = (text) => String(text ?? '').replace(/\u00a7[0-9a-fk-or]/gi, '');
 
   // Same collapsible cards as My SMP Profile and the statistics page.
-  function group(id, summaryHtml, bodyHtml) {
+  function group(id, summaryHtml, bodyHtml, open = true) {
     return `
-      <details class="profile-group" id="market-group-${id}" open>
+      <details class="profile-group" id="market-group-${id}" ${open ? 'open' : ''}>
         <summary>${summaryHtml}<i class="bi bi-chevron-down profile-group__arrow" aria-hidden="true"></i></summary>
         <div class="profile-group__body">${bodyHtml}</div>
       </details>`;
@@ -132,40 +134,44 @@
       <i class="bi bi-bag-check" aria-hidden="true"></i> Buy</button></div>`;
   }
 
-  /** The bank card above the listings: balance, mailbox, recent trades, or how to log in. */
+  /** The bank above the listings: one line with the balance (and anything waiting), unfolding to recent trades. */
   function bankCard() {
     if (!account) return '';
-    let body;
+    const title = '<span class="profile-group__title"><i class="bi bi-bank"></i> Your Bank</span>';
+    // Nothing to unfold: just the title and why there's no balance.
+    const bar = (text) => `<div class="profile-group market-bank-bar" id="market-group-bank">${title}<span class="market-bank-bar__text">${text}</span></div>`;
     if (!account.loggedIn) {
       const login = `/translate/auth/login.php?return_to=${encodeURIComponent(window.location.pathname)}`;
-      body = `<p class="profile-empty-note"><a href="${esc(login)}"><i class="bi bi-discord"></i> Log in with Discord</a> to see your bank and buy here with it.</p>`;
-    } else if (account.error) {
-      body = `<p class="profile-empty-note">${esc(account.error)}</p>`;
-    } else if (!account.accounts.length) {
-      body = '<p class="profile-empty-note">Your Discord account isn\'t linked to a player on the server yet. Join the server once to link it.</p>';
-    } else {
-      const a = me();
-      const pick = account.accounts.length > 1 ? `<label class="market-bank__pick">Player <select id="market-account">${account.accounts.map((x) =>
-        `<option value="${esc(x.uuid)}" ${x.uuid === accountUuid ? 'selected' : ''}>${esc(x.name)}</option>`).join('')}</select></label>` : '';
-      const parcels = (a.parcels || []).length;
-      const orders = (a.orders || []).length;
-      const mail = parcels || orders ? `<p class="market-bank__mail"><i class="bi bi-mailbox" aria-hidden="true"></i> Waiting in your mailbox in game (/market → Mailbox):
-          ${[parcels ? `${parcels} ${parcels === 1 ? 'parcel' : 'parcels'}` : '', orders ? `${orders} ${orders === 1 ? 'purchase' : 'purchases'} to claim` : ''].filter(Boolean).join(' and ')}</p>` : '';
-      const trades = (a.sales || []).slice(0, 5).map((x) => `<li><span class="market-bank__${x.role}">${x.role === 'bought' ? 'Bought' : 'Sold'}</span>
-          ${x.amount > 1 ? `${Number(x.amount).toLocaleString()} × ` : ''}${mcHtml(x.name)} · ${price(x.total, 0)} · ${x.role === 'bought' ? 'from' : 'to'} ${esc(x.other || '')}
-          <small>${esc(new Date(x.time).toLocaleDateString(undefined, { dateStyle: 'medium' }))}</small></li>`).join('');
-      body = `<div class="market-bank">
-          <div class="market-bank__balance"><span>Your bank${account.accounts.length > 1 ? '' : ` · ${esc(a.name)}`}</span><strong>${price(Number(a.balance || 0), 0)}</strong></div>
-          ${pick}
-          <p class="market-bank__hint">Deposit and withdraw in game with /market → Bank. Purchases there take from the bank first; sales are paid into it.
-            Bought items wait in your mailbox in game; command purchases run when you claim them there.</p>
-          ${account.running ? '' : '<p class="market-bank__offline"><i class="bi bi-power" aria-hidden="true"></i> The server is offline: buying works while it runs.</p>'}
-          ${note ? `<p class="market-bank__note ${note.error ? 'is-error' : ''}" role="status">${esc(note.text)}</p>` : ''}
-          ${mail}
-          ${trades ? `<ul class="market-bank__trades">${trades}</ul>` : ''}
-        </div>`;
+      return bar(`<a href="${esc(login)}"><i class="bi bi-discord"></i> Log in with Discord</a> to see your bank and buy here with it.`);
     }
-    return group('bank', '<span class="profile-group__title"><i class="bi bi-bank"></i> Your Bank</span>', body);
+    if (account.error) return bar(esc(account.error));
+    if (!account.accounts.length) return bar('Your Discord account isn\'t linked to a player on the server yet. Join the server once to link it.');
+
+    const a = me();
+    const parcels = (a.parcels || []).length;
+    const orders = (a.orders || []).length;
+    const waiting = parcels + orders;
+    const summary = `${title}${account.accounts.length > 1 ? '' : `<span class="market-bank__name">${esc(a.name)}</span>`}
+      <span class="market-bank__balance">${price(Number(a.balance || 0), 0)}</span>
+      ${waiting ? `<span class="profile-count-badge market-bank__flag" title="Waiting in your mailbox in game"><i class="bi bi-mailbox" aria-hidden="true"></i> ${waiting}</span>` : ''}
+      ${account.running ? '' : '<span class="profile-count-badge market-bank__flag market-bank__flag--offline" title="Buying works while the server runs"><i class="bi bi-power" aria-hidden="true"></i> Server offline</span>'}`;
+
+    const pick = account.accounts.length > 1 ? `<label class="market-bank__pick">Player <select id="market-account">${account.accounts.map((x) =>
+      `<option value="${esc(x.uuid)}" ${x.uuid === accountUuid ? 'selected' : ''}>${esc(x.name)}</option>`).join('')}</select></label>` : '';
+    const mail = waiting ? `<p class="market-bank__mail"><i class="bi bi-mailbox" aria-hidden="true"></i> Waiting in your mailbox in game (/market → Mailbox):
+        ${[parcels ? `${parcels} ${parcels === 1 ? 'parcel' : 'parcels'}` : '', orders ? `${orders} ${orders === 1 ? 'purchase' : 'purchases'} to claim` : ''].filter(Boolean).join(' and ')}</p>` : '';
+    const trades = (a.sales || []).slice(0, 5).map((x) => `<li><span class="market-bank__${x.role}">${x.role === 'bought' ? 'Bought' : 'Sold'}</span>
+        ${x.amount > 1 ? `${Number(x.amount).toLocaleString()} × ` : ''}${mcHtml(x.name)} · ${price(x.total, 0)} · ${x.role === 'bought' ? 'from' : 'to'} ${esc(x.other || '')}
+        <small>${esc(new Date(x.time).toLocaleDateString(undefined, { dateStyle: 'medium' }))}</small></li>`).join('');
+    const body = `<div class="market-bank">
+        ${note ? `<p class="market-bank__note ${note.error ? 'is-error' : ''}" role="status">${esc(note.text)}</p>` : ''}
+        ${pick}
+        ${mail}
+        ${trades ? `<ul class="market-bank__trades">${trades}</ul>` : '<p class="market-bank__hint">No trades yet.</p>'}
+        <p class="market-bank__hint">Deposit and withdraw in game with /market → Bank. Bought items wait in your mailbox there; command purchases run when you claim them.</p>
+      </div>`;
+    // A purchase's result unfolds it, so the message is seen.
+    return group('bank', summary, body, bankOpen || !!note || account.accounts.length > 1);
   }
 
   async function loadAccount() {
@@ -265,6 +271,12 @@
     const b = e.target.closest('[data-buy]');
     if (b && !b.disabled) buy(b.dataset.buy);
   });
+  groups.addEventListener('toggle', (e) => {
+    if (e.target.id !== 'market-group-bank') return;
+    bankOpen = e.target.open;
+    // Folding it away dismisses a purchase's message too.
+    if (!bankOpen) note = null;
+  }, true);
   groups.addEventListener('change', (e) => {
     if (e.target.id !== 'market-account') return;
     accountUuid = e.target.value;
