@@ -51,6 +51,9 @@ $out = [
 ];
 foreach (($m['listings'] ?? []) as $l) {
     $out['listings'][] = [
+        // For buying with the bank (api/market-buy.php); listing ids are random and say nothing about the seller.
+        'id' => (string) ($l['id'] ?? ''),
+        'kind' => 'listing',
         'name' => (string) ($l['name'] ?? ''),
         'item' => (string) ($l['item'] ?? ''),
         'lore' => array_values(array_filter((array) ($l['lore'] ?? []), 'is_string')),
@@ -66,6 +69,8 @@ foreach (($m['listings'] ?? []) as $l) {
 }
 foreach (($m['server'] ?? []) as $o) {
     $out['server'][] = [
+        'id' => (string) ($o['id'] ?? ''),
+        'kind' => (string) ($o['kind'] ?? ''),
         'name' => (string) ($o['name'] ?? ''),
         'description' => (string) ($o['description'] ?? ''),
         'price' => (int) ($o['price'] ?? 0),
@@ -76,6 +81,8 @@ foreach (($m['server'] ?? []) as $o) {
 }
 foreach ((is_array($data['pets'] ?? null) ? $data['pets'] : []) as $p) {
     $out['pets'][] = [
+        'id' => (string) ($p['id'] ?? ''),
+        'kind' => 'pet',
         'name' => (string) ($p['name'] ?? ''),
         'description' => (string) ($p['description'] ?? ''),
         'price' => (int) ($p['price'] ?? 0),

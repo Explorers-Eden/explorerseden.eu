@@ -133,8 +133,16 @@ async function fromDatabase(connectionString) {
     // Market mailboxes and pets come with panel 1.13.0 (tables market_mail, pets_owned).
     const mail = {};
     try {
-      for (const r of (await client.query('SELECT player_uuid, currency, parcels FROM market_mail')).rows) {
-        mail[r.player_uuid] = { currency: r.currency, parcels: (r.parcels || []).map((p) => ({ item: p.item_id, name: p.item_name, amount: p.amount, iconUrl: iconUrl(p.icon) })) };
+      // The bank balance and website purchases to claim come with panel 1.25.0 (database V13).
+      let rows;
+      try {
+        rows = (await client.query('SELECT player_uuid, currency, parcels, balance, orders FROM market_mail')).rows;
+      } catch (err) {
+        rows = (await client.query('SELECT player_uuid, currency, parcels FROM market_mail')).rows;
+      }
+      for (const r of rows) {
+        mail[r.player_uuid] = { currency: r.currency, balance: Number(r.balance || 0), orders: (r.orders || []).map((o) => ({ name: o.name, times: o.times })),
+          parcels: (r.parcels || []).map((p) => ({ item: p.item_id, name: p.item_name, amount: p.amount, iconUrl: iconUrl(p.icon) })) };
       }
     } catch (err) { /* older panel */ }
     const pets = {};

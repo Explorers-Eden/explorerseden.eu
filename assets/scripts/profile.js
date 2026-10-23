@@ -260,9 +260,17 @@
     const market = profile.market || {};
     const currency = market.currencyName || 'Diamond';
     const coin = market.currencyIconUrl ? `<img class="profile-market-card__icon" src="${esc(market.currencyIconUrl)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-coin"></i></span>';
-    const count = (inbox.currency > 0 ? 1 : 0) + (inbox.parcels || []).length;
+    const count = (inbox.currency > 0 ? 1 : 0) + (inbox.parcels || []).length + (inbox.orders || []).length;
     const summaryHtml = `<span class="profile-group__title"><i class="bi bi-mailbox"></i> Market Inbox</span><span class="profile-count-badge">${count}</span>`;
     const cards = [];
+    // The bank (updated live below when the market can be reached).
+    const balance = Number(inbox.balance || 0);
+    cards.push(`<article class="profile-market-card">${coin}<div class="profile-market-card__body"><h3 id="profile-bank-balance">${balance.toLocaleString()} ${esc(balance === 1 ? currency : currency + 's')}</h3>
+      <p class="profile-market-card__extra">In your bank · <a href="/market/">spend it on the market</a></p></div></article>`);
+    for (const o of inbox.orders || []) {
+      cards.push(`<article class="profile-market-card"><span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-bag-check"></i></span>
+        <div class="profile-market-card__body"><h3>${o.times > 1 ? `${Number(o.times)} × ` : ''}${esc(o.name)}</h3><p class="profile-market-card__extra">Bought on the website · claim it in game</p></div></article>`);
+    }
     if (inbox.currency > 0) {
       cards.push(`<article class="profile-market-card">${coin}<div class="profile-market-card__body"><h3>${Number(inbox.currency).toLocaleString()} ${esc(inbox.currency === 1 ? currency : currency + 's')}</h3>
         <p class="profile-market-card__extra">Earnings from sales</p></div></article>`);
@@ -271,9 +279,8 @@
       cards.push(`<article class="profile-market-card">${p.iconUrl ? `<img class="profile-market-card__icon" src="${esc(p.iconUrl)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-box"></i></span>'}
         <div class="profile-market-card__body"><h3>${esc(p.name)} <span class="profile-market-card__amount">×${Number(p.amount).toLocaleString()}</span></h3></div></article>`);
     }
-    const bodyHtml = cards.length
-      ? `<p class="profile-empty-note">Collect it with /market in game.</p><div class="profile-market-grid">${cards.join('')}</div>`
-      : '<p class="profile-empty-note">Nothing waiting. Earnings, items you took off the market and buys that didn\'t fit in your inventory show up here.</p>';
+    const bodyHtml = `<p class="profile-empty-note">${cards.length > 1 ? 'Collect it with /market → Mailbox in game. ' : ''}Deposit and withdraw with /market → Bank; sales are paid into the bank.</p>
+      <div class="profile-market-grid">${cards.join('')}</div>`;
     return group('inbox', summaryHtml, bodyHtml, false);
   }
 
@@ -394,6 +401,15 @@
   ].join('');
 
   animateProfileSkin();
+
+  // The bank right now (the profile itself is copied once an hour).
+  fetch('/api/market-account.php', { cache: 'no-store' }).then((r) => r.json()).then((json) => {
+    const a = (json.accounts || []).find((x) => x.uuid === profile.uuid);
+    const el = document.getElementById('profile-bank-balance');
+    if (!a || !el || a.balance == null) return;
+    const currency = (profile.market || {}).currencyName || 'Diamond';
+    el.textContent = `${Number(a.balance).toLocaleString()} ${Number(a.balance) === 1 ? currency : currency + 's'}`;
+  }).catch(() => {});
 
   // ── Advancement description tooltip (mirrors the shared floating-tooltip
   // pattern already used by structures.js, styled the same way) ──────────────
