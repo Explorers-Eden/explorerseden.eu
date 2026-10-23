@@ -40,6 +40,26 @@
   backdrop-filter: blur(14px);
 }
 
+/* Community sums are much bigger numbers than one player's, so these tiles are
+   wider than the profile's and the number may shrink (or wrap, as a last resort)
+   instead of running out of its tile. */
+.statistics-summary .profile-stat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.statistics-summary .profile-stat-tile {
+  min-width: 0;
+}
+
+.statistics-summary .profile-stat-tile > div {
+  min-width: 0;
+}
+
+.statistics-summary .profile-stat-tile__value {
+  font-size: clamp(17px, 1.7vw, 22px);
+  overflow-wrap: anywhere;
+}
+
 /* ── Leaderboards ──────────────────────────────────────────────────────────── */
 
 /* Boxes arranged max 3 per row - each box holds its own top-3 players
