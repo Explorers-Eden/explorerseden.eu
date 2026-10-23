@@ -40,15 +40,21 @@
   backdrop-filter: blur(14px);
 }
 
-/* Community sums are much bigger numbers than one player's, so these tiles are
-   wider than the profile's and the number may shrink (or wrap, as a last resort)
-   instead of running out of its tile. */
+/* 9 totals, so the column count always divides 9 - one row of 9 on wide
+   screens, 3x3 below that - and no row is left half empty. Tiles stack icon,
+   number and label centered so a short number doesn't leave a wide tile empty
+   on one side. Phones fall back to one compact row per total. */
 .statistics-summary .profile-stat-grid {
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .statistics-summary .profile-stat-tile {
   min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 12px;
+  text-align: center;
 }
 
 .statistics-summary .profile-stat-tile > div {
@@ -56,8 +62,34 @@
 }
 
 .statistics-summary .profile-stat-tile__value {
-  font-size: clamp(17px, 1.7vw, 22px);
+  font-size: clamp(20px, 3vw, 26px);
+  font-variant-numeric: tabular-nums;
   overflow-wrap: anywhere;
+}
+
+@media (min-width: 1600px) {
+  .statistics-summary .profile-stat-grid {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+  }
+
+  .statistics-summary .profile-stat-tile__value {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 560px) {
+  .statistics-summary .profile-stat-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .statistics-summary .profile-stat-tile {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 14px;
+    padding: 14px 18px;
+    text-align: left;
+  }
 }
 
 /* ── Leaderboards ──────────────────────────────────────────────────────────── */
