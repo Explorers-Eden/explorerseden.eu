@@ -25,7 +25,7 @@ function panel_web_post(string $path, array $body): array {
   }
   $json = $raw === false ? null : json_decode($raw, true);
   if (!is_array($json)) {
-    return [502, ['error' => 'The market can\'t be reached right now.']];
+    return [502, ['error' => 'The server panel can\'t be reached right now.']];
   }
   return [$status, $json];
 }

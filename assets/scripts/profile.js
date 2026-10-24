@@ -27,16 +27,13 @@
   }
 
   // Cycles the profile skin <img> through its full wave-frame sequence on a
-  // timer, same as the homepage lineup's center figure - a real
-  // multi-frame animation rather than a static portrait.
+  // timer, same as the homepage lineup's center figure.
   function animateProfileSkin() {
     const img = document.getElementById('profile-skin-frame');
     if (!img || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
-
     const { uuid } = img.dataset;
     const frameUrls = Array.from({ length: SKIN_WAVE_FRAME_COUNT }, (_, i) => skinWaveFramePath(uuid, i));
     frameUrls.forEach((url) => { new Image().src = url; });
-
     let index = 0;
     setInterval(() => {
       index = (index + 1) % frameUrls.length;
@@ -44,169 +41,21 @@
     }, SKIN_FRAME_INTERVAL_MS);
   }
 
-  function group(id, summaryHtml, bodyHtml, open) {
-    return `
-      <details class="profile-group" id="profile-group-${id}"${open ? ' open' : ''}>
-        <summary>
-          ${summaryHtml}
-          <i class="bi bi-chevron-down profile-group__arrow" aria-hidden="true"></i>
-        </summary>
-        <div class="profile-group__body">${bodyHtml}</div>
-      </details>
-    `;
-  }
-
-  // ── Group 1: player headline + skin + summary stats ─────────────────────────
-
-  function playerGroup() {
-    const badges = [];
-    if (profile.race) badges.push(`<span class="profile-badge"><i class="bi bi-stars"></i> ${esc(profile.race)}</span>`);
-    if (profile.class) badges.push(`<span class="profile-badge"><i class="bi bi-award"></i> ${esc(profile.class)}</span>`);
-
-    const home = profile.home
-      ? `
-        <span class="profile-badge profile-badge--home">
-          <i class="bi bi-house-door-fill"></i>
-          ${profile.home.x.toLocaleString()}, ${profile.home.y.toLocaleString()}, ${profile.home.z.toLocaleString()}
-          <span class="profile-badge__dim">${esc(profile.home.dimension)}</span>
-        </span>
-      `
-      : '';
-
-    const updatedBadge = dataEl.dataset.updatedAt
-      ? `<span class="profile-badge profile-badge--small profile-badge--muted"><i class="bi bi-arrow-clockwise"></i> Updated ${esc(new Date(dataEl.dataset.updatedAt).toLocaleString())}</span>`
-      : '';
-
-    const summaryHtml = `
-      <span class="profile-name-row">
-        <span class="profile-group__title"><i class="bi bi-person-fill"></i> <span class="profile-name">${esc(profile.name)}</span></span>
-        ${home}
-        ${updatedBadge}
-        <span class="profile-headline">${badges.join('') || '<span class="profile-badge profile-badge--muted">No race/class chosen yet</span>'}</span>
-      </span>
-    `;
-
-    // Reuses the homepage skin lineup's wave-animation renders (see
-    // tools/scripts/generate-homepage-skin-poses.js) - they're generated
-    // for every linked player, not just the ones the homepage happens to
-    // pick, so the player's own profile can wave too instead of standing
-    // on a single static render.
-    const skin = profile.uuid
-      ? `<img class="profile-overview__skin" id="profile-skin-frame" src="${esc(skinWaveFramePath(profile.uuid, 0))}" data-uuid="${esc(profile.uuid)}" alt="${esc(profile.name)}'s skin" onerror="this.onerror=null;this.src='${esc(profile.skinIcon || '')}';">`
-      : profile.skinIcon
-      ? `<img class="profile-overview__skin" src="${esc(profile.skinIcon)}" alt="${esc(profile.name)}'s skin">`
-      : '<div class="profile-overview__skin profile-overview__skin--missing"><i class="bi bi-person-fill"></i></div>';
-
-    const s = profile.stats;
-    const bodyHtml = `
-      <div class="profile-overview">
-        ${skin}
-        <div class="profile-stat-grid">
-          ${statTile('bi-trophy-fill', 'Advancements Completed', profile.advancementsCompleted.toLocaleString())}
-          ${statTile('bi-clock-history', 'Hours Played', s.playtimeHours.toLocaleString())}
-          ${statTile('bi-heartbreak-fill', 'Deaths', s.deaths.toLocaleString())}
-          ${statTile('bi-crosshair', 'Mobs Killed', s.mobKillsTotal.toLocaleString())}
-          ${statTile('bi-lightning-charge-fill', 'Damage Dealt', findStatValue('General', 'Damage Dealt'))}
-          ${statTile('bi-hammer', 'Blocks Mined', s.blocksMinedTotal.toLocaleString())}
-        </div>
-      </div>
-    `;
-
-    return group('player', summaryHtml, bodyHtml, true);
-  }
-
-  // "Damage Dealt" only exists inside statsDetailed's General category (it's
-  // not one of the 4 fields on profile.stats), so pull the already
-  // human-formatted value straight out of there instead of recomputing it.
-  function findStatValue(category, label) {
-    const cat = profile.statsDetailed.find((c) => c.category === category);
-    const item = cat?.items.find((i) => i.label === label);
-    return item?.value ?? '—';
-  }
-
-  function statTile(icon, label, value) {
-    return `
-      <div class="profile-stat-tile">
-        <i class="bi ${icon}"></i>
-        <div>
-          <p class="profile-stat-tile__value">${value}</p>
-          <p class="profile-stat-tile__label">${label}</p>
-        </div>
-      </div>
-    `;
-  }
-
-  // ── Group 2: Waypoints ────────────────────────────────────────────────────
-
-  function waypointsGroup() {
-    const summaryHtml = `<span class="profile-group__title"><i class="bi bi-signpost-split"></i> Waypoints</span><span class="profile-count-badge">${profile.waypoints.length}</span>`;
-    const bodyHtml = profile.waypoints.length
-      ? `<div class="waypoint-hub-grid">${profile.waypoints.map(waypointCardHtml).join('')}</div>`
-      : '<p class="profile-empty-note">No waypoint hubs yet.</p>';
-    return group('waypoints', summaryHtml, bodyHtml, false);
-  }
-
-  function waypointCardHtml(wp) {
-    return `
-      <article class="waypoint-card"${/^#[0-9a-f]{6}$/i.test(wp.color || '') ? ` style="border-left: 3px solid ${wp.color}"` : ''}>
-        <img class="waypoint-card__avatar" src="${esc(wp.icon || '')}" alt="" loading="lazy">
-        <div class="waypoint-card__body">
-          <div class="profile-waypoint-title-row">
-            <h3>${esc(wp.name)}</h3>
-            <span class="profile-access-badge profile-access-badge--${wp.access === 'public' ? 'public' : 'private'}">${wp.access === 'public' ? 'Public' : 'Private'}</span>
-          </div>
-          <p class="waypoint-card__coords"><i class="bi bi-geo-alt-fill"></i> ${wp.x}, ${wp.y}, ${wp.z} · ${esc(wp.dimension)}</p>
-          ${wp.description ? `<p class="waypoint-card__description">${esc(wp.description)}</p>` : ''}
-        </div>
-      </article>
-    `;
-  }
-
-  // ── Group 3: Claims ───────────────────────────────────────────────────────
-
-  function claimsGroup() {
-    const summaryHtml = `<span class="profile-group__title"><i class="bi bi-shield-lock"></i> Claims</span><span class="profile-count-badge">${profile.claims.length}</span>`;
-    const bodyHtml = profile.claims.length
-      ? `<div class="profile-claim-grid">${profile.claims.map(claimCardHtml).join('')}</div>`
-      : '<p class="profile-empty-note">No land claims yet.</p>';
-    return group('claims', summaryHtml, bodyHtml, false);
-  }
-
-  function claimCardHtml(claim) {
-    const size = `${claim.width} × ${claim.length}`;
-    const members = claim.members || [];
-    return `
-      <article class="profile-claim-card" style="--claim-color: ${/^#[0-9a-fA-F]{6}$/.test(claim.color || '') ? claim.color : '#f2b233'}">
-        <div class="profile-claim-card__header">
-          <h3><span class="profile-claim-card__swatch"></span>${esc(claim.name || 'Unnamed claim')}</h3>
-          <span class="profile-claim-card__dimension">${esc(claim.dimension)}</span>
-        </div>
-        <p class="profile-claim-card__coords"><i class="bi bi-geo-alt-fill"></i> ${claim.x}, ${claim.z}
-          <span class="profile-claim-card__size">${size} (${Number(claim.area).toLocaleString()} blocks)${claim.subclaims ? ` · ${claim.subclaims} subclaim${claim.subclaims === 1 ? '' : 's'}` : ''}</span></p>
-        <div class="profile-claim-card__trusted">
-          <strong>Members:</strong>
-          ${members.length ? members.map((m) => `<span class="profile-badge profile-badge--small" title="${esc(m.role)}">${esc(m.name)} · ${esc(m.role)}</span>`).join('') : '<span class="profile-empty-note">No members yet</span>'}
-        </div>
-      </article>
-    `;
-  }
-
-  /** Minecraft text with § codes as HTML, like the game shows it: the 16 colours, bold, italic, underlined, struck through; §r resets, §k is left out. */
+  /** Minecraft text with § codes as HTML, like the game shows it; §r resets, §k is left out. */
   const MC_COLORS = { 0: '#000000', 1: '#0000AA', 2: '#00AA00', 3: '#00AAAA', 4: '#AA0000', 5: '#AA00AA', 6: '#FFAA00', 7: '#AAAAAA',
     8: '#555555', 9: '#5555FF', a: '#55FF55', b: '#55FFFF', c: '#FF5555', d: '#FF55FF', e: '#FFFF55', f: '#FFFFFF' };
   const MC_STYLES = { l: 'font-weight:800', o: 'font-style:italic', n: 'text-decoration:underline', m: 'text-decoration:line-through' };
   function mcHtml(text) {
     let out = '';
     let open = 0;
-    for (const part of String(text ?? '').split(/(\u00a7[0-9a-fk-or])/i)) {
-      const code = /^\u00a7([0-9a-fk-or])$/i.exec(part);
+    for (const part of String(text ?? '').split(/(§[0-9a-fk-or])/i)) {
+      const code = /^§([0-9a-fk-or])$/i.exec(part);
       if (!code) {
         out += esc(part);
         continue;
       }
       const c = code[1].toLowerCase();
       if (MC_COLORS[c] || c === 'r') {
-        // A colour (or reset) ends the formatting before it, like in the game.
         out += '</span>'.repeat(open);
         open = 0;
         if (MC_COLORS[c]) {
@@ -220,199 +69,637 @@
     }
     return out + '</span>'.repeat(open);
   }
-  /** The same text without its codes (for searching). */
-  const mcPlain = (text) => String(text ?? '').replace(/\u00a7[0-9a-fk-or]/gi, '');
+  const mcPlain = (text) => String(text ?? '').replace(/§[0-9a-fk-or]/gi, '');
 
-  // ── Group: Market listings (/market in game) ─────────────────────────────
+  const isHex = (c) => /^#[0-9a-f]{6}$/i.test(c || '');
+  const dimName = (id) => String(id || '').replace(/^minecraft:/, '').replace(/^[^:]*:/, '').replace(/_/g, ' ').replace(/\b([a-z])/g, (c) => c.toUpperCase());
+  const plural = (n, one, many) => `${Number(n).toLocaleString()} ${n === 1 ? one : many}`;
 
-  function marketGroup() {
-    const listings = profile.marketListings || [];
-    const summaryHtml = `<span class="profile-group__title"><i class="bi bi-shop"></i> Market</span><span class="profile-count-badge">${listings.length}</span>`;
-    const bodyHtml = listings.length
-      ? `<div class="profile-market-grid">${listings.map(listingCardHtml).join('')}</div>`
-      : '<p class="profile-empty-note">Nothing for sale right now. Type /market in game to sell something.</p>';
-    return group('market', summaryHtml, bodyHtml, false);
+  // ── Live data from the server panel (claims, hubs, listings, what may be changed) ──────────────
+  // The rest of the profile is a copy made once an hour; these come fresh, and only they can be changed.
+
+  let live = null;
+  let liveError = null;
+  // The bank right now, from the market (null until it answers).
+  let bankBalance = null;
+
+  async function loadLive() {
+    try {
+      const res = await fetch('/api/profile-live.php', { cache: 'no-store' });
+      const json = await res.json();
+      if (json.error) {
+        liveError = typeof json.error === 'string' ? json.error : json.message;
+        live = null;
+      } else {
+        live = json;
+        liveError = null;
+      }
+    } catch {
+      liveError = 'The server panel can\'t be reached right now.';
+    }
+    renderTabs();
   }
 
-  function listingCardHtml(l) {
-    const market = profile.market || {};
-    const coin = market.currencyIconUrl ? `<img class="profile-market-card__coin" src="${esc(market.currencyIconUrl)}" alt="" loading="lazy">` : '';
-    const currency = market.currencyName || 'Diamond';
-    const extra = [...(l.enchantments || []), ...(l.lore || [])];
-    const days = Math.max(0, Math.ceil((new Date(l.expires).getTime() - Date.now()) / 86400000));
+  async function send(body) {
+    const res = await fetch('/api/profile-edit.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': live?.csrfToken || '' },
+      body: JSON.stringify(body),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || json.error) throw new Error(json.message || 'That didn\'t work. Try again in a moment.');
+    return json;
+  }
+
+  // ── Building blocks ─────────────────────────────────────────────────────────
+
+  function panel(id, icon, title, count, aside, body) {
     return `
-      <article class="profile-market-card">
-        ${l.iconUrl ? `<img class="profile-market-card__icon" src="${esc(l.iconUrl)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-box"></i></span>'}
-        <div class="profile-market-card__body">
-          <h3>${mcHtml(l.name)} <span class="profile-market-card__amount">×${Number(l.amount).toLocaleString()}</span></h3>
-          ${extra.length ? `<p class="profile-market-card__extra">${extra.map(mcHtml).join(' · ')}</p>` : ''}
-          <p class="profile-market-card__price">${coin}${Number(l.price).toLocaleString()} ${esc(l.price === 1 ? currency : currency + 's')} ${(l.per || 1) > 1 ? `per ${Number(l.per).toLocaleString()}` : 'each'}
-            <span class="profile-market-card__left">· ${days === 1 ? '1 day' : `${days} days`} left</span></p>
+      <section class="profile-panel" id="profile-panel-${id}">
+        <header class="profile-panel__head">
+          <span class="profile-panel__icon"><i class="bi ${icon}" aria-hidden="true"></i></span>
+          <h2>${title}</h2>
+          ${count != null ? `<span class="profile-count-badge">${count}</span>` : ''}
+          ${aside ? `<span class="profile-panel__aside">${aside}</span>` : ''}
+        </header>
+        <div class="profile-panel__body">${body}</div>
+      </section>`;
+  }
+
+  function action(icon, label, attrs) {
+    return `<button type="button" class="profile-action" ${attrs}><span class="profile-action__icon"><i class="bi ${icon}" aria-hidden="true"></i></span>${label}</button>`;
+  }
+
+  function note(text, kind) {
+    return `<span class="profile-note${kind ? ` profile-note--${kind}` : ''}">${text}</span>`;
+  }
+
+  function statTile(icon, label, value) {
+    return `
+      <div class="profile-stat-tile">
+        <i class="bi ${icon}"></i>
+        <div>
+          <p class="profile-stat-tile__value">${value}</p>
+          <p class="profile-stat-tile__label">${label}</p>
         </div>
-      </article>
-    `;
+      </div>`;
   }
 
-  // ── Group: Market mailbox (what waits in /market) ─────────────────────────
+  // "Damage Dealt" only exists inside statsDetailed's General category.
+  function findStatValue(category, label) {
+    const cat = (profile.statsDetailed || []).find((c) => c.category === category);
+    const item = cat?.items.find((i) => i.label === label);
+    return item?.value ?? '—';
+  }
 
-  function inboxGroup() {
+  // ── Header: skin, name, race/class, home ───────────────────────────────────
+
+  function hero() {
+    const badges = [];
+    if (profile.race) badges.push(`<span class="profile-badge"><i class="bi bi-stars"></i> ${esc(profile.race)}</span>`);
+    if (profile.class) badges.push(`<span class="profile-badge"><i class="bi bi-award"></i> ${esc(profile.class)}</span>`);
+    if (!badges.length) badges.push('<span class="profile-badge profile-badge--muted">No race or class chosen yet</span>');
+    if (profile.home) {
+      badges.push(`<span class="profile-badge"><i class="bi bi-house-door-fill"></i> ${profile.home.x.toLocaleString()}, ${profile.home.y.toLocaleString()}, ${profile.home.z.toLocaleString()}
+        <span class="profile-badge__dim">${esc(profile.home.dimension)}</span></span>`);
+    }
+    const skin = profile.uuid
+      ? `<img class="profile-hero__skin" id="profile-skin-frame" src="${esc(skinWaveFramePath(profile.uuid, 0))}" data-uuid="${esc(profile.uuid)}" alt="${esc(profile.name)}'s skin" onerror="this.onerror=null;this.src='${esc(profile.skinIcon || '')}';">`
+      : profile.skinIcon
+        ? `<img class="profile-hero__skin" src="${esc(profile.skinIcon)}" alt="${esc(profile.name)}'s skin">`
+        : '<div class="profile-hero__skin profile-hero__skin--missing"><i class="bi bi-person-fill"></i></div>';
+    const updated = dataEl.dataset.updatedAt
+      ? `<p class="profile-hero__updated"><i class="bi bi-arrow-clockwise"></i> Stats updated ${esc(new Date(dataEl.dataset.updatedAt).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }))}</p>`
+      : '';
+    return `
+      <section class="profile-hero">
+        ${skin}
+        <div class="profile-hero__main">
+          <p class="profile-hero__eyebrow">My SMP Profile</p>
+          <h1 class="profile-hero__name">${esc(profile.name)}</h1>
+          <div class="profile-hero__badges">${badges.join('')}</div>
+          ${updated}
+        </div>
+      </section>`;
+  }
+
+  // ── Tabs ─────────────────────────────────────────────────────────────────────
+
+  const TABS = [
+    { id: 'overview', icon: 'bi-grid-1x2', label: 'Overview' },
+    { id: 'claims', icon: 'bi-shield-lock', label: 'Claims' },
+    { id: 'waypoints', icon: 'bi-signpost-split', label: 'Waypoints' },
+    { id: 'market', icon: 'bi-shop', label: 'Market' },
+    { id: 'pets', icon: 'bi-emoji-smile', label: 'Pets' },
+    { id: 'stats', icon: 'bi-bar-chart-fill', label: 'Statistics' },
+    { id: 'advancements', icon: 'bi-trophy-fill', label: 'Advancements' },
+  ];
+  let activeTab = TABS.some((t) => t.id === location.hash.slice(1)) ? location.hash.slice(1) : 'overview';
+
+  function claimsList() {
+    return live ? live.claims || [] : (profile.claims || []).map((c) => ({ ...c, displayName: c.name || 'Unnamed claim', canEdit: false, roleLabel: 'Owner', dim: c.dimension }));
+  }
+  function hubsList() {
+    if (live && Array.isArray(live.hubs)) {
+      const icons = Object.fromEntries((profile.waypoints || []).map((w) => [String(w.id), w.icon]));
+      return live.hubs.map((h) => ({ ...h, icon: icons[String(h.id)] || `https://mc-heads.net/avatar/${encodeURIComponent(profile.uuid || profile.name)}/64`,
+        hex: (live.hubColors || {})[h.color] || null, access: h.public ? 'public' : 'private', editable: true }));
+    }
+    return (profile.waypoints || []).map((w) => ({ ...w, hex: w.color, editable: false }));
+  }
+  function listingsList() {
+    if (live && Array.isArray(live.listings)) {
+      // Item pictures come with the copy; listings put up since then show a box.
+      const saved = profile.marketListings || [];
+      return live.listings.map((l) => ({ ...l, iconUrl: (saved.find((x) => x.id && x.id === l.id) || saved.find((x) => mcPlain(x.name) === mcPlain(l.name)) || {}).iconUrl }));
+    }
+    return (profile.marketListings || []).map((l) => ({ ...l, expires: new Date(l.expires).getTime(), iconUrl: l.iconUrl }));
+  }
+
+  function counts() {
+    const advDone = (profile.advancementsDetailed || []).reduce((sum, g) => sum + g.doneCount, 0);
+    const advAll = (profile.advancementsDetailed || []).reduce((sum, g) => sum + g.items.length, 0);
+    return { claims: claimsList().length, waypoints: hubsList().length, market: listingsList().length, pets: (profile.pets || []).length, advancements: advAll ? `${advDone}/${advAll}` : null };
+  }
+
+  function tabBar() {
+    const n = counts();
+    return `<nav class="profile-tabs" role="tablist" aria-label="Profile sections">${TABS.map((t) => `
+      <button type="button" class="filter-chip profile-tab${t.id === activeTab ? ' is-active' : ''}" role="tab" aria-selected="${t.id === activeTab}" data-tab="${t.id}">
+        <i class="bi ${t.icon}" aria-hidden="true"></i> ${t.label}${n[t.id] != null && n[t.id] !== 0 ? ` <span class="profile-tab__count">${n[t.id]}</span>` : ''}
+      </button>`).join('')}</nav>`;
+  }
+
+  // ── Overview: the key numbers and the last grave ───────────────────────────
+
+  function overviewTab() {
+    const s = profile.stats || {};
+    const tiles = `<div class="profile-stat-grid profile-stat-grid--wide">
+      ${statTile('bi-trophy-fill', 'Advancements Completed', Number(profile.advancementsCompleted || 0).toLocaleString())}
+      ${statTile('bi-clock-history', 'Hours Played', Number(s.playtimeHours || 0).toLocaleString())}
+      ${statTile('bi-heartbreak-fill', 'Deaths', Number(s.deaths || 0).toLocaleString())}
+      ${statTile('bi-crosshair', 'Mobs Killed', Number(s.mobKillsTotal || 0).toLocaleString())}
+      ${statTile('bi-lightning-charge-fill', 'Damage Dealt', findStatValue('General', 'Damage Dealt'))}
+      ${statTile('bi-hammer', 'Blocks Mined', Number(s.blocksMinedTotal || 0).toLocaleString())}
+    </div>`;
+    const n = counts();
+    const shortcuts = [
+      ['claims', 'bi-shield-lock', plural(n.claims, 'claim', 'claims')],
+      ['waypoints', 'bi-signpost-split', plural(n.waypoints, 'waypoint hub', 'waypoint hubs')],
+      ['market', 'bi-shop', plural(n.market, 'listing on the market', 'listings on the market')],
+      ['pets', 'bi-emoji-smile', plural(n.pets, 'pet', 'pets')],
+    ].map(([tab, icon, text]) => `<button type="button" class="profile-shortcut" data-tab="${tab}"><i class="bi ${icon}" aria-hidden="true"></i>${text}<i class="bi bi-chevron-right profile-shortcut__go" aria-hidden="true"></i></button>`).join('');
+    return panel('summary', 'bi-person-fill', 'At a glance', null, null, tiles + `<div class="profile-shortcuts">${shortcuts}</div>`) + graveCard();
+  }
+
+  function graveCard() {
+    const grave = profile.lastGrave;
+    if (!grave) return panel('grave', 'bi-flower1', 'Last grave', null, null, '<p class="profile-empty-note">No grave on record.</p>');
+    const badges = [
+      grave.removed
+        ? '<span class="profile-grave-badge profile-grave-badge--muted"><i class="bi bi-check-circle"></i> Cleared</span>'
+        : '<span class="profile-grave-badge profile-grave-badge--warn"><i class="bi bi-exclamation-circle"></i> Still standing</span>',
+    ];
+    if (grave.openedBy === 'expired') badges.push('<span class="profile-grave-badge profile-grave-badge--warn"><i class="bi bi-hourglass-split"></i> Expired unopened</span>');
+    else if (grave.openedBy) badges.push(`<span class="profile-grave-badge"><i class="bi bi-door-open"></i> Opened by ${esc(grave.openedBy)}</span>`);
+    const itemHtml = (item) => {
+      const icon = item.isHead ? 'bi-person-bounding-box' : (item.enchantments.length ? 'bi-stars' : 'bi-box-seam');
+      const tip = item.enchantments.length ? ` title="${esc(item.enchantments.join(', '))}"` : '';
+      return `<div class="profile-grave-item${item.enchantments.length ? ' profile-grave-item--enchanted' : ''}"${tip}>
+          <i class="bi ${icon}"></i><span class="profile-grave-item__name">${esc(item.displayName)}</span><span class="profile-grave-item__count">×${item.count}</span></div>`;
+    };
+    const body = `<div class="profile-grave-head"><p class="waypoint-card__coords"><i class="bi bi-geo-alt-fill"></i> ${grave.x}, ${grave.y}, ${grave.z} · ${esc(grave.dimension)}</p>
+      <div class="profile-grave-grave-badges">${badges.join('')}</div></div>
+      ${grave.contents.length ? `<div class="profile-grave-item-grid">${grave.contents.map(itemHtml).join('')}</div>` : '<p class="profile-empty-note">The grave is empty.</p>'}`;
+    return panel('grave', 'bi-flower1', 'Last grave', null, null, body);
+  }
+
+  // ── Claims ──────────────────────────────────────────────────────────────────
+
+  function claimsAside() {
+    if (liveError) return note(`<i class="bi bi-exclamation-triangle"></i> ${esc(liveError)} Showing the last copy.`, 'warn');
+    if (!live) return note('<i class="bi bi-arrow-repeat"></i> Loading…');
+    if (!live.claimsOn) return note('<i class="bi bi-slash-circle"></i> Land claims are switched off', 'warn');
+    return note('<i class="bi bi-check2-circle"></i> Changes apply right away', 'ok');
+  }
+
+  function claimsTab() {
+    const list = claimsList();
+    const body = list.length
+      ? `<div class="profile-claim-grid">${list.map(claimCard).join('')}</div>`
+      : '<p class="profile-empty-note">No land claims yet. Claim land in game with <b>/claim</b>.</p>';
+    return panel('claims', 'bi-shield-lock', 'Claims', list.length, claimsAside(), body);
+  }
+
+  function claimCard(c) {
+    const color = isHex(c.color) ? c.color : '#f2b233';
+    const members = c.members || [];
+    const sub = c.parent ? `<span class="profile-tag"><i class="bi bi-diagram-2"></i> Subclaim of ${esc(c.parentName || 'a claim')}</span>` : '';
+    const role = c.role && c.role !== 'OWNER' ? `<span class="profile-tag profile-tag--accent">${esc(c.roleLabel)}${c.ownerName ? ` · ${esc(c.ownerName)}'s` : ''}</span>` : '';
+    const canEdit = c.canEdit && live && live.claimsOn;
+    return `
+      <article class="profile-claim-card" style="--claim-color: ${color}">
+        <div class="profile-claim-card__header">
+          <h3><span class="profile-claim-card__swatch"></span>${esc(c.displayName || c.name || 'Unnamed claim')}</h3>
+          <span class="profile-claim-card__dimension">${esc(dimName(c.dim))}</span>
+        </div>
+        ${sub || role ? `<div class="profile-tags">${sub}${role}</div>` : ''}
+        <p class="profile-claim-card__coords"><i class="bi bi-geo-alt-fill"></i> ${c.x}, ${c.z}
+          <span class="profile-claim-card__size">· ${c.width} × ${c.length} (${Number(c.area).toLocaleString()} blocks)</span></p>
+        <div class="profile-claim-card__trusted">
+          ${members.length ? members.map((m) => `<span class="profile-member" title="${esc(m.label || m.role)}"><img src="https://mc-heads.net/avatar/${encodeURIComponent(m.uuid || m.name)}/16" alt="" loading="lazy">${esc(m.name)}</span>`).join('') : '<span class="profile-muted">No members</span>'}
+        </div>
+        ${canEdit ? `<div class="profile-card-foot">${action('bi-pencil', 'Edit', `data-edit-claim="${esc(c.id)}"`)}</div>` : ''}
+      </article>`;
+  }
+
+  // ── Waypoint hubs ───────────────────────────────────────────────────────────
+
+  function hubsAside() {
+    if (liveError) return note(`<i class="bi bi-exclamation-triangle"></i> ${esc(liveError)}`, 'warn');
+    if (!live) return note('<i class="bi bi-arrow-repeat"></i> Loading…');
+    if (!live.running) return note('<i class="bi bi-power"></i> Server offline · hubs can be changed while it runs', 'warn');
+    return note('<i class="bi bi-check2-circle"></i> Changes apply right away', 'ok');
+  }
+
+  function waypointsTab() {
+    const list = hubsList();
+    const body = list.length
+      ? `<div class="waypoint-hub-grid">${list.map(hubCard).join('')}</div>`
+      : '<p class="profile-empty-note">No waypoint hubs yet.</p>';
+    return panel('waypoints', 'bi-signpost-split', 'Waypoint hubs', list.length, hubsAside(), body);
+  }
+
+  function hubCard(h) {
+    const trusted = h.trusted || [];
+    return `
+      <article class="waypoint-card profile-hub-card"${isHex(h.hex) ? ` style="--hub-color:${h.hex}"` : ''}>
+        <img class="waypoint-card__avatar" src="${esc(h.icon || '')}" alt="" loading="lazy">
+        <div class="waypoint-card__body">
+          <div class="profile-waypoint-title-row">
+            <h3>${esc(h.name)}</h3>
+            <span class="profile-access-badge profile-access-badge--${h.access === 'public' ? 'public' : 'private'}">${h.access === 'public' ? 'Public' : 'Private'}</span>
+          </div>
+          <p class="waypoint-card__coords"><i class="bi bi-geo-alt-fill"></i> ${h.x}, ${h.y}, ${h.z} · ${esc(dimName(h.dimension))}</p>
+          ${h.description ? `<p class="waypoint-card__description">${esc(h.description)}</p>` : ''}
+          ${h.editable && trusted.length ? `<p class="profile-hub-trusted"><i class="bi bi-people"></i> ${trusted.map(esc).join(', ')}</p>` : ''}
+        </div>
+        ${h.editable ? `<div class="profile-card-foot">${action('bi-pencil', 'Edit', `data-edit-hub="${esc(h.id)}"`)}</div>` : ''}
+      </article>`;
+  }
+
+  // ── Market: bank, mailbox and the player's own listings ────────────────────
+
+  function currencyName(n) {
+    const name = (profile.market || {}).currencyName || 'Diamond';
+    return n === 1 ? name : name + 's';
+  }
+  function coin(cls) {
+    const url = (profile.market || {}).currencyIconUrl;
+    return url ? `<img class="${cls}" src="${esc(url)}" alt="" loading="lazy">` : '';
+  }
+
+  function marketTab() {
     const inbox = profile.marketInbox || { currency: 0, parcels: [] };
-    const market = profile.market || {};
-    const currency = market.currencyName || 'Diamond';
-    const coin = market.currencyIconUrl ? `<img class="profile-market-card__icon" src="${esc(market.currencyIconUrl)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-coin"></i></span>';
-    const count = (inbox.currency > 0 ? 1 : 0) + (inbox.parcels || []).length + (inbox.orders || []).length;
-    const summaryHtml = `<span class="profile-group__title"><i class="bi bi-mailbox"></i> Market Inbox</span><span class="profile-count-badge">${count}</span>`;
-    const cards = [];
-    // The bank (updated live below when the market can be reached).
-    const balance = Number(inbox.balance || 0);
-    cards.push(`<article class="profile-market-card">${coin}<div class="profile-market-card__body"><h3 id="profile-bank-balance">${balance.toLocaleString()} ${esc(balance === 1 ? currency : currency + 's')}</h3>
-      <p class="profile-market-card__extra">In your bank · <a href="/market/">spend it on the market</a></p></div></article>`);
-    for (const o of inbox.orders || []) {
-      cards.push(`<article class="profile-market-card"><span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-bag-check"></i></span>
-        <div class="profile-market-card__body"><h3>${o.times > 1 ? `${Number(o.times)} × ` : ''}${esc(o.name)}</h3><p class="profile-market-card__extra">Bought on the website · claim it in game</p></div></article>`);
-    }
-    if (inbox.currency > 0) {
-      cards.push(`<article class="profile-market-card">${coin}<div class="profile-market-card__body"><h3>${Number(inbox.currency).toLocaleString()} ${esc(inbox.currency === 1 ? currency : currency + 's')}</h3>
-        <p class="profile-market-card__extra">Earnings from sales</p></div></article>`);
-    }
-    for (const p of inbox.parcels || []) {
-      cards.push(`<article class="profile-market-card">${p.iconUrl ? `<img class="profile-market-card__icon" src="${esc(p.iconUrl)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-box"></i></span>'}
-        <div class="profile-market-card__body"><h3>${esc(p.name)} <span class="profile-market-card__amount">×${Number(p.amount).toLocaleString()}</span></h3></div></article>`);
-    }
-    const bodyHtml = `<p class="profile-empty-note">${cards.length > 1 ? 'Collect it with /market → Mailbox in game. ' : ''}Deposit and withdraw with /market → Bank; sales are paid into the bank.</p>
-      <div class="profile-market-grid">${cards.join('')}</div>`;
-    return group('inbox', summaryHtml, bodyHtml, false);
+    const balance = Number(bankBalance ?? inbox.balance ?? 0);
+    const waiting = [];
+    for (const o of inbox.orders || []) waiting.push(`<li><i class="bi bi-bag-check"></i>${o.times > 1 ? `${Number(o.times)} × ` : ''}${esc(o.name)}<small>bought on the website</small></li>`);
+    if (inbox.currency > 0) waiting.push(`<li>${coin('profile-coin')}${plural(Number(inbox.currency), currencyName(1), currencyName(2))}<small>earnings from sales</small></li>`);
+    for (const p of inbox.parcels || []) waiting.push(`<li>${p.iconUrl ? `<img class="profile-coin" src="${esc(p.iconUrl)}" alt="" loading="lazy">` : '<i class="bi bi-box"></i>'}${esc(p.name)} <span class="profile-muted">×${Number(p.amount).toLocaleString()}</span></li>`);
+    const bank = `
+      <div class="profile-bank">
+        <div class="profile-bank__balance">${coin('profile-bank__coin')}<div><b>${balance.toLocaleString()}</b><span>${currencyName(balance)} in your bank</span></div></div>
+        <p class="profile-bank__hint">Deposit and withdraw with <b>/market → Bank</b> in game; sales are paid into the bank. <a href="/market/">Spend it on the market <i class="bi bi-arrow-right"></i></a></p>
+        ${waiting.length ? `<div class="profile-bank__mail"><p class="profile-subhead"><i class="bi bi-mailbox"></i> Waiting in your mailbox <span class="profile-muted">· collect with /market → Mailbox</span></p><ul>${waiting.join('')}</ul></div>` : ''}
+      </div>`;
+    const listings = listingsList();
+    const canWithdraw = live && live.running;
+    const aside = liveError ? note(`<i class="bi bi-exclamation-triangle"></i> ${esc(liveError)}`, 'warn')
+      : !live ? note('<i class="bi bi-arrow-repeat"></i> Loading…')
+        : !live.running ? note('<i class="bi bi-power"></i> Server offline · listings can be taken back while it runs', 'warn') : '';
+    const cards = listings.length
+      ? `<div class="profile-market-grid profile-listing-grid">${listings.map((l) => listingCard(l, canWithdraw)).join('')}</div>`
+      : '<p class="profile-empty-note">Nothing for sale right now. Type <b>/market</b> in game to sell something.</p>';
+    return panel('bank', 'bi-bank', 'Bank & mailbox', null, null, bank) + panel('listings', 'bi-shop', 'Your listings', listings.length, aside, cards);
   }
 
-  // ── Group: Pets ────────────────────────────────────────────────────────────
+  function listingCard(l, canWithdraw) {
+    const days = Math.max(0, Math.ceil((Number(l.expires) - Date.now()) / 86400000));
+    const per = Number(l.per || 1);
+    const icon = l.iconUrl ? `<img class="profile-market-card__icon" src="${esc(l.iconUrl)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-box"></i></span>';
+    return `
+      <article class="profile-listing">
+        <div class="profile-listing__top">${icon}<div class="profile-listing__title"><h3>${mcHtml(l.name)}</h3><p>×${Number(l.amount).toLocaleString()} · ${days === 1 ? '1 day' : `${days} days`} left</p></div></div>
+        <div class="profile-listing__foot">
+          <span class="profile-price">${coin('profile-coin')}<b>${Number(l.price).toLocaleString()}</b><small>${per > 1 ? `per ${per.toLocaleString()}` : 'each'}</small></span>
+          ${canWithdraw && l.id ? action('bi-box-arrow-in-down', 'Take back', `data-withdraw="${esc(l.id)}" data-name="${esc(mcPlain(l.name))}" data-amount="${Number(l.amount)}"`) : ''}
+        </div>
+      </article>`;
+  }
 
-  function petsGroup() {
+  // ── Pets, statistics, advancements ─────────────────────────────────────────
+
+  function petsTab() {
     const pets = profile.pets || [];
-    const summaryHtml = `<span class="profile-group__title"><i class="bi bi-emoji-smile"></i> Pets</span><span class="profile-count-badge">${pets.length}</span>`;
-    const bodyHtml = pets.length
+    const body = pets.length
       ? `<div class="profile-market-grid">${pets.map((p) => `<article class="profile-market-card">
           ${p.icon ? `<img class="profile-market-card__icon profile-pet-head" src="${esc(p.icon)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-emoji-smile"></i></span>'}
           <div class="profile-market-card__body"><h3>${p.nickname ? `<span${p.nameColor ? ` style="color:${esc(p.nameColor)}"` : ''}>${esc(p.nickname)}</span> <span class="profile-pet-kind">(${esc(p.name)})</span>` : esc(p.name)}${p.active ? ' <span class="profile-access-badge profile-access-badge--public">Out</span>' : ''}</h3>
             ${p.level != null ? `<p class="profile-market-card__extra">Bond level ${Number(p.level)}</p>` : ''}
             ${(p.perks || []).length ? `<p class="profile-pet-perks">${p.perks.map((k) => `<span class="profile-pet-perk${k.unlocked ? '' : ' is-locked'}" title="${esc(k.description + (k.unlocked ? '' : ` (unlocks at bond level ${k.level})`))}">${k.unlocked ? '' : '<i class="bi bi-lock"></i> '}${esc(k.label)}</span>`).join('')}</p>` : ''}
             ${p.since ? `<p class="profile-market-card__extra">Since ${esc(new Date(p.since).toLocaleDateString(undefined, { dateStyle: 'medium' }))}</p>` : ''}</div></article>`).join('')}</div>`
-      : '<p class="profile-empty-note">No pets yet. Get one in the Server shop of /market in game.</p>';
-    return group('pets', summaryHtml, bodyHtml, false);
+      : '<p class="profile-empty-note">No pets yet. Get one in the Server shop of <b>/market</b> in game.</p>';
+    return panel('pets', 'bi-emoji-smile', 'Pets', pets.length, null, body);
   }
 
-  // ── Group 4: Last Grave (badge and item classes in profile.css) ─────────
-
-  function graveGroup() {
-    const summaryHtml = `<span class="profile-group__title"><i class="bi bi-flower1"></i> Last Grave</span>`;
-    const grave = profile.lastGrave;
-    if (!grave) {
-      return group('grave', summaryHtml, '<p class="profile-empty-note">No grave on record.</p>', false);
-    }
-
-    const badges = [
-      grave.removed
-        ? '<span class="profile-grave-badge profile-grave-badge--muted"><i class="bi bi-check-circle"></i> Cleared</span>'
-        : '<span class="profile-grave-badge profile-grave-badge--warn"><i class="bi bi-exclamation-circle"></i> Still standing</span>',
-    ];
-    if (grave.openedBy === 'expired') {
-      badges.push('<span class="profile-grave-badge profile-grave-badge--warn"><i class="bi bi-hourglass-split"></i> Expired unopened</span>');
-    } else if (grave.openedBy) {
-      badges.push(`<span class="profile-grave-badge"><i class="bi bi-door-open"></i> Opened by ${esc(grave.openedBy)}</span>`);
-    }
-
-    const itemHtml = (item) => {
-      const icon = item.isHead ? 'bi-person-bounding-box' : (item.enchantments.length ? 'bi-stars' : 'bi-box-seam');
-      const tip = item.enchantments.length ? ` title="${esc(item.enchantments.join(', '))}"` : '';
-      return `
-        <div class="profile-grave-item${item.enchantments.length ? ' profile-grave-item--enchanted' : ''}"${tip}>
-          <i class="bi ${icon}"></i>
-          <span class="profile-grave-item__name">${esc(item.displayName)}</span>
-          <span class="profile-grave-item__count">×${item.count}</span>
-        </div>
-      `;
-    };
-
-    const bodyHtml = `
-      <p class="waypoint-card__coords"><i class="bi bi-geo-alt-fill"></i> ${grave.x}, ${grave.y}, ${grave.z} · ${esc(grave.dimension)}</p>
-      <div class="profile-grave-grave-badges">${badges.join('')}</div>
-      ${grave.contents.length
-        ? `<div class="profile-grave-item-grid">${grave.contents.map(itemHtml).join('')}</div>`
-        : '<p class="profile-empty-note">Grave is empty.</p>'}
-    `;
-    return group('grave', summaryHtml, bodyHtml, false);
-  }
-
-  // ── Group 5: All Statistics ───────────────────────────────────────────────
-
-  function statsDetailGroup() {
-    const summaryHtml = `<span class="profile-group__title"><i class="bi bi-bar-chart-fill"></i> All Statistics</span>`;
-    const bodyHtml = profile.statsDetailed.length
-      ? profile.statsDetailed.map((cat) => `
-          <details class="profile-detail-section">
+  function statsTab() {
+    const list = profile.statsDetailed || [];
+    const body = list.length
+      ? list.map((cat, i) => `
+          <details class="profile-detail-section"${i === 0 ? ' open' : ''}>
             <summary class="profile-detail-section__title">${esc(cat.category)} <span class="profile-count-badge">${cat.items.length}</span> <i class="bi bi-chevron-down profile-detail-section__arrow"></i></summary>
-            <div class="profile-stat-rows">
-              ${cat.items.map((item) => `
-                <div class="profile-stat-row">
-                  <span>${esc(item.label)}</span>
-                  <span class="profile-stat-row__value">${esc(item.value)}</span>
-                </div>
-              `).join('')}
-            </div>
-          </details>
-        `).join('')
+            <div class="profile-stat-rows">${cat.items.map((item) => `<div class="profile-stat-row"><span>${esc(item.label)}</span><span class="profile-stat-row__value">${esc(item.value)}</span></div>`).join('')}</div>
+          </details>`).join('')
       : '<p class="profile-empty-note">No stats recorded yet.</p>';
-    return group('stats-detail', summaryHtml, bodyHtml, false);
+    return panel('stats', 'bi-bar-chart-fill', 'All statistics', null, null, body);
   }
 
-  // ── Group 5: All Advancements ─────────────────────────────────────────────
-
-  function advancementsDetailGroup() {
-    const totalDone = profile.advancementsDetailed.reduce((sum, g) => sum + g.doneCount, 0);
-    const totalItems = profile.advancementsDetailed.reduce((sum, g) => sum + g.items.length, 0);
-    const summaryHtml = `<span class="profile-group__title"><i class="bi bi-trophy-fill"></i> All Advancements</span><span class="profile-count-badge">${totalDone}/${totalItems}</span>`;
-    const bodyHtml = profile.advancementsDetailed.length
-      ? profile.advancementsDetailed.map((cat) => `
+  function advancementsTab() {
+    const list = profile.advancementsDetailed || [];
+    const done = list.reduce((sum, g) => sum + g.doneCount, 0);
+    const all = list.reduce((sum, g) => sum + g.items.length, 0);
+    const body = list.length
+      ? list.map((cat) => `
           <div class="profile-detail-section">
             <h3 class="profile-detail-section__title">${esc(cat.category)} <span class="profile-count-badge">${cat.doneCount}/${cat.items.length}</span></h3>
-            <div class="profile-advancement-list">
-              ${cat.items.map((item) => `
-                <div class="profile-advancement-row ${item.done ? 'is-done' : 'is-pending'}"${item.description ? ` data-tooltip="${esc(item.description)}"` : ''}>
-                  <i class="bi ${item.done ? 'bi-check-circle-fill' : 'bi-circle'}"></i>
-                  <span>${esc(item.label)}</span>
-                </div>
-              `).join('')}
+            <div class="profile-advancement-list">${cat.items.map((item) => `
+              <div class="profile-advancement-row ${item.done ? 'is-done' : 'is-pending'}"${item.description ? ` data-tooltip="${esc(item.description)}"` : ''}>
+                <i class="bi ${item.done ? 'bi-check-circle-fill' : 'bi-circle'}"></i><span>${esc(item.label)}</span></div>`).join('')}
             </div>
-          </div>
-        `).join('')
+          </div>`).join('')
       : '<p class="profile-empty-note">No advancements recorded yet.</p>';
-    return group('advancements-detail', summaryHtml, bodyHtml, false);
+    return panel('advancements', 'bi-trophy-fill', 'All advancements', all ? `${done}/${all}` : null, null, body);
   }
 
-  root.innerHTML = [
-    playerGroup(),
-    waypointsGroup(),
-    claimsGroup(),
-    marketGroup(),
-    inboxGroup(),
-    petsGroup(),
-    graveGroup(),
-    statsDetailGroup(),
-    advancementsDetailGroup(),
-  ].join('');
+  const RENDER = { overview: overviewTab, claims: claimsTab, waypoints: waypointsTab, market: marketTab, pets: petsTab, stats: statsTab, advancements: advancementsTab };
 
+  function renderTabs() {
+    document.getElementById('profile-tabbar').innerHTML = tabBar();
+    document.getElementById('profile-tab').innerHTML = RENDER[activeTab]();
+  }
+
+  function selectTab(tab) {
+    if (!RENDER[tab]) return;
+    activeTab = tab;
+    history.replaceState(null, '', tab === 'overview' ? location.pathname : `#${tab}`);
+    renderTabs();
+  }
+
+  root.innerHTML = `${hero()}<div id="profile-tabbar"></div><div class="profile-tab-panel" id="profile-tab" role="tabpanel"></div>`;
+  renderTabs();
   animateProfileSkin();
+
+  root.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-tab]');
+    if (t) {
+      selectTab(t.dataset.tab);
+      if (t.classList.contains('profile-shortcut')) document.getElementById('profile-tabbar').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    const claim = e.target.closest('[data-edit-claim]');
+    if (claim) return editClaim(claim.dataset.editClaim);
+    const hub = e.target.closest('[data-edit-hub]');
+    if (hub) return editHub(hub.dataset.editHub);
+    const w = e.target.closest('[data-withdraw]');
+    if (w) return withdraw(w.dataset.withdraw, w.dataset.name, Number(w.dataset.amount));
+  });
+  window.addEventListener('hashchange', () => {
+    const tab = location.hash.slice(1) || 'overview';
+    if (tab !== activeTab && RENDER[tab]) {
+      activeTab = tab;
+      renderTabs();
+    }
+  });
 
   // The bank right now (the profile itself is copied once an hour).
   fetch('/api/market-account.php', { cache: 'no-store' }).then((r) => r.json()).then((json) => {
     const a = (json.accounts || []).find((x) => x.uuid === profile.uuid);
-    const el = document.getElementById('profile-bank-balance');
-    if (!a || !el || a.balance == null) return;
-    const currency = (profile.market || {}).currencyName || 'Diamond';
-    el.textContent = `${Number(a.balance).toLocaleString()} ${Number(a.balance) === 1 ? currency : currency + 's'}`;
+    if (!a || a.balance == null) return;
+    bankBalance = Number(a.balance);
+    if (activeTab === 'market') renderTabs();
   }).catch(() => {});
 
-  // ── Advancement description tooltip (mirrors the shared floating-tooltip
-  // pattern already used by structures.js, styled the same way) ──────────────
+  loadLive();
+
+  // ── Dialogs: one of the site's glass cards over the page ───────────────────
+
+  /**
+   * Opens a dialog with the given body; onSave runs on the primary button and closes the dialog unless it
+   * throws (its message shows in the dialog). Returns a promise that settles when the dialog closes.
+   */
+  function dialog({ icon, title, body, save = 'Save', saveIcon = 'bi-check2', danger = false, onOpen, onSave }) {
+    const dlg = document.createElement('dialog');
+    dlg.className = 'profile-dialog';
+    dlg.innerHTML = `<form method="dialog" novalidate>
+      <header class="profile-dialog__head"><span class="profile-panel__icon"><i class="bi ${icon}" aria-hidden="true"></i></span><h3>${title}</h3>
+        <button type="button" class="profile-dialog__x" value="close" aria-label="Close"><i class="bi bi-x-lg"></i></button></header>
+      <div class="profile-dialog__body">${body}</div>
+      <p class="profile-dialog__msg" role="alert" hidden></p>
+      <footer class="profile-dialog__foot">
+        <button type="button" class="profile-btn" data-close>Cancel</button>
+        <button type="submit" class="profile-btn profile-btn--primary${danger ? ' profile-btn--danger' : ''}"><span class="profile-action__icon"><i class="bi ${saveIcon}" aria-hidden="true"></i></span>${save}</button>
+      </footer></form>`;
+    document.body.appendChild(dlg);
+    const msg = dlg.querySelector('.profile-dialog__msg');
+    const showMsg = (text, ok) => { msg.hidden = !text; msg.textContent = text || ''; msg.classList.toggle('is-ok', !!ok); };
+    return new Promise((resolve) => {
+      dlg.addEventListener('close', () => { dlg.remove(); resolve(); });
+      dlg.querySelectorAll('[data-close], .profile-dialog__x').forEach((b) => b.addEventListener('click', () => dlg.close()));
+      dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+      dlg.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = dlg.querySelector('[type="submit"]');
+        btn.disabled = true;
+        showMsg('');
+        try {
+          await onSave(dlg);
+          dlg.close();
+        } catch (err) {
+          showMsg(err.message);
+        } finally {
+          btn.disabled = false;
+        }
+      });
+      dlg.showModal();
+      if (onOpen) onOpen(dlg, showMsg);
+    });
+  }
+
+  function swatches(name, colors, current) {
+    return `<div class="profile-swatches" role="radiogroup">${Object.entries(colors).map(([label, hex]) => `
+      <label class="profile-swatch" title="${esc(label.replace(/_/g, ' '))}"><input type="radio" name="${name}" value="${esc(label)}" data-hex="${esc(hex)}"${current === label ? ' checked' : ''}>
+        <span style="--swatch:${esc(hex)}"></span></label>`).join('')}</div>`;
+  }
+
+  function toggle(name, label, checked, hint) {
+    return `<label class="profile-toggle"><span><b>${esc(label)}</b>${hint ? `<small>${esc(hint)}</small>` : ''}</span>
+      <input type="checkbox" name="${esc(name)}"${checked ? ' checked' : ''}><span class="profile-toggle__switch" aria-hidden="true"></span></label>`;
+  }
+
+  // ── Editing a claim ─────────────────────────────────────────────────────────
+
+  function editClaim(id) {
+    const find = () => (live?.claims || []).find((c) => c.id === id);
+    const c = find();
+    if (!c) return;
+    // Colours by name, the one the claim has picked (or none when it's a colour off the list).
+    const colors = live.claimColors || {};
+    const currentColor = Object.keys(colors).find((k) => String(colors[k]).toLowerCase() === String(c.color).toLowerCase()) || null;
+    const roleOptions = (current, owner) => (live.roles || []).map((r) => `<option value="${r.id}"${r.id === current ? ' selected' : ''}${r.id === 'MANAGE' && !owner ? ' disabled' : ''}>${esc(r.label)}</option>`).join('');
+    const memberRows = (claim) => {
+      const rows = (claim.members || []).map((m) => {
+        const locked = m.role === 'MANAGE' && !claim.isOwner;
+        return `<div class="profile-member-row" data-member="${esc(m.uuid)}">
+          <img src="https://mc-heads.net/avatar/${encodeURIComponent(m.uuid)}/24" alt="" loading="lazy"><b>${esc(m.name)}</b>
+          <select data-role aria-label="Role of ${esc(m.name)}"${locked ? ' disabled title="Only the owner can change co-owners"' : ''}>${roleOptions(m.role, claim.isOwner)}</select>
+          <button type="button" class="profile-icon-btn" data-remove aria-label="Remove ${esc(m.name)}"${locked ? ' disabled' : ''}><i class="bi bi-x-lg"></i></button></div>`;
+      }).join('');
+      return rows || '<p class="profile-muted profile-member-empty">No members yet.</p>';
+    };
+    const body = `
+      <label class="profile-field"><span>Name</span><input type="text" name="name" maxlength="32" value="${esc(c.name)}" placeholder="${esc(c.displayName)}"></label>
+      ${Object.keys(colors).length ? `<div class="profile-field"><span>Colour</span>${swatches('color', colors, currentColor)}</div>` : ''}
+      <div class="profile-field"><span>Rules for everyone else</span><div class="profile-toggles">${(live.flags || []).map((f) => toggle(`flag:${f.id}`, f.label, c.flags && c.flags[f.id])).join('')}</div></div>
+      <div class="profile-field"><span>Members <small class="profile-muted">· saved as you change them</small></span>
+        <div class="profile-members" data-members>${memberRows(c)}</div>
+        <div class="profile-member-add"><input type="text" data-add-name maxlength="16" placeholder="Player name" autocomplete="off">
+          <select data-add-role aria-label="Role">${roleOptions('BUILD', c.isOwner)}</select>
+          <button type="button" class="profile-btn" data-add><i class="bi bi-person-plus"></i> Add</button></div>
+        <details class="profile-roles-help"><summary>What the roles may do</summary><ul>${(live.roles || []).map((r) => `<li><b>${esc(r.label)}</b> ${esc(r.description.toLowerCase())}</li>`).join('')}</ul></details>
+      </div>`;
+    return dialog({
+      icon: 'bi-shield-lock', title: `Edit ${esc(c.displayName)}`, body,
+      onOpen(dlg, showMsg) {
+        const box = dlg.querySelector('[data-members]');
+        const refresh = (claims) => {
+          live.claims = claims;
+          const now = find();
+          if (now) box.innerHTML = memberRows(now);
+          renderTabs();
+        };
+        const member = async (bodyFields, okText) => {
+          showMsg('');
+          try {
+            const res = await send({ kind: 'claim', claim: id, ...bodyFields });
+            refresh(res.claims || live.claims);
+            showMsg(okText, true);
+          } catch (err) {
+            showMsg(err.message);
+          }
+        };
+        dlg.querySelector('[data-add]').addEventListener('click', () => {
+          const name = dlg.querySelector('[data-add-name]').value.trim();
+          if (!name) return showMsg('Type a player name.');
+          member({ action: 'member_set', playerName: name, role: dlg.querySelector('[data-add-role]').value }, `${name} was added.`)
+            .then(() => { dlg.querySelector('[data-add-name]').value = ''; });
+        });
+        box.addEventListener('change', (e) => {
+          const row = e.target.closest('[data-member]');
+          if (row && e.target.matches('[data-role]')) member({ action: 'member_set', uuid_member: row.dataset.member, role: e.target.value }, 'Role changed.');
+        });
+        box.addEventListener('click', (e) => {
+          const row = e.target.closest('[data-member]');
+          if (row && e.target.closest('[data-remove]')) member({ action: 'member_remove', uuid_member: row.dataset.member }, 'Member removed.');
+        });
+      },
+      async onSave(dlg) {
+        const form = dlg.querySelector('form');
+        const flags = {};
+        (live.flags || []).forEach((f) => { flags[f.id] = form.elements[`flag:${f.id}`].checked; });
+        const picked = form.querySelector('input[name="color"]:checked');
+        const body = { kind: 'claim', claim: id, action: 'update', name: form.elements.name.value.trim(), flags };
+        if (picked) body.color = picked.dataset.hex;
+        const res = await send(body);
+        live.claims = res.claims || live.claims;
+        renderTabs();
+      },
+    });
+  }
+
+  // ── Editing a waypoint hub ──────────────────────────────────────────────────
+
+  function editHub(id) {
+    const h = hubsList().find((x) => String(x.id) === String(id));
+    if (!h) return;
+    const max = live.hubMaxText || 50;
+    let trusted = [...(h.trusted || [])];
+    const chips = () => trusted.length
+      ? trusted.map((n) => `<span class="profile-chip">${esc(n)}<button type="button" data-untrust="${esc(n)}" aria-label="Remove ${esc(n)}"><i class="bi bi-x"></i></button></span>`).join('')
+      : '<span class="profile-muted">Nobody yet. Public hubs are open to everyone anyway.</span>';
+    const body = `
+      <label class="profile-field"><span>Name</span><input type="text" name="name" maxlength="${max}" value="${esc(h.name)}" required></label>
+      <label class="profile-field"><span>Description <small class="profile-muted">· optional</small></span><input type="text" name="description" maxlength="${max}" value="${esc(h.description || '')}"></label>
+      <div class="profile-field"><span>Colour of the floating name</span>${swatches('color', live.hubColors || {}, h.color)}</div>
+      <div class="profile-field">${toggle('public', 'Public', h.public, 'Shows in everyone\'s waypoint list; private hubs only for you and trusted players')}</div>
+      <div class="profile-field"><span>Trusted players</span><div class="profile-chips" data-chips>${chips()}</div>
+        <div class="profile-member-add"><input type="text" data-trust-name maxlength="16" placeholder="Player name" autocomplete="off"><button type="button" class="profile-btn" data-trust><i class="bi bi-person-plus"></i> Add</button></div></div>`;
+    return dialog({
+      icon: 'bi-signpost-split', title: `Edit ${esc(h.name)}`, body,
+      onOpen(dlg) {
+        const box = dlg.querySelector('[data-chips]');
+        const add = () => {
+          const input = dlg.querySelector('[data-trust-name]');
+          const name = input.value.trim();
+          if (name && !trusted.some((t) => t.toLowerCase() === name.toLowerCase())) trusted.push(name);
+          input.value = '';
+          box.innerHTML = chips();
+        };
+        dlg.querySelector('[data-trust]').addEventListener('click', add);
+        dlg.querySelector('[data-trust-name]').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); add(); } });
+        box.addEventListener('click', (e) => {
+          const b = e.target.closest('[data-untrust]');
+          if (!b) return;
+          trusted = trusted.filter((t) => t !== b.dataset.untrust);
+          box.innerHTML = chips();
+        });
+      },
+      async onSave(dlg) {
+        const form = dlg.querySelector('form');
+        const name = form.elements.name.value.trim();
+        if (!name) throw new Error('Give the hub a name.');
+        const picked = form.querySelector('input[name="color"]:checked');
+        await send({ kind: 'hub', id: h.id, name, description: form.elements.description.value.trim(), public: form.elements.public.checked,
+          trusted, ...(picked ? { color: picked.value } : {}) });
+        await loadLive();
+      },
+    });
+  }
+
+  // ── Taking a listing back ──────────────────────────────────────────────────
+
+  function withdraw(id, name, amount) {
+    return dialog({
+      icon: 'bi-box-arrow-in-down', title: 'Take back a listing', save: 'Take back', saveIcon: 'bi-box-arrow-in-down',
+      body: `<p class="profile-dialog__text">Take <b>${Number(amount).toLocaleString()} × ${esc(name)}</b> off the market? The items go to your mailbox; collect them with <b>/market → Mailbox</b> in game.</p>`,
+      async onSave() {
+        const res = await send({ kind: 'withdraw', id });
+        await loadLive();
+        flash('listings', res.message || 'Taken back.');
+      },
+    });
+  }
+
+  function flash(panelId, text) {
+    const head = document.querySelector(`#profile-panel-${panelId} .profile-panel__head`);
+    if (!head) return;
+    const el = document.createElement('span');
+    el.className = 'profile-note profile-note--ok profile-flash';
+    el.innerHTML = `<i class="bi bi-check2-circle"></i> ${esc(text)}`;
+    head.appendChild(el);
+    setTimeout(() => el.remove(), 6000);
+  }
+
+  // ── Advancement description tooltip ────────────────────────────────────────
 
   const tooltip = document.createElement('div');
   tooltip.className = 'profile-tooltip';
@@ -439,7 +726,6 @@
     tooltip.hidden = false;
     positionTooltip(row);
   });
-
   root.addEventListener('mouseout', (ev) => {
     if (ev.target.closest('.profile-advancement-row[data-tooltip]')) tooltip.hidden = true;
   });
