@@ -4,6 +4,10 @@
 #market-clear:hover { background:rgba(255,255,255,.18); }
 .market-tools .filter-chip i { color: var(--accent); }
 
+/* Wider than the other pages, so big screens fit more cards in a row. */
+.page-shell.market-shell { width: min(2100px, calc(100% - 28px)); }
+@media (max-width: 680px) { .page-shell.market-shell { width: calc(100% - 18px); } }
+
 /* The market page has no status card between the banner and what follows. */
 .market-shell .statistics-subtitle { margin-top: 18px; }
 .market-shell .statistics-subtitle[hidden] { display: none; }
