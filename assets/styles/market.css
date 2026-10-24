@@ -32,9 +32,86 @@
 .market-bank__bought { color: #8fc7ff; }
 .market-bank__sold { color: #9dffbf; }
 
-.market-buy { display: flex; align-items: center; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+/* Listing cards on the market page: a soft accent edge, the item in an inventory-style slot, a lift on hover. */
+.market-shell .profile-market-card {
+  position: relative; align-items: stretch; overflow: hidden;
+  border-color: rgba(182,200,255,.14);
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(182,200,255,.10), transparent 55%),
+    linear-gradient(135deg, rgba(14,17,30,.78), rgba(4,6,12,.78));
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.market-shell .profile-market-card::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(182,200,255,.55), transparent);
+}
+.market-shell .profile-market-card:hover {
+  transform: translateY(-2px); border-color: rgba(182,200,255,.32);
+  box-shadow: 0 16px 34px rgba(0,0,0,.36), 0 0 0 1px rgba(182,200,255,.08), 0 0 26px rgba(130,160,255,.14), inset 0 1px 0 rgba(255,255,255,.09);
+}
+.market-shell .profile-market-card > .profile-market-card__icon {
+  align-self: flex-start; width: 56px; height: 56px; padding: 8px; border-radius: 14px;
+  background: linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,.45), inset 0 -1px 0 rgba(255,255,255,.05);
+}
+.market-shell .profile-market-card__body { display: flex; flex-direction: column; flex: 1; }
+.market-shell .profile-market-card__price {
+  align-self: flex-start; margin-top: 8px; padding: 4px 10px 4px 8px; border-radius: 999px; font-size: 13px;
+  background: rgba(182,200,255,.10); border: 1px solid rgba(182,200,255,.18);
+}
+.market-card__meta { display: flex; align-items: center; gap: 5px; margin: 6px 0 0; color: rgba(239,247,255,.55); font-size: 12px; font-weight: 600; }
+
+/* Buy row sits at the bottom of the card, so buttons line up across a row of cards. */
+.market-buy { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 12px; flex-wrap: wrap; }
 .market-buy__amount { display: inline-flex; align-items: center; gap: 6px; color: rgba(239,247,255,.55); font-size: 12px; }
-.market-buy__amount input { width: 64px; background: rgba(255,255,255,.06); color: #fff; border: 1px solid rgba(255,255,255,.14); border-radius: 10px; padding: 5px 8px; }
-.market-buy__btn { display: inline-flex; align-items: center; gap: 6px; border: 0; border-radius: 999px; padding: 6px 14px; cursor: pointer; font-weight: 800; color: #08110b; background: var(--accent); }
-.market-buy__btn:disabled { cursor: not-allowed; opacity: .45; }
-.market-buy__note { margin: 6px 0 0; color: rgba(239,247,255,.5); font-size: 12px; font-weight: 600; }
+.market-buy__amount input {
+  width: 68px; background: rgba(255,255,255,.06); color: #fff; border: 1px solid rgba(255,255,255,.14); border-radius: 999px;
+  padding: 7px 12px; font-weight: 700; font-variant-numeric: tabular-nums; transition: border-color .15s ease, box-shadow .15s ease;
+}
+.market-buy__amount input:focus { outline: none; border-color: rgba(182,200,255,.6); box-shadow: 0 0 0 3px rgba(182,200,255,.18); }
+.market-buy__btn {
+  position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 8px 18px; cursor: pointer;
+  font-weight: 900; letter-spacing: .02em; color: #0a1020;
+  background: linear-gradient(180deg, #dbe4ff 0%, #b6c8ff 55%, #94aaf5 100%);
+  box-shadow: 0 6px 18px rgba(120,150,255,.30), inset 0 1px 0 rgba(255,255,255,.75), inset 0 -2px 0 rgba(40,60,140,.25);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.market-buy__btn::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%; pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.65), transparent); transform: skewX(-20deg);
+}
+.market-buy__btn:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 10px 24px rgba(120,150,255,.42), inset 0 1px 0 rgba(255,255,255,.8), inset 0 -2px 0 rgba(40,60,140,.25); }
+.market-buy__btn:hover:not(:disabled)::after { left: 120%; transition: left .6s ease; }
+.market-buy__btn:active:not(:disabled) { transform: translateY(1px); box-shadow: 0 3px 10px rgba(120,150,255,.3), inset 0 2px 4px rgba(40,60,140,.3); }
+.market-buy__btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.market-buy__btn:disabled { cursor: not-allowed; opacity: .5; filter: grayscale(.6); box-shadow: none; }
+.market-buy__note {
+  align-self: flex-start; margin: auto 0 0; padding: 5px 10px; border-radius: 999px; color: rgba(239,247,255,.6); font-size: 12px; font-weight: 700;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+}
+.market-buy + .market-buy__note, .profile-market-card__body > .market-buy__note { margin-top: 12px; }
+
+/* The confirmation before buying. */
+.market-confirm {
+  max-width: min(420px, calc(100vw - 32px)); padding: 22px 24px; border-radius: 18px; color: #f7fbff;
+  border: 1px solid rgba(182,200,255,.22);
+  background: radial-gradient(120% 90% at 0% 0%, rgba(182,200,255,.12), transparent 55%), linear-gradient(135deg, #111527, #05070d);
+  box-shadow: 0 24px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.market-confirm::backdrop { background: rgba(3,5,10,.6); backdrop-filter: blur(3px); }
+.market-confirm__text { margin: 0 0 18px; font-size: 15px; line-height: 1.5; color: rgba(239,247,255,.82); }
+.market-confirm__text b { color: #fff; font-weight: 900; }
+.market-confirm__actions { display: flex; justify-content: flex-end; gap: 10px; }
+.market-confirm__cancel {
+  border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 8px 16px; cursor: pointer; font-weight: 700;
+  color: rgba(239,247,255,.8); background: rgba(255,255,255,.06);
+}
+.market-confirm__cancel:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  .market-shell .profile-market-card, .market-buy__btn { transition: none; }
+  .market-shell .profile-market-card:hover, .market-buy__btn:hover:not(:disabled) { transform: none; }
+  .market-buy__btn:hover:not(:disabled)::after { transition: none; left: -60%; }
+}

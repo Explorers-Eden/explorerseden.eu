@@ -127,10 +127,13 @@ function csrf_token(): string {
 function require_csrf(): void {
   $user = current_user();
   $uid = $user['id'] ?? 'anon';
-  $day = gmdate('Y-m-d');
-  $expected = sign("csrf:{$uid}:{$day}");
   $provided = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? ($_POST['csrf_token'] ?? '');
-  if (!$provided || !hash_equals($expected, $provided)) {
+  // Tokens are per UTC day; yesterday's still counts, so a page left open over midnight (UTC) keeps working.
+  $ok = false;
+  foreach ([gmdate('Y-m-d'), gmdate('Y-m-d', time() - 86400)] as $day) {
+    if ($provided && hash_equals(sign("csrf:{$uid}:{$day}"), $provided)) $ok = true;
+  }
+  if (!$ok) {
     http_response_code(403);
     header('Content-Type: application/json');
     echo json_encode(['error' => true, 'message' => 'Invalid or missing CSRF token.']);

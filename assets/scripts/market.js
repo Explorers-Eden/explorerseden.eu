@@ -83,6 +83,12 @@
     return (list || []).length ? `<p class="profile-pet-perks">${list.map((k) => `<span class="profile-pet-perk" title="${esc(`${k.description} (unlocks at bond level ${k.level})`)}">${esc(k.label)}</span>`).join('')}</p>` : '';
   }
 
+  /** The small line under the price (seller, time left, limits); the parts come with a leading " · ". */
+  function meta(text) {
+    const t = String(text || '').replace(/^\s*·\s*/, '');
+    return t ? `<p class="market-card__meta">${t}</p>` : '';
+  }
+
   function until(t) {
     return t ? ` · on sale until ${esc(new Date(t).toLocaleDateString(undefined, { dateStyle: 'medium' }))}` : '';
   }
@@ -94,8 +100,8 @@
       <div class="profile-market-card__body">
         <h3>${mcHtml(l.name)} <span class="profile-market-card__amount">×${Number(l.amount).toLocaleString()}</span></h3>
         ${extra.length ? `<p class="profile-market-card__extra">${extra.map(mcHtml).join(' · ')}</p>` : ''}
-        <p class="profile-market-card__price">${price(l.price, l.per)}
-          <span class="profile-market-card__left">· ${esc(l.seller)} · ${days === 1 ? '1 day' : `${days} days`} left</span></p>
+        <p class="profile-market-card__price">${price(l.price, l.per)}</p>
+        ${meta(`<i class="bi bi-person" aria-hidden="true"></i> ${esc(l.seller)} · ${days === 1 ? '1 day' : `${days} days`} left`)}
         ${buyRow(l)}
       </div></article>`;
   }
@@ -187,6 +193,27 @@
     render();
   }
 
+  /** Yes/no before buying, as a dialog of our own (the browser's confirm can't show bold text). */
+  function confirmBuy(html) {
+    let dlg = document.getElementById('market-confirm');
+    if (!dlg) {
+      dlg = document.createElement('dialog');
+      dlg.id = 'market-confirm';
+      dlg.className = 'market-confirm';
+      dlg.innerHTML = `<form method="dialog"><p class="market-confirm__text"></p><div class="market-confirm__actions">
+        <button value="no" class="market-confirm__cancel">Cancel</button>
+        <button value="yes" class="market-buy__btn"><i class="bi bi-bag-check" aria-hidden="true"></i> Buy</button></div></form>`;
+      document.body.appendChild(dlg);
+    }
+    dlg.querySelector('.market-confirm__text').innerHTML = html;
+    dlg.returnValue = '';
+    return new Promise((resolve) => {
+      dlg.addEventListener('close', () => resolve(dlg.returnValue === 'yes'), { once: true });
+      dlg.showModal();
+      dlg.querySelector('[value="yes"]').focus();
+    });
+  }
+
   async function buy(key) {
     const o = buyables.get(key);
     const a = me();
@@ -196,7 +223,7 @@
     const name = mcPlain(o.name);
     const what = o.kind === 'listing' ? `${(amount * o.per).toLocaleString()} × ${name}` : amount > 1 ? `${amount} × ${name}` : name;
     const total = amount * o.price;
-    if (!window.confirm(`Buy ${what} for ${total.toLocaleString()} ${currencyName(total)} from ${a.name}'s bank?`)) return;
+    if (!await confirmBuy(`Buy <b>${esc(what)}</b> for <b>${total.toLocaleString()} ${esc(currencyName(total))}</b> from ${esc(a.name)}'s bank?`)) return;
     groups.querySelectorAll('[data-buy]').forEach((b) => { b.disabled = true; });
     try {
       const res = await fetch('/api/market-buy.php', {
@@ -237,13 +264,13 @@
       const cards = server.map((o) => `<article class="profile-market-card">${icon(o.icon, 'bi-shop')}
           <div class="profile-market-card__body"><h3>${esc(o.name)}</h3>
             ${o.description ? `<p class="profile-market-card__extra">${esc(o.description)}</p>` : ''}
-            <p class="profile-market-card__price">${price(o.price, 0)}<span class="profile-market-card__left">${o.perPlayer ? ` · up to ${o.perPlayer} per player` : ''}${until(o.until)}</span></p>
+            <p class="profile-market-card__price">${price(o.price, 0)}</p>${meta(`${o.perPlayer ? ` · up to ${o.perPlayer} per player` : ''}${until(o.until)}`)}
             ${buyRow(o)}</div></article>`)
         .concat(pets.map((p) => `<article class="profile-market-card">${icon(p.icon, 'bi-emoji-smile')}
           <div class="profile-market-card__body"><h3>${esc(p.name)} <span class="profile-market-card__amount">Pet</span></h3>
             ${p.description ? `<p class="profile-market-card__extra">${esc(p.description)}</p>` : ''}
             ${perks(p.perks)}
-            <p class="profile-market-card__price">${price(p.price, 0)}<span class="profile-market-card__left">${p.left > 0 ? ` · ${p.left} left` : ''}${until(p.until)}</span></p>
+            <p class="profile-market-card__price">${price(p.price, 0)}</p>${meta(`${p.left > 0 ? ` · ${p.left} left` : ''}${until(p.until)}`)}
             ${buyRow(p)}</div></article>`));
       out.push(group('server', `<span class="profile-group__title"><i class="bi bi-shop-window"></i> From ${esc(data.serverName)}</span><span class="profile-count-badge">${cards.length}</span>`,
         cards.length ? `<div class="profile-market-grid">${cards.join('')}</div>` : '<p class="profile-empty-note">Nothing matches.</p>'));
