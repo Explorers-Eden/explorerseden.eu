@@ -392,7 +392,7 @@
         <div class="profile-listing__top">${icon}<div class="profile-listing__title"><h3>${mcHtml(l.name)}</h3><p>×${Number(l.amount).toLocaleString()} · ${days === 1 ? '1 day' : `${days} days`} left</p></div></div>
         <div class="profile-listing__foot">
           <span class="profile-price">${coin('profile-coin')}<b>${Number(l.price).toLocaleString()}</b><small>${per > 1 ? `per ${per.toLocaleString()}` : 'each'}</small></span>
-          ${canWithdraw && l.id ? action('bi-box-arrow-in-down', 'Take back', `data-withdraw="${esc(l.id)}" data-name="${esc(mcPlain(l.name))}" data-amount="${Number(l.amount)}"`) : ''}
+          ${canWithdraw && l.id ? `<span class="profile-listing__actions">${action('bi-pencil', 'Edit', `data-edit-listing="${esc(l.id)}"`)}${action('bi-box-arrow-in-down', 'Take back', `data-withdraw="${esc(l.id)}" data-name="${esc(mcPlain(l.name))}" data-amount="${Number(l.amount)}"`)}</span>` : ''}
         </div>
       </article>`;
   }
@@ -470,6 +470,8 @@
     if (claim) return editClaim(claim.dataset.editClaim);
     const hub = e.target.closest('[data-edit-hub]');
     if (hub) return editHub(hub.dataset.editHub);
+    const el = e.target.closest('[data-edit-listing]');
+    if (el) return editListing(el.dataset.editListing);
     const w = e.target.closest('[data-withdraw]');
     if (w) return withdraw(w.dataset.withdraw, w.dataset.name, Number(w.dataset.amount));
   });
@@ -671,6 +673,55 @@
         await send({ kind: 'hub', id: h.id, name, description: form.elements.description.value.trim(), public: form.elements.public.checked,
           trusted, ...(picked ? { color: picked.value } : {}) });
         await loadLive();
+      },
+    });
+  }
+
+  // ── Changing a listing ─────────────────────────────────────────────────────
+
+  function editListing(id) {
+    const l = listingsList().find((x) => x.id === id);
+    if (!l) return;
+    const per = Number(l.per || 1);
+    const max = live.maxPrice || 100000;
+    const canAdd = Number(l.canAdd || 0);
+    const most = Number(l.amount) + canAdd;
+    const body = `
+      <div class="profile-dialog__item">${l.iconUrl ? `<img class="profile-listing__icon" src="${esc(l.iconUrl)}" alt="">` : '<span class="profile-listing__icon"><i class="bi bi-box"></i></span>'}<b>${mcHtml(l.name)}</b></div>
+      <div class="profile-field-row">
+        <label class="profile-field"><span>Price ${coin('profile-coin')}</span><input type="number" name="price" min="1" max="${max}" value="${Number(l.price)}" inputmode="numeric"></label>
+        <label class="profile-field"><span>For how many</span><input type="number" name="per" min="1" max="${most}" value="${per}" inputmode="numeric"></label>
+      </div>
+      <label class="profile-field"><span>Amount on the market <small class="profile-muted">· up to ${most.toLocaleString()}${canAdd ? ` (${canAdd.toLocaleString()} more from your mailbox or inventory)` : ''}</small></span>
+        <input type="number" name="amount" min="1" max="${most}" value="${Number(l.amount)}" inputmode="numeric"></label>
+      ${canAdd ? '' : '<p class="profile-muted profile-small">To put more on sale, have the items in your mailbox, or be online with them in your inventory.</p>'}
+      <p class="profile-dialog__text profile-listing-preview" data-preview></p>`;
+    return dialog({
+      icon: 'bi-pencil', title: 'Change listing', body,
+      onOpen(dlg) {
+        const f = dlg.querySelector('form');
+        const preview = () => {
+          const price = Math.max(0, Math.floor(Number(f.elements.price.value) || 0));
+          const p = Math.max(1, Math.floor(Number(f.elements.per.value) || 1));
+          const amount = Math.max(0, Math.floor(Number(f.elements.amount.value) || 0));
+          const spare = Number(l.amount) - amount;
+          const add = -spare;
+          const lots = Math.floor(amount / p);
+          dlg.querySelector('[data-preview]').innerHTML = `Sells in <b>${lots.toLocaleString()} ${lots === 1 ? 'lot' : 'lots'} of ${p.toLocaleString()}</b> for <b>${price.toLocaleString()} ${esc(currencyName(price))}</b> each lot`
+            + (lots ? ` · <b>${(lots * price).toLocaleString()}</b> in all` : '')
+            + (spare > 0 ? `. <b>${spare.toLocaleString()}</b> go back to your mailbox.` : '.')
+            + (add > 0 && add <= canAdd ? ` <b>${add.toLocaleString()}</b> more come from your mailbox or inventory, and the listing runs its full time again.` : '')
+            + (add > canAdd ? ` <span class="profile-warn">You have ${canAdd.toLocaleString()} more to add.</span>` : '')
+            + (amount % p ? ` <span class="profile-warn">The amount has to split into lots of ${p}.</span>` : '');
+        };
+        f.addEventListener('input', preview);
+        preview();
+      },
+      async onSave(dlg) {
+        const f = dlg.querySelector('form');
+        const res = await send({ kind: 'listing', id, price: Math.floor(Number(f.elements.price.value)), per: Math.floor(Number(f.elements.per.value)), amount: Math.floor(Number(f.elements.amount.value)) });
+        await loadLive();
+        flash('listings', res.message || 'Saved.');
       },
     });
   }

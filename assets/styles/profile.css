@@ -989,3 +989,21 @@ details.profile-detail-section > .profile-stat-rows {
   .profile-swatch span, .profile-shortcut__go, .profile-toggle__switch, .profile-toggle__switch::after { transition: none; }
 }
 .profile-panel .waypoint-hub-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+
+.profile-listing__actions { display: inline-flex; gap: 6px; }
+.profile-listing__actions .profile-action { padding-right: 12px; }
+.profile-dialog__item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 16px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); font-size: 15px; }
+.profile-listing__icon { width: 36px; height: 36px; image-rendering: pixelated; display: inline-flex; align-items: center; justify-content: center; color: var(--muted); }
+.profile-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.profile-field input[type="number"] {
+  height: 40px; padding: 0 12px; border-radius: 13px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04);
+  color: #fff; font: inherit; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.profile-field input[type="number"]:focus { outline: none; border-color: color-mix(in srgb, var(--accent) 60%, transparent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent); }
+.profile-field > span .profile-coin { width: 14px; height: 14px; vertical-align: -2px; }
+.profile-listing-preview { font-size: 13px; }
+.profile-warn { color: #ffcf6e; font-weight: 700; }
+.profile-small { margin: -8px 0 0; font-size: 12px; }
+.profile-action, .profile-btn { white-space: nowrap; flex: none; }
+.profile-listing-grid { grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); }
+@media (max-width: 420px) { .profile-listing-grid { grid-template-columns: 1fr; } .profile-listing__foot { flex-wrap: wrap; } }

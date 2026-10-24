@@ -1,5 +1,5 @@
 <?php
-// Changes from My SMP Profile: a claim (name, colour, switches, members), a waypoint hub, or taking a market listing back.
+// Changes from My SMP Profile: a claim (name, colour, switches, members), a waypoint hub, or a market listing (change it, take it back).
 header('Content-Type: application/json; charset=utf-8');
 require_once __DIR__ . '/../translate/lib/db.php';
 require_once __DIR__ . '/../translate/lib/auth.php';
@@ -24,6 +24,7 @@ $fields = [
   'claim' => ['claim', 'action', 'name', 'color', 'flags', 'uuid_member', 'playerName', 'role'],
   'hub' => ['id', 'name', 'description', 'color', 'public', 'trusted'],
   'withdraw' => ['id'],
+  'listing' => ['id', 'price', 'per', 'amount'],
 ];
 if ($uuid === '' || !isset($fields[$kind])) {
   http_response_code(400);
