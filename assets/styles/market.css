@@ -32,86 +32,94 @@
 .market-bank__bought { color: #8fc7ff; }
 .market-bank__sold { color: #9dffbf; }
 
-/* Listing cards on the market page: a soft accent edge, the item in an inventory-style slot, a lift on hover. */
-.market-shell .profile-market-card {
-  position: relative; align-items: stretch; overflow: hidden;
-  border-color: rgba(182,200,255,.14);
-  background:
-    radial-gradient(120% 90% at 0% 0%, rgba(182,200,255,.10), transparent 55%),
-    linear-gradient(135deg, rgba(14,17,30,.78), rgba(4,6,12,.78));
-  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+/* Market cards, built like the site's stat tiles: dark glass, thin border, the item in a slot,
+   price and Buy on one line at the bottom. */
+.market-grid { grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; }
+.market-card {
+  display: flex; flex-direction: column; gap: 10px; min-width: 0;
+  padding: 14px; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.095);
+  background: linear-gradient(135deg, rgba(10,12,22,.6), rgba(3,5,10,.68)), rgba(5,7,13,.46);
+  box-shadow: 0 12px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.07);
+  transition: border-color .16s ease, background .16s ease;
 }
-.market-shell .profile-market-card::before {
-  content: ""; position: absolute; inset: 0 0 auto; height: 1px; pointer-events: none;
-  background: linear-gradient(90deg, transparent, rgba(182,200,255,.55), transparent);
+.market-card:hover { border-color: color-mix(in srgb, var(--accent) 30%, transparent); background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 6%, rgba(10,12,22,.6)), rgba(3,5,10,.68)), rgba(5,7,13,.46); }
+.market-card__top { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.market-card__top > .profile-market-card__icon {
+  flex: none; width: 44px; height: 44px; padding: 6px; border-radius: 13px;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
 }
-.market-shell .profile-market-card:hover {
-  transform: translateY(-2px); border-color: rgba(182,200,255,.32);
-  box-shadow: 0 16px 34px rgba(0,0,0,.36), 0 0 0 1px rgba(182,200,255,.08), 0 0 26px rgba(130,160,255,.14), inset 0 1px 0 rgba(255,255,255,.09);
-}
-.market-shell .profile-market-card > .profile-market-card__icon {
-  align-self: flex-start; width: 56px; height: 56px; padding: 8px; border-radius: 14px;
-  background: linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
-  border: 1px solid rgba(255,255,255,.10);
-  box-shadow: inset 0 2px 6px rgba(0,0,0,.45), inset 0 -1px 0 rgba(255,255,255,.05);
-}
-.market-shell .profile-market-card__body { display: flex; flex-direction: column; flex: 1; }
-.market-shell .profile-market-card__price {
-  align-self: flex-start; margin-top: 8px; padding: 4px 10px 4px 8px; border-radius: 999px; font-size: 13px;
-  background: rgba(182,200,255,.10); border: 1px solid rgba(182,200,255,.18);
-}
-.market-card__meta { display: flex; align-items: center; gap: 5px; margin: 6px 0 0; color: rgba(239,247,255,.55); font-size: 12px; font-weight: 600; }
+.market-card__top > .profile-market-card__icon--none { font-size: 18px; }
+.market-card__title { min-width: 0; }
+.market-card__title h3 { margin: 0; color: #fff; font-size: 15px; font-weight: 800; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.market-card__sub { margin: 3px 0 0; color: var(--muted); opacity: .75; font-size: 12px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.market-card__extra { margin: 0; color: #b9a7ff; font-size: 12px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.market-card .profile-pet-perks { margin: 0; }
+.market-card__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 51px; margin-top: auto; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.06); }
+.market-card__price { display: inline-flex; align-items: baseline; gap: 5px; min-width: 0; color: var(--accent); white-space: nowrap; }
+.market-card__price b { font-size: 17px; font-weight: 900; font-variant-numeric: tabular-nums; }
+.market-card__price small { color: var(--muted); opacity: .7; font-size: 12px; font-weight: 700; }
+.market-card__coin { width: 18px; height: 18px; align-self: center; image-rendering: pixelated; }
 
-/* Buy row sits at the bottom of the card, so buttons line up across a row of cards. */
-.market-buy { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 12px; flex-wrap: wrap; }
-.market-buy__amount { display: inline-flex; align-items: center; gap: 6px; color: rgba(239,247,255,.55); font-size: 12px; }
+/* Amount and Buy as one pill, like the site's "View Details" button: glass with an accent icon chip. */
+.market-buy {
+  flex: none; display: inline-flex; align-items: center; padding: 3px; border-radius: 16px;
+  background: linear-gradient(135deg, rgba(10,12,22,.6), rgba(3,5,10,.68));
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 8px 18px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.06);
+}
 .market-buy__amount input {
-  width: 68px; background: rgba(255,255,255,.06); color: #fff; border: 1px solid rgba(255,255,255,.14); border-radius: 999px;
-  padding: 7px 12px; font-weight: 700; font-variant-numeric: tabular-nums; transition: border-color .15s ease, box-shadow .15s ease;
+  width: 46px; height: 32px; padding: 0 4px 0 8px; border: 0; border-right: 1px solid rgba(255,255,255,.1); border-radius: 0;
+  background: transparent; color: #fff; font: inherit; font-size: 13px; font-weight: 800; text-align: center; font-variant-numeric: tabular-nums;
+  -moz-appearance: textfield; appearance: textfield;
 }
-.market-buy__amount input:focus { outline: none; border-color: rgba(182,200,255,.6); box-shadow: 0 0 0 3px rgba(182,200,255,.18); }
-.market-buy__btn {
-  position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 7px;
-  border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 8px 18px; cursor: pointer;
-  font-weight: 900; letter-spacing: .02em; color: #0a1020;
-  background: linear-gradient(180deg, #dbe4ff 0%, #b6c8ff 55%, #94aaf5 100%);
-  box-shadow: 0 6px 18px rgba(120,150,255,.30), inset 0 1px 0 rgba(255,255,255,.75), inset 0 -2px 0 rgba(40,60,140,.25);
-  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+.market-buy__amount input::-webkit-inner-spin-button, .market-buy__amount input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.market-buy__amount input:focus { outline: none; color: var(--accent); }
+.market-buy__btn, .market-confirm__btn {
+  display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 3px; border: 0; border-radius: 13px;
+  background: transparent; color: #fff; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer;
+  transition: background .16s ease, color .16s ease;
 }
-.market-buy__btn::after {
-  content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%; pointer-events: none;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,.65), transparent); transform: skewX(-20deg);
+.market-buy__icon {
+  display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 10px; font-size: 13px;
+  background: color-mix(in srgb, var(--accent) 18%, rgba(5,7,13,.62));
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, rgba(255,255,255,.14));
+  color: var(--accent); transition: box-shadow .16s ease;
 }
-.market-buy__btn:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 10px 24px rgba(120,150,255,.42), inset 0 1px 0 rgba(255,255,255,.8), inset 0 -2px 0 rgba(40,60,140,.25); }
-.market-buy__btn:hover:not(:disabled)::after { left: 120%; transition: left .6s ease; }
-.market-buy__btn:active:not(:disabled) { transform: translateY(1px); box-shadow: 0 3px 10px rgba(120,150,255,.3), inset 0 2px 4px rgba(40,60,140,.3); }
-.market-buy__btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
-.market-buy__btn:disabled { cursor: not-allowed; opacity: .5; filter: grayscale(.6); box-shadow: none; }
+.market-buy:hover:not(.is-off) { border-color: color-mix(in srgb, var(--accent) 42%, transparent); }
+.market-buy__btn:hover:not(:disabled), .market-confirm__btn--buy:hover { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+.market-buy__btn:hover:not(:disabled) .market-buy__icon, .market-confirm__btn--buy:hover .market-buy__icon { box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent); }
+.market-buy__btn:focus-visible, .market-confirm__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.market-buy.is-off { opacity: .5; }
+.market-buy__btn:disabled { cursor: not-allowed; }
 .market-buy__note {
-  align-self: flex-start; margin: auto 0 0; padding: 5px 10px; border-radius: 999px; color: rgba(239,247,255,.6); font-size: 12px; font-weight: 700;
-  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+  flex: none; margin: 0; padding: 6px 10px; border-radius: 12px; color: var(--muted); opacity: .8; font-size: 12px; font-weight: 700;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); white-space: nowrap;
 }
-.market-buy + .market-buy__note, .profile-market-card__body > .market-buy__note { margin-top: 12px; }
 
-/* The confirmation before buying. */
+/* The confirmation before buying: one of the site's glass cards. */
 .market-confirm {
-  max-width: min(420px, calc(100vw - 32px)); padding: 22px 24px; border-radius: 18px; color: #f7fbff;
-  border: 1px solid rgba(182,200,255,.22);
-  background: radial-gradient(120% 90% at 0% 0%, rgba(182,200,255,.12), transparent 55%), linear-gradient(135deg, #111527, #05070d);
-  box-shadow: 0 24px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
+  width: min(400px, calc(100vw - 32px)); padding: 20px; border-radius: 22px; color: #fff;
+  border: 1px solid rgba(255,255,255,.11);
+  background: linear-gradient(135deg, rgba(14,17,30,.96), rgba(4,6,12,.97));
+  box-shadow: 0 24px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.075);
 }
-.market-confirm::backdrop { background: rgba(3,5,10,.6); backdrop-filter: blur(3px); }
-.market-confirm__text { margin: 0 0 18px; font-size: 15px; line-height: 1.5; color: rgba(239,247,255,.82); }
+.market-confirm::backdrop { background: rgba(3,5,10,.62); backdrop-filter: blur(4px); }
+.market-confirm__head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.market-confirm__head h3 { margin: 0; font-size: 16px; font-weight: 900; }
+.market-confirm__icon {
+  display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 13px; font-size: 16px;
+  background: color-mix(in srgb, var(--accent) 18%, rgba(5,7,13,.62));
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, rgba(255,255,255,.14)); color: var(--accent);
+}
+.market-confirm__text { margin: 0 0 18px; color: var(--muted); font-size: 14px; font-weight: 600; line-height: 1.55; }
 .market-confirm__text b { color: #fff; font-weight: 900; }
-.market-confirm__actions { display: flex; justify-content: flex-end; gap: 10px; }
-.market-confirm__cancel {
-  border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 8px 16px; cursor: pointer; font-weight: 700;
-  color: rgba(239,247,255,.8); background: rgba(255,255,255,.06);
-}
-.market-confirm__cancel:hover { background: rgba(255,255,255,.12); color: #fff; }
+.market-confirm__actions { display: flex; justify-content: flex-end; gap: 8px; }
+.market-confirm__btn { height: 40px; padding: 0 16px; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(255,255,255,.04); }
+.market-confirm__btn:hover { background: rgba(255,255,255,.08); }
+.market-confirm__btn--buy { padding-left: 6px; background: linear-gradient(135deg, rgba(10,12,22,.6), rgba(3,5,10,.68)); }
+.market-confirm__btn--buy .market-buy__icon { width: 28px; height: 28px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .market-shell .profile-market-card, .market-buy__btn { transition: none; }
-  .market-shell .profile-market-card:hover, .market-buy__btn:hover:not(:disabled) { transform: none; }
-  .market-buy__btn:hover:not(:disabled)::after { transition: none; left: -60%; }
+  .market-card, .market-buy__btn, .market-buy__icon { transition: none; }
 }

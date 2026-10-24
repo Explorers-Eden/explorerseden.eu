@@ -73,6 +73,22 @@
     return `${coin}${Number(n).toLocaleString()} ${esc(currencyName(n))}${per > 1 ? ` per ${Number(per).toLocaleString()}` : per === 1 ? ' each' : ''}`;
   }
 
+  /** The price on a card: coin, the number in bold, then "each" / "per 64" quieter. */
+  function priceTag(n, per) {
+    const coin = data.currencyIcon ? `<img class="market-card__coin" src="${esc(data.currencyIcon)}" alt="" loading="lazy">` : '';
+    const unit = per > 1 ? `per ${Number(per).toLocaleString()}` : per === 1 ? 'each' : '';
+    return `<span class="market-card__price" title="${esc(`${Number(n).toLocaleString()} ${currencyName(n)}${unit ? ' ' + unit : ''}`)}">${coin}<b>${Number(n).toLocaleString()}</b>${unit ? `<small>${unit}</small>` : ''}</span>`;
+  }
+
+  /** One market card: item slot, name with a quiet line under it, optional details, price and Buy at the bottom. */
+  function card(iconHtml, nameHtml, sub, extraHtml, priceHtml, buyHtml) {
+    return `<article class="market-card">
+      <div class="market-card__top">${iconHtml}<div class="market-card__title"><h3>${nameHtml}</h3>${sub ? `<p class="market-card__sub">${sub}</p>` : ''}</div></div>
+      ${extraHtml || ''}
+      <div class="market-card__foot">${priceHtml}${buyHtml}</div>
+    </article>`;
+  }
+
   function icon(url, fallback) {
     return url ? `<img class="profile-market-card__icon" src="${esc(url)}" alt="" loading="lazy">`
       : `<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi ${fallback}"></i></span>`;
@@ -83,12 +99,6 @@
     return (list || []).length ? `<p class="profile-pet-perks">${list.map((k) => `<span class="profile-pet-perk" title="${esc(`${k.description} (unlocks at bond level ${k.level})`)}">${esc(k.label)}</span>`).join('')}</p>` : '';
   }
 
-  /** The small line under the price (seller, time left, limits); the parts come with a leading " · ". */
-  function meta(text) {
-    const t = String(text || '').replace(/^\s*·\s*/, '');
-    return t ? `<p class="market-card__meta">${t}</p>` : '';
-  }
-
   function until(t) {
     return t ? ` · on sale until ${esc(new Date(t).toLocaleDateString(undefined, { dateStyle: 'medium' }))}` : '';
   }
@@ -96,14 +106,9 @@
   function listingCard(l) {
     const extra = [...l.enchantments, ...l.lore];
     const days = Math.max(0, Math.ceil((l.expires - Date.now()) / 86400000));
-    return `<article class="profile-market-card">${icon(l.icon, 'bi-box')}
-      <div class="profile-market-card__body">
-        <h3>${mcHtml(l.name)} <span class="profile-market-card__amount">×${Number(l.amount).toLocaleString()}</span></h3>
-        ${extra.length ? `<p class="profile-market-card__extra">${extra.map(mcHtml).join(' · ')}</p>` : ''}
-        <p class="profile-market-card__price">${price(l.price, l.per)}</p>
-        ${meta(`<i class="bi bi-person" aria-hidden="true"></i> ${esc(l.seller)} · ${days === 1 ? '1 day' : `${days} days`} left`)}
-        ${buyRow(l)}
-      </div></article>`;
+    const sub = `×${Number(l.amount).toLocaleString()} · ${esc(l.seller)} · ${days === 1 ? '1 day' : `${days} days`} left`;
+    return card(icon(l.icon, 'bi-box'), mcHtml(l.name), sub,
+      extra.length ? `<p class="market-card__extra">${extra.map(mcHtml).join(' · ')}</p>` : '', priceTag(l.price, l.per), buyRow(l));
   }
 
   // ── The bank and buying ──────────────────────────────────────────────────
@@ -134,10 +139,10 @@
     }
     const afford = o.price > 0 ? Math.floor(balance / o.price) : max;
     const can = Math.min(max, afford);
-    const amount = max > 1 ? `<label class="market-buy__amount"><span class="sr-only">How many${unit ? ` (${esc(unit)})` : ''}</span>
-        <input type="number" min="1" max="${Math.max(1, can)}" value="1" inputmode="numeric" data-amount="${key}" ${can < 1 ? 'disabled' : ''}>${unit ? `<small>${esc(unit)}</small>` : ''}</label>` : '';
-    return `<div class="market-buy">${amount}<button type="button" class="market-buy__btn" data-buy="${key}" ${can < 1 ? 'disabled title="Not enough in your bank"' : ''}>
-      <i class="bi bi-bag-check" aria-hidden="true"></i> Buy</button></div>`;
+    const amount = max > 1 ? `<label class="market-buy__amount" title="How many${unit ? ` ${esc(unit)}` : ''}"><span class="sr-only">How many${unit ? ` (${esc(unit)})` : ''}</span>
+        <input type="number" min="1" max="${Math.max(1, can)}" value="1" inputmode="numeric" data-amount="${key}" ${can < 1 ? 'disabled' : ''}></label>` : '';
+    return `<div class="market-buy${can < 1 ? ' is-off' : ''}">${amount}<button type="button" class="market-buy__btn" data-buy="${key}" ${can < 1 ? 'disabled title="Not enough in your bank"' : ''}>
+      <span class="market-buy__icon"><i class="bi bi-bag-check" aria-hidden="true"></i></span>Buy</button></div>`;
   }
 
   /** The bank above the listings: one line with the balance (and anything waiting), unfolding to recent trades. */
@@ -200,9 +205,13 @@
       dlg = document.createElement('dialog');
       dlg.id = 'market-confirm';
       dlg.className = 'market-confirm';
-      dlg.innerHTML = `<form method="dialog"><p class="market-confirm__text"></p><div class="market-confirm__actions">
-        <button value="no" class="market-confirm__cancel">Cancel</button>
-        <button value="yes" class="market-buy__btn"><i class="bi bi-bag-check" aria-hidden="true"></i> Buy</button></div></form>`;
+      dlg.innerHTML = `<form method="dialog">
+        <div class="market-confirm__head"><span class="market-confirm__icon"><i class="bi bi-bag-check" aria-hidden="true"></i></span><h3>Confirm purchase</h3></div>
+        <p class="market-confirm__text"></p>
+        <div class="market-confirm__actions">
+          <button value="no" class="market-confirm__btn">Cancel</button>
+          <button value="yes" class="market-confirm__btn market-confirm__btn--buy"><span class="market-buy__icon"><i class="bi bi-bag-check" aria-hidden="true"></i></span>Buy</button>
+        </div></form>`;
       document.body.appendChild(dlg);
     }
     dlg.querySelector('.market-confirm__text').innerHTML = html;
@@ -258,22 +267,17 @@
     buyables.clear();
     out.push(bankCard());
     out.push(group('players', `<span class="profile-group__title"><i class="bi bi-bag"></i> From Players</span><span class="profile-count-badge">${listings.length}</span>`,
-      listings.length ? `<div class="profile-market-grid">${listings.map(listingCard).join('')}</div>`
+      listings.length ? `<div class="profile-market-grid market-grid">${listings.map(listingCard).join('')}</div>`
         : `<p class="profile-empty-note">${data.listings.length ? 'Nothing matches.' : 'Nothing for sale right now. Type /market in game to sell something.'}</p>`));
     if (data.server.length || data.pets.length) {
-      const cards = server.map((o) => `<article class="profile-market-card">${icon(o.icon, 'bi-shop')}
-          <div class="profile-market-card__body"><h3>${esc(o.name)}</h3>
-            ${o.description ? `<p class="profile-market-card__extra">${esc(o.description)}</p>` : ''}
-            <p class="profile-market-card__price">${price(o.price, 0)}</p>${meta(`${o.perPlayer ? ` · up to ${o.perPlayer} per player` : ''}${until(o.until)}`)}
-            ${buyRow(o)}</div></article>`)
-        .concat(pets.map((p) => `<article class="profile-market-card">${icon(p.icon, 'bi-emoji-smile')}
-          <div class="profile-market-card__body"><h3>${esc(p.name)} <span class="profile-market-card__amount">Pet</span></h3>
-            ${p.description ? `<p class="profile-market-card__extra">${esc(p.description)}</p>` : ''}
-            ${perks(p.perks)}
-            <p class="profile-market-card__price">${price(p.price, 0)}</p>${meta(`${p.left > 0 ? ` · ${p.left} left` : ''}${until(p.until)}`)}
-            ${buyRow(p)}</div></article>`));
+      const cards = server.map((o) => card(icon(o.icon, 'bi-shop'), esc(o.name),
+          `${o.perPlayer ? ` · up to ${o.perPlayer} per player` : ''}${until(o.until)}`.replace(/^\s*·\s*/, ''),
+          o.description ? `<p class="market-card__extra">${esc(o.description)}</p>` : '', priceTag(o.price, 0), buyRow(o)))
+        .concat(pets.map((p) => card(icon(p.icon, 'bi-emoji-smile'), esc(p.name),
+          `Pet${p.left > 0 ? ` · ${p.left} left` : ''}${until(p.until)}`,
+          (p.description ? `<p class="market-card__extra">${esc(p.description)}</p>` : '') + perks(p.perks), priceTag(p.price, 0), buyRow(p))));
       out.push(group('server', `<span class="profile-group__title"><i class="bi bi-shop-window"></i> From ${esc(data.serverName)}</span><span class="profile-count-badge">${cards.length}</span>`,
-        cards.length ? `<div class="profile-market-grid">${cards.join('')}</div>` : '<p class="profile-empty-note">Nothing matches.</p>'));
+        cards.length ? `<div class="profile-market-grid market-grid">${cards.join('')}</div>` : '<p class="profile-empty-note">Nothing matches.</p>'));
     }
     groups.innerHTML = out.join('');
   }
