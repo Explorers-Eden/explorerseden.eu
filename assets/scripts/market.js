@@ -81,8 +81,8 @@
   }
 
   /** One market card: item slot, name with a quiet line under it, optional details, price and Buy at the bottom. */
-  function card(iconHtml, nameHtml, sub, extraHtml, priceHtml, buyHtml) {
-    return `<article class="market-card">
+  function card(iconHtml, nameHtml, sub, extraHtml, priceHtml, buyHtml, spot) {
+    return `<article class="market-card${spot ? ' market-card--spot' : ''}">${spot ? '<span class="market-card__spot" title="Spotlight: this seller\'s listings are shown first"><i class="bi bi-star-fill"></i> Spotlight</span>' : ''}
       <div class="market-card__top">${iconHtml}<div class="market-card__title"><h3>${nameHtml}</h3>${sub ? `<p class="market-card__sub">${sub}</p>` : ''}</div></div>
       ${extraHtml || ''}
       <div class="market-card__foot">${priceHtml}${buyHtml}</div>
@@ -108,7 +108,7 @@
     const days = Math.max(0, Math.ceil((l.expires - Date.now()) / 86400000));
     const sub = `×${Number(l.amount).toLocaleString()} · ${esc(l.seller)} · ${days === 1 ? '1 day' : `${days} days`} left`;
     return card(icon(l.icon, 'bi-box'), mcHtml(l.name), sub,
-      extra.length ? `<p class="market-card__extra">${extra.map(mcHtml).join(' · ')}</p>` : '', priceTag(l.price, l.per), buyRow(l));
+      extra.length ? `<p class="market-card__extra">${extra.map(mcHtml).join(' · ')}</p>` : '', priceTag(l.price, l.per), buyRow(l), l.spotlight);
   }
 
   // ── The bank and buying ──────────────────────────────────────────────────
@@ -223,6 +223,14 @@
     });
   }
 
+  /** The coupon worth the most without going over the price, else the smallest (it makes the item free). */
+  function bestCoupon(coupons, price) {
+    const worths = Object.entries(coupons || {}).filter(([, n]) => n > 0).map(([w]) => Number(w));
+    if (!worths.length) return 0;
+    const under = worths.filter((w) => w <= price);
+    return under.length ? Math.max(...under) : Math.min(...worths);
+  }
+
   async function buy(key) {
     const o = buyables.get(key);
     const a = me();
@@ -232,13 +240,19 @@
     const name = mcPlain(o.name);
     const what = o.kind === 'listing' ? `${(amount * o.per).toLocaleString()} × ${name}` : amount > 1 ? `${amount} × ${name}` : name;
     const total = amount * o.price;
-    if (!await confirmBuy(`Buy <b>${esc(what)}</b> for <b>${total.toLocaleString()} ${esc(currencyName(total))}</b> from ${esc(a.name)}'s bank?`)) return;
+    // Shop coupons (rewards) only work on what the server sells: worth N items off, never below 0.
+    const coupon = o.kind === 'listing' ? 0 : bestCoupon(a.coupons, total);
+    const after = Math.max(0, total - coupon);
+    const left = Object.values(a.coupons || {}).reduce((n, c) => n + c, 0);
+    const couponRow = coupon ? `<label class="market-confirm__coupon"><input type="checkbox" id="market-coupon" checked> Use a <b>${coupon}-${esc(currencyName(1))} coupon</b>: <b>${after.toLocaleString()} ${esc(currencyName(after))}</b> instead (${left} coupon${left === 1 ? '' : 's'} left)</label>` : '';
+    if (!await confirmBuy(`Buy <b>${esc(what)}</b> for <b>${total.toLocaleString()} ${esc(currencyName(total))}</b> from ${esc(a.name)}'s bank?${couponRow}`)) return;
+    const useCoupon = coupon && document.getElementById('market-coupon')?.checked ? coupon : 0;
     groups.querySelectorAll('[data-buy]').forEach((b) => { b.disabled = true; });
     try {
       const res = await fetch('/api/market-buy.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': account.csrfToken || '' },
-        body: JSON.stringify({ uuid: a.uuid, kind: o.kind, id: o.id, amount, price: o.price, per: o.per || 1 }),
+        body: JSON.stringify({ uuid: a.uuid, kind: o.kind, id: o.id, amount, price: o.price, per: o.per || 1, coupon: useCoupon }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || json.error) throw new Error(json.message || 'That didn\'t work. Try again in a moment.');
@@ -260,7 +274,9 @@
       new: (a, b) => b.created - a.created,
       name: (a, b) => mcPlain(a.name).localeCompare(mcPlain(b.name)),
     }[sort];
-    const listings = data.listings.filter((l) => hit(l.name, l.item, l.seller, ...l.enchantments, ...l.lore)).sort(order);
+    // Spotlit sellers (a reward) first, then the chosen order.
+    const listings = data.listings.filter((l) => hit(l.name, l.item, l.seller, ...l.enchantments, ...l.lore))
+      .sort((x, y) => (y.spotlight ? 1 : 0) - (x.spotlight ? 1 : 0) || order(x, y));
     const server = data.server.filter((o) => hit(o.name, o.description));
     const pets = data.pets.filter((p) => hit(p.name, p.description, 'pet', ...(p.perks || []).map((k) => k.label)));
     const out = [];

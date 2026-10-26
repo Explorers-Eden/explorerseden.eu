@@ -65,6 +65,8 @@ foreach (($m['listings'] ?? []) as $l) {
         'created' => (int) ($l['created'] ?? 0),
         'expires' => (int) ($l['expires'] ?? 0),
         'icon' => item_icon($base, $l['icon'] ?? null),
+        // The seller has a market spotlight (a reward): shown first, with a star.
+        'spotlight' => !empty($l['spotlight']),
     ];
 }
 foreach (($m['server'] ?? []) as $o) {

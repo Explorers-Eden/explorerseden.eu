@@ -524,11 +524,12 @@
         : `<span class="profile-pet-perk is-locked" title="${esc(k.description)}"><i class="bi bi-lock"></i> ${esc(k.label)} · level ${k.level}</span>`).join('');
       return `<article class="profile-pet${p.active ? ' is-out' : ''}">
         <div class="profile-pet__top">${petIcon(p.id, p.name)}<div class="profile-pet__title"><h3>${petName(p)}</h3>
-          <p>Bond level ${Number(p.level)} · ${esc(next)}</p></div>${p.active ? '<span class="profile-access-badge profile-access-badge--public">Out</span>' : ''}</div>
+          <p>Bond level ${Number(p.level)} · ${esc(next)}</p></div>${p.active ? '<span class="profile-access-badge profile-access-badge--public">Out</span>' : p.alsoOut ? '<span class="profile-access-badge profile-access-badge--public">Along</span>' : ''}</div>
         ${perks ? `<div class="profile-pet__perks">${perks}</div>` : ''}
         <div class="profile-card-foot">
           ${lp.names ? action('bi-tag', 'Name', `data-pet-name="${esc(p.id)}"`) : ''}
           ${p.active ? action('bi-house', 'Put away', 'data-pet-away="1"') : action('bi-box-arrow-up', 'Take out', `data-pet-out="${esc(p.id)}"`)}
+          ${!p.active && lp.slots > 0 && lp.pets.some((x) => x.active) ? (p.alsoOut ? action('bi-dash-circle', 'Put back', `data-pet-also="${esc(p.id)}" data-on="0"`) : action('bi-plus-circle', 'Also out', `data-pet-also="${esc(p.id)}" data-on="1"`)) : ''}
         </div>
       </article>`;
     }).join('');
@@ -633,6 +634,8 @@
     const po = e.target.closest('[data-pet-out]');
     if (po) return petChange({ change: 'out', pet: po.dataset.petOut });
     if (e.target.closest('[data-pet-away]')) return petChange({ change: 'away' });
+    const pa = e.target.closest('[data-pet-also]');
+    if (pa) return petChange({ change: 'also', pet: pa.dataset.petAlso, on: pa.dataset.on === '1' });
     const w = e.target.closest('[data-withdraw]');
     if (w) return withdraw(w.dataset.withdraw, w.dataset.name, Number(w.dataset.amount));
   });

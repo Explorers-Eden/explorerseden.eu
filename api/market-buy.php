@@ -30,6 +30,8 @@ if (!in_array($kind, ['listing', 'claims', 'command', 'pet'], true)) {
   'amount' => (string) (int) ($in['amount'] ?? 1),
   'price' => (string) (int) ($in['price'] ?? 0),
   'per' => (string) (int) ($in['per'] ?? 1),
+  // A shop coupon (reward): what it's worth; only server-shop items take one.
+  'coupon' => (string) max(0, (int) ($in['coupon'] ?? 0)),
 ]);
 // The site's scripts read "message" for errors (like the other APIs here).
 if ($status !== 200 || isset($data['error'])) {
