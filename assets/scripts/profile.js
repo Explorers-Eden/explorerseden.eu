@@ -82,6 +82,16 @@
   let liveError = null;
   // The bank right now, from the market (null until it answers).
   let bankBalance = null;
+  // Recent trades (bought and sold), from the same answer.
+  let accountSales = [];
+
+  /** "Member since" in the header, once the live data says when they first joined. */
+  function showSince() {
+    const el = document.getElementById('profile-since');
+    const first = live?.seen?.firstJoin;
+    if (!el || !first) return;
+    el.outerHTML = `<span class="profile-badge" id="profile-since" title="${live.seen.firstJoinEstimated ? 'Estimated from the save files' : 'First joined'}"><i class="bi bi-calendar-heart"></i> Member since ${esc(new Date(first).toLocaleDateString(undefined, { month: 'long', year: 'numeric' }))}</span>`;
+  }
 
   async function loadLive() {
     try {
@@ -97,6 +107,7 @@
     } catch {
       liveError = 'The server panel can\'t be reached right now.';
     }
+    showSince();
     renderTabs();
   }
 
@@ -177,7 +188,7 @@
         <div class="profile-hero__main">
           <p class="profile-hero__eyebrow">My SMP Profile</p>
           <h1 class="profile-hero__name">${esc(profile.name)}</h1>
-          <div class="profile-hero__badges">${badges.join('')}</div>
+          <div class="profile-hero__badges">${badges.join('')}<span id="profile-since"></span></div>
           ${updated}
         </div>
       </section>`;
@@ -202,7 +213,7 @@
   function hubsList() {
     if (live && Array.isArray(live.hubs)) {
       const icons = Object.fromEntries((profile.waypoints || []).map((w) => [String(w.id), w.icon]));
-      return live.hubs.map((h) => ({ ...h, icon: icons[String(h.id)] || `https://mc-heads.net/avatar/${encodeURIComponent(profile.uuid || profile.name)}/64`,
+      return live.hubs.map((h) => ({ ...h, icon: icons[String(h.id)] || `/api/head.php?${profile.uuid ? 'u=' + encodeURIComponent(profile.uuid) : 'name=' + encodeURIComponent(profile.name)}&s=64`,
         hex: (live.hubColors || {})[h.color] || null, access: h.public ? 'public' : 'private', editable: true }));
     }
     return (profile.waypoints || []).map((w) => ({ ...w, hex: w.color, editable: false }));
@@ -219,7 +230,7 @@
   function counts() {
     const advDone = (profile.advancementsDetailed || []).reduce((sum, g) => sum + g.doneCount, 0);
     const advAll = (profile.advancementsDetailed || []).reduce((sum, g) => sum + g.items.length, 0);
-    return { claims: claimsList().length, waypoints: hubsList().length, market: listingsList().length, pets: (profile.pets || []).length, advancements: advAll ? `${advDone}/${advAll}` : null };
+    return { claims: claimsList().length, waypoints: hubsList().length, market: listingsList().length, pets: (live?.pets?.pets || profile.pets || []).length, advancements: advAll ? `${advDone}/${advAll}` : null };
   }
 
   function tabBar() {
@@ -249,7 +260,25 @@
       ['market', 'bi-shop', plural(n.market, 'listing on the market', 'listings on the market')],
       ['pets', 'bi-emoji-smile', plural(n.pets, 'pet', 'pets')],
     ].map(([tab, icon, text]) => `<button type="button" class="profile-shortcut" data-tab="${tab}"><i class="bi ${icon}" aria-hidden="true"></i>${text}<i class="bi bi-chevron-right profile-shortcut__go" aria-hidden="true"></i></button>`).join('');
-    return panel('summary', 'bi-person-fill', 'At a glance', null, null, tiles + `<div class="profile-shortcuts">${shortcuts}</div>`) + graveCard();
+    return panel('summary', 'bi-person-fill', 'At a glance', null, null, tiles + `<div class="profile-shortcuts">${shortcuts}</div>`) + noticesCard() + graveCard();
+  }
+
+  const NOTICE_LABELS = {
+    sales: ['Something of yours sold on the market', 'Bundled, at most one message every few minutes'],
+    mail: ['Items wait in your market mailbox', 'Expired listings, purchases that didn\'t fit; at most once an hour'],
+    claims: ['A claim of yours expires within a week', 'Because you haven\'t played for a while'],
+    messages: ['An admin writes to you', 'You answer in game with /nccreply'],
+  };
+
+  /** Which Discord DMs the bot sends this player. */
+  function noticesCard() {
+    if (!live || !live.notices) return '';
+    const n = live.notices;
+    const body = n.available
+      ? `<p class="profile-dialog__text profile-notices-intro">The server's Discord bot can send you a direct message when:</p>
+        <div class="profile-toggles">${Object.entries(NOTICE_LABELS).map(([k, [label, hint]]) => toggle(`notice:${k}`, label, n.kinds[k] !== false, hint).replace('<input', `<input data-notice="${k}"`)).join('')}</div>`
+      : '<p class="profile-empty-note">Discord messages are switched off on this server.</p>';
+    return panel('notices', 'bi-discord', 'Discord messages', null, null, body);
   }
 
   function graveCard() {
@@ -283,11 +312,23 @@
     return note('<i class="bi bi-check2-circle"></i> Changes apply right away', 'ok');
   }
 
+  /** Earned / bonus / bought / used / left, above the claims. */
+  function blocksStrip() {
+    const b = live?.claimBlocks;
+    if (!b || !live.claimsOn) return '';
+    const cell = (label, v, cls = '') => `<div class="profile-blocks__cell ${cls}"><b>${Number(v).toLocaleString()}</b><span>${label}</span></div>`;
+    return `<div class="profile-blocks">
+      ${cell('earned by playing', b.earned)}${b.bonus ? cell('given by admins', b.bonus) : ''}${cell('bought', b.bought)}${cell('used by your claims', b.used)}
+      ${cell('claim blocks left', b.left, 'is-left')}
+      <a class="profile-action profile-blocks__buy" href="/market/"><span class="profile-action__icon"><i class="bi bi-cart-plus" aria-hidden="true"></i></span>Buy claim blocks</a>
+    </div>`;
+  }
+
   function claimsTab() {
     const list = claimsList();
-    const body = list.length
+    const body = blocksStrip() + (list.length
       ? `<div class="profile-claim-grid">${list.map(claimCard).join('')}</div>`
-      : '<p class="profile-empty-note">No land claims yet. Claim land in game with <b>/claim</b>.</p>';
+      : '<p class="profile-empty-note">No land claims yet. Claim land in game with <b>/claim</b>.</p>');
     return panel('claims', 'bi-shield-lock', 'Claims', list.length, claimsAside(), body);
   }
 
@@ -307,10 +348,28 @@
         <p class="profile-claim-card__coords"><i class="bi bi-geo-alt-fill"></i> ${c.x}, ${c.z}
           <span class="profile-claim-card__size">· ${c.width} × ${c.length} (${Number(c.area).toLocaleString()} blocks)</span></p>
         <div class="profile-claim-card__trusted">
-          ${members.length ? members.map((m) => `<span class="profile-member" title="${esc(m.label || m.role)}"><img src="https://mc-heads.net/avatar/${encodeURIComponent(m.uuid || m.name)}/16" alt="" loading="lazy">${esc(m.name)}</span>`).join('') : '<span class="profile-muted">No members</span>'}
+          ${members.length ? members.map((m) => `<span class="profile-member" title="${esc(m.label || m.role)}"><img src="/api/head.php?${m.uuid ? 'u=' + encodeURIComponent(m.uuid) : 'name=' + encodeURIComponent(m.name)}&s=16" alt="" loading="lazy">${esc(m.name)}</span>`).join('') : '<span class="profile-muted">No members</span>'}
         </div>
-        ${canEdit ? `<div class="profile-card-foot">${action('bi-pencil', 'Edit', `data-edit-claim="${esc(c.id)}"`)}</div>` : ''}
+        ${expiryLine(c)}
+        <div class="profile-card-foot">${mapLink(c.dim, c.x, c.z)}${canEdit ? action('bi-pencil', 'Edit', `data-edit-claim="${esc(c.id)}"`) : ''}</div>
       </article>`;
+  }
+
+  /** When an owned claim goes if its owner stays away; highlighted within 30 days. */
+  function expiryLine(c) {
+    if (!c.isOwner || c.parent || !c.expires) return '';
+    const days = Math.ceil((c.expires - Date.now()) / 86400000);
+    const soon = days <= 30;
+    const date = new Date(c.expires).toLocaleDateString(undefined, { dateStyle: 'medium' });
+    return `<p class="profile-expiry${soon ? ' is-soon' : ''}" title="Claims of players away for ${live?.claimBlocks?.inactiveDays || '…'} days expire. Playing pushes the date back.">
+      <i class="bi bi-hourglass-split"></i> ${soon ? `Expires in ${days <= 1 ? '1 day' : days + ' days'}` : `Kept until ${esc(date)}`}${soon ? ` · ${esc(date)}` : ''}</p>`;
+  }
+
+  /** "Show on map": the website's map, centred there. */
+  function mapLink(dim, x, z) {
+    if (dim == null || x == null || z == null) return '';
+    const key = String(dim).includes(':') ? String(dim).replace(':', '_') : String(dim).toLowerCase().replace(/\s+/g, '_');
+    return `<a class="profile-action" href="/map/#${encodeURIComponent(key)}/${Math.round(x)}/${Math.round(z)}"><span class="profile-action__icon"><i class="bi bi-map" aria-hidden="true"></i></span>Map</a>`;
   }
 
   // ── Waypoint hubs ───────────────────────────────────────────────────────────
@@ -344,7 +403,7 @@
           ${h.description ? `<p class="waypoint-card__description">${esc(h.description)}</p>` : ''}
           ${h.editable && trusted.length ? `<p class="profile-hub-trusted"><i class="bi bi-people"></i> ${trusted.map(esc).join(', ')}</p>` : ''}
         </div>
-        ${h.editable ? `<div class="profile-card-foot">${action('bi-pencil', 'Edit', `data-edit-hub="${esc(h.id)}"`)}</div>` : ''}
+        <div class="profile-card-foot">${mapLink(h.dimension, h.x, h.z)}${h.editable ? action('bi-pencil', 'Edit', `data-edit-hub="${esc(h.id)}"`) : ''}</div>
       </article>`;
   }
 
@@ -380,7 +439,15 @@
     const cards = listings.length
       ? `<div class="profile-market-grid profile-listing-grid">${listings.map((l) => listingCard(l, canWithdraw)).join('')}</div>`
       : '<p class="profile-empty-note">Nothing for sale right now. Type <b>/market</b> in game to sell something.</p>';
-    return panel('bank', 'bi-bank', 'Bank & mailbox', null, null, bank) + panel('listings', 'bi-shop', 'Your listings', listings.length, aside, cards);
+    const trades = accountSales.length
+      ? `<ul class="profile-trades">${accountSales.slice(0, 20).map((x) => `<li>
+          <span class="profile-trades__kind is-${x.role === 'bought' ? 'bought' : 'sold'}">${x.role === 'bought' ? 'Bought' : 'Sold'}</span>
+          <span class="profile-trades__what">${x.amount > 1 ? `${Number(x.amount).toLocaleString()} × ` : ''}${mcHtml(x.name)}</span>
+          <span class="profile-price">${coin('profile-coin')}<b>${Number(x.total).toLocaleString()}</b></span>
+          <span class="profile-muted">${x.role === 'bought' ? 'from' : 'to'} ${esc(x.other || 'someone')} · ${esc(new Date(x.time).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }))}</span></li>`).join('')}</ul>`
+      : '<p class="profile-empty-note">No trades yet.</p>';
+    return panel('bank', 'bi-bank', 'Bank & mailbox', null, null, bank) + panel('listings', 'bi-shop', 'Your listings', listings.length, aside, cards)
+      + panel('trades', 'bi-receipt', 'Recent trades', accountSales.length || null, null, trades);
   }
 
   function listingCard(l, canWithdraw) {
@@ -390,6 +457,7 @@
     return `
       <article class="profile-listing">
         <div class="profile-listing__top">${icon}<div class="profile-listing__title"><h3>${mcHtml(l.name)}</h3><p>×${Number(l.amount).toLocaleString()} · ${days === 1 ? '1 day' : `${days} days`} left</p></div></div>
+        ${[...(l.enchantments || []), ...(l.lore || [])].length ? `<p class="profile-listing__extra">${[...(l.enchantments || []), ...(l.lore || [])].map(mcHtml).join(' · ')}</p>` : ''}
         <div class="profile-listing__foot">
           <span class="profile-price">${coin('profile-coin')}<b>${Number(l.price).toLocaleString()}</b><small>${per > 1 ? `per ${per.toLocaleString()}` : 'each'}</small></span>
           ${canWithdraw && l.id ? `<span class="profile-listing__actions">${action('bi-pencil', 'Edit', `data-edit-listing="${esc(l.id)}"`)}${action('bi-box-arrow-in-down', 'Take back', `data-withdraw="${esc(l.id)}" data-name="${esc(mcPlain(l.name))}" data-amount="${Number(l.amount)}"`)}</span>` : ''}
@@ -399,17 +467,93 @@
 
   // ── Pets, statistics, advancements ─────────────────────────────────────────
 
+  function petIcon(id, fallback) {
+    const saved = (profile.pets || []).find((p) => p.id === id || p.name === fallback);
+    return saved?.icon ? `<img class="profile-market-card__icon profile-pet-head" src="${esc(saved.icon)}" alt="" loading="lazy">`
+      : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-emoji-smile"></i></span>';
+  }
+
+  function petName(p) {
+    return p.nickname ? `<span${isHex(p.nameColor) ? ` style="color:${esc(p.nameColor)}"` : ''}>${esc(p.nickname)}</span> <span class="profile-pet-kind">(${esc(p.name)})</span>` : esc(p.name);
+  }
+
   function petsTab() {
+    const lp = live?.pets;
+    if (lp && live.running && lp.enabled && Array.isArray(lp.pets) && lp.pets.length) return petsLive(lp);
     const pets = profile.pets || [];
+    const aside = !live ? note('<i class="bi bi-arrow-repeat"></i> Loading…') : live.running ? '' : note('<i class="bi bi-power"></i> Server offline · pets can be changed while it runs', 'warn');
     const body = pets.length
       ? `<div class="profile-market-grid">${pets.map((p) => `<article class="profile-market-card">
           ${p.icon ? `<img class="profile-market-card__icon profile-pet-head" src="${esc(p.icon)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-emoji-smile"></i></span>'}
-          <div class="profile-market-card__body"><h3>${p.nickname ? `<span${p.nameColor ? ` style="color:${esc(p.nameColor)}"` : ''}>${esc(p.nickname)}</span> <span class="profile-pet-kind">(${esc(p.name)})</span>` : esc(p.name)}${p.active ? ' <span class="profile-access-badge profile-access-badge--public">Out</span>' : ''}</h3>
+          <div class="profile-market-card__body"><h3>${petName(p)}${p.active ? ' <span class="profile-access-badge profile-access-badge--public">Out</span>' : ''}</h3>
             ${p.level != null ? `<p class="profile-market-card__extra">Bond level ${Number(p.level)}</p>` : ''}
             ${(p.perks || []).length ? `<p class="profile-pet-perks">${p.perks.map((k) => `<span class="profile-pet-perk${k.unlocked ? '' : ' is-locked'}" title="${esc(k.description + (k.unlocked ? '' : ` (unlocks at bond level ${k.level})`))}">${k.unlocked ? '' : '<i class="bi bi-lock"></i> '}${esc(k.label)}</span>`).join('')}</p>` : ''}
             ${p.since ? `<p class="profile-market-card__extra">Since ${esc(new Date(p.since).toLocaleDateString(undefined, { dateStyle: 'medium' }))}</p>` : ''}</div></article>`).join('')}</div>`
       : '<p class="profile-empty-note">No pets yet. Get one in the Server shop of <b>/market</b> in game.</p>';
-    return panel('pets', 'bi-emoji-smile', 'Pets', pets.length, null, body);
+    return panel('pets', 'bi-emoji-smile', 'Pets', pets.length, aside, body);
+  }
+
+  /** The pets with what /pets can change: settings for all of them, and each pet's card. */
+  function petsLive(lp) {
+    const select = (name, options, current) => `<select data-pet-setting="${name}">${options.map((o) => `<option value="${esc(o.id)}"${o.id === current ? ' selected' : ''}>${esc(o.label)}</option>`).join('')}</select>`;
+    const settings = `<div class="profile-pet-settings">
+        <label class="profile-field"><span>How your pet moves</span>${select('move', lp.behaviors || [], lp.behavior)}</label>
+        ${lp.particles ? `<label class="profile-field"><span>Particle trail</span>${select('trail', lp.trails || [], lp.trail)}</label>` : ''}
+      </div>
+      <div class="profile-toggles profile-toggles--row">
+        ${lp.pets.length > 1 ? toggle('random', 'Random pet', lp.random, 'A different one of your pets every time you teleport, die or take it out').replace('<input', '<input data-pet-toggle="random"') : ''}
+        ${toggle('reactions', 'Reactions', lp.reactions, 'Little moves, particles and speech bubbles').replace('<input', '<input data-pet-toggle="reactions"')}
+        ${lp.names ? toggle('showname', 'Name above the pet', lp.showName, 'Hidden while you sneak anyway').replace('<input', '<input data-pet-toggle="showname"') : ''}
+      </div>`;
+    const cards = lp.pets.map((p) => {
+      const next = p.level >= p.maxLevel ? 'highest bond level' : `next level in about ${p.nextLevelMinutes >= 120 ? Math.round(p.nextLevelMinutes / 60) + ' hours' : p.nextLevelMinutes + ' minutes'} out together`;
+      const perks = (p.perks || []).map((k) => k.unlocked && lp.perksEnabled
+        ? `<label class="profile-perk${k.off ? ' is-off' : ''}" title="${esc(k.description)}"><input type="checkbox" data-pet-perk="${esc(k.id)}"${k.off ? '' : ' checked'}><span class="profile-toggle__switch" aria-hidden="true"></span>${esc(k.label)}</label>`
+        : `<span class="profile-pet-perk is-locked" title="${esc(k.description)}"><i class="bi bi-lock"></i> ${esc(k.label)} · level ${k.level}</span>`).join('');
+      return `<article class="profile-pet${p.active ? ' is-out' : ''}">
+        <div class="profile-pet__top">${petIcon(p.id, p.name)}<div class="profile-pet__title"><h3>${petName(p)}</h3>
+          <p>Bond level ${Number(p.level)} · ${esc(next)}</p></div>${p.active ? '<span class="profile-access-badge profile-access-badge--public">Out</span>' : ''}</div>
+        ${perks ? `<div class="profile-pet__perks">${perks}</div>` : ''}
+        <div class="profile-card-foot">
+          ${lp.names ? action('bi-tag', 'Name', `data-pet-name="${esc(p.id)}"`) : ''}
+          ${p.active ? action('bi-house', 'Put away', 'data-pet-away="1"') : action('bi-box-arrow-up', 'Take out', `data-pet-out="${esc(p.id)}"`)}
+        </div>
+      </article>`;
+    }).join('');
+    return panel('pet-settings', 'bi-sliders', 'Your pets\' settings', null, note('<i class="bi bi-check2-circle"></i> Changes apply right away', 'ok'), settings)
+      + panel('pets', 'bi-emoji-smile', 'Pets', lp.pets.length, null, `<div class="profile-pet-grid">${cards}</div>`);
+  }
+
+  async function petChange(body, okText) {
+    try {
+      const res = await send({ kind: 'pet', ...body });
+      await loadLive();
+      flash(document.getElementById('profile-panel-pet-settings') ? 'pet-settings' : 'pets', res.message || okText || 'Saved.');
+    } catch (err) {
+      await loadLive();
+      flash('pets', err.message);
+    }
+  }
+
+  function renamePet(id) {
+    const p = (live?.pets?.pets || []).find((x) => x.id === id);
+    if (!p) return;
+    const colors = live.pets.nameColors || {};
+    const current = Object.keys(colors).find((k) => String(colors[k]).toLowerCase() === String(p.nameColor).toLowerCase()) || null;
+    return dialog({
+      icon: 'bi-tag', title: `Name ${esc(p.name)}`,
+      body: `<label class="profile-field"><span>Name <small class="profile-muted">· up to 16 characters, empty for none</small></span><input type="text" name="nickname" maxlength="16" value="${esc(p.nickname || '')}"></label>
+        <div class="profile-field"><span>Colour</span>${swatches('color', colors, current)}
+          <label class="profile-own-color"><span>or your own</span><input type="text" name="hex" maxlength="7" placeholder="#3FC9E8" value="${current ? '' : esc(p.nameColor || '')}"></label></div>`,
+      async onSave(dlg) {
+        const f = dlg.querySelector('form');
+        const picked = f.querySelector('input[name="color"]:checked');
+        const color = f.elements.hex.value.trim() || (picked ? picked.dataset.hex : p.nameColor || '#FFFFFF');
+        const res = await send({ kind: 'pet', change: 'name', pet: id, nickname: f.elements.nickname.value, color });
+        await loadLive();
+        flash('pets', res.message || 'Saved.');
+      },
+    });
   }
 
   function statsTab() {
@@ -472,8 +616,29 @@
     if (hub) return editHub(hub.dataset.editHub);
     const el = e.target.closest('[data-edit-listing]');
     if (el) return editListing(el.dataset.editListing);
+    const pn = e.target.closest('[data-pet-name]');
+    if (pn) return renamePet(pn.dataset.petName);
+    const po = e.target.closest('[data-pet-out]');
+    if (po) return petChange({ change: 'out', pet: po.dataset.petOut });
+    if (e.target.closest('[data-pet-away]')) return petChange({ change: 'away' });
     const w = e.target.closest('[data-withdraw]');
     if (w) return withdraw(w.dataset.withdraw, w.dataset.name, Number(w.dataset.amount));
+  });
+  root.addEventListener('change', async (e) => {
+    const t = e.target;
+    if (t.matches('[data-pet-setting]')) return petChange({ change: t.dataset.petSetting, how: t.value });
+    if (t.matches('[data-pet-toggle]')) return petChange({ change: t.dataset.petToggle, on: t.checked });
+    if (t.matches('[data-pet-perk]')) return petChange({ change: 'perk', perk: t.dataset.petPerk, on: t.checked });
+    if (t.matches('[data-notice]')) {
+      try {
+        const res = await send({ kind: 'notices', kindName: t.dataset.notice, on: t.checked });
+        if (live?.notices && res.kinds) live.notices.kinds = res.kinds;
+        flash('notices', 'Saved.');
+      } catch (err) {
+        t.checked = !t.checked;
+        flash('notices', err.message);
+      }
+    }
   });
   window.addEventListener('hashchange', () => {
     const tab = location.hash.slice(1) || 'overview';
@@ -488,6 +653,7 @@
     const a = (json.accounts || []).find((x) => x.uuid === profile.uuid);
     if (!a || a.balance == null) return;
     bankBalance = Number(a.balance);
+    accountSales = Array.isArray(a.sales) ? a.sales : [];
     if (activeTab === 'market') renderTabs();
   }).catch(() => {});
 
@@ -562,7 +728,7 @@
       const rows = (claim.members || []).map((m) => {
         const locked = m.role === 'MANAGE' && !claim.isOwner;
         return `<div class="profile-member-row" data-member="${esc(m.uuid)}">
-          <img src="https://mc-heads.net/avatar/${encodeURIComponent(m.uuid)}/24" alt="" loading="lazy"><b>${esc(m.name)}</b>
+          <img src="/api/head.php?u=${encodeURIComponent(m.uuid)}&s=24" alt="" loading="lazy"><b>${esc(m.name)}</b>
           <select data-role aria-label="Role of ${esc(m.name)}"${locked ? ' disabled title="Only the owner can change co-owners"' : ''}>${roleOptions(m.role, claim.isOwner)}</select>
           <button type="button" class="profile-icon-btn" data-remove aria-label="Remove ${esc(m.name)}"${locked ? ' disabled' : ''}><i class="bi bi-x-lg"></i></button></div>`;
       }).join('');

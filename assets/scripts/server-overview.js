@@ -23,7 +23,7 @@ function playersHtml(players) {
   }
   const items = players.map((player) => {
     const name = escapeHtml(typeof player === 'string' ? player : player?.name || 'Unknown');
-    return `<li><img src="https://mc-heads.net/avatar/${encodeURIComponent(name)}/22" alt="" loading="lazy">${name}</li>`;
+    return `<li><img src="/api/head.php?name=${encodeURIComponent(name)}&s=22" alt="" loading="lazy">${name}</li>`;
   }).join('');
   return `<ul class="overview-status__players">${items}</ul>`;
 }

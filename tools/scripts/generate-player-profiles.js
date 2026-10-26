@@ -34,6 +34,8 @@ const { faceIcon } = require('./lib/head-icon');
 
 const PET_ICONS_DIR = path.join(__dirname, '..', '..', 'assets', 'images', 'generated', 'pet-heads');
 const PET_ICONS_URL = '/assets/images/generated/pet-heads';
+const PLAYER_HEADS_DIR = path.join(__dirname, '..', '..', 'assets', 'images', 'generated', 'player-heads');
+const PLAYER_HEADS_URL = '/assets/images/generated/player-heads';
 
 const ROOT = path.join(__dirname, '..', '..');
 const OUT_DIR = path.join(ROOT, 'profiles', 'data');
@@ -479,9 +481,11 @@ async function main() {
     const mojangProfile = await resolveMojangProfile(uuid);
     const name = mojangProfile?.name || link.name || link.uuid;
     const skinIcon = mojangProfile?.skinUrl ? await renderAndSaveSkin(uuid, mojangProfile.skinUrl) : null;
-    // No local render/storage needed - mc-heads.net already holds the raw
-    // skin texture and crops the face server-side from the uuid alone.
-    const headIcon = `https://mc-heads.net/avatar/${uuid}/64`;
+    // The face drawn from the player's own skin (mc-heads.net's cache sometimes answers with Steve);
+    // mc-heads.net only when the skin can't be fetched.
+    const skinHashOf = (url) => (String(url || '').match(/textures\.minecraft\.net\/texture\/([0-9a-f]{20,80})$/i) || [])[1]?.toLowerCase() || null;
+    const headIcon = (mojangProfile?.skinUrl && await faceIcon(skinHashOf(mojangProfile.skinUrl), PLAYER_HEADS_DIR, PLAYER_HEADS_URL, warn))
+      || `https://mc-heads.net/avatar/${uuid}/64`;
 
     const ownedClaims = claimsByOwner[uuid] || [];
 

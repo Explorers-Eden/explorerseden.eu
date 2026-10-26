@@ -1,5 +1,6 @@
 <?php
-// Changes from My SMP Profile: a claim (name, colour, switches, members), a waypoint hub, or a market listing (change it, take it back).
+// Changes from My SMP Profile: a claim (name, colour, switches, members), a waypoint hub, a market listing (change it, take it back),
+// a pet (which is out, how it moves, its name…) or which Discord messages the player gets.
 header('Content-Type: application/json; charset=utf-8');
 require_once __DIR__ . '/../translate/lib/db.php';
 require_once __DIR__ . '/../translate/lib/auth.php';
@@ -25,6 +26,8 @@ $fields = [
   'hub' => ['id', 'name', 'description', 'color', 'public', 'trusted'],
   'withdraw' => ['id'],
   'listing' => ['id', 'price', 'per', 'amount'],
+  'pet' => ['change', 'pet', 'how', 'perk', 'nickname', 'color', 'on'],
+  'notices' => ['kindName', 'on'],
 ];
 if ($uuid === '' || !isset($fields[$kind])) {
   http_response_code(400);

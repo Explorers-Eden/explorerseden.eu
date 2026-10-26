@@ -1,0 +1,86 @@
+/* The SMP world map (/map/), in the site's glass style. */
+.smp-map-shell { width: min(2100px, calc(100% - 28px)); }
+@media (max-width: 680px) { .smp-map-shell { width: calc(100% - 18px); } }
+
+.smp-map-panel {
+  margin-top: 18px; border-radius: 26px; border: 1px solid rgba(255,255,255,.1); background: rgba(5,7,13,.48); overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.07);
+}
+.smp-map-head { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,.06); }
+.smp-map-head h1 { margin: 0; color: #fff; font-size: 17px; font-weight: 900; }
+.smp-map-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.smp-map-chips .filter-chip i { color: var(--accent); }
+.smp-map-layers { margin-left: auto; }
+.smp-map-layers .filter-chip:not(.is-active) { opacity: .55; }
+
+.smp-map-wrap { position: relative; }
+.smp-map { height: max(520px, calc(100vh - 230px)); background: #0b0e16; }
+.smp-map-crisp .leaflet-tile { image-rendering: pixelated; }
+.smp-map .leaflet-control-zoom { border: 0; box-shadow: none; }
+.smp-map .leaflet-control-zoom a {
+  width: 34px; height: 34px; line-height: 32px; margin-bottom: 6px; border-radius: 12px !important; color: #fff;
+  background: rgba(10,12,22,.85); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(8px);
+}
+.smp-map .leaflet-control-zoom a:hover { background: color-mix(in srgb, var(--accent) 18%, rgba(10,12,22,.85)); color: var(--accent); }
+
+.smp-map-status {
+  position: absolute; top: 14px; right: 14px; z-index: 500; width: min(300px, calc(100% - 28px)); padding: 12px 14px; border-radius: 18px; color: #fff;
+  background: linear-gradient(135deg, rgba(14,17,30,.9), rgba(4,6,12,.92)); border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 16px 36px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.07); backdrop-filter: blur(10px);
+}
+.smp-map-status summary { display: flex; align-items: center; gap: 8px; list-style: none; cursor: pointer; font-size: 14px; }
+.smp-map-status summary::-webkit-details-marker { display: none; }
+.smp-map-status summary span:not(.smp-map-dot) { color: var(--muted); font-size: 12px; font-weight: 700; }
+.smp-map-status summary i { margin-left: auto; color: var(--muted); transition: transform .16s ease; }
+.smp-map-status[open] summary i { transform: rotate(180deg); }
+.smp-map-dot { width: 10px; height: 10px; border-radius: 50%; background: #888; box-shadow: 0 0 0 3px rgba(255,255,255,.06); }
+.smp-map-dot.is-online { background: #4be07a; }
+.smp-map-dot.is-offline { background: #ff6b6b; }
+.smp-map-dot.is-maintenance { background: #ffcf6e; }
+.smp-map-clock { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 8px 10px; border-radius: 12px; background: rgba(255,255,255,.04); font-size: 13px; }
+.smp-map-clock i { color: var(--accent-2); }
+.smp-map-clock span { color: var(--muted); font-size: 12px; }
+.smp-map-facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; margin: 10px 0 0; font-size: 12px; }
+.smp-map-facts dt { color: var(--muted); font-weight: 700; }
+.smp-map-facts dd { margin: 0; color: #fff; font-weight: 700; }
+.smp-map-sub { margin: 12px 0 6px; color: var(--muted); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.smp-map-players { display: grid; gap: 4px; max-height: 260px; overflow-y: auto; }
+.smp-map-players button { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 10px; border: 0; background: transparent; color: #fff; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; }
+.smp-map-players button:hover { background: rgba(255,255,255,.06); }
+.smp-map-players img { width: 18px; height: 18px; border-radius: 4px; image-rendering: pixelated; }
+.smp-map-players small { margin-left: auto; color: var(--muted); font-size: 11px; }
+
+.smp-map-coords {
+  position: absolute; left: 14px; bottom: 14px; z-index: 500; padding: 6px 10px; border-radius: 10px; font-size: 12px; font-weight: 700; color: #fff;
+  background: rgba(10,12,22,.8); border: 1px solid rgba(255,255,255,.12); font-variant-numeric: tabular-nums; pointer-events: none;
+}
+.smp-map-coords:empty { display: none; }
+.smp-map-message { position: absolute; inset: 0; z-index: 600; display: grid; place-items: center; margin: 0; color: var(--muted); font-weight: 700; background: rgba(5,7,13,.6); }
+
+.smp-map-player { border-radius: 5px; box-shadow: 0 0 0 2px rgba(0,0,0,.6), 0 4px 10px rgba(0,0,0,.5); image-rendering: pixelated; }
+.smp-map-hub { background: none; border: 0; font-size: 24px; color: #b6c8ff; text-shadow: 0 2px 6px rgba(0,0,0,.7); }
+.smp-map-hub.is-mine i { filter: drop-shadow(0 0 6px rgba(255,255,255,.7)); }
+.smp-map-popup .leaflet-popup-content-wrapper, .smp-map-popup .leaflet-popup-tip {
+  background: linear-gradient(135deg, rgba(14,17,30,.96), rgba(4,6,12,.97)); color: #fff; border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 14px 30px rgba(0,0,0,.5);
+}
+.smp-map-popup .leaflet-popup-content-wrapper { border-radius: 16px; }
+.smp-map-popup .leaflet-popup-content { margin: 12px 14px; font: 600 13px/1.45 Montserrat, Arial, sans-serif; }
+.smp-map-popup small { color: var(--muted); }
+.smp-map-popup a.leaflet-popup-close-button { color: var(--muted); }
+.smp-map-pop { display: flex; align-items: center; gap: 10px; }
+.smp-map-pop > div { display: flex; flex-direction: column; gap: 2px; }
+.smp-map-pop__sub { color: #d6dcf0; font-style: italic; font-size: 12px; }
+.smp-map-face { image-rendering: pixelated; }
+.smp-map-pop .smp-map-face { border-radius: 8px; border: 1px solid rgba(255,255,255,.14); }
+.smp-map-mine { display: inline-block; padding: 1px 7px; border-radius: 999px; font-size: 10px; font-weight: 900; text-transform: uppercase; color: #b7f7c4; background: rgba(75,224,122,.14); border: 1px solid rgba(75,224,122,.3); }
+.smp-map-mine.is-private { color: #ffd9a0; background: rgba(255,193,110,.12); border-color: rgba(255,193,110,.3); }
+.smp-map-tip { background: rgba(10,12,22,.92); color: #fff; border: 1px solid rgba(255,255,255,.14); border-radius: 10px; font: 700 12px Montserrat, Arial, sans-serif; box-shadow: 0 8px 18px rgba(0,0,0,.4); }
+.smp-map-tip::before { display: none; }
+
+@media (max-width: 700px) {
+  .smp-map-layers { margin-left: 0; }
+  .smp-map { height: 70vh; }
+  .smp-map-status { top: auto; bottom: 14px; right: 10px; left: 10px; width: auto; }
+  .smp-map-coords { display: none; }
+}

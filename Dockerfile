@@ -21,8 +21,9 @@ RUN a2enmod rewrite headers && \
     printf '%s\n' "$GIT_SHA" > /var/www/html/version.txt
 
 # pdo_pgsql: the translate/ feature talks to Postgres from PHP.
-RUN apt-get update && apt-get install -y --no-install-recommends libpq-dev && \
-    docker-php-ext-install pdo pdo_pgsql && \
+# gd: api/head.php draws player faces from their skins.
+RUN apt-get update && apt-get install -y --no-install-recommends libpq-dev libpng-dev && \
+    docker-php-ext-install pdo pdo_pgsql gd && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 80

@@ -254,6 +254,7 @@ jobs:
             assets/images/generated/player-skins-home
             assets/images/generated/hub-icons
             assets/images/generated/pet-heads
+            assets/images/generated/player-heads
           if-no-files-found: warn
           retention-days: 7
 
@@ -325,6 +326,7 @@ jobs:
           [ -d assets/images/generated/player-skins-home ] && git add -A assets/images/generated/player-skins-home
           [ -d assets/images/generated/hub-icons ] && git add -A assets/images/generated/hub-icons
           [ -d assets/images/generated/pet-heads ] && git add -A assets/images/generated/pet-heads
+          [ -d assets/images/generated/player-heads ] && git add -A assets/images/generated/player-heads
           [ -d assets/images/generated/player-heads ] && git add -A assets/images/generated/player-heads
 
           if git diff --cached --quiet; then

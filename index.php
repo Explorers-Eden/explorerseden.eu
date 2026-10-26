@@ -85,6 +85,18 @@ $routes = [
     'bodyClass' => 'statistics-page',
     'file' => __DIR__ . '/pages/market.php',
   ],
+  'map' => [
+    'title' => "Explorer's Eden: World Map",
+    'description' => "The live map of the A Realm Recrafted SMP: the world, claims, waypoint hubs and who's online.",
+    'bodyClass' => 'statistics-page smp-map-page',
+    'file' => __DIR__ . '/pages/map.php',
+  ],
+  'server-info' => [
+    'title' => "Explorer's Eden: Server Info",
+    'description' => "How the A Realm Recrafted SMP is set up: settings, game rules, data packs, commands, claims and more.",
+    'bodyClass' => 'statistics-page si-page',
+    'file' => __DIR__ . '/pages/server-info.php',
+  ],
   'statistics' => [
     'title' => "Explorer's Eden: Statistics",
     'description' => "Community-wide stats for the A Realm Recrafted SMP - totals, leaderboards, and race/class breakdowns.",
@@ -142,6 +154,8 @@ $current = $routes[$page];
   <link rel="stylesheet" href="/assets/styles/profile.css?v=<?php echo filemtime(__DIR__.'/assets/styles/profile.css'); ?>">
   <link rel="stylesheet" href="/assets/styles/statistics.css?v=<?php echo filemtime(__DIR__.'/assets/styles/statistics.css'); ?>">
   <link rel="stylesheet" href="/assets/styles/market.css?v=<?php echo filemtime(__DIR__.'/assets/styles/market.css'); ?>">
+  <link rel="stylesheet" href="/assets/styles/smp-map.css?v=<?php echo filemtime(__DIR__.'/assets/styles/smp-map.css'); ?>">
+  <link rel="stylesheet" href="/assets/styles/server-info.css?v=<?php echo filemtime(__DIR__.'/assets/styles/server-info.css'); ?>">
 </head>
 <body class="<?= htmlspecialchars($current['bodyClass'], ENT_QUOTES) ?>">
   <div class="site-bg"></div>
@@ -163,8 +177,8 @@ $current = $routes[$page];
             <a href="/overview/" role="menuitem"><i class="bi bi-info-circle"></i> Overview</a>
             <a href="/statistics/" role="menuitem"><i class="bi bi-bar-chart-fill"></i> Statistics</a>
             <a href="/market/" role="menuitem"><i class="bi bi-shop"></i> Market</a>
-            <a target="_blank" rel="noreferrer" href="https://serverinfo.explorerseden.eu/" role="menuitem"><i class="bi bi-journal-text"></i> Server Info</a>
-            <a target="_blank" rel="noreferrer" href="https://map.explorerseden.eu/" role="menuitem"><i class="bi bi-map"></i> World Map</a>
+            <a href="/server-info/" role="menuitem"><i class="bi bi-journal-text"></i> Server Info</a>
+            <a href="/map/" role="menuitem"><i class="bi bi-map"></i> World Map</a>
           </div>
         </div>
         <div class="nav-dropdown">
@@ -251,6 +265,11 @@ $current = $routes[$page];
     <script src="/assets/scripts/profile.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/profile.js'); ?>"></script>
   <?php elseif ($page === 'market'): ?>
     <script src="/assets/scripts/market.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/market.js'); ?>"></script>
+  <?php elseif ($page === 'map'): ?>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
+    <script src="/assets/scripts/smp-map.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/smp-map.js'); ?>"></script>
+  <?php elseif ($page === 'server-info'): ?>
+    <script src="/assets/scripts/server-info.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/server-info.js'); ?>"></script>
   <?php elseif ($page === 'statistics'): ?>
     <script src="/assets/scripts/server-overview.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/server-overview.js'); ?>"></script>
     <script src="/assets/scripts/statistics.js?v=<?php echo filemtime(__DIR__.'/assets/scripts/statistics.js'); ?>"></script>

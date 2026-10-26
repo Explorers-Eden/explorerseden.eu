@@ -85,7 +85,7 @@ async function extractHubsByOwner(simplified) {
       owner: hub.profile?.name || 'Unknown',
       access: hub.access || 'private',
       // The hub's own head; the owner's face (mc-heads.net) only when that can't be drawn.
-      icon: (hash && await faceIcon(hash, HUB_ICONS_DIR, HUB_ICONS_URL, warn)) || `https://mc-heads.net/avatar/${ownerUuid}/64`,
+      icon: (hash && await faceIcon(hash, HUB_ICONS_DIR, HUB_ICONS_URL, warn)) || `/api/head.php?u=${ownerUuid}&s=64`,
       // The colour of the hub's title in game (dyed with a dye).
       color: /^#[0-9a-f]{6}$/i.test(hub.color || '') ? hub.color : null,
       x: hub.pos?.x ?? 0,
