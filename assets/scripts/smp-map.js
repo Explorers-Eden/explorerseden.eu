@@ -11,6 +11,18 @@
   const ll = (x, z) => L.latLng(-z, x);
   const head = (uuid, size) => `/api/head.php?u=${encodeURIComponent(uuid)}&s=${size}`;
 
+  // Opened from My SMP Profile ("Map" on a claim or hub): a way back to where the player was.
+  {
+    const back = new URLSearchParams(location.search).get('back');
+    if (back && back.startsWith('/') && !back.startsWith('//')) {
+      const a = document.createElement('a');
+      a.className = 'filter-chip smp-map-back';
+      a.href = back;
+      a.innerHTML = '<i class="bi bi-arrow-left"></i> Back to My SMP Profile';
+      document.querySelector('.smp-map-head').prepend(a);
+    }
+  }
+
   const map = L.map('map', { crs: L.CRS.Simple, minZoom: -5, maxZoom: 3, zoomSnap: 1, attributionControl: false, zoomControl: true });
   const layers = {
     players: L.layerGroup().addTo(map),

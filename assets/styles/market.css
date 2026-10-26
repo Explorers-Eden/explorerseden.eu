@@ -1,5 +1,5 @@
 /* Search and order use the shared search-wrap and filter-chip look of the other pages (enchantments.css). */
-.market-tools { margin: 0 0 16px; }
+.market-tools { margin: 0 auto 16px; }
 #market-clear { position:absolute; right:7px; top:50%; transform:translateY(-50%); width:28px; height:28px; border:0; border-radius:999px; cursor:pointer; color:#fff; background:rgba(255,255,255,.10); font-size:20px; line-height:1; }
 #market-clear:hover { background:rgba(255,255,255,.18); }
 .market-tools .filter-chip i { color: var(--accent); }

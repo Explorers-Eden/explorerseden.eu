@@ -91,3 +91,6 @@
   .smp-map-status { top: auto; bottom: 14px; right: 10px; left: 10px; width: auto; }
   .smp-map-coords { display: none; }
 }
+
+.smp-map-back { text-decoration: none; }
+.smp-map-back i { color: var(--accent); }

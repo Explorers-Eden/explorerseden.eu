@@ -374,7 +374,8 @@
   function mapLink(dim, x, z) {
     if (dim == null || x == null || z == null) return '';
     const key = String(dim).includes(':') ? String(dim).replace(':', '_') : String(dim).toLowerCase().replace(/\s+/g, '_');
-    return `<a class="profile-action" href="/map/#${encodeURIComponent(key)}/${Math.round(x)}/${Math.round(z)}"><span class="profile-action__icon"><i class="bi bi-map" aria-hidden="true"></i></span>Map</a>`;
+    const back = encodeURIComponent(location.pathname + location.search + location.hash);
+    return `<a class="profile-action" href="/map/?back=${back}#${encodeURIComponent(key)}/${Math.round(x)}/${Math.round(z)}"><span class="profile-action__icon"><i class="bi bi-map" aria-hidden="true"></i></span>Map</a>`;
   }
 
   // ── Waypoint hubs ───────────────────────────────────────────────────────────
@@ -920,6 +921,8 @@
   function flash(panelId, text) {
     const head = document.querySelector(`#profile-panel-${panelId} .profile-panel__head`);
     if (!head) return;
+    // One note at a time: a quick second change replaces the first.
+    head.querySelectorAll('.profile-flash').forEach((old) => old.remove());
     const el = document.createElement('span');
     el.className = 'profile-note profile-note--ok profile-flash';
     el.innerHTML = `<i class="bi bi-check2-circle"></i> ${esc(text)}`;
