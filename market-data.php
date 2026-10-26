@@ -76,7 +76,8 @@ foreach (($m['server'] ?? []) as $o) {
         'price' => (int) ($o['price'] ?? 0),
         'until' => isset($o['until']) ? (int) $o['until'] : null,
         'perPlayer' => isset($o['perPlayer']) ? (int) $o['perPlayer'] : null,
-        'icon' => item_icon($base, $o['icon'] ?? null),
+        // A player head with its own texture: the head, not the plain head item.
+        'icon' => head_icon($base, $o['head'] ?? null) ?? item_icon($base, $o['icon'] ?? null),
     ];
 }
 foreach ((is_array($data['pets'] ?? null) ? $data['pets'] : []) as $p) {

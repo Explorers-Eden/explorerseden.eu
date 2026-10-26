@@ -272,7 +272,12 @@
 
   /** Which Discord DMs the bot sends this player. */
   function noticesCard() {
-    if (!live || !live.notices) return '';
+    if (!live) return '';
+    if (!live.notices) {
+      const why = live.error ? esc(live.error) : 'The server\'s panel needs its latest update for this.';
+      return panel('notices', 'bi-discord', 'Discord messages', null, null,
+        `<p class="profile-empty-note">Here you choose which direct messages the Discord bot sends you (sales, mailbox, expiring claims, admin messages). ${why}</p>`);
+    }
     const n = live.notices;
     const body = n.available
       ? `<p class="profile-dialog__text profile-notices-intro">The server's Discord bot can send you a direct message when:</p>
@@ -481,7 +486,13 @@
     const lp = live?.pets;
     if (lp && live.running && lp.enabled && Array.isArray(lp.pets) && lp.pets.length) return petsLive(lp);
     const pets = profile.pets || [];
-    const aside = !live ? note('<i class="bi bi-arrow-repeat"></i> Loading…') : live.running ? '' : note('<i class="bi bi-power"></i> Server offline · pets can be changed while it runs', 'warn');
+    const why = !live ? '' : live.error ? live.error
+      : !live.running ? ''
+      : !lp ? 'Changing pets here needs the server\'s latest mod update.'
+      : lp.enabled === false ? 'Pets are switched off on the server right now.' : '';
+    const aside = !live ? note('<i class="bi bi-arrow-repeat"></i> Loading…')
+      : why ? note(`<i class="bi bi-info-circle"></i> ${esc(why)}`, 'warn')
+      : live.running ? '' : note('<i class="bi bi-power"></i> Server offline · pets can be changed while it runs', 'warn');
     const body = pets.length
       ? `<div class="profile-market-grid">${pets.map((p) => `<article class="profile-market-card">
           ${p.icon ? `<img class="profile-market-card__icon profile-pet-head" src="${esc(p.icon)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-emoji-smile"></i></span>'}

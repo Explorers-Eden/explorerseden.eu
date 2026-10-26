@@ -239,44 +239,14 @@
             ${(p.perks || []).length ? `<small class="in-tile__extra"><i class="bi bi-stars"></i> ${p.perks.map((k) => esc(k.label) + (k.level > 0 ? ` (bond level ${Number(k.level)})` : '')).join(' · ')}</small>` : ''}
             <span class="in-tile__price">${p.price ? `${coin}${Number(p.price).toLocaleString()} <small>${esc(p.price === 1 ? cur : cur + 's')}</small>` : 'Free'}</span>
             ${p.until || p.left > 0 ? `<small class="in-tile__seller"><i class="bi bi-clock"></i> ${[p.until ? 'on sale until ' + new Date(p.until).toLocaleDateString([], { dateStyle: 'medium' }) : '', p.left > 0 ? Number(p.left).toLocaleString() + ' left' : ''].filter(Boolean).join(' · ')}</small>` : ''}</span></div>`).join('');
-    const petChild = (cur, coin = '') => ({ id: 'pets', title: 'Pets', icon: 'bi-emoji-smile', sub: 'floating heads that follow you', wide: true,
+    const petChild = (cur, coin = '') => ({ id: 'pets-for-sale', title: 'Pets', icon: 'bi-emoji-smile', sub: 'floating heads that follow you', wide: true,
       desc: 'Type /pets in game to get one (it stays yours for good), name it and pick how it moves (float, orbit, halo, spiral, wander and more) and a particle trail. Everyone near you sees it, and it reacts to what you do. Some pets have perks that unlock as your bond grows.',
       body: d.pets.length ? `<div class="in-tiles">${petTiles(cur, coin)}</div>` : '<p class="in-empty">No pets for sale right now.</p>' });
-    if (!d.market && d.pets) {
-      const cur = titleCase(String(d.petCurrency || 'minecraft:diamond').replace(/^[^:]+:/, '').replace(/_/g, ' '));
-      sections.push({ id: 'market', title: 'Pets', statLabel: 'pets for sale', icon: 'bi-emoji-smile', hue: '#ffd166', count: d.pets.length,
-        lead: `Floating heads that follow you around. Type /pets in game; pets are paid in ${cur}s.`, children: [petChild(cur)] });
-    }
-    if (d.market) {
-      const m = d.market;
-      const cur = titleCase(String(m.currency || 'minecraft:diamond').replace(/^[^:]+:/, '').replace(/_/g, ' '));
-      const coin = m.currencyIcon ? `<img class="in-item in-item--coin" src="${BASE}/info/items/${esc(m.currencyIcon)}" alt="">` : '';
-      const item = (l) => {
-        const extra = [...(l.enchantments || []), ...(l.lore || [])];
-        return `<div class="in-tile" data-search="${esc(mcPlain([l.name, l.seller, l.item, ...extra].join(' ')).toLowerCase())}">
-          <span class="in-slot">${l.icon ? `<img src="${BASE}/info/items/${esc(l.icon)}" alt="" loading="lazy">` : '<i class="bi bi-box"></i>'}${l.amount > 1 ? `<b class="in-slot__count">${l.amount > 999 ? Math.round(l.amount / 100) / 10 + 'k' : l.amount}</b>` : ''}</span>
-          <span class="in-tile__text"><b${extra.length ? ' class="in-tile__name--magic"' : ''}>${mcHtml(l.name)}</b>
-            ${extra.length ? `<small class="in-tile__extra">${extra.map(mcHtml).join(' · ')}</small>` : ''}
-            <span class="in-tile__price">${coin}${Number(l.price).toLocaleString()} <small>${esc(l.price === 1 ? cur : cur + 's')} ${l.per > 1 ? `per ${Number(l.per).toLocaleString()}` : 'each'}</small></span>
-            <small class="in-tile__seller"><i class="bi bi-person"></i> ${esc(l.seller || 'someone')} · ${Number(l.amount).toLocaleString()} left</small></span></div>`;
-      };
-      const offer = (o) => `<div class="in-tile" data-search="${esc([o.name, o.description].join(' ').toLowerCase())}">
-          <span class="in-slot">${o.head ? `<img class="in-head" src="${BASE}/info/heads/${esc(o.head)}" alt="" loading="lazy">` : o.icon ? `<img src="${BASE}/info/items/${esc(o.icon)}" alt="" loading="lazy">` : '<i class="bi bi-box"></i>'}</span>
-          <span class="in-tile__text"><b>${esc(o.name)}</b>
-            ${o.description ? `<small class="in-tile__extra">${esc(o.description)}</small>` : ''}
-            <span class="in-tile__price">${coin}${Number(o.price).toLocaleString()} <small>${esc(o.price === 1 ? cur : cur + 's')}</small></span>
-            <small class="in-tile__seller"><i class="bi bi-shop-window"></i> ${esc(m.serverName || 'the server')}${o.until ? ` · until ${esc(new Date(o.until).toLocaleDateString([], { dateStyle: 'medium' }))}` : ''}${o.perPlayer ? ` · up to ${o.perPlayer} each` : ''}</small></span></div>`;
-      const list = m.listings || [];
-      const server = m.server || [];
-      const pets = d.pets || [];
-      const fromServer = server.length + pets.length;
-      sections.push({ id: 'market', title: 'Market', statLabel: 'items for sale', icon: 'bi-shop', hue: '#ffd166', count: list.length + fromServer,
-        lead: `What the server and players sell right now. Type /market in game to buy or sell; everything is paid in ${cur}s.`,
-        children: [...(fromServer ? [{ id: 'market-server', title: 'From the server', icon: 'bi-shop-window', sub: `${fromServer} listing${fromServer === 1 ? '' : 's'} · Server shop in /market`, wide: true,
-          desc: pets.length ? 'Pets are floating heads that follow you, only for looks: once bought they stay yours for good, and /pets lets you pick how yours moves and a particle trail.' : '',
-          body: `<div class="in-tiles">${server.map(offer).join('')}${pets.length ? petTiles(cur, coin) : ''}</div>` }] : []),
-          { id: 'market-list', title: 'From players', icon: 'bi-bag', sub: `${list.length} listing${list.length === 1 ? '' : 's'}`, wide: true,
-          body: list.length ? `<div class="in-tiles">${list.map(item).join('')}</div>` : '<p class="in-empty">Nothing for sale right now.</p>' }] });
+    // The market has its own page (/market/); pets stay here since they're picked and styled with /pets.
+    if (d.pets && d.pets.length) {
+      const cur = titleCase(String(d.petCurrency || d.market?.currency || 'minecraft:diamond').replace(/^[^:]+:/, '').replace(/_/g, ' '));
+      sections.push({ id: 'pets', title: 'Pets', statLabel: 'pets for sale', icon: 'bi-emoji-smile', hue: '#ffd166', count: d.pets.length,
+        lead: `Floating heads that follow you around. Type /pets in game; pets are paid in ${cur}s. Everything else for sale is on the Market page.`, children: [petChild(cur)] });
     }
     if (d.waypoints && d.waypoints.length) {
       // Grouped by dimension, in the order the panel sorted them.
