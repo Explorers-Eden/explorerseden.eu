@@ -7,8 +7,8 @@
     "id": "kattersstructures:armory",
     "displayName": "Armory",
     "structureId": "kattersstructures:armory",
-    "blocks": 7550,
-    "uniqueBlocks": 37,
+    "blocks": 13175,
+    "uniqueBlocks": 32,
     "url": "structures/katters_structures/kattersstructures/armory/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/armory/north.png",
@@ -25,7 +25,7 @@
     "id": "kattersstructures:better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_01",
     "displayName": "Better Vanilla Dungeon Room (01)",
     "structureId": "kattersstructures:better_vanilla_dungeon",
-    "blocks": 31357,
+    "blocks": 22905,
     "uniqueBlocks": 41,
     "url": "structures/katters_structures/kattersstructures/better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_01/index.html",
     "previews": [
@@ -43,7 +43,7 @@
     "id": "kattersstructures:better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_02",
     "displayName": "Better Vanilla Dungeon Room (02)",
     "structureId": "kattersstructures:better_vanilla_dungeon",
-    "blocks": 25677,
+    "blocks": 27133,
     "uniqueBlocks": 41,
     "url": "structures/katters_structures/kattersstructures/better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_02/index.html",
     "previews": [
@@ -61,7 +61,7 @@
     "id": "kattersstructures:better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_03",
     "displayName": "Better Vanilla Dungeon Room (03)",
     "structureId": "kattersstructures:better_vanilla_dungeon",
-    "blocks": 23652,
+    "blocks": 27358,
     "uniqueBlocks": 41,
     "url": "structures/katters_structures/kattersstructures/better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_03/index.html",
     "previews": [
@@ -79,7 +79,7 @@
     "id": "kattersstructures:better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_04",
     "displayName": "Better Vanilla Dungeon Room (04)",
     "structureId": "kattersstructures:better_vanilla_dungeon",
-    "blocks": 20574,
+    "blocks": 24014,
     "uniqueBlocks": 41,
     "url": "structures/katters_structures/kattersstructures/better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_04/index.html",
     "previews": [
@@ -97,7 +97,7 @@
     "id": "kattersstructures:better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_05",
     "displayName": "Better Vanilla Dungeon Room (05)",
     "structureId": "kattersstructures:better_vanilla_dungeon",
-    "blocks": 16485,
+    "blocks": 17603,
     "uniqueBlocks": 41,
     "url": "structures/katters_structures/kattersstructures/better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_05/index.html",
     "previews": [
@@ -115,7 +115,7 @@
     "id": "kattersstructures:better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_06",
     "displayName": "Better Vanilla Dungeon Room (06)",
     "structureId": "kattersstructures:better_vanilla_dungeon",
-    "blocks": 19651,
+    "blocks": 17366,
     "uniqueBlocks": 41,
     "url": "structures/katters_structures/kattersstructures/better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_06/index.html",
     "previews": [
@@ -133,7 +133,7 @@
     "id": "kattersstructures:better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_07",
     "displayName": "Better Vanilla Dungeon Room (07)",
     "structureId": "kattersstructures:better_vanilla_dungeon",
-    "blocks": 26657,
+    "blocks": 28425,
     "uniqueBlocks": 41,
     "url": "structures/katters_structures/kattersstructures/better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_07/index.html",
     "previews": [
@@ -151,7 +151,7 @@
     "id": "kattersstructures:better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_08",
     "displayName": "Better Vanilla Dungeon Room (08)",
     "structureId": "kattersstructures:better_vanilla_dungeon",
-    "blocks": 31877,
+    "blocks": 30441,
     "uniqueBlocks": 41,
     "url": "structures/katters_structures/kattersstructures/better_vanilla_dungeon/better_vanilla_dungeon/room/better_vanilla_dungeon_room_08/index.html",
     "previews": [
@@ -205,7 +205,7 @@
     "id": "kattersstructures:dark_tree",
     "displayName": "Dark Tree",
     "structureId": "kattersstructures:dark_tree",
-    "blocks": 4869,
+    "blocks": 4845,
     "uniqueBlocks": 21,
     "url": "structures/katters_structures/kattersstructures/dark_tree/index.html",
     "previews": [
@@ -223,8 +223,8 @@
     "id": "kattersstructures:deep_blue_city",
     "displayName": "Deep Blue City",
     "structureId": "kattersstructures:deep_blue_city",
-    "blocks": 82310,
-    "uniqueBlocks": 90,
+    "blocks": 82231,
+    "uniqueBlocks": 91,
     "url": "structures/katters_structures/kattersstructures/deep_blue_city/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/deep_blue_city/north.png",
@@ -242,7 +242,7 @@
     "displayName": "Deep Blue Lab Ruin",
     "structureId": "kattersstructures:deep_blue_lab_ruin",
     "blocks": 572,
-    "uniqueBlocks": 16,
+    "uniqueBlocks": 17,
     "url": "structures/katters_structures/kattersstructures/deep_blue_lab_ruin/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/deep_blue_lab_ruin/north.png",
@@ -259,8 +259,8 @@
     "id": "kattersstructures:deep_blue_labs",
     "displayName": "Deep Blue Labs",
     "structureId": "kattersstructures:deep_blue_labs",
-    "blocks": 2716,
-    "uniqueBlocks": 33,
+    "blocks": 422,
+    "uniqueBlocks": 13,
     "url": "structures/katters_structures/kattersstructures/deep_blue_labs/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/deep_blue_labs/north.png",
@@ -277,7 +277,7 @@
     "id": "kattersstructures:desert_dungeon",
     "displayName": "Desert Dungeon",
     "structureId": "kattersstructures:desert_dungeon",
-    "blocks": 55902,
+    "blocks": 36229,
     "uniqueBlocks": 46,
     "url": "structures/katters_structures/kattersstructures/desert_dungeon/index.html",
     "previews": [
@@ -295,7 +295,7 @@
     "id": "kattersstructures:far_watch",
     "displayName": "Far Watch",
     "structureId": "kattersstructures:far_watch",
-    "blocks": 323295,
+    "blocks": 323271,
     "uniqueBlocks": 57,
     "url": "structures/katters_structures/kattersstructures/far_watch/index.html",
     "previews": [
@@ -313,7 +313,7 @@
     "id": "kattersstructures:fossils",
     "displayName": "Fossils",
     "structureId": "kattersstructures:fossils",
-    "blocks": 1123,
+    "blocks": 1094,
     "uniqueBlocks": 7,
     "url": "structures/katters_structures/kattersstructures/fossils/index.html",
     "previews": [
@@ -331,8 +331,8 @@
     "id": "kattersstructures:graveyard",
     "displayName": "Graveyard",
     "structureId": "kattersstructures:graveyard",
-    "blocks": 4185,
-    "uniqueBlocks": 68,
+    "blocks": 3279,
+    "uniqueBlocks": 67,
     "url": "structures/katters_structures/kattersstructures/graveyard/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/graveyard/north.png",
@@ -349,8 +349,8 @@
     "id": "kattersstructures:magic_tower",
     "displayName": "Magic Tower",
     "structureId": "kattersstructures:magic_tower",
-    "blocks": 21206,
-    "uniqueBlocks": 57,
+    "blocks": 20291,
+    "uniqueBlocks": 56,
     "url": "structures/katters_structures/kattersstructures/magic_tower/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/magic_tower/north.png",
@@ -439,8 +439,8 @@
     "id": "kattersstructures:ocean_ships",
     "displayName": "Ocean Ships",
     "structureId": "kattersstructures:ocean_ships",
-    "blocks": 463,
-    "uniqueBlocks": 37,
+    "blocks": 297,
+    "uniqueBlocks": 35,
     "url": "structures/katters_structures/kattersstructures/ocean_ships/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/ocean_ships/north.png",
@@ -457,8 +457,8 @@
     "id": "kattersstructures:pillager_village",
     "displayName": "Pillager Village",
     "structureId": "kattersstructures:pillager_village",
-    "blocks": 9522,
-    "uniqueBlocks": 51,
+    "blocks": 9064,
+    "uniqueBlocks": 50,
     "url": "structures/katters_structures/kattersstructures/pillager_village/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/pillager_village/north.png",
@@ -475,7 +475,7 @@
     "id": "kattersstructures:red_coral/deep_blue/red_coral/red_coral_01",
     "displayName": "Red Coral (01)",
     "structureId": "kattersstructures:red_coral",
-    "blocks": 554,
+    "blocks": 772,
     "uniqueBlocks": 6,
     "url": "structures/katters_structures/kattersstructures/red_coral/deep_blue/red_coral/red_coral_01/index.html",
     "previews": [
@@ -493,7 +493,7 @@
     "id": "kattersstructures:red_coral/deep_blue/red_coral/red_coral_02",
     "displayName": "Red Coral (02)",
     "structureId": "kattersstructures:red_coral",
-    "blocks": 880,
+    "blocks": 1000,
     "uniqueBlocks": 6,
     "url": "structures/katters_structures/kattersstructures/red_coral/deep_blue/red_coral/red_coral_02/index.html",
     "previews": [
@@ -511,7 +511,7 @@
     "id": "kattersstructures:red_coral/deep_blue/red_coral/red_coral_03",
     "displayName": "Red Coral (03)",
     "structureId": "kattersstructures:red_coral",
-    "blocks": 504,
+    "blocks": 505,
     "uniqueBlocks": 5,
     "url": "structures/katters_structures/kattersstructures/red_coral/deep_blue/red_coral/red_coral_03/index.html",
     "previews": [
@@ -529,7 +529,7 @@
     "id": "kattersstructures:red_coral/deep_blue/red_coral/red_coral_04",
     "displayName": "Red Coral (04)",
     "structureId": "kattersstructures:red_coral",
-    "blocks": 2436,
+    "blocks": 2067,
     "uniqueBlocks": 6,
     "url": "structures/katters_structures/kattersstructures/red_coral/deep_blue/red_coral/red_coral_04/index.html",
     "previews": [
@@ -547,8 +547,8 @@
     "id": "kattersstructures:ruined_village",
     "displayName": "Ruined Village",
     "structureId": "kattersstructures:ruined_village",
-    "blocks": 7217,
-    "uniqueBlocks": 43,
+    "blocks": 15259,
+    "uniqueBlocks": 45,
     "url": "structures/katters_structures/kattersstructures/ruined_village/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/ruined_village/north.png",
@@ -565,7 +565,7 @@
     "id": "kattersstructures:shroom_cave",
     "displayName": "Shroom Cave",
     "structureId": "kattersstructures:shroom_cave",
-    "blocks": 4310,
+    "blocks": 4339,
     "uniqueBlocks": 8,
     "url": "structures/katters_structures/kattersstructures/shroom_cave/index.html",
     "previews": [
@@ -709,8 +709,8 @@
     "id": "kattersstructures:sky_dungeon",
     "displayName": "Sky Dungeon",
     "structureId": "kattersstructures:sky_dungeon",
-    "blocks": 34100,
-    "uniqueBlocks": 65,
+    "blocks": 34377,
+    "uniqueBlocks": 64,
     "url": "structures/katters_structures/kattersstructures/sky_dungeon/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/sky_dungeon/north.png",
@@ -781,8 +781,8 @@
     "id": "kattersstructures:trader_outposts",
     "displayName": "Trader Outposts",
     "structureId": "kattersstructures:trader_outposts",
-    "blocks": 807,
-    "uniqueBlocks": 40,
+    "blocks": 863,
+    "uniqueBlocks": 39,
     "url": "structures/katters_structures/kattersstructures/trader_outposts/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/trader_outposts/north.png",
@@ -799,8 +799,8 @@
     "id": "kattersstructures:village_birch",
     "displayName": "Village Birch",
     "structureId": "kattersstructures:village_birch",
-    "blocks": 37964,
-    "uniqueBlocks": 61,
+    "blocks": 34696,
+    "uniqueBlocks": 68,
     "url": "structures/katters_structures/kattersstructures/village_birch/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/village_birch/north.png",
@@ -817,8 +817,8 @@
     "id": "kattersstructures:village_cherry",
     "displayName": "Village Cherry",
     "structureId": "kattersstructures:village_cherry",
-    "blocks": 6352,
-    "uniqueBlocks": 58,
+    "blocks": 7086,
+    "uniqueBlocks": 59,
     "url": "structures/katters_structures/kattersstructures/village_cherry/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/village_cherry/north.png",
@@ -835,8 +835,8 @@
     "id": "kattersstructures:village_jungle",
     "displayName": "Village Jungle",
     "structureId": "kattersstructures:village_jungle",
-    "blocks": 17685,
-    "uniqueBlocks": 84,
+    "blocks": 26150,
+    "uniqueBlocks": 73,
     "url": "structures/katters_structures/kattersstructures/village_jungle/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/village_jungle/north.png",
@@ -853,8 +853,8 @@
     "id": "kattersstructures:village_mesa",
     "displayName": "Village Mesa",
     "structureId": "kattersstructures:village_mesa",
-    "blocks": 20310,
-    "uniqueBlocks": 135,
+    "blocks": 9413,
+    "uniqueBlocks": 108,
     "url": "structures/katters_structures/kattersstructures/village_mesa/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/village_mesa/north.png",
@@ -871,8 +871,8 @@
     "id": "kattersstructures:village_ocean",
     "displayName": "Village Ocean",
     "structureId": "kattersstructures:village_ocean",
-    "blocks": 25401,
-    "uniqueBlocks": 146,
+    "blocks": 1734,
+    "uniqueBlocks": 45,
     "url": "structures/katters_structures/kattersstructures/village_ocean/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/village_ocean/north.png",
@@ -889,8 +889,8 @@
     "id": "kattersstructures:village_sky",
     "displayName": "Village Sky",
     "structureId": "kattersstructures:village_sky",
-    "blocks": 7130,
-    "uniqueBlocks": 52,
+    "blocks": 7395,
+    "uniqueBlocks": 53,
     "url": "structures/katters_structures/kattersstructures/village_sky/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/village_sky/north.png",
@@ -907,8 +907,8 @@
     "id": "kattersstructures:village_swamp",
     "displayName": "Village Swamp",
     "structureId": "kattersstructures:village_swamp",
-    "blocks": 20051,
-    "uniqueBlocks": 79,
+    "blocks": 7754,
+    "uniqueBlocks": 87,
     "url": "structures/katters_structures/kattersstructures/village_swamp/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/village_swamp/north.png",
@@ -925,8 +925,8 @@
     "id": "kattersstructures:village_underground",
     "displayName": "Village Underground",
     "structureId": "kattersstructures:village_underground",
-    "blocks": 32065,
-    "uniqueBlocks": 63,
+    "blocks": 24059,
+    "uniqueBlocks": 68,
     "url": "structures/katters_structures/kattersstructures/village_underground/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/village_underground/north.png",
@@ -997,8 +997,8 @@
     "id": "kattersstructures:windmill",
     "displayName": "Windmill",
     "structureId": "kattersstructures:windmill",
-    "blocks": 11183,
-    "uniqueBlocks": 72,
+    "blocks": 11668,
+    "uniqueBlocks": 76,
     "url": "structures/katters_structures/kattersstructures/windmill/index.html",
     "previews": [
       "/wiki/katters_structures/images/structures/kattersstructures/windmill/north.png",
