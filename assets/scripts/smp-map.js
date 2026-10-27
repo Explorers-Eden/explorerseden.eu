@@ -53,7 +53,8 @@
 
   function hash() {
     const c = map.getCenter();
-    history.replaceState(null, '', `#${dim.key}/${Math.round(c.lng)}/${Math.round(-c.lat)}/${map.getZoom()}`);
+    // With the page's path: the site's <base href="/"> would put a bare "#…" on the home page.
+    history.replaceState(null, '', `${location.pathname}${location.search}#${dim.key}/${Math.round(c.lng)}/${Math.round(-c.lat)}/${map.getZoom()}`);
   }
 
   function setDim(key, x, z, zoom) {

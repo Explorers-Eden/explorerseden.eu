@@ -373,7 +373,7 @@
     // One card picked: it gets the whole width, its rows flow in columns.
     cards.classList.toggle('in-cards--picked', !!part && part.classList.contains('in-card'));
     section.querySelectorAll('.in-pill').forEach((p) => p.classList.toggle('is-active', p.dataset.pill === (part ? part.id : '')));
-    if (push) history.replaceState(null, '', '#' + target.id);
+    if (push) history.replaceState(null, '', location.pathname + location.search + '#' + target.id);
     if (target !== section && target !== part) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     else {
       const top = $('in-main').getBoundingClientRect().top + window.scrollY - $('in-bar').offsetHeight - 12;

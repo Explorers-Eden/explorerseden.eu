@@ -608,7 +608,7 @@
   function selectTab(tab) {
     if (!RENDER[tab]) return;
     activeTab = tab;
-    history.replaceState(null, '', tab === 'overview' ? location.pathname : `#${tab}`);
+    history.replaceState(null, '', location.pathname + location.search + (tab === 'overview' ? '' : `#${tab}`));
     renderTabs();
   }
 
