@@ -18,12 +18,23 @@
       const a = document.createElement('a');
       a.className = 'filter-chip smp-map-back';
       a.href = back;
+      // Straight from that page: go back in history, so it comes back as it was (tab, scroll).
+      a.addEventListener('click', (e) => {
+        let from = null;
+        try { from = document.referrer ? new URL(document.referrer) : null; } catch (err) { /* no referrer */ }
+        if (from && from.origin === location.origin && from.pathname === new URL(back, location.origin).pathname && history.length > 1) {
+          e.preventDefault();
+          history.back();
+        }
+      });
       a.innerHTML = '<i class="bi bi-arrow-left"></i> Back to My SMP Profile';
       document.querySelector('.smp-map-head').prepend(a);
     }
   }
 
-  const map = L.map('map', { crs: L.CRS.Simple, minZoom: -5, maxZoom: 3, zoomSnap: 1, attributionControl: false, zoomControl: true });
+  const map = L.map('map', { crs: L.CRS.Simple, minZoom: -5, maxZoom: 3, zoomSnap: 1, attributionControl: false, zoomControl: false });
+  // Bottom right: the top left is where the title and chips float.
+  L.control.zoom({ position: 'bottomright' }).addTo(map);
   const layers = {
     players: L.layerGroup().addTo(map),
     claims: L.layerGroup().addTo(map),

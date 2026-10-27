@@ -1,25 +1,28 @@
 /* The SMP world map (/map/), in the site's glass style. */
-.smp-map-shell { width: min(2100px, calc(100% - 28px)); }
-@media (max-width: 680px) { .smp-map-shell { width: calc(100% - 18px); } }
+.smp-map-page { overflow: hidden; }
+.smp-map-page .site-footer { display: none; }
+.smp-map-shell { width: 100%; max-width: none; margin: 0; padding: 0; }
 
-.smp-map-panel {
-  margin-top: 18px; border-radius: 26px; border: 1px solid rgba(255,255,255,.1); background: rgba(5,7,13,.48); overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.07);
+/* The whole window below the nav bar is map; the controls float on it. */
+.smp-map-panel { position: fixed; inset: 64px 0 0; z-index: 1; overflow: hidden; background: #070910; }
+.smp-map-head {
+  position: absolute; top: 16px; left: 16px; z-index: 700; display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px;
+  max-width: calc(100% - 340px); padding: 10px 14px; border-radius: 18px; color: #fff;
+  background: linear-gradient(135deg, rgba(14,17,30,.9), rgba(4,6,12,.92)); border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 16px 36px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.07); backdrop-filter: blur(10px);
 }
-.smp-map-head { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 22px; padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,.06); }
 .smp-map-head h1 { margin: 0 6px 0 0; color: #fff; font-size: 19px; font-weight: 900; white-space: nowrap; }
-.smp-map-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.smp-map-chips { display: flex; flex-wrap: wrap; gap: 8px; max-width: 100%; }
 .smp-map-chips .filter-chip { padding-inline: 14px; }
 .smp-map-chips .filter-chip i { color: var(--accent); }
-.smp-map-layers { margin-left: auto; padding-left: 18px; border-left: 1px solid rgba(255,255,255,.08); }
 .smp-map-layers .filter-chip:not(.is-active) { opacity: .55; }
 
-.smp-map-wrap { position: relative; z-index: 0; isolation: isolate; }
+.smp-map-wrap { position: relative; z-index: 0; isolation: isolate; height: 100%; }
 /* Leaflet's stylesheet loads after this one: the doubled class wins over its light-grey background. */
-.smp-map.leaflet-container, .smp-map { height: max(560px, calc(100vh - 210px)); background: radial-gradient(ellipse at center, #10162a 0%, #070910 75%); font-family: Montserrat, Arial, sans-serif; }
+.smp-map.leaflet-container, .smp-map { height: 100%; background: radial-gradient(ellipse at center, #10162a 0%, #070910 75%); font-family: Montserrat, Arial, sans-serif; }
 .smp-map .leaflet-tile-pane { filter: saturate(1.05); }
 .smp-map-crisp .leaflet-tile { image-rendering: pixelated; }
-.smp-map .leaflet-control-zoom { border: 0; box-shadow: none; margin: 18px 0 0 18px; }
+.smp-map .leaflet-control-zoom { border: 0; box-shadow: none; margin: 0 18px 18px 0; }
 .smp-map .leaflet-control-zoom a {
   width: 34px; height: 34px; line-height: 32px; margin-bottom: 6px; border-radius: 12px !important; color: #fff;
   background: rgba(10,12,22,.85); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(8px);
@@ -81,15 +84,16 @@
 .smp-map-tip { background: rgba(10,12,22,.92); color: #fff; border: 1px solid rgba(255,255,255,.14); border-radius: 10px; font: 700 12px Montserrat, Arial, sans-serif; box-shadow: 0 8px 18px rgba(0,0,0,.4); }
 .smp-map-tip::before { display: none; }
 
-@media (max-width: 900px) {
-  .smp-map-layers { margin-left: 0; padding-left: 0; border-left: 0; }
-}
 @media (max-width: 700px) {
-  .smp-map-head { padding: 14px 14px; gap: 10px; }
-  .smp-map-head h1 { width: 100%; }
-  .smp-map.leaflet-container, .smp-map { height: 72vh; }
-  .smp-map-status { top: auto; bottom: 14px; right: 10px; left: 10px; width: auto; }
+  .smp-map-head { top: 10px; left: 10px; right: 10px; max-width: none; padding: 10px 12px; gap: 8px; }
+  .smp-map-head h1 { font-size: 17px; }
+  /* One row each, swiped sideways. */
+  .smp-map-chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .smp-map-chips .filter-chip { flex-shrink: 0; }
+  .smp-map-status { top: auto; bottom: 10px; right: 10px; left: 10px; width: auto; max-height: 45%; }
   .smp-map-coords { display: none; }
+  /* Pinch to zoom; the buttons would sit under the status card. */
+  .smp-map .leaflet-control-zoom { display: none; }
 }
 
 .smp-map-back { text-decoration: none; }
