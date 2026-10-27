@@ -164,12 +164,12 @@
     const waiting = parcels + orders;
     const summary = `${title}${account.accounts.length > 1 ? '' : `<span class="market-bank__name">${esc(a.name)}</span>`}
       <span class="market-bank__balance">${price(Number(a.balance || 0), 0)}</span>
-      ${waiting ? `<span class="profile-count-badge market-bank__flag" title="Waiting in your mailbox in game"><i class="bi bi-mailbox" aria-hidden="true"></i> ${waiting}</span>` : ''}
+      ${waiting ? `<span class="profile-count-badge market-bank__flag" title="Waiting in your inbox in game"><i class="bi bi-mailbox" aria-hidden="true"></i> ${waiting}</span>` : ''}
       ${account.running ? '' : '<span class="profile-count-badge market-bank__flag market-bank__flag--offline" title="Buying works while the server runs"><i class="bi bi-power" aria-hidden="true"></i> Server offline</span>'}`;
 
     const pick = account.accounts.length > 1 ? `<label class="market-bank__pick">Player <select id="market-account">${account.accounts.map((x) =>
       `<option value="${esc(x.uuid)}" ${x.uuid === accountUuid ? 'selected' : ''}>${esc(x.name)}</option>`).join('')}</select></label>` : '';
-    const mail = waiting ? `<p class="market-bank__mail"><i class="bi bi-mailbox" aria-hidden="true"></i> Waiting in your mailbox in game (/market → Mailbox):
+    const mail = waiting ? `<p class="market-bank__mail"><i class="bi bi-mailbox" aria-hidden="true"></i> Waiting in your inbox in game (/inbox):
         ${[parcels ? `${parcels} ${parcels === 1 ? 'parcel' : 'parcels'}` : '', orders ? `${orders} ${orders === 1 ? 'purchase' : 'purchases'} to claim` : ''].filter(Boolean).join(' and ')}</p>` : '';
     const trades = (a.sales || []).slice(0, 5).map((x) => `<li><span class="market-bank__${x.role}">${x.role === 'bought' ? 'Bought' : 'Sold'}</span>
         ${x.amount > 1 ? `${Number(x.amount).toLocaleString()} × ` : ''}${mcHtml(x.name)} · ${price(x.total, 0)} · ${x.role === 'bought' ? 'from' : 'to'} ${esc(x.other || '')}
@@ -179,7 +179,7 @@
         ${pick}
         ${mail}
         ${trades ? `<ul class="market-bank__trades">${trades}</ul>` : '<p class="market-bank__hint">No trades yet.</p>'}
-        <p class="market-bank__hint">Deposit and withdraw in game with /market → Bank. Bought items wait in your mailbox there; command purchases run when you claim them.</p>
+        <p class="market-bank__hint">Deposit and withdraw in game with /market → Bank. Bought items wait in your inbox (/inbox); command purchases run when you claim them.</p>
       </div>`;
     // A purchase's result unfolds it, so the message is seen.
     return group('bank', summary, body, bankOpen || !!note || account.accounts.length > 1);

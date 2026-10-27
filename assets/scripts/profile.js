@@ -265,7 +265,7 @@
 
   const NOTICE_LABELS = {
     sales: ['Something of yours sold on the market', 'Bundled, at most one message every few minutes'],
-    mail: ['Items wait in your market mailbox', 'Expired listings, purchases that didn\'t fit; at most once an hour'],
+    mail: ['Items wait in your inbox', 'Expired listings, purchases that didn\'t fit; at most once an hour'],
     claims: ['A claim of yours expires within a week', 'Because you haven\'t played for a while'],
     messages: ['An admin writes to you', 'You answer in game with /nccreply'],
   };
@@ -276,7 +276,7 @@
     if (!live.notices) {
       const why = live.error ? esc(live.error) : 'The server\'s panel needs its latest update for this.';
       return panel('notices', 'bi-discord', 'Discord messages', null, null,
-        `<p class="profile-empty-note">Here you choose which direct messages the Discord bot sends you (sales, mailbox, expiring claims, admin messages). ${why}</p>`);
+        `<p class="profile-empty-note">Here you choose which direct messages the Discord bot sends you (sales, inbox, expiring claims, admin messages). ${why}</p>`);
     }
     const n = live.notices;
     const body = n.available
@@ -435,7 +435,7 @@
       <div class="profile-bank">
         <div class="profile-bank__balance">${coin('profile-bank__coin')}<div><b>${balance.toLocaleString()}</b><span>${currencyName(balance)} in your bank</span></div></div>
         <p class="profile-bank__hint">Deposit and withdraw with <b>/market → Bank</b> in game; sales are paid into the bank. <a href="/market/">Spend it on the market <i class="bi bi-arrow-right"></i></a></p>
-        ${waiting.length ? `<div class="profile-bank__mail"><p class="profile-subhead"><i class="bi bi-mailbox"></i> Waiting in your mailbox <span class="profile-muted">· collect with /market → Mailbox</span></p><ul>${waiting.join('')}</ul></div>` : ''}
+        ${waiting.length ? `<div class="profile-bank__mail"><p class="profile-subhead"><i class="bi bi-mailbox"></i> Waiting in your inbox <span class="profile-muted">· collect with /inbox</span></p><ul>${waiting.join('')}</ul></div>` : ''}
       </div>`;
     const listings = listingsList();
     const canWithdraw = live && live.running;
@@ -452,7 +452,7 @@
           <span class="profile-price">${coin('profile-coin')}<b>${Number(x.total).toLocaleString()}</b></span>
           <span class="profile-muted">${x.role === 'bought' ? 'from' : 'to'} ${esc(x.other || 'someone')} · ${esc(new Date(x.time).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }))}</span></li>`).join('')}</ul>`
       : '<p class="profile-empty-note">No trades yet.</p>';
-    return panel('bank', 'bi-bank', 'Bank & mailbox', null, null, bank) + panel('listings', 'bi-shop', 'Your listings', listings.length, aside, cards)
+    return panel('bank', 'bi-bank', 'Bank & inbox', null, null, bank) + panel('listings', 'bi-shop', 'Your listings', listings.length, aside, cards)
       + panel('trades', 'bi-receipt', 'Recent trades', accountSales.length || null, null, trades);
   }
 
@@ -873,9 +873,9 @@
         <label class="profile-field"><span>Price ${coin('profile-coin')}</span><input type="number" name="price" min="1" max="${max}" value="${Number(l.price)}" inputmode="numeric"></label>
         <label class="profile-field"><span>For how many</span><input type="number" name="per" min="1" max="${most}" value="${per}" inputmode="numeric"></label>
       </div>
-      <label class="profile-field"><span>Amount on the market <small class="profile-muted">· up to ${most.toLocaleString()}${canAdd ? ` (${canAdd.toLocaleString()} more from your mailbox or inventory)` : ''}</small></span>
+      <label class="profile-field"><span>Amount on the market <small class="profile-muted">· up to ${most.toLocaleString()}${canAdd ? ` (${canAdd.toLocaleString()} more from your inbox or inventory)` : ''}</small></span>
         <input type="number" name="amount" min="1" max="${most}" value="${Number(l.amount)}" inputmode="numeric"></label>
-      ${canAdd ? '' : '<p class="profile-muted profile-small">To put more on sale, have the items in your mailbox, or be online with them in your inventory.</p>'}
+      ${canAdd ? '' : '<p class="profile-muted profile-small">To put more on sale, have the items in your inbox, or be online with them in your inventory.</p>'}
       <p class="profile-dialog__text profile-listing-preview" data-preview></p>`;
     return dialog({
       icon: 'bi-pencil', title: 'Change listing', body,
@@ -890,8 +890,8 @@
           const lots = Math.floor(amount / p);
           dlg.querySelector('[data-preview]').innerHTML = `Sells in <b>${lots.toLocaleString()} ${lots === 1 ? 'lot' : 'lots'} of ${p.toLocaleString()}</b> for <b>${price.toLocaleString()} ${esc(currencyName(price))}</b> each lot`
             + (lots ? ` · <b>${(lots * price).toLocaleString()}</b> in all` : '')
-            + (spare > 0 ? `. <b>${spare.toLocaleString()}</b> go back to your mailbox.` : '.')
-            + (add > 0 && add <= canAdd ? ` <b>${add.toLocaleString()}</b> more come from your mailbox or inventory, and the listing runs its full time again.` : '')
+            + (spare > 0 ? `. <b>${spare.toLocaleString()}</b> go back to your inbox.` : '.')
+            + (add > 0 && add <= canAdd ? ` <b>${add.toLocaleString()}</b> more come from your inbox or inventory, and the listing runs its full time again.` : '')
             + (add > canAdd ? ` <span class="profile-warn">You have ${canAdd.toLocaleString()} more to add.</span>` : '')
             + (amount % p ? ` <span class="profile-warn">The amount has to split into lots of ${p}.</span>` : '');
         };
@@ -912,7 +912,7 @@
   function withdraw(id, name, amount) {
     return dialog({
       icon: 'bi-box-arrow-in-down', title: 'Take back a listing', save: 'Take back', saveIcon: 'bi-box-arrow-in-down',
-      body: `<p class="profile-dialog__text">Take <b>${Number(amount).toLocaleString()} × ${esc(name)}</b> off the market? The items go to your mailbox; collect them with <b>/market → Mailbox</b> in game.</p>`,
+      body: `<p class="profile-dialog__text">Take <b>${Number(amount).toLocaleString()} × ${esc(name)}</b> off the market? The items go to your inbox; collect them with <b>/inbox</b> in game.</p>`,
       async onSave() {
         const res = await send({ kind: 'withdraw', id });
         await loadLive();
