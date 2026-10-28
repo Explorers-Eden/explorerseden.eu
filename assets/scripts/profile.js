@@ -350,6 +350,7 @@
           <span class="profile-claim-card__dimension">${esc(dimName(c.dim))}</span>
         </div>
         ${sub || role ? `<div class="profile-tags">${sub}${role}</div>` : ''}
+        ${c.description ? `<p class="waypoint-card__description">${esc(c.description)}</p>` : ''}
         <p class="profile-claim-card__coords"><i class="bi bi-geo-alt-fill"></i> ${c.x}, ${c.z}
           <span class="profile-claim-card__size">· ${c.width} × ${c.length} (${Number(c.area).toLocaleString()} blocks)</span></p>
         <div class="profile-claim-card__trusted">
@@ -752,6 +753,8 @@
     const body = `
       <label class="profile-field"><span>Name</span><input type="text" name="name" maxlength="32" value="${esc(c.name)}" placeholder="${esc(c.displayName)}"></label>
       ${Object.keys(colors).length ? `<div class="profile-field"><span>Colour</span>${swatches('color', colors, currentColor)}</div>` : ''}
+      <label class="profile-field"><span>Description <small class="profile-muted">· optional, on the map and under the title</small></span><input type="text" name="description" maxlength="100" value="${esc(c.description || '')}"></label>
+      <div class="profile-field"><span>Visitors</span><div class="profile-toggles">${toggle('announce', 'Show the name as a title to players walking in', c.announce)}</div></div>
       <div class="profile-field"><span>Rules for everyone else</span><div class="profile-toggles">${(live.flags || []).map((f) => toggle(`flag:${f.id}`, f.label, c.flags && c.flags[f.id])).join('')}</div></div>
       <div class="profile-field"><span>Members <small class="profile-muted">· saved as you change them</small></span>
         <div class="profile-members" data-members>${memberRows(c)}</div>
@@ -800,7 +803,8 @@
         const flags = {};
         (live.flags || []).forEach((f) => { flags[f.id] = form.elements[`flag:${f.id}`].checked; });
         const picked = form.querySelector('input[name="color"]:checked');
-        const body = { kind: 'claim', claim: id, action: 'update', name: form.elements.name.value.trim(), flags };
+        const body = { kind: 'claim', claim: id, action: 'update', name: form.elements.name.value.trim(), description: form.elements.description.value.trim(),
+          announce: form.elements.announce.checked, flags };
         if (picked) body.color = picked.dataset.hex;
         const res = await send(body);
         live.claims = res.claims || live.claims;
