@@ -26,7 +26,7 @@
     "displayName": "Building (1)",
     "structureId": "nice_mob_variants:barn",
     "blocks": 628,
-    "uniqueBlocks": 36,
+    "uniqueBlocks": 39,
     "url": "structures/nice_mob_variants/nice_mob_variants/barn/barn/building_1/index.html",
     "previews": [
       "/wiki/nice_mob_variants/images/structures/nice_mob_variants/barn/barn/building_1/north.png",
@@ -44,7 +44,7 @@
     "displayName": "Building (2)",
     "structureId": "nice_mob_variants:barn",
     "blocks": 625,
-    "uniqueBlocks": 44,
+    "uniqueBlocks": 43,
     "url": "structures/nice_mob_variants/nice_mob_variants/barn/barn/building_2/index.html",
     "previews": [
       "/wiki/nice_mob_variants/images/structures/nice_mob_variants/barn/barn/building_2/north.png",
@@ -169,8 +169,8 @@
     "id": "nice_mob_variants:end_farm",
     "displayName": "End Farm",
     "structureId": "nice_mob_variants:end_farm",
-    "blocks": 4228,
-    "uniqueBlocks": 20,
+    "blocks": 2427,
+    "uniqueBlocks": 19,
     "url": "structures/nice_mob_variants/nice_mob_variants/end_farm/index.html",
     "previews": [
       "/wiki/nice_mob_variants/images/structures/nice_mob_variants/end_farm/north.png",
@@ -223,8 +223,8 @@
     "id": "nice_mob_variants:graveyard",
     "displayName": "Graveyard",
     "structureId": "nice_mob_variants:graveyard",
-    "blocks": 530,
-    "uniqueBlocks": 31,
+    "blocks": 540,
+    "uniqueBlocks": 32,
     "url": "structures/nice_mob_variants/nice_mob_variants/graveyard/index.html",
     "previews": [
       "/wiki/nice_mob_variants/images/structures/nice_mob_variants/graveyard/north.png",
@@ -547,8 +547,8 @@
     "id": "nice_mob_variants:potato_farm",
     "displayName": "Potato Farm",
     "structureId": "nice_mob_variants:potato_farm",
-    "blocks": 712,
-    "uniqueBlocks": 20,
+    "blocks": 742,
+    "uniqueBlocks": 21,
     "url": "structures/nice_mob_variants/nice_mob_variants/potato_farm/index.html",
     "previews": [
       "/wiki/nice_mob_variants/images/structures/nice_mob_variants/potato_farm/north.png",
