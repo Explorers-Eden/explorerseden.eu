@@ -878,6 +878,7 @@ details.profile-detail-section > .profile-stat-rows {
 
 /* Bank & listings */
 .profile-bank { display: grid; gap: 14px; }
+.profile-points__icon { font-size: 30px; color: #ffd166; line-height: 1; }
 .profile-bank__balance { display: flex; align-items: center; gap: 14px; }
 .profile-bank__coin { width: 40px; height: 40px; image-rendering: pixelated; }
 .profile-bank__balance b { display: block; color: var(--accent); font-size: 28px; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }

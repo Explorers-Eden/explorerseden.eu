@@ -454,8 +454,29 @@
           <span class="profile-price">${coin('profile-coin')}<b>${Number(x.total).toLocaleString()}</b></span>
           <span class="profile-muted">${x.role === 'bought' ? 'from' : 'to'} ${esc(x.other || 'someone')} · ${esc(new Date(x.time).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }))}</span></li>`).join('')}</ul>`
       : '<p class="profile-empty-note">No trades yet.</p>';
-    return panel('bank', 'bi-bank', 'Bank & inbox', null, null, bank) + panel('listings', 'bi-shop', 'Your listings', listings.length, aside, cards)
+    return panel('bank', 'bi-bank', 'Bank & inbox', null, null, bank) + pointsPanel() + panel('listings', 'bi-shop', 'Your listings', listings.length, aside, cards)
       + panel('trades', 'bi-receipt', 'Recent trades', accountSales.length || null, null, trades);
+  }
+
+  /** The points balance (games, events) and what it was got or spent for; only once the server has any. */
+  function pointsPanel() {
+    const pts = live && live.points;
+    if (!pts) return '';
+    const name = pts.name || 'Points';
+    const history = (pts.history || []).slice(0, 10);
+    const list = history.length
+      ? `<ul class="profile-trades">${history.map((h) => `<li>
+          <span class="profile-trades__kind is-${h.amount > 0 ? 'bought' : 'sold'}">${h.amount > 0 ? '+' : ''}${Number(h.amount).toLocaleString()}</span>
+          <span class="profile-trades__what">${esc(h.why || '')}</span>
+          <span class="profile-muted">${esc(new Date(h.time).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }))}</span></li>`).join('')}</ul>`
+      : '<p class="profile-empty-note">Nothing yet. Play games and events on the server to earn some.</p>';
+    const body = `
+      <div class="profile-bank">
+        <div class="profile-bank__balance"><i class="bi bi-coin profile-points__icon"></i><div><b>${Number(pts.balance || 0).toLocaleString()}</b><span>${esc(name.toLowerCase())} to spend</span></div></div>
+        <p class="profile-bank__hint">Earned in games and events (${Number(pts.earned || 0).toLocaleString()} in all). Spend them at the reward shop NPCs in game; <b>/points</b> shows your balance there.</p>
+        ${list}
+      </div>`;
+    return panel('points', 'bi-coin', name, null, null, body);
   }
 
   function listingCard(l, canWithdraw) {
