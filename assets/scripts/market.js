@@ -82,7 +82,7 @@
 
   /** One market card: item slot, name with a quiet line under it, optional details, price and Buy at the bottom. */
   function card(iconHtml, nameHtml, sub, extraHtml, priceHtml, buyHtml, spot) {
-    return `<article class="market-card${spot ? ' market-card--spot' : ''}">${spot ? '<span class="market-card__spot" title="Spotlight: this seller\'s listings are shown first"><i class="bi bi-star-fill"></i> Spotlight</span>' : ''}
+    return `<article class="market-card${spot ? ' market-card--spot' : ''}">${spot ? '<span class="market-card__spot" title="Spotlight: shown first"><i class="bi bi-star-fill"></i> Spotlight</span>' : ''}
       <div class="market-card__top">${iconHtml}<div class="market-card__title"><h3>${nameHtml}</h3>${sub ? `<p class="market-card__sub">${sub}</p>` : ''}</div></div>
       ${extraHtml || ''}
       <div class="market-card__foot">${priceHtml}${buyHtml}</div>

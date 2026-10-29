@@ -444,7 +444,8 @@
       : !live ? note('<i class="bi bi-arrow-repeat"></i> Loading…')
         : !live.running ? note('<i class="bi bi-power"></i> Server offline · listings can be taken back while it runs', 'warn') : '';
     const cards = listings.length
-      ? `<div class="profile-market-grid profile-listing-grid">${listings.map((l) => listingCard(l, canWithdraw)).join('')}</div>`
+      ? (canWithdraw && live.hasSpotlight && listings.length > 1 ? '<p class="profile-spot-hint"><i class="bi bi-star-fill"></i> You have a market spotlight. It shines on one listing at a time; pick which one with <b>Spotlight</b>.</p>' : '')
+        + `<div class="profile-market-grid profile-listing-grid">${listings.map((l) => listingCard(l, canWithdraw)).join('')}</div>`
       : '<p class="profile-empty-note">Nothing for sale right now. Type <b>/market</b> in game to sell something.</p>';
     const trades = accountSales.length
       ? `<ul class="profile-trades">${accountSales.slice(0, 20).map((x) => `<li>
@@ -462,12 +463,13 @@
     const per = Number(l.per || 1);
     const icon = l.iconUrl ? `<img class="profile-market-card__icon" src="${esc(l.iconUrl)}" alt="" loading="lazy">` : '<span class="profile-market-card__icon profile-market-card__icon--none"><i class="bi bi-box"></i></span>';
     return `
-      <article class="profile-listing">
+      <article class="profile-listing${l.spotlight ? ' profile-listing--spot' : ''}">
+        ${l.spotlight ? '<span class="profile-listing__spot" title="In your spotlight: shown first on the market"><i class="bi bi-star-fill"></i> Spotlight</span>' : ''}
         <div class="profile-listing__top">${icon}<div class="profile-listing__title"><h3>${mcHtml(l.name)}</h3><p>×${Number(l.amount).toLocaleString()} · ${days === 1 ? '1 day' : `${days} days`} left</p></div></div>
         ${[...(l.enchantments || []), ...(l.lore || [])].length ? `<p class="profile-listing__extra">${[...(l.enchantments || []), ...(l.lore || [])].map(mcHtml).join(' · ')}</p>` : ''}
         <div class="profile-listing__foot">
           <span class="profile-price">${coin('profile-coin')}<b>${Number(l.price).toLocaleString()}</b><small>${per > 1 ? `per ${per.toLocaleString()}` : 'each'}</small></span>
-          ${canWithdraw && l.id ? `<span class="profile-listing__actions">${action('bi-pencil', 'Edit', `data-edit-listing="${esc(l.id)}"`)}${action('bi-box-arrow-in-down', 'Take back', `data-withdraw="${esc(l.id)}" data-name="${esc(mcPlain(l.name))}" data-amount="${Number(l.amount)}"`)}</span>` : ''}
+          ${canWithdraw && l.id ? `<span class="profile-listing__actions">${live.hasSpotlight && !l.spotlight ? action('bi-star', 'Spotlight', `data-spotlight="${esc(l.id)}" title="Move your spotlight to this listing"`) : ''}${action('bi-pencil', 'Edit', `data-edit-listing="${esc(l.id)}"`)}${action('bi-box-arrow-in-down', 'Take back', `data-withdraw="${esc(l.id)}" data-name="${esc(mcPlain(l.name))}" data-amount="${Number(l.amount)}"`)}</span>` : ''}
         </div>
       </article>`;
   }
@@ -639,6 +641,8 @@
     if (pa) return petChange({ change: 'also', pet: pa.dataset.petAlso, on: pa.dataset.on === '1' });
     const w = e.target.closest('[data-withdraw]');
     if (w) return withdraw(w.dataset.withdraw, w.dataset.name, Number(w.dataset.amount));
+    const sp = e.target.closest('[data-spotlight]');
+    if (sp) return spotlight(sp);
   });
   root.addEventListener('change', async (e) => {
     const t = e.target;
@@ -909,6 +913,20 @@
         flash('listings', res.message || 'Saved.');
       },
     });
+  }
+
+  // ── Moving the spotlight (a reward: one listing at a time) ──────────────────
+
+  async function spotlight(btn) {
+    btn.disabled = true;
+    try {
+      const res = await send({ kind: 'listing', id: btn.dataset.spotlight, spotlight: true });
+      await loadLive();
+      flash('listings', res.message || 'Spotlight moved.');
+    } catch (err) {
+      btn.disabled = false;
+      flash('listings', err.message || 'That didn\'t work.');
+    }
   }
 
   // ── Taking a listing back ──────────────────────────────────────────────────

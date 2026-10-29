@@ -897,6 +897,9 @@ details.profile-detail-section > .profile-stat-rows {
   background: linear-gradient(135deg, rgba(10,12,22,.6), rgba(3,5,10,.68)), rgba(5,7,13,.46);
   box-shadow: 0 12px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.07);
 }
+.profile-listing--spot { position: relative; border-color: rgba(255,209,102,.45); box-shadow: 0 0 0 1px rgba(255,209,102,.18), 0 14px 30px rgba(255,190,80,.12); }
+.profile-listing__spot { position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 900; color: #2a1d00; background: linear-gradient(135deg, #ffe08a, #ffbf47); }
+.profile-spot-hint { margin: 0 0 12px; color: #ffd98a; font-size: 13px; font-weight: 700; }
 .profile-listing__top { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .profile-listing__top > .profile-market-card__icon { width: 44px; height: 44px; padding: 6px; border-radius: 13px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); }
 .profile-listing__title { min-width: 0; }

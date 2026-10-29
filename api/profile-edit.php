@@ -25,7 +25,7 @@ $fields = [
   'claim' => ['claim', 'action', 'name', 'color', 'flags', 'uuid_member', 'playerName', 'role'],
   'hub' => ['id', 'name', 'description', 'color', 'public', 'trusted'],
   'withdraw' => ['id'],
-  'listing' => ['id', 'price', 'per', 'amount'],
+  'listing' => ['id', 'price', 'per', 'amount', 'spotlight'],
   'pet' => ['change', 'pet', 'how', 'perk', 'nickname', 'color', 'on'],
   'notices' => ['kindName', 'on'],
 ];
