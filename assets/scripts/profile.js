@@ -463,17 +463,20 @@
     const pts = live && live.points;
     if (!pts) return '';
     const name = pts.name || 'Points';
+    const one = pts.singular || name;
+    // "5 T" with the abbreviation, else "5 tickets".
+    const amount = (n) => `${Number(n).toLocaleString()} ${pts.abbreviation || (Math.abs(n) === 1 ? one : name).toLowerCase()}`;
     const history = (pts.history || []).slice(0, 10);
     const list = history.length
       ? `<ul class="profile-trades">${history.map((h) => `<li>
-          <span class="profile-trades__kind is-${h.amount > 0 ? 'bought' : 'sold'}">${h.amount > 0 ? '+' : ''}${Number(h.amount).toLocaleString()}</span>
+          <span class="profile-trades__kind is-${h.amount > 0 ? 'bought' : 'sold'}">${h.amount > 0 ? '+' : ''}${esc(amount(h.amount))}</span>
           <span class="profile-trades__what">${esc(h.why || '')}</span>
           <span class="profile-muted">${esc(new Date(h.time).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }))}</span></li>`).join('')}</ul>`
       : '<p class="profile-empty-note">Nothing yet. Play games and events on the server to earn some.</p>';
     const body = `
       <div class="profile-bank">
-        <div class="profile-bank__balance"><i class="bi bi-coin profile-points__icon"></i><div><b>${Number(pts.balance || 0).toLocaleString()}</b><span>${esc(name.toLowerCase())} to spend</span></div></div>
-        <p class="profile-bank__hint">Earned in games and events (${Number(pts.earned || 0).toLocaleString()} in all). Spend them at the reward shop NPCs in game; <b>/points</b> shows your balance there.</p>
+        <div class="profile-bank__balance"><i class="bi bi-coin profile-points__icon"></i><div><b>${Number(pts.balance || 0).toLocaleString()}</b><span>${esc((Number(pts.balance) === 1 ? one : name).toLowerCase())} to spend</span></div></div>
+        <p class="profile-bank__hint">Earned in games and events (${esc(amount(pts.earned || 0))} in all). Spend them at the reward shop NPCs in game; <b>/points</b> shows your balance there.</p>
         ${list}
       </div>`;
     return panel('points', 'bi-coin', name, null, null, body);
