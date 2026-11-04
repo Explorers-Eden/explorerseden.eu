@@ -465,7 +465,7 @@
     const name = pts.name || 'Points';
     const one = pts.singular || name;
     // "5 T" with the abbreviation, else "5 tickets".
-    const amount = (n) => `${Number(n).toLocaleString()} ${pts.abbreviation || (Math.abs(n) === 1 ? one : name).toLowerCase()}`;
+    const amount = (n) => `${Number(n).toLocaleString()} ${pts.abbreviation || (Math.abs(n) === 1 ? one : name)}`;
     const history = (pts.history || []).slice(0, 10);
     const list = history.length
       ? `<ul class="profile-trades">${history.map((h) => `<li>
@@ -475,7 +475,7 @@
       : '<p class="profile-empty-note">Nothing yet. Play games and events on the server to earn some.</p>';
     const body = `
       <div class="profile-bank">
-        <div class="profile-bank__balance"><i class="bi bi-coin profile-points__icon"></i><div><b>${Number(pts.balance || 0).toLocaleString()}</b><span>${esc((Number(pts.balance) === 1 ? one : name).toLowerCase())} to spend</span></div></div>
+        <div class="profile-bank__balance"><i class="bi bi-coin profile-points__icon"></i><div><b>${Number(pts.balance || 0).toLocaleString()}</b><span>${esc(Number(pts.balance) === 1 ? one : name)} to spend</span></div></div>
         <p class="profile-bank__hint">Earned in games and events (${esc(amount(pts.earned || 0))} in all). Spend them at the reward shop NPCs in game; <b>/points</b> shows your balance there.</p>
         ${list}
       </div>`;
