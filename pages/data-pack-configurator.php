@@ -1,30 +1,33 @@
-<main id="page-top" class="cfg-shell">
+<main id="page-top" class="ee-shell cfg-shell">
 
-  <section class="cfg-hero">
-    <img class="cfg-title-img" src="/assets/images/branding/configurator_title.png"
-         alt="Explorer's Eden Data Pack Configurator">
-  </section>
+  <?php ee_head_open(['img' => 'configurator_title.png', 'alt' => "Explorer's Eden Data Pack Configurator", 'sub' => 'Upload a data pack and tune it to your world - then download the changed pack.']) ?>
+  </header>
 
   <!-- Upload zone - visible until a ZIP is loaded -->
-  <section class="cfg-upload-zone" id="cfg-upload-zone" aria-label="Upload data pack">
-    <i class="bi bi-file-earmark-zip cfg-upload-zone__icon" aria-hidden="true"></i>
-    <p class="cfg-upload-zone__label">Drop a data pack <code>.zip</code> here, or click to browse</p>
-    <p class="cfg-upload-zone__version">Supports Minecraft versions starting with 1.21</p>
-    <p class="cfg-upload-zone__desc">Configure <strong>enchantment weights &amp; loot sources</strong>, <strong>mob variant spawns</strong>, <strong>structure biomes</strong>, <strong>structure set spacing</strong>, and <strong>villager trade payments &amp; assignments</strong> - then download the modified pack.</p>
+  <section class="ee-upload" id="cfg-upload-zone" aria-label="Upload data pack">
+    <i class="bi bi-file-earmark-zip ee-upload__icon" aria-hidden="true"></i>
+    <p class="ee-upload__label">Drop a data pack <code>.zip</code> here, or click to browse</p>
+    <p class="ee-upload__hint">Supports Minecraft versions starting with 1.21</p>
+    <div class="ee-upload__tips">
+      <div><i class="bi bi-magic"></i><div><strong>Enchantments</strong> - weights &amp; loot sources</div></div>
+      <div><i class="bi bi-bug"></i><div><strong>Mob variants</strong> - where they spawn</div></div>
+      <div><i class="bi bi-boxes"></i><div><strong>Structures</strong> - biomes &amp; set spacing</div></div>
+      <div><i class="bi bi-arrow-left-right"></i><div><strong>Villager trades</strong> - payments &amp; assignments</div></div>
+    </div>
     <input type="file" id="cfg-file-input" accept=".zip" class="sr-only" aria-label="Choose ZIP file">
   </section>
-  <p class="prof-privacy-note">
+  <p class="ee-note">
     <i class="bi bi-shield-check" aria-hidden="true"></i>
     Processed entirely in your browser - nothing is uploaded to our servers.
   </p>
 
   <!-- Status bar (loading / error) -->
   <div class="cfg-status" id="cfg-status" hidden>
-    <div class="cfg-status__loading" id="cfg-loading" hidden>
+    <div class="ee-alert" id="cfg-loading" hidden>
       <span class="cfg-spinner" aria-hidden="true"></span>
       <span id="cfg-loading-msg">Parsing ZIP…</span>
     </div>
-    <div class="cfg-status__error" id="cfg-error" hidden role="alert">
+    <div class="ee-alert ee-alert--bad" id="cfg-error" hidden role="alert">
       <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
       <span id="cfg-error-msg"></span>
     </div>
@@ -39,11 +42,11 @@
         <span class="cfg-pack-bar__name" id="cfg-pack-name"></span>
       </div>
       <div class="cfg-pack-bar__actions">
-        <span class="cfg-pack-bar__version" id="cfg-pack-version"></span>
-        <button type="button" class="cfg-pack-bar__reset" id="cfg-reset-btn" title="Load a different pack">
+        <span class="ee-badge" id="cfg-pack-version"></span>
+        <button type="button" class="ee-btn ee-btn--ghost" id="cfg-reset-btn" title="Load a different pack">
           <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i> Load different pack
         </button>
-        <button type="button" class="cfg-download-btn" id="cfg-download-btn">
+        <button type="button" class="ee-btn ee-btn--primary" id="cfg-download-btn">
           <i class="bi bi-download" aria-hidden="true"></i> Download configured pack
         </button>
       </div>

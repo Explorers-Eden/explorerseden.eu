@@ -81,7 +81,7 @@
     for (const ver of versions) {
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'rp-pill' + (ver === selectedVer ? ' is-active' : '');
+      btn.className = 'ee-chip' + (ver === selectedVer ? ' is-active' : '');
       btn.textContent = ver;
       btn.addEventListener('click', () => selectVersion(ver));
       el.pills.appendChild(btn);

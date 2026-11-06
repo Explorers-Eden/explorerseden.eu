@@ -1186,7 +1186,7 @@
         ${version  ? `<span class="log-tag"><i class="bi bi-boxes"></i>${esc(version)}</span>` : ''}
         ${logDate  ? `<span class="log-tag"><i class="bi bi-calendar3"></i>${esc(logDate)}</span>` : ''}
         <span class="log-tag"><i class="bi bi-list-ul"></i>${groups.length.toLocaleString()} lines</span>
-        <button class="log-reset-btn" id="log-reset"><i class="bi bi-upload"></i> Upload another</button>
+        <button class="ee-btn ee-btn--sm" id="log-reset" type="button"><i class="bi bi-upload"></i> Upload another</button>
       </div>
     `;
     resultsEl.appendChild(banner);
@@ -1223,9 +1223,9 @@
     // ── Clean bill of health ──────────────────────────────────────────────
 
     if (crashes.length === 0 && errors.length === 0 && warnings.length === 0) {
-      const clean = el('div', 'log-card');
-      clean.appendChild(el('div', 'log-empty',
-        '<i class="bi bi-check-circle"></i>No crashes, errors, or warnings found in this log. Looks healthy!'));
+      const clean = el('div', 'ee-panel');
+      clean.appendChild(el('div', 'ee-empty',
+        '<i class="bi bi-check-circle" style="color:var(--ok)"></i><strong>No crashes, errors, or warnings</strong><p>Nothing to fix in this log - it looks healthy.</p>'));
       resultsEl.appendChild(clean);
       renderFullLog(rawText, groups);
       return;
@@ -1239,7 +1239,7 @@
       const cr   = structure.crashReport;
       const card = makeCard('bi-x-circle-fill', 'Crash Summary');
       card.open = false;
-      card.querySelector('.log-card-summary').style.color = '#ff6b6b';
+      card.style.setProperty('--tone', '#ff6b6b');
 
       const body = el('div', 'log-crash-summary');
 
@@ -1309,7 +1309,7 @@
     if (allFailedPackNames.size > 0) {
       const card = makeCard('bi-database-x', `Data Pack Failures (${allFailedPackNames.size} pack${allFailedPackNames.size !== 1 ? 's' : ''})`);
       card.open = false;
-      card.querySelector('.log-card-summary').style.color = '#ff6b6b';
+      card.style.setProperty('--tone', '#ff6b6b');
 
       const intro = el('div', 'log-pack-intro');
       const hasVersionIssue = structure.hasVersionMismatch || structure.hasFormatMismatch || structure.hasTagMissingItems;
@@ -1368,7 +1368,7 @@
       const n    = structure.resourcePackFailures.length;
       const card = makeCard('bi-layers-half', `Resource Pack Issues (${n} pack${n !== 1 ? 's' : ''})`);
       card.open = false;
-      card.querySelector('.log-card-summary').style.color = '#ff9090';
+      card.style.setProperty('--tone', '#ff9090');
 
       const intro = el('div', 'log-pack-intro');
       intro.innerHTML = `
@@ -1403,7 +1403,7 @@
     if (crashes.length > 0 && !structure.crashReport) {
       const card = makeCard('bi-x-circle-fill', `Crashes (${crashes.length})`);
       card.open = false;
-      card.querySelector('.log-card-summary').style.color = '#ff6b6b';
+      card.style.setProperty('--tone', '#ff6b6b');
       card.appendChild(issueList(crashes));
       resultsEl.appendChild(card);
     }
@@ -1413,7 +1413,7 @@
     if (errors.length > 0) {
       const card = makeCard('bi-exclamation-circle-fill', `Errors (${errors.length})`);
       card.open = false;
-      card.querySelector('.log-card-summary').style.color = '#ff9090';
+      card.style.setProperty('--tone', '#ff9090');
       card.appendChild(issueList(errors));
       resultsEl.appendChild(card);
     }
@@ -1423,7 +1423,7 @@
     if (warnings.length > 0) {
       const card = makeCard('bi-exclamation-triangle-fill', `Warnings (${warnings.length})`);
       card.open = false;
-      card.querySelector('.log-card-summary').style.color = 'var(--accent-2)';
+      card.style.setProperty('--tone', 'var(--accent-2)');
       card.appendChild(issueList(warnings));
       resultsEl.appendChild(card);
     }

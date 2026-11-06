@@ -525,7 +525,7 @@
         ${prof.timeSpan ? `<span class="prof-tag"><i class="bi bi-stopwatch"></i>${prof.timeSpan / 1000}s session</span>` : ''}
         ${prof.tickSpan ? `<span class="prof-tag"><i class="bi bi-arrow-repeat"></i>${prof.tickSpan} ticks</span>` : ''}
         ${sys.players != null ? `<span class="prof-tag"><i class="bi bi-person"></i>${sys.players} / ${sys.maxPlayers} players</span>` : ''}
-        <button class="prof-reset-btn" id="prof-reset"><i class="bi bi-upload"></i> Upload another</button>
+        <button class="ee-btn ee-btn--sm" id="prof-reset" type="button"><i class="bi bi-upload"></i> Upload another</button>
       </div>
     `;
     resultsEl.appendChild(banner);
