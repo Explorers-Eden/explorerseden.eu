@@ -1,85 +1,8 @@
-.translate-page {
-  width: min(1680px, calc(100% - 32px));
-  max-width: 1680px;
-  margin: 0 auto;
-  padding: 2rem 0 4rem;
-}
+/* Translations (/translate/, /translate/voting/) - frame, head, search, count,
+   buttons and the notice come from the shared ee-* parts in site.css. */
 
-/* Same treatment as the site-wide #clear-search (enchantments.css) - these
-   need their own IDs since My/All Suggestions each have their own search
-   box on the same page as the detail view's, and IDs must be unique. */
-#translate-mine-clear-search,
-#translate-admin-clear-search,
-#translate-voting-clear-search {
-  position: absolute;
-  right: 7px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
-  border: 0;
-  border-radius: 999px;
-  cursor: pointer;
-  color: #fff;
-  background: rgba(255,255,255,.10);
-  font-size: 20px;
-  line-height: 1;
-}
-#translate-mine-clear-search:hover,
-#translate-admin-clear-search:hover,
-#translate-voting-clear-search:hover {
-  background: rgba(255,255,255,.18);
-}
-
-.translate-hero {
-  text-align: center;
-  padding: 22px 0 10px;
-  margin-bottom: 1.5rem;
-}
-
-.translate-hero__logo {
-  width: min(700px, 92vw);
-  max-width: 100%;
-  display: block;
-  margin: 0 auto 18px;
-  filter: drop-shadow(0 18px 26px rgba(0, 0, 0, .65));
-}
-
-/* Discord-membership notice, shown above the data pack cards. */
-
-.translate-discord-notice {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 20px;
-  border: 1px solid rgba(255, 255, 255, .14);
-  border-radius: 16px;
-  background: rgba(8, 10, 18, .5);
-  backdrop-filter: blur(12px);
-}
-
-.translate-discord-notice i {
-  font-size: 20px;
-  color: var(--accent);
-  flex: 0 0 auto;
-}
-
-.translate-discord-notice p {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.translate-discord-notice a {
-  color: var(--accent);
-  font-weight: 800;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
+.translate-discord-notice { width: 100%; max-width: 700px; margin: 0 auto; align-items: center; }
+.translate-discord-notice > i { font-size: 20px; }
 
 .translate-loading,
 .translate-empty {
@@ -107,19 +30,21 @@
 
 .translate-card {
   display: block;
-  padding: 1.1rem 1.25rem;
-  border-radius: 14px;
-  background: linear-gradient(160deg, var(--card-a), var(--card-b));
-  border: 1px solid var(--line);
+  padding: 18px 20px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line-soft);
+  background: var(--surface-panel);
+  box-shadow: var(--shadow-panel);
+  backdrop-filter: blur(14px);
   text-decoration: none;
   color: var(--text);
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  transition: transform var(--ease), border-color var(--ease), background var(--ease);
 }
 
 .translate-card:hover {
   transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--accent) 48%, transparent);
-  box-shadow: 0 14px 30px rgba(0,0,0,.28);
+  border-color: var(--hover-line);
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface-panel));
 }
 
 .translate-card__header {
@@ -154,7 +79,7 @@
   font-weight: 800;
   white-space: nowrap;
   padding: 5px 12px;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   background: color-mix(in srgb, var(--accent-2) 14%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent-2) 30%, transparent);
 }
@@ -200,7 +125,7 @@
 .translate-card__locales--voting li {
   grid-template-columns: 1fr auto;
   padding: .5rem .7rem;
-  border-radius: 10px;
+  border-radius: var(--r-md);
   background: rgba(255,255,255,.035);
 }
 
@@ -217,7 +142,7 @@
 
 .translate-progress-bar {
   height: 6px;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   background: rgba(255,255,255,.08);
   overflow: hidden;
 }
@@ -225,7 +150,7 @@
 .translate-progress-bar__fill {
   height: 100%;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  border-radius: 999px;
+  border-radius: var(--r-pill);
 }
 
 /* Detail view */
@@ -262,7 +187,7 @@
   background: var(--glass);
   color: var(--text);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   padding: .5rem .75rem;
   font: inherit;
 }
@@ -289,16 +214,16 @@
      intrinsic <select> sizing even under appearance:none, so matching the
      math isn't enough to match the render. */
   height: 38px;
-  background: rgba(5,7,13,.58);
+  background: var(--surface-control);
   color: #fff;
-  border: 1px solid rgba(255,255,255,.16);
-  border-radius: 16px;
+  border: 1px solid var(--line-control);
+  border-radius: var(--r-pill);
   padding: 0 34px 0 16px;
   font: inherit;
   font-size: 13px;
   font-weight: 750;
   line-height: normal;
-  box-shadow: 0 10px 24px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.12);
+  box-shadow: var(--shadow-control);
   backdrop-filter: blur(10px);
   cursor: pointer;
 }
@@ -330,36 +255,11 @@
   margin-bottom: 16px;
 }
 
-/* .search-wrap / .results-count come from enchantments.css (loaded site-wide).
-   Pin the input to the same explicit height as the locale-picker select
-   right next to it - box-sizing:border-box means padding is already
-   included, so this can't fight the input's own 10px/38px padding rule. */
-.translate-detail__tools .search-wrap input {
-  box-sizing: border-box;
-  height: 38px;
-}
-
-.translate-detail__tools .search-wrap {
-  flex: 1 1 320px;
-  max-width: 480px;
-}
 
 /* Table - matches the enchantments table's visual language exactly
    (.enchantments-page overrides the base .table-card look the same way) */
 
-.translate-table-card.table-card {
-  width: 100%;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,.08);
-  background: rgba(8,10,18,.55);
-  box-shadow: none;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-.translate-table-card.table-card::before {
-  display: none;
-}
+.translate-table-card { width: 100%; }
 
 .translate-table {
   width: 100%;
@@ -507,7 +407,7 @@
 .translate-suggestions-btn {
   background: rgba(255,255,255,.05);
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   padding: 5px 12px;
   color: var(--text);
   font: inherit;
@@ -566,7 +466,7 @@
   background: var(--glass);
   color: var(--text);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   padding: .35rem .55rem;
   font: inherit;
   font-size: .82rem;
@@ -576,7 +476,7 @@
   background: color-mix(in srgb, var(--accent) 18%, rgba(10,28,40,.68));
   border: 1px solid color-mix(in srgb, var(--accent) 48%, transparent);
   color: var(--text);
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   padding: .35rem .6rem;
   font: inherit;
   cursor: pointer;
@@ -602,10 +502,10 @@
   align-items: center;
   gap: 18px;
   padding: 12px 16px 12px 22px;
-  border-radius: 999px;
-  background: rgba(8, 10, 18, .88);
-  border: 1px solid rgba(255,255,255,.16);
-  box-shadow: 0 18px 44px rgba(0,0,0,.45);
+  border-radius: var(--r-pill);
+  background: rgba(5,7,13,.9);
+  border: 1px solid var(--line-control);
+  box-shadow: var(--shadow-pop);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
@@ -621,37 +521,6 @@
   display: flex;
   gap: 10px;
 }
-
-.translate-bulk-bar__cancel,
-.translate-bulk-bar__submit {
-  border-radius: 999px;
-  padding: 8px 16px;
-  font: inherit;
-  font-size: .8rem;
-  font-weight: 800;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.translate-bulk-bar__cancel {
-  background: rgba(255,255,255,.06);
-  border: 1px solid var(--line);
-  color: var(--muted);
-}
-
-.translate-bulk-bar__cancel:hover { color: var(--text); background: rgba(255,255,255,.1); }
-
-.translate-bulk-bar__submit {
-  background: color-mix(in srgb, var(--accent) 24%, rgba(10,28,40,.68));
-  border: 1px solid color-mix(in srgb, var(--accent) 56%, transparent);
-  color: #fff;
-}
-
-.translate-bulk-bar__submit:hover {
-  background: color-mix(in srgb, var(--accent) 34%, rgba(10,28,40,.68));
-}
-
-.translate-bulk-bar__submit:disabled { opacity: .5; cursor: not-allowed; }
 
 @media (max-width: 640px) {
   .translate-bulk-bar {
@@ -672,7 +541,7 @@
   max-height: min(720px, 84vh);
   padding: 22px 24px;
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: var(--r-lg);
   background: linear-gradient(160deg, var(--card-a), var(--card-b)), var(--glass);
   color: var(--text);
   box-shadow: 0 24px 54px rgba(0,0,0,.4);
@@ -733,7 +602,7 @@
   display: flex;
   gap: .75rem;
   padding: .6rem .7rem;
-  border-radius: 10px;
+  border-radius: var(--r-md);
   background: rgba(255,255,255,.03);
 }
 
@@ -795,7 +664,7 @@
   background: var(--glass);
   color: var(--text);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   padding: .4rem .55rem;
   font: inherit;
   font-size: .82rem;
@@ -808,7 +677,7 @@
 
 .translate-edit-form__save,
 .translate-edit-form__cancel {
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   padding: .3rem .65rem;
   font: inherit;
   font-size: .76rem;
@@ -843,7 +712,7 @@
 .translate-mine-status {
   display: inline-block;
   padding: 3px 10px;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   font-size: .72rem;
   font-weight: 800;
   background: rgba(255,255,255,.06);
@@ -855,3 +724,8 @@
 .translate-mine-status--declined,
 .translate-mine-status--withdrawn { color: #ff8b8b; background: rgba(255,139,139,.12); }
 .translate-mine-status--superseded { color: var(--muted); }
+
+/* Pack title under the back link */
+.translate-detail > h2,
+.translate-mine > h2 { margin: 2px 0 14px; color: #fff; font-size: 22px; font-weight: 900; }
+.translate-detail__back { margin-bottom: 10px; font-size: 13px; font-weight: 800; }

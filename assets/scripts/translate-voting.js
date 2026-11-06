@@ -251,7 +251,7 @@
     resultsCount.textContent = query ? `${filtered.length} of ${allSuggestions.length} suggestions` : `${allSuggestions.length} suggestions`;
 
     list.innerHTML = `
-      <div class="table-card translate-table-card">
+      <div class="ee-panel translate-table-card">
         <div class="table-scroll">
           <table class="translate-suggestions-table">
             <thead>

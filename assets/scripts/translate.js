@@ -337,7 +337,7 @@
     resultsCount.textContent = query ? `${filtered.length} of ${allKeys.length} strings` : `${allKeys.length} strings`;
 
     stringsBox.innerHTML = `
-      <div class="table-card translate-table-card">
+      <div class="ee-panel translate-table-card">
         <div class="table-scroll">
           <table class="translate-table">
             <thead>
@@ -521,7 +521,7 @@
       ['translate-suggestions-table__votes', 'Votes'],
     ].filter(Boolean);
     container.innerHTML = `
-      <div class="table-card translate-table-card">
+      <div class="ee-panel translate-table-card">
         <div class="table-scroll">
           <table class="translate-suggestions-table">
             <thead><tr>${headerCols.map(([cls, label]) => `<th class="${cls}">${label}</th>`).join('')}</tr></thead>
