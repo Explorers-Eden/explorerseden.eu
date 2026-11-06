@@ -24,7 +24,7 @@
   function renderLoggedOut() {
     const loginUrl = `/translate/auth/login.php?return_to=${encodeURIComponent(returnToUrl())}`;
     root.innerHTML = `
-      <a class="nav-auth__login" href="${esc(loginUrl)}"><i class="bi bi-discord"></i> Log In with Discord</a>
+      <a class="nav-auth__login" href="${esc(loginUrl)}"><i class="bi bi-discord"></i> Log In<span class="nav-auth__long">with Discord</span></a>
     `;
   }
 

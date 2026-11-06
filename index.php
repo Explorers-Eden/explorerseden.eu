@@ -111,6 +111,20 @@ if (!isset($routes[$page])) {
 }
 
 $current = $routes[$page];
+
+// Which top-nav group a page belongs to - lights that group up in the nav.
+$sections = [
+  'home' => 'home',
+  'overview' => 'smp', 'statistics' => 'smp', 'market' => 'smp', 'server-info' => 'smp', 'map' => 'smp', 'profile' => 'smp',
+  'enchantments' => 'packs', 'structures' => 'packs', 'recipes' => 'packs',
+  'data-pack-configurator' => 'tools', 'resource-pack' => 'tools', 'profiling' => 'tools', 'log-inspector' => 'tools',
+  'translate' => 'translate', 'translate-voting' => 'translate',
+];
+$section = $sections[$page] ?? 'home';
+$navCur = fn(string $s) => $s === $section ? ' is-current' : '';
+$navItem = fn(string $p) => $p === $page ? ' aria-current="page"' : '';
+
+require_once __DIR__ . '/partials/ui.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -157,7 +171,7 @@ $current = $routes[$page];
   <link rel="stylesheet" href="/assets/styles/smp-map.css?v=<?php echo filemtime(__DIR__.'/assets/styles/smp-map.css'); ?>">
   <link rel="stylesheet" href="/assets/styles/server-info.css?v=<?php echo filemtime(__DIR__.'/assets/styles/server-info.css'); ?>">
 </head>
-<body class="<?= htmlspecialchars($current['bodyClass'], ENT_QUOTES) ?>">
+<body class="<?= htmlspecialchars($current['bodyClass'] . ' section-' . $section . ' page-' . $page, ENT_QUOTES) ?>">
   <div class="site-bg"></div>
   <div class="starfield" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 
@@ -168,59 +182,55 @@ $current = $routes[$page];
       </a>
 
       <nav class="nav-links" id="nav-links" aria-label="Main navigation">
-        <a target="_blank" rel="noreferrer" href="https://discord.gg/f2pMggfgVv"><i class="bi bi-discord"></i> <?php include ('discord.php'); ?></a>
-        <div class="nav-dropdown">
+        <div class="nav-dropdown<?= $navCur('smp') ?>">
           <button class="nav-dropdown__trigger" type="button" aria-haspopup="true">
             <i class="bi bi-dpad-fill"></i><span class="nav-counter-text">Java SMP • <span class="sip animated-counter" data-ip="play.explorerseden.eu" data-port="25569">0</span> Playing</span> <i class="bi bi-chevron-down nav-dropdown__arrow"></i>
           </button>
           <div class="nav-dropdown__menu" role="menu">
-            <a href="/overview/" role="menuitem"><i class="bi bi-info-circle"></i> Overview</a>
-            <a href="/statistics/" role="menuitem"><i class="bi bi-bar-chart-fill"></i> Statistics</a>
-            <a href="/market/" role="menuitem"><i class="bi bi-shop"></i> Market</a>
-            <a href="/server-info/" role="menuitem"><i class="bi bi-journal-text"></i> Server Info</a>
-            <a href="/map/" role="menuitem"><i class="bi bi-map"></i> World Map</a>
+            <a href="/overview/" role="menuitem"<?= $navItem('overview') ?>><i class="bi bi-info-circle"></i> Overview</a>
+            <a href="/statistics/" role="menuitem"<?= $navItem('statistics') ?>><i class="bi bi-bar-chart-fill"></i> Statistics</a>
+            <a href="/market/" role="menuitem"<?= $navItem('market') ?>><i class="bi bi-shop"></i> Market</a>
+            <a href="/server-info/" role="menuitem"<?= $navItem('server-info') ?>><i class="bi bi-journal-text"></i> Server Info</a>
+            <a href="/map/" role="menuitem"<?= $navItem('map') ?>><i class="bi bi-map"></i> World Map</a>
+            <div class="nav-dropdown__divider"></div>
+            <a href="/profile/" role="menuitem"<?= $navItem('profile') ?>><i class="bi bi-person-badge"></i> My SMP Profile</a>
           </div>
         </div>
-        <div class="nav-dropdown">
+        <div class="nav-dropdown<?= $navCur('packs') ?>">
           <button class="nav-dropdown__trigger" type="button" aria-haspopup="true">
-            <i class="bi bi-tools"></i> Resources <i class="bi bi-chevron-down nav-dropdown__arrow"></i>
+            <i class="bi bi-box-seam"></i> Data Packs <i class="bi bi-chevron-down nav-dropdown__arrow"></i>
           </button>
           <div class="nav-dropdown__menu" role="menu">
-            <a href="/data-pack-configurator/" role="menuitem"><i class="bi bi-sliders"></i> Configurator</a>
-            <a href="/resource-pack/" role="menuitem"><i class="bi bi-layers-fill"></i> Resource Pack</a>
-            <a href="/profiling/" role="menuitem"><i class="bi bi-activity"></i> Profiling Inspector</a>
-            <a href="/log-inspector/" role="menuitem"><i class="bi bi-file-text"></i> Log Inspector</a>
+            <a href="/enchantments/" role="menuitem"<?= $navItem('enchantments') ?>><i class="bi bi-magic"></i> Enchantments</a>
+            <a href="/structures/" role="menuitem"<?= $navItem('structures') ?>><i class="bi bi-boxes"></i> Structures</a>
+            <a href="/recipes/" role="menuitem"<?= $navItem('recipes') ?>><i class="bi bi-book-half"></i> Recipes</a>
+            <div class="nav-dropdown__divider"></div>
+            <a target="_blank" rel="noreferrer" href="https://wiki.explorerseden.eu" role="menuitem"><i class="bi bi-journal-bookmark-fill"></i> Wiki <i class="bi bi-box-arrow-up-right nav-dropdown__ext"></i></a>
+            <a target="_blank" rel="noreferrer" href="https://modrinth.com/organization/explorers-eden" role="menuitem"><i class="bi bi-gear-fill"></i> Modrinth <i class="bi bi-box-arrow-up-right nav-dropdown__ext"></i></a>
+            <a target="_blank" rel="noreferrer" href="https://github.com/Explorers-Eden" role="menuitem"><i class="bi bi-github"></i> GitHub <i class="bi bi-box-arrow-up-right nav-dropdown__ext"></i></a>
           </div>
         </div>
-        <div class="nav-dropdown">
+        <div class="nav-dropdown<?= $navCur('tools') ?>">
           <button class="nav-dropdown__trigger" type="button" aria-haspopup="true">
-            <i class="bi bi-layers"></i> Overviews <i class="bi bi-chevron-down nav-dropdown__arrow"></i>
+            <i class="bi bi-tools"></i> Tools <i class="bi bi-chevron-down nav-dropdown__arrow"></i>
           </button>
           <div class="nav-dropdown__menu" role="menu">
-            <a href="/enchantments/" role="menuitem"><i class="bi bi-magic"></i> Enchantments</a>
-            <a href="/structures/" role="menuitem"><i class="bi bi-boxes"></i> Structures</a>
-            <a href="/recipes/" role="menuitem"><i class="bi bi-book-half"></i> Recipes</a>
+            <a href="/data-pack-configurator/" role="menuitem"<?= $navItem('data-pack-configurator') ?>><i class="bi bi-sliders"></i> Configurator</a>
+            <a href="/resource-pack/" role="menuitem"<?= $navItem('resource-pack') ?>><i class="bi bi-layers-fill"></i> Resource Pack</a>
+            <a href="/profiling/" role="menuitem"<?= $navItem('profiling') ?>><i class="bi bi-activity"></i> Profiling Inspector</a>
+            <a href="/log-inspector/" role="menuitem"<?= $navItem('log-inspector') ?>><i class="bi bi-file-text"></i> Log Inspector</a>
           </div>
         </div>
-        <div class="nav-dropdown">
+        <div class="nav-dropdown<?= $navCur('translate') ?>">
           <button class="nav-dropdown__trigger" type="button" aria-haspopup="true">
-            <i class="bi bi-translate"></i> Translations <i class="bi bi-chevron-down nav-dropdown__arrow"></i>
+            <i class="bi bi-translate"></i> Translate <i class="bi bi-chevron-down nav-dropdown__arrow"></i>
           </button>
           <div class="nav-dropdown__menu" role="menu">
-            <a href="/translate/" role="menuitem"><i class="bi bi-list-columns"></i> Overview</a>
-            <a href="/translate/voting/" role="menuitem"><i class="bi bi-check2-square"></i> Voting</a>
+            <a href="/translate/" role="menuitem"<?= $navItem('translate') ?>><i class="bi bi-list-columns"></i> Progress</a>
+            <a href="/translate/voting/" role="menuitem"<?= $navItem('translate-voting') ?>><i class="bi bi-check2-square"></i> Voting</a>
           </div>
         </div>
-        <div class="nav-dropdown">
-          <button class="nav-dropdown__trigger" type="button" aria-haspopup="true">
-            <i class="bi bi-link-45deg"></i> Links <i class="bi bi-chevron-down nav-dropdown__arrow"></i>
-          </button>
-          <div class="nav-dropdown__menu" role="menu">
-            <a target="_blank" rel="noreferrer" href="https://wiki.explorerseden.eu" role="menuitem"><i class="bi bi-journal-bookmark-fill"></i> Wiki</a>
-            <a target="_blank" rel="noreferrer" href="https://modrinth.com/organization/explorers-eden" role="menuitem"><i class="bi bi-gear-fill"></i> Modrinth</a>
-            <a target="_blank" rel="noreferrer" href="https://github.com/Explorers-Eden" role="menuitem"><i class="bi bi-github"></i> Github</a>
-          </div>
-        </div>
+        <a target="_blank" rel="noreferrer" href="https://discord.gg/f2pMggfgVv"><i class="bi bi-discord"></i> <?php include ('discord.php'); ?></a>
       </nav>
 
       <div class="nav-auth" id="nav-auth"></div>
