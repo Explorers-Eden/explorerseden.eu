@@ -42,7 +42,9 @@
   --shell-wide: min(2100px, calc(100% - 32px));
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.25) transparent; }
+img { max-width: 100%; }
+.table-scroll { overflow: auto; max-width: 100%; position: relative; z-index: 1; }
 [hidden] { display: none !important; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 html { scroll-behavior: smooth; min-height: 100%; }
@@ -1351,9 +1353,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ── Flex layout: flex children fill remaining height ──────────────────────── */
 
-body > main,
-body > .page-shell,
-body > .structures-shell {
+body > main {
   flex: 1 0 auto;
 }
 

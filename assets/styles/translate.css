@@ -257,7 +257,7 @@
 
 
 /* Table - matches the enchantments table's visual language exactly
-   (.enchantments-page overrides the base .table-card look the same way) */
+   inside its .ee-panel */
 
 .translate-table-card { width: 100%; }
 

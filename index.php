@@ -10,97 +10,81 @@ $routes = [
   'home' => [
     'title' => "Explorer's Eden: Home",
     'description' => "Explorer's Eden is all about Java Minecraft. We create Data Packs and host a small SMP.",
-    'bodyClass' => 'home-page',
     'file' => __DIR__ . '/pages/home.php',
   ],
   'enchantments' => [
     'title' => "Explorer's Eden: Enchantments",
     'description' => "Explorer's Eden enchantment overview for our data packs.",
-    'bodyClass' => 'enchantments-page',
     'file' => __DIR__ . '/pages/enchantments.php',
   ],
   'structures' => [
     'title' => "Explorer's Eden: Structures",
     'description' => "Interactive Explorer's Eden structure previews.",
-    'bodyClass' => 'structures-page',
     'file' => __DIR__ . '/pages/structures.php',
   ],
   'recipes' => [
     'title' => "Explorer's Eden: Recipes",
     'description' => "Browse all recipes from Explorer's Eden data packs.",
-    'bodyClass' => 'recipes-page',
     'file' => __DIR__ . '/pages/recipes.php',
   ],
   'data-pack-configurator' => [
     'title' => "Explorer's Eden: Data Pack Configurator",
     'description' => "Upload a Minecraft data pack ZIP and configure enchantments, mob variants, and structures — all in your browser.",
-    'bodyClass' => 'cfg-page',
     'file' => __DIR__ . '/pages/data-pack-configurator.php',
   ],
   'resource-pack' => [
     'title' => "Explorer's Eden: Resource Pack",
     'description' => "Assemble a custom Explorer's Eden resource pack for any supported Minecraft version.",
-    'bodyClass' => 'rp-page',
     'file' => __DIR__ . '/pages/resource-pack.php',
   ],
   'profiling' => [
     'title' => "Explorer's Eden: Profiling Inspector",
     'description' => "Turn your Minecraft profiling report into an easy-to-read server performance breakdown.",
-    'bodyClass' => 'profiling-page',
     'file' => __DIR__ . '/pages/profiling.php',
   ],
   'log-inspector' => [
     'title' => "Explorer's Eden: Log Inspector",
     'description' => "Upload a Minecraft log file and get a plain-English summary of errors, warnings, and how to fix them.",
-    'bodyClass' => 'log-page',
     'file' => __DIR__ . '/pages/log-inspector.php',
   ],
   'translate' => [
     'title' => "Explorer's Eden: Translations",
     'description' => "Help translate Explorer's Eden data packs into your language.",
-    'bodyClass' => 'translate-body-page',
     'file' => __DIR__ . '/pages/translate.php',
   ],
   'translate-voting' => [
     'title' => "Explorer's Eden: Translation Voting",
     'description' => "Vote on community-submitted translation suggestions for Explorer's Eden data packs.",
-    'bodyClass' => 'translate-body-page',
     'file' => __DIR__ . '/pages/translate-voting.php',
   ],
   'overview' => [
     'title' => "Explorer's Eden: Overview",
     'description' => "A Realm Recrafted SMP overview - live status, connect info, and README.",
-    'bodyClass' => 'overview-page',
     'file' => __DIR__ . '/pages/overview.php',
   ],
   'profile' => [
     'title' => "Explorer's Eden: My Profile",
     'description' => "Your A Realm Recrafted SMP profile - waypoints, claims, advancements and stats.",
-    'bodyClass' => 'profile-page',
     'file' => __DIR__ . '/pages/profile.php',
   ],
   'market' => [
     'title' => "Explorer's Eden: SMP Market",
     'description' => "What players and the server sell on the A Realm Recrafted SMP right now.",
-    'bodyClass' => 'statistics-page',
     'file' => __DIR__ . '/pages/market.php',
   ],
   'map' => [
     'title' => "Explorer's Eden: World Map",
     'description' => "The live map of the A Realm Recrafted SMP: the world, claims, waypoint hubs and who's online.",
-    'bodyClass' => 'statistics-page smp-map-page',
     'file' => __DIR__ . '/pages/map.php',
   ],
   'server-info' => [
     'title' => "Explorer's Eden: Server Info",
     'description' => "How the A Realm Recrafted SMP is set up: settings, game rules, data packs, commands, claims and more.",
-    'bodyClass' => 'statistics-page si-page',
     'file' => __DIR__ . '/pages/server-info.php',
   ],
   'statistics' => [
     'title' => "Explorer's Eden: Statistics",
     'description' => "Community-wide stats for the A Realm Recrafted SMP - totals, leaderboards, and race/class breakdowns.",
-    'bodyClass' => 'statistics-page',
     'file' => __DIR__ . '/pages/statistics.php',
   ],
 ];
@@ -123,6 +107,26 @@ $sections = [
 $section = $sections[$page] ?? 'home';
 $navCur = fn(string $s) => $s === $section ? ' is-current' : '';
 $navItem = fn(string $p) => $p === $page ? ' aria-current="page"' : '';
+
+// Stylesheets per page, on top of site.css (shared frame and parts).
+$pageStyles = [
+  'home' => ['profile', 'translate'],
+  'enchantments' => ['enchantments'],
+  'structures' => ['structures'],
+  'recipes' => ['recipes'],
+  'data-pack-configurator' => ['data-pack-configurator'],
+  'resource-pack' => ['resource-pack'],
+  'profiling' => ['profiling'],
+  'log-inspector' => ['log-inspector'],
+  'translate' => ['translate'],
+  'translate-voting' => ['translate'],
+  'overview' => ['overview'],
+  'statistics' => ['profile', 'overview', 'statistics'],
+  'market' => ['profile', 'market'],
+  'server-info' => ['profile', 'server-info'],
+  'map' => ['profile', 'smp-map'],
+  'profile' => ['profile'],
+];
 
 require_once __DIR__ . '/partials/ui.php';
 ?>
@@ -156,22 +160,11 @@ require_once __DIR__ . '/partials/ui.php';
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/styles/site.css?v=<?php echo filemtime(__DIR__.'/assets/styles/site.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/enchantments.css">
-  <link rel="stylesheet" href="/assets/styles/structures.css">
-  <link rel="stylesheet" href="/assets/styles/recipes.css">
-  <link rel="stylesheet" href="/assets/styles/data-pack-configurator.css?v=<?php echo filemtime(__DIR__.'/assets/styles/data-pack-configurator.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/resource-pack.css?v=<?php echo filemtime(__DIR__.'/assets/styles/resource-pack.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/profiling.css?v=<?php echo filemtime(__DIR__.'/assets/styles/profiling.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/log-inspector.css?v=<?php echo filemtime(__DIR__.'/assets/styles/log-inspector.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/translate.css?v=<?php echo filemtime(__DIR__.'/assets/styles/translate.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/overview.css?v=<?php echo filemtime(__DIR__.'/assets/styles/overview.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/profile.css?v=<?php echo filemtime(__DIR__.'/assets/styles/profile.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/statistics.css?v=<?php echo filemtime(__DIR__.'/assets/styles/statistics.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/market.css?v=<?php echo filemtime(__DIR__.'/assets/styles/market.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/smp-map.css?v=<?php echo filemtime(__DIR__.'/assets/styles/smp-map.css'); ?>">
-  <link rel="stylesheet" href="/assets/styles/server-info.css?v=<?php echo filemtime(__DIR__.'/assets/styles/server-info.css'); ?>">
+<?php foreach ($pageStyles[$page] ?? [] as $sheet): ?>
+  <link rel="stylesheet" href="/assets/styles/<?= $sheet ?>.css?v=<?= filemtime(__DIR__ . "/assets/styles/$sheet.css") ?>">
+<?php endforeach; ?>
 </head>
-<body class="<?= htmlspecialchars($current['bodyClass'] . ' section-' . $section . ' page-' . $page, ENT_QUOTES) ?>">
+<body class="page-<?= htmlspecialchars($page, ENT_QUOTES) ?> section-<?= $section ?>">
   <div class="site-bg"></div>
   <div class="starfield" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 

@@ -1,6 +1,6 @@
 /* The SMP world map (/map/), in the site's glass style. */
-.smp-map-page { overflow: hidden; }
-.smp-map-page .site-footer { display: none; }
+.page-map { overflow: hidden; }
+.page-map .site-footer { display: none; }
 .smp-map-shell { width: 100%; max-width: none; margin: 0; padding: 0; }
 
 /* The whole window below the nav bar is map; the controls float on it. */

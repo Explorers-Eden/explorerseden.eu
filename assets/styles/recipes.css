@@ -36,7 +36,7 @@
   color: inherit;
   font: inherit;
   padding: 10px 14px;
-  border-radius: 12px;
+  border-radius: var(--r-md);
   cursor: pointer;
   align-items: center;
   gap: 10px;
@@ -44,7 +44,7 @@
 
 .recipes-sidebar-body { overflow-y: auto; overflow-x: hidden; flex: 1 1 auto; padding-right: 4px; }
 .recipes-sidebar-body::-webkit-scrollbar { width: 8px; }
-.recipes-sidebar-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .15); border-radius: 4px; }
+.recipes-sidebar-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .15); border-radius: var(--r-sm); }
 
 .recipes-group-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .recipes-empty { padding: 12px; color: var(--muted); font-weight: 700; text-align: center; }
@@ -61,7 +61,7 @@
   font: inherit;
   font-weight: 700;
   padding: 8px 6px;
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   cursor: pointer;
   text-align: left;
 }
@@ -74,7 +74,7 @@
   color: rgba(255, 255, 255, .8);
   font-size: 11px;
   padding: 1px 7px;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   flex: 0 0 auto;
 }
 
@@ -93,7 +93,7 @@
   font-weight: 600;
   font-size: 12px;
   padding: 5px 6px;
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   cursor: pointer;
   text-align: left;
 }
@@ -106,7 +106,7 @@
   color: rgba(255, 255, 255, .65);
   font-size: 10px;
   padding: 1px 6px;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   flex: 0 0 auto;
 }
 
@@ -122,7 +122,7 @@
   text-align: left;
   width: 100%;
   padding: 6px 10px;
-  border-radius: 7px;
+  border-radius: var(--r-sm);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -197,7 +197,7 @@ a.recipes-detail-pack:hover {
   max-width: 100%;
   margin: 0;
   padding: 7px 10px;
-  border-radius: 12px;
+  border-radius: var(--r-md);
   border: 1px solid rgba(255, 255, 255, .14);
   background: rgba(255, 255, 255, .055);
   color: var(--accent, #b6c8ff);
@@ -228,7 +228,7 @@ a.recipes-detail-pack:hover {
 .recipes-detail-image-wrap {
   background: rgba(255, 255, 255, .04);
   border: 1px solid rgba(255, 255, 255, .08);
-  border-radius: 14px;
+  border-radius: var(--r-md);
   padding: 14px;
   display: flex;
   align-items: center;
@@ -255,11 +255,11 @@ a.recipes-detail-pack:hover {
 .recipes-detail-body h4 { margin: 14px 0 6px; font-size: 14px; font-weight: 700; }
 .recipes-detail-body p { margin: 6px 0; }
 .recipes-detail-body ul { padding-left: 18px; margin: 6px 0; }
-.recipes-detail-body code { background: rgba(255, 255, 255, .07); padding: 1px 6px; border-radius: 4px; font-size: 12px; }
+.recipes-detail-body code { background: rgba(255, 255, 255, .07); padding: 1px 6px; border-radius: var(--r-sm); font-size: 12px; }
 .recipes-detail-body details {
   background: rgba(255, 255, 255, .04);
   border: 1px solid rgba(255, 255, 255, .08);
-  border-radius: 10px;
+  border-radius: var(--r-md);
   padding: 8px 12px;
   margin: 8px 0;
 }
@@ -268,7 +268,7 @@ a.recipes-detail-pack:hover {
   border-collapse: collapse;
   margin: 8px 0;
   background: rgba(255, 255, 255, .03);
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   width: 100%;
   /* Equal-width columns so a single long tag id can't blow out the layout. */
@@ -290,7 +290,7 @@ a.recipes-detail-pack:hover {
 /* Desktop: lock body to viewport height so a long recipe list can't push the page taller */
 
 @media (min-width: 901px) {
-  body.recipes-page {
+  body.page-recipes {
     height: 100vh;
     overflow: hidden;
   }

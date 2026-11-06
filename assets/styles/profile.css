@@ -1,13 +1,6 @@
 /* ── Profile page ──────────────────────────────────────────────────────────── */
 
-.profile-shell {
-  width: min(1680px, calc(100% - 32px));
-  margin: 0 auto;
-  padding: 64px 0 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
+/* Frame and head come from site.css (.ee-shell, ee_head_open). */
 
 /* ── No-profile state ──────────────────────────────────────────────────────── */
 

@@ -39,7 +39,7 @@
   color: inherit;
   font: inherit;
   padding: 10px 14px;
-  border-radius: 12px;
+  border-radius: var(--r-md);
   cursor: pointer;
   align-items: center;
   gap: 10px;
@@ -47,7 +47,7 @@
 
 .structures-sidebar-body { overflow-y: auto; overflow-x: hidden; flex: 1 1 auto; padding-right: 4px; }
 .structures-sidebar-body::-webkit-scrollbar { width: 8px; }
-.structures-sidebar-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .15); border-radius: 4px; }
+.structures-sidebar-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .15); border-radius: var(--r-sm); }
 
 .structures-group-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .structures-empty { padding: 12px; color: var(--muted); font-weight: 700; text-align: center; }
@@ -66,7 +66,7 @@
   font: inherit;
   font-weight: 700;
   padding: 8px 6px;
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   cursor: pointer;
   text-align: left;
 }
@@ -79,7 +79,7 @@
   color: rgba(255, 255, 255, .8);
   font-size: 11px;
   padding: 1px 7px;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   flex: 0 0 auto;
 }
 
@@ -100,7 +100,7 @@
   font-weight: 600;
   font-size: 12px;
   padding: 5px 6px;
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   cursor: pointer;
   text-align: left;
 }
@@ -113,7 +113,7 @@
   color: rgba(255, 255, 255, .65);
   font-size: 10px;
   padding: 1px 6px;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   flex: 0 0 auto;
 }
 
@@ -131,7 +131,7 @@
   text-align: left;
   width: 100%;
   padding: 6px 10px;
-  border-radius: 7px;
+  border-radius: var(--r-sm);
   cursor: pointer;
 }
 .structures-item-btn:hover { background: rgba(255, 255, 255, .05); }
@@ -191,7 +191,7 @@
 
 .structures-viewer-overlay {
   padding: 10px 14px;
-  border-radius: 12px;
+  border-radius: var(--r-md);
   background: rgba(5, 7, 13, .82);
   border: 1px solid rgba(255, 255, 255, .14);
   backdrop-filter: blur(12px);
@@ -226,7 +226,7 @@ a.structures-detail-pack:hover { text-decoration: underline; text-underline-offs
   align-self: flex-start;
   max-width: 100%;
   padding: 8px 12px;
-  border-radius: 12px;
+  border-radius: var(--r-md);
   border: 1px solid rgba(255, 255, 255, .14);
   background: rgba(5, 7, 13, .82);
   color: var(--accent, #b6c8ff);
@@ -250,7 +250,7 @@ a.structures-detail-pack:hover { text-decoration: underline; text-underline-offs
   position: fixed;
   z-index: 200;
   width: 260px;
-  border-radius: 14px;
+  border-radius: var(--r-md);
   background: rgba(5, 7, 13, .92);
   border: 1px solid rgba(255, 255, 255, .14);
   backdrop-filter: blur(14px);
@@ -315,7 +315,7 @@ a.structures-detail-pack:hover { text-decoration: underline; text-underline-offs
 .structures-viewer-btn {
   background: rgba(0, 0, 0, .55);
   border: 1px solid rgba(255, 255, 255, .18);
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   color: rgba(255, 255, 255, .85);
   padding: 6px 8px;
   font-size: 16px;
@@ -335,7 +335,7 @@ a.structures-detail-pack:hover { text-decoration: underline; text-underline-offs
 /* Desktop: lock body to viewport height so a long sidebar list can't push the page taller */
 
 @media (min-width: 901px) {
-  body.structures-page {
+  body.page-structures {
     height: 100vh;
     overflow: hidden;
   }
