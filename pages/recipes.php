@@ -1,15 +1,15 @@
-<main id="page-top" class="recipes-shell">
-  <section class="recipes-hero">
-    <img class="recipes-title-img" src="/assets/images/branding/recipes_title.png" alt="Explorer's Eden Recipes">
-    <div class="recipes-controls" role="search">
-      <div class="recipes-search-wrap">
+<main id="page-top" class="ee-shell ee-shell--wide recipes-shell">
+  <?php ee_head_open(['img' => 'recipes_title.png', 'alt' => "Explorer's Eden Recipes", 'sub' => 'Every crafting, smelting and smithing recipe our data packs add.']) ?>
+    <div class="ee-toolbar" role="search">
+      <label class="ee-search">
+        <span class="sr-only">Search recipes</span>
         <i class="bi bi-search" aria-hidden="true"></i>
         <input id="recipe-search" type="search" placeholder="Search recipes..." autocomplete="off">
         <button id="clear-recipe-search" type="button" aria-label="Clear search">×</button>
-      </div>
-      <div class="quick-filters" id="recipe-quick-filters" aria-label="Quick data-pack filters"></div>
+      </label>
+      <div class="ee-chips" id="recipe-quick-filters" aria-label="Quick data-pack filters"></div>
     </div>
-  </section>
+  </header>
 
   <section class="recipes-layout">
     <aside class="recipes-sidebar" aria-label="Recipe list">

@@ -114,7 +114,7 @@
       const button = document.createElement('button');
       button.type = 'button';
       const count = pack === 'All' ? totalMatched : (visibleCountsByPack.get(pack) || 0);
-      button.className = 'filter-chip' + (pack === activePack ? ' is-active' : '');
+      button.className = 'ee-chip' + (pack === activePack ? ' is-active' : '');
       button.innerHTML = `<span>${escapeHtml(pack)}</span><strong>${count}</strong>`;
       if (count === 0 && pack !== 'All') {
         button.disabled = true;

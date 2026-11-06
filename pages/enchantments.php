@@ -6,24 +6,21 @@
 <?php if ($enchantmentsRow): ?>
 <script>window.EXPLORERS_EDEN_ENCHANTMENTS = <?= json_encode($enchantmentsRow['data']) ?>;</script>
 <?php endif; ?>
-<main id="page-top" class="page-shell">
-    <section class="enchantments-overview" aria-label="Enchantments overview">
-      <img class="enchantments-overview__logo" src="/assets/images/branding/enchantments_title.png" alt="Explorer's Eden Enchantments">
-
-      <div class="enchantments-overview__tools" role="search">
-        <div class="search-wrap">
-          <label class="sr-only" for="search-input">Search enchantments</label>
+<main id="page-top" class="ee-shell ee-shell--wide ench-shell">
+    <?php ee_head_open(['img' => 'enchantments_title.png', 'alt' => "Explorer's Eden Enchantments", 'sub' => 'Every enchantment our data packs add - what it does, where it applies and where to find it.']) ?>
+      <div class="ee-toolbar" role="search">
+        <label class="ee-search">
+          <span class="sr-only">Search enchantments</span>
           <i class="bi bi-search" aria-hidden="true"></i>
           <input type="search" id="search-input" placeholder="Search enchantments...">
           <button id="clear-search" type="button" aria-label="Clear search">×</button>
-        </div>
-
-        <div class="quick-filters" id="quick-filters" aria-label="Quick enchantment filters"></div>
-        <p id="results-count" class="results-count" aria-live="polite">Loading enchantments…</p>
+        </label>
+        <div class="ee-chips" id="quick-filters" aria-label="Quick enchantment filters"></div>
+        <p id="results-count" class="ee-count" aria-live="polite">Loading enchantments…</p>
       </div>
-    </section>
+    </header>
 
-    <section class="table-card" aria-label="Enchantments table">
+    <section class="ee-panel ench-table-panel" aria-label="Enchantments table">
       <div class="table-scroll">
         <table class="enchantments-table" id="data-table">
           <thead>

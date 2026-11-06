@@ -1914,7 +1914,20 @@ button.ee-card { cursor: pointer; width: 100%; }
 .ee-chip:hover,
 .ee-chip.is-active,
 .ee-chip[aria-pressed="true"] { transform: translateY(-1px); background: var(--hover-bg); border-color: var(--hover-line); }
+.ee-chip.is-empty { opacity: .45; cursor: not-allowed; transform: none; }
+.ee-chip strong {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: var(--r-pill);
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+}
+.ee-chip.is-active strong { background: color-mix(in srgb, var(--accent) 24%, transparent); }
 
+.ee-count:empty { display: none; }
 .ee-count {
   padding: 8px 12px;
   border-radius: var(--r-pill);
@@ -1955,6 +1968,7 @@ button.ee-card { cursor: pointer; width: 100%; }
   max-width: 480px;
 }
 .ee-search > i {
+  z-index: 1;
   position: absolute;
   left: 15px;
   top: 50%;
@@ -1980,6 +1994,7 @@ button.ee-card { cursor: pointer; width: 100%; }
 .ee-search input::placeholder { color: rgba(255,255,255,.5); }
 .ee-search input:focus { border-color: var(--hover-line); box-shadow: var(--focus-ring), var(--shadow-control); }
 .ee-search > button {
+  z-index: 1;
   position: absolute;
   right: 7px;
   top: 50%;

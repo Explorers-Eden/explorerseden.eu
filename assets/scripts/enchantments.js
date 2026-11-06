@@ -245,7 +245,7 @@ function renderQuickFilters() {
   packNames.forEach((packName) => {
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'filter-chip' + (packName === state.activePack ? ' is-active' : '');
+    button.className = 'ee-chip' + (packName === state.activePack ? ' is-active' : '');
 
     const count = packName === 'All' ? searchMatched.length : (counts.get(packName) || 0);
     button.innerHTML = `<span>${packName}</span><strong>${count}</strong>`;

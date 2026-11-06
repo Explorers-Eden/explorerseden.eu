@@ -1,15 +1,15 @@
-<main id="page-top" class="structures-shell">
-  <section class="structures-hero">
-    <img class="structures-title-img" src="/assets/images/branding/structures_title.png" alt="Explorer's Eden Structures">
-    <div class="structures-controls" aria-label="Structure filters">
-      <div class="structure-search-wrap">
+<main id="page-top" class="ee-shell ee-shell--wide structures-shell">
+  <?php ee_head_open(['img' => 'structures_title.png', 'alt' => "Explorer's Eden Structures", 'sub' => 'Walk through every structure our data packs add, right in your browser.']) ?>
+    <div class="ee-toolbar" role="search">
+      <label class="ee-search">
+        <span class="sr-only">Search structures</span>
         <i class="bi bi-search" aria-hidden="true"></i>
         <input id="structure-search" type="search" placeholder="Search structures..." autocomplete="off">
         <button id="clear-structure-search" type="button" aria-label="Clear search">×</button>
-      </div>
-      <div class="structure-quick-filters" id="structure-filters" aria-label="Quick data-pack filters"></div>
+      </label>
+      <div class="ee-chips" id="structure-filters" aria-label="Quick data-pack filters"></div>
     </div>
-  </section>
+  </header>
 
   <section class="structures-layout">
     <aside class="structures-sidebar" aria-label="Structure list">

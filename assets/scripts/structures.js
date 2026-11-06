@@ -278,7 +278,7 @@
       const btn   = document.createElement('button');
       btn.type    = 'button';
       const count = pack === 'All' ? totalMatched : (countsByPack.get(pack) || 0);
-      btn.className = 'filter-chip' + (pack === activePack ? ' is-active' : '');
+      btn.className = 'ee-chip' + (pack === activePack ? ' is-active' : '');
       btn.innerHTML = `<span>${escapeHtml(pack)}</span><strong>${count}</strong>`;
       if (count === 0 && pack !== 'All') { btn.disabled = true; btn.classList.add('is-empty'); }
       btn.addEventListener('click', () => { if (activePack === pack) return; activePack = pack; render(); });
