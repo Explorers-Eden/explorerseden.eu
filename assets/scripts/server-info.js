@@ -338,16 +338,16 @@
     $('in-intro').innerHTML = (d.intro || '').split(/\n\s*\n/).filter((p) => p.trim()).map((p) => `<p>${esc(p).replace(/\n/g, '<br>')}</p>`).join('');
     $('in-updated').textContent = d.updated ? `Last updated ${new Date(d.updated).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}` : '';
     const sections = buildSections(d);
-    $('in-tabs').innerHTML = sections.map((s) => `<a class="filter-chip in-tab" href="#${s.id}" data-tab="${s.id}" style="--hue:${s.hue}">
+    $('in-tabs').innerHTML = sections.map((s) => `<a class="ee-chip in-tab" href="#${s.id}" data-tab="${s.id}" style="--hue:${s.hue}">
         <i class="bi ${s.icon}"></i><span>${esc(s.tab || s.title)}</span><small class="in-tab-hits" hidden></small></a>`).join('');
     $('in-main').innerHTML = sections.map((s) => `<div class="in-section" id="${s.id}" data-node style="--hue:${s.hue}">
         <header class="in-section-head">
-          <span class="profile-panel__icon"><i class="bi ${s.icon}"></i></span>
+          <span class="ee-icon"><i class="bi ${s.icon}"></i></span>
           <div class="in-section-head__text"><h2 class="in-section-title">${esc(s.title)}</h2>${s.lead ? `<p class="in-section-lead">${mc(s.lead)}</p>` : ''}</div>
           <div class="in-section-count"><b>${Number(s.count).toLocaleString()}</b><span>${esc(s.statLabel || '')}</span>${s.note ? `<small>${esc(s.note)}</small>` : ''}</div>
         </header>
-        ${s.children.length > 1 ? `<nav class="in-pills" aria-label="${esc(s.title)}"><a class="filter-chip in-pill" href="#${s.id}" data-pill="">All</a>${s.children.map((c) =>
-          `<a class="filter-chip in-pill" href="#${c.id}" data-pill="${c.id}">${c.icon ? `<i class="bi ${c.icon}"></i>` : ''}${esc(plain(c.title))}</a>`).join('')}</nav>` : ''}
+        ${s.children.length > 1 ? `<nav class="in-pills" aria-label="${esc(s.title)}"><a class="ee-chip in-pill" href="#${s.id}" data-pill="">All</a>${s.children.map((c) =>
+          `<a class="ee-chip in-pill" href="#${c.id}" data-pill="${c.id}">${c.icon ? `<i class="bi ${c.icon}"></i>` : ''}${esc(plain(c.title))}</a>`).join('')}</nav>` : ''}
         <div class="in-cards${s.children.length === 1 ? ' in-cards--single' : ''}">${s.children.map((c) => renderNode(c, 1)).join('')}</div></div>`).join('')
       || '<p class="in-empty">Nothing is published here yet.</p>';
   }

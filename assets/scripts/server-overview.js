@@ -117,12 +117,12 @@ async function updateStatus() {
 function copyServerIp() {
   const restoreLabel = () => {
     copyBtn.classList.remove('is-copied');
-    copyBtn.querySelector('span').textContent = 'Copy Server IP';
+    copyBtn.querySelector('[data-label]').textContent = 'Copy Server IP';
   };
 
   const onCopied = () => {
     copyBtn.classList.add('is-copied');
-    copyBtn.querySelector('span').textContent = 'Copied!';
+    copyBtn.querySelector('[data-label]').textContent = 'Copied!';
     setTimeout(restoreLabel, 1800);
   };
 

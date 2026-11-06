@@ -126,19 +126,19 @@
 
   function panel(id, icon, title, count, aside, body) {
     return `
-      <section class="profile-panel" id="profile-panel-${id}">
-        <header class="profile-panel__head">
-          <span class="profile-panel__icon"><i class="bi ${icon}" aria-hidden="true"></i></span>
+      <section class="ee-panel" id="profile-panel-${id}">
+        <header class="ee-panel__head">
+          <span class="ee-icon"><i class="bi ${icon}" aria-hidden="true"></i></span>
           <h2>${title}</h2>
           ${count != null ? `<span class="profile-count-badge">${count}</span>` : ''}
-          ${aside ? `<span class="profile-panel__aside">${aside}</span>` : ''}
+          ${aside ? `<span class="ee-panel__aside">${aside}</span>` : ''}
         </header>
-        <div class="profile-panel__body">${body}</div>
+        <div class="ee-panel__body">${body}</div>
       </section>`;
   }
 
   function action(icon, label, attrs) {
-    return `<button type="button" class="profile-action" ${attrs}><span class="profile-action__icon"><i class="bi ${icon}" aria-hidden="true"></i></span>${label}</button>`;
+    return `<button type="button" class="ee-action" ${attrs}><span class="ee-action__icon"><i class="bi ${icon}" aria-hidden="true"></i></span>${label}</button>`;
   }
 
   function note(text, kind) {
@@ -236,7 +236,7 @@
   function tabBar() {
     const n = counts();
     return `<nav class="profile-tabs" role="tablist" aria-label="Profile sections">${TABS.map((t) => `
-      <button type="button" class="filter-chip profile-tab${t.id === activeTab ? ' is-active' : ''}" role="tab" aria-selected="${t.id === activeTab}" data-tab="${t.id}">
+      <button type="button" class="ee-chip profile-tab${t.id === activeTab ? ' is-active' : ''}" role="tab" aria-selected="${t.id === activeTab}" data-tab="${t.id}">
         <i class="bi ${t.icon}" aria-hidden="true"></i> ${t.label}${n[t.id] != null && n[t.id] !== 0 ? ` <span class="profile-tab__count">${n[t.id]}</span>` : ''}
       </button>`).join('')}</nav>`;
   }
@@ -325,7 +325,7 @@
     return `<div class="profile-blocks">
       ${cell('earned by playing', b.earned)}${b.bonus ? cell('given by admins', b.bonus) : ''}${cell('bought', b.bought)}${cell('used by your claims', b.used)}
       ${cell('claim blocks left', b.left, 'is-left')}
-      <a class="profile-action profile-blocks__buy" href="/market/"><span class="profile-action__icon"><i class="bi bi-cart-plus" aria-hidden="true"></i></span>Buy claim blocks</a>
+      <a class="ee-action profile-blocks__buy" href="/market/"><span class="ee-action__icon"><i class="bi bi-cart-plus" aria-hidden="true"></i></span>Buy claim blocks</a>
     </div>`;
   }
 
@@ -376,7 +376,7 @@
     if (dim == null || x == null || z == null) return '';
     const key = String(dim).includes(':') ? String(dim).replace(':', '_') : String(dim).toLowerCase().replace(/\s+/g, '_');
     const back = encodeURIComponent(location.pathname + location.search + location.hash);
-    return `<a class="profile-action" href="/map/?back=${back}#${encodeURIComponent(key)}/${Math.round(x)}/${Math.round(z)}"><span class="profile-action__icon"><i class="bi bi-map" aria-hidden="true"></i></span>Map</a>`;
+    return `<a class="ee-action" href="/map/?back=${back}#${encodeURIComponent(key)}/${Math.round(x)}/${Math.round(z)}"><span class="ee-action__icon"><i class="bi bi-map" aria-hidden="true"></i></span>Map</a>`;
   }
 
   // ── Waypoint hubs ───────────────────────────────────────────────────────────
@@ -713,13 +713,13 @@
     const dlg = document.createElement('dialog');
     dlg.className = 'profile-dialog';
     dlg.innerHTML = `<form method="dialog" novalidate>
-      <header class="profile-dialog__head"><span class="profile-panel__icon"><i class="bi ${icon}" aria-hidden="true"></i></span><h3>${title}</h3>
+      <header class="profile-dialog__head"><span class="ee-icon"><i class="bi ${icon}" aria-hidden="true"></i></span><h3>${title}</h3>
         <button type="button" class="profile-dialog__x" value="close" aria-label="Close"><i class="bi bi-x-lg"></i></button></header>
       <div class="profile-dialog__body">${body}</div>
       <p class="profile-dialog__msg" role="alert" hidden></p>
       <footer class="profile-dialog__foot">
-        <button type="button" class="profile-btn" data-close>Cancel</button>
-        <button type="submit" class="profile-btn profile-btn--primary${danger ? ' profile-btn--danger' : ''}"><span class="profile-action__icon"><i class="bi ${saveIcon}" aria-hidden="true"></i></span>${save}</button>
+        <button type="button" class="ee-btn" data-close>Cancel</button>
+        <button type="submit" class="ee-action${danger ? ' ee-action--danger' : ''}"><span class="ee-action__icon"><i class="bi ${saveIcon}" aria-hidden="true"></i></span>${save}</button>
       </footer></form>`;
     document.body.appendChild(dlg);
     const msg = dlg.querySelector('.profile-dialog__msg');
@@ -774,7 +774,7 @@
         return `<div class="profile-member-row" data-member="${esc(m.uuid)}">
           <img src="/api/head.php?u=${encodeURIComponent(m.uuid)}&s=24" alt="" loading="lazy"><b>${esc(m.name)}</b>
           <select data-role aria-label="Role of ${esc(m.name)}"${locked ? ' disabled title="Only the owner can change co-owners"' : ''}>${roleOptions(m.role, claim.isOwner)}</select>
-          <button type="button" class="profile-icon-btn" data-remove aria-label="Remove ${esc(m.name)}"${locked ? ' disabled' : ''}><i class="bi bi-x-lg"></i></button></div>`;
+          <button type="button" class="ee-btn ee-btn--icon ee-btn--sm ee-btn--danger" data-remove aria-label="Remove ${esc(m.name)}"${locked ? ' disabled' : ''}><i class="bi bi-x-lg"></i></button></div>`;
       }).join('');
       return rows || '<p class="profile-muted profile-member-empty">No members yet.</p>';
     };
@@ -788,7 +788,7 @@
         <div class="profile-members" data-members>${memberRows(c)}</div>
         <div class="profile-member-add"><input type="text" data-add-name maxlength="16" placeholder="Player name" autocomplete="off">
           <select data-add-role aria-label="Role">${roleOptions('BUILD', c.isOwner)}</select>
-          <button type="button" class="profile-btn" data-add><i class="bi bi-person-plus"></i> Add</button></div>
+          <button type="button" class="ee-btn" data-add><i class="bi bi-person-plus"></i> Add</button></div>
         <details class="profile-roles-help"><summary>What the roles may do</summary><ul>${(live.roles || []).map((r) => `<li><b>${esc(r.label)}</b> ${esc(r.description.toLowerCase())}</li>`).join('')}</ul></details>
       </div>`;
     return dialog({
@@ -857,7 +857,7 @@
       <div class="profile-field"><span>Colour of the floating name</span>${swatches('color', live.hubColors || {}, h.color)}</div>
       <div class="profile-field">${toggle('public', 'Public', h.public, 'Shows in everyone\'s waypoint list; private hubs only for you and trusted players')}</div>
       <div class="profile-field"><span>Trusted players</span><div class="profile-chips" data-chips>${chips()}</div>
-        <div class="profile-member-add"><input type="text" data-trust-name maxlength="16" placeholder="Player name" autocomplete="off"><button type="button" class="profile-btn" data-trust><i class="bi bi-person-plus"></i> Add</button></div></div>`;
+        <div class="profile-member-add"><input type="text" data-trust-name maxlength="16" placeholder="Player name" autocomplete="off"><button type="button" class="ee-btn" data-trust><i class="bi bi-person-plus"></i> Add</button></div></div>`;
     return dialog({
       icon: 'bi-signpost-split', title: `Edit ${esc(h.name)}`, body,
       onOpen(dlg) {
@@ -968,7 +968,7 @@
   }
 
   function flash(panelId, text) {
-    const head = document.querySelector(`#profile-panel-${panelId} .profile-panel__head`);
+    const head = document.querySelector(`#profile-panel-${panelId} .ee-panel__head`);
     if (!head) return;
     // One note at a time: a quick second change replaces the first.
     head.querySelectorAll('.profile-flash').forEach((old) => old.remove());

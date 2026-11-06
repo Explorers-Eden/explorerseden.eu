@@ -1,14 +1,14 @@
-<main id="page-top" class="page-shell overview-shell">
-  <img class="overview-banner" src="/assets/images/branding/smp_title.png" alt="A Realm Recrafted">
-
-  <div class="overview-actions">
-    <button id="copy-server-ip" type="button" class="overview-btn">
-      <i class="bi bi-clipboard"></i> <span>Copy Server IP</span>
-    </button>
-    <a class="overview-btn" target="_blank" rel="noreferrer" href="https://modrinth.com/server/a-realm-recrafted">
-      <i class="bi bi-box-arrow-up-right"></i> View on Modrinth
-    </a>
-  </div>
+<main id="page-top" class="ee-shell overview-shell">
+  <?php ee_head_open(['smp' => 'overview']) ?>
+    <div class="ee-page-head__actions">
+      <button id="copy-server-ip" type="button" class="ee-action">
+        <span class="ee-action__icon"><i class="bi bi-clipboard" aria-hidden="true"></i></span><span data-label>Copy Server IP</span>
+      </button>
+      <a class="ee-action" target="_blank" rel="noreferrer" href="https://modrinth.com/server/a-realm-recrafted">
+        <span class="ee-action__icon"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></span>View on Modrinth
+      </a>
+    </div>
+  </header>
 
   <section class="overview-status" id="overview-status" aria-live="polite" aria-label="Server status">
     <p class="overview-status__loading">Checking server status…</p>

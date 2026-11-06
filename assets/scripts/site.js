@@ -491,3 +491,10 @@ loadModrinthProjects();
     if (e.key === 'Escape' && navLinks.classList.contains('is-open')) setMenuOpen(false);
   });
 })();
+
+// ── Section tabs: keep the current tab in view on narrow screens ─────────────
+document.querySelectorAll('.ee-tabs').forEach((bar) => {
+  const cur = bar.querySelector('[aria-current="page"]');
+  if (!cur || bar.scrollWidth <= bar.clientWidth) return;
+  bar.scrollLeft = cur.offsetLeft - (bar.clientWidth - cur.offsetWidth) / 2;
+});

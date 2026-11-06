@@ -11,8 +11,9 @@ if (!$user) {
 
 $profile = get_player_profile($user['discord_id']);
 ?>
-<main id="page-top" class="page-shell profile-shell">
-  <img class="overview-banner" src="/assets/images/branding/smp_title.png" alt="A Realm Recrafted">
+<main id="page-top" class="ee-shell profile-shell">
+  <?php ee_head_open(['smp' => 'profile']) ?>
+  </header>
 
   <?php if (!$profile): ?>
     <section class="profile-empty">

@@ -16,7 +16,7 @@
     const back = new URLSearchParams(location.search).get('back');
     if (back && back.startsWith('/') && !back.startsWith('//')) {
       const a = document.createElement('a');
-      a.className = 'filter-chip smp-map-back';
+      a.className = 'ee-chip smp-map-back';
       a.href = back;
       // Straight from that page: go back in history, so it comes back as it was (tab, scroll).
       a.addEventListener('click', (e) => {
@@ -235,9 +235,9 @@
     }
     if (info.title) $('mp-title').textContent = info.title;
     if (window.matchMedia('(max-width: 700px)').matches) $('mp-status').open = false;
-    $('mp-dims').innerHTML = info.dimensions.map((d) => `<button type="button" class="filter-chip" data-dim="${esc(d.key)}"><i class="bi bi-globe2" aria-hidden="true"></i> ${esc(d.name)}</button>`).join('');
+    $('mp-dims').innerHTML = info.dimensions.map((d) => `<button type="button" class="ee-chip" data-dim="${esc(d.key)}"><i class="bi bi-globe2" aria-hidden="true"></i> ${esc(d.name)}</button>`).join('');
     $('mp-dims').addEventListener('click', (e) => { const b = e.target.closest('[data-dim]'); if (b) setDim(b.dataset.dim); });
-    $('mp-layers').innerHTML = Object.entries(LABELS).map(([k, [icon, l]]) => `<button type="button" class="filter-chip is-active" data-layer="${k}" aria-pressed="true"><i class="bi ${icon}" aria-hidden="true"></i> ${l}</button>`).join('');
+    $('mp-layers').innerHTML = Object.entries(LABELS).map(([k, [icon, l]]) => `<button type="button" class="ee-chip is-active" data-layer="${k}" aria-pressed="true"><i class="bi ${icon}" aria-hidden="true"></i> ${l}</button>`).join('');
     $('mp-layers').addEventListener('click', (e) => {
       const b = e.target.closest('[data-layer]');
       if (!b) return;

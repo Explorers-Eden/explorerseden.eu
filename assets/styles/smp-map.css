@@ -7,15 +7,17 @@
 .smp-map-panel { position: fixed; inset: 64px 0 0; z-index: 1; overflow: hidden; background: #070910; }
 .smp-map-head {
   position: absolute; top: 16px; left: 16px; z-index: 700; display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px;
-  max-width: calc(100% - 340px); padding: 10px 14px; border-radius: 18px; color: #fff;
+  max-width: calc(100% - 340px); padding: 10px 14px; border-radius: var(--r-lg); color: #fff;
   background: linear-gradient(135deg, rgba(14,17,30,.9), rgba(4,6,12,.92)); border: 1px solid rgba(255,255,255,.12);
   box-shadow: 0 16px 36px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.07); backdrop-filter: blur(10px);
 }
+.smp-map-tabs { flex: 1 0 100%; margin: 0 0 2px; padding: 4px; box-shadow: none; background: rgba(255,255,255,.03); }
+.smp-map-tabs .ee-tab { padding: 7px 13px; font-size: 12px; }
 .smp-map-head h1 { margin: 0 6px 0 0; color: #fff; font-size: 19px; font-weight: 900; white-space: nowrap; }
 .smp-map-chips { display: flex; flex-wrap: wrap; gap: 8px; max-width: 100%; }
-.smp-map-chips .filter-chip { padding-inline: 14px; }
-.smp-map-chips .filter-chip i { color: var(--accent); }
-.smp-map-layers .filter-chip:not(.is-active) { opacity: .55; }
+.smp-map-chips .ee-chip { padding-inline: 14px; }
+.smp-map-chips .ee-chip i { color: var(--accent); }
+.smp-map-layers .ee-chip:not(.is-active) { opacity: .55; }
 
 .smp-map-wrap { position: relative; z-index: 0; isolation: isolate; height: 100%; }
 /* Leaflet's stylesheet loads after this one: the doubled class wins over its light-grey background. */
@@ -24,13 +26,13 @@
 .smp-map-crisp .leaflet-tile { image-rendering: pixelated; }
 .smp-map .leaflet-control-zoom { border: 0; box-shadow: none; margin: 0 18px 18px 0; }
 .smp-map .leaflet-control-zoom a {
-  width: 34px; height: 34px; line-height: 32px; margin-bottom: 6px; border-radius: 12px !important; color: #fff;
+  width: 34px; height: 34px; line-height: 32px; margin-bottom: 6px; border-radius: var(--r-md) !important; color: #fff;
   background: rgba(10,12,22,.85); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(8px);
 }
 .smp-map .leaflet-control-zoom a:hover { background: color-mix(in srgb, var(--accent) 18%, rgba(10,12,22,.85)); color: var(--accent); }
 
 .smp-map-status {
-  position: absolute; top: 18px; right: 18px; z-index: 500; width: min(290px, calc(100% - 36px)); max-height: calc(100% - 36px); overflow-y: auto; padding: 14px 16px; border-radius: 18px; color: #fff;
+  position: absolute; top: 18px; right: 18px; z-index: 500; width: min(290px, calc(100% - 36px)); max-height: calc(100% - 36px); overflow-y: auto; padding: 14px 16px; border-radius: var(--r-lg); color: #fff;
   background: linear-gradient(135deg, rgba(14,17,30,.9), rgba(4,6,12,.92)); border: 1px solid rgba(255,255,255,.12);
   box-shadow: 0 16px 36px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.07); backdrop-filter: blur(10px);
 }
@@ -43,7 +45,7 @@
 .smp-map-dot.is-online { background: #4be07a; }
 .smp-map-dot.is-offline { background: #ff6b6b; }
 .smp-map-dot.is-maintenance { background: #ffcf6e; }
-.smp-map-clock { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 8px 10px; border-radius: 12px; background: rgba(255,255,255,.04); font-size: 13px; }
+.smp-map-clock { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 8px 10px; border-radius: var(--r-md); background: rgba(255,255,255,.04); font-size: 13px; }
 .smp-map-clock i { color: var(--accent-2); }
 .smp-map-clock span { color: var(--muted); font-size: 12px; }
 .smp-map-facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; margin: 10px 0 0; font-size: 12px; }
@@ -51,26 +53,26 @@
 .smp-map-facts dd { margin: 0; color: #fff; font-weight: 700; }
 .smp-map-sub { margin: 12px 0 6px; color: var(--muted); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
 .smp-map-players { display: grid; gap: 4px; max-height: 260px; overflow-y: auto; }
-.smp-map-players button { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 10px; border: 0; background: transparent; color: #fff; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; }
+.smp-map-players button { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: var(--r-md); border: 0; background: transparent; color: #fff; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; }
 .smp-map-players button:hover { background: rgba(255,255,255,.06); }
-.smp-map-players img { width: 18px; height: 18px; border-radius: 4px; image-rendering: pixelated; }
+.smp-map-players img { width: 18px; height: 18px; border-radius: var(--r-sm); image-rendering: pixelated; }
 .smp-map-players small { margin-left: auto; color: var(--muted); font-size: 11px; }
 
 .smp-map-coords {
-  position: absolute; left: 18px; bottom: 18px; z-index: 500; padding: 6px 10px; border-radius: 10px; font-size: 12px; font-weight: 700; color: #fff;
+  position: absolute; left: 18px; bottom: 18px; z-index: 500; padding: 6px 10px; border-radius: var(--r-md); font-size: 12px; font-weight: 700; color: #fff;
   background: rgba(10,12,22,.8); border: 1px solid rgba(255,255,255,.12); font-variant-numeric: tabular-nums; pointer-events: none;
 }
 .smp-map-coords:empty { display: none; }
 .smp-map-message { position: absolute; inset: 0; z-index: 600; display: grid; place-items: center; margin: 0; color: var(--muted); font-weight: 700; background: rgba(5,7,13,.6); }
 
-.smp-map-player { border-radius: 5px; box-shadow: 0 0 0 2px rgba(0,0,0,.6), 0 4px 10px rgba(0,0,0,.5); image-rendering: pixelated; }
+.smp-map-player { border-radius: var(--r-sm); box-shadow: 0 0 0 2px rgba(0,0,0,.6), 0 4px 10px rgba(0,0,0,.5); image-rendering: pixelated; }
 .smp-map-hub { background: none; border: 0; font-size: 24px; color: #b6c8ff; text-shadow: 0 2px 6px rgba(0,0,0,.7); }
 .smp-map-hub.is-mine i { filter: drop-shadow(0 0 6px rgba(255,255,255,.7)); }
 .smp-map-popup .leaflet-popup-content-wrapper, .smp-map-popup .leaflet-popup-tip {
   background: linear-gradient(135deg, rgba(14,17,30,.96), rgba(4,6,12,.97)); color: #fff; border: 1px solid rgba(255,255,255,.12);
   box-shadow: 0 14px 30px rgba(0,0,0,.5);
 }
-.smp-map-popup .leaflet-popup-content-wrapper { border-radius: 16px; }
+.smp-map-popup .leaflet-popup-content-wrapper { border-radius: var(--r-lg); }
 .smp-map-popup .leaflet-popup-content { margin: 12px 14px; font: 600 13px/1.45 Montserrat, Arial, sans-serif; }
 .smp-map-popup small { color: var(--muted); }
 .smp-map-popup a.leaflet-popup-close-button { color: var(--muted); }
@@ -78,18 +80,20 @@
 .smp-map-pop > div { display: flex; flex-direction: column; gap: 2px; }
 .smp-map-pop__sub { color: #d6dcf0; font-style: italic; font-size: 12px; }
 .smp-map-face { image-rendering: pixelated; }
-.smp-map-pop .smp-map-face { border-radius: 8px; border: 1px solid rgba(255,255,255,.14); }
-.smp-map-mine { display: inline-block; padding: 1px 7px; border-radius: 999px; font-size: 10px; font-weight: 900; text-transform: uppercase; color: #b7f7c4; background: rgba(75,224,122,.14); border: 1px solid rgba(75,224,122,.3); }
+.smp-map-pop .smp-map-face { border-radius: var(--r-sm); border: 1px solid rgba(255,255,255,.14); }
+.smp-map-mine { display: inline-block; padding: 1px 7px; border-radius: var(--r-pill); font-size: 10px; font-weight: 900; text-transform: uppercase; color: #b7f7c4; background: rgba(75,224,122,.14); border: 1px solid rgba(75,224,122,.3); }
 .smp-map-mine.is-private { color: #ffd9a0; background: rgba(255,193,110,.12); border-color: rgba(255,193,110,.3); }
-.smp-map-tip { background: rgba(10,12,22,.92); color: #fff; border: 1px solid rgba(255,255,255,.14); border-radius: 10px; font: 700 12px Montserrat, Arial, sans-serif; box-shadow: 0 8px 18px rgba(0,0,0,.4); }
+.smp-map-tip { background: rgba(10,12,22,.92); color: #fff; border: 1px solid rgba(255,255,255,.14); border-radius: var(--r-md); font: 700 12px Montserrat, Arial, sans-serif; box-shadow: 0 8px 18px rgba(0,0,0,.4); }
 .smp-map-tip::before { display: none; }
 
 @media (max-width: 700px) {
   .smp-map-head { top: 10px; left: 10px; right: 10px; max-width: none; padding: 10px 12px; gap: 8px; }
-  .smp-map-head h1 { font-size: 17px; }
+  .smp-map-tabs { flex: 1 0 100%; margin: 0 0 2px; padding: 4px; box-shadow: none; background: rgba(255,255,255,.03); }
+.smp-map-tabs .ee-tab { padding: 7px 13px; font-size: 12px; }
+.smp-map-head h1 { font-size: 17px; }
   /* One row each, swiped sideways. */
   .smp-map-chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
-  .smp-map-chips .filter-chip { flex-shrink: 0; }
+  .smp-map-chips .ee-chip { flex-shrink: 0; }
   .smp-map-status { top: auto; bottom: 10px; right: 10px; left: 10px; width: auto; max-height: 45%; }
   .smp-map-coords { display: none; }
   /* Pinch to zoom; the buttons would sit under the status card. */

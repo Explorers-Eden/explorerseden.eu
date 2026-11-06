@@ -369,17 +369,4 @@ a.structures-detail-pack:hover { text-decoration: underline; text-underline-offs
   .structures-frame { min-height: 440px; }
 }
 
-@media (max-width: 640px) {
-  .structures-page .structures-shell {
-    width: min(100% - 18px, 1680px);
-    padding-top: 36px;
-  }
-  .structures-title-img { width: min(620px, 100%); }
-  .structures-controls { flex-direction: column; }
-  .structure-search-wrap {
-    width: min(560px, 100%);
-    flex: 0 1 auto;
-    min-width: 0;
-  }
-  .structure-quick-filters { width: 100%; }
-}
+

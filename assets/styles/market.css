@@ -1,17 +1,4 @@
-/* Search and order use the shared search-wrap and filter-chip look of the other pages (enchantments.css). */
-.market-tools { margin: 0 auto 16px; }
-#market-clear { position:absolute; right:7px; top:50%; transform:translateY(-50%); width:28px; height:28px; border:0; border-radius:999px; cursor:pointer; color:#fff; background:rgba(255,255,255,.10); font-size:20px; line-height:1; }
-#market-clear:hover { background:rgba(255,255,255,.18); }
-.market-tools .filter-chip i { color: var(--accent); }
-
-/* Wider than the other pages, so big screens fit more cards in a row. */
-.page-shell.market-shell { width: min(2100px, calc(100% - 28px)); }
-@media (max-width: 680px) { .page-shell.market-shell { width: calc(100% - 18px); } }
-
-/* The market page has no status card between the banner and what follows. */
-.market-shell .statistics-subtitle { margin-top: 18px; }
-.market-shell .statistics-subtitle[hidden] { display: none; }
-.market-shell .statistics-subtitle[hidden] + .market-tools { margin-top: 18px; }
+/* Frame, head, search and order chips come from site.css (ee-*). */
 
 /* Your Bank card and the Buy controls under each card (logged in, server running). */
 .market-bank { display: grid; gap: 10px; }
@@ -25,9 +12,9 @@
 .market-bank-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; padding: 14px 26px; }
 .market-bank-bar__text { color: rgba(239,247,255,.6); font-size: 13px; }
 .market-bank__pick { display: inline-flex; align-items: center; gap: 8px; color: rgba(239,247,255,.7); font-size: 13px; }
-.market-bank__pick select { background: rgba(255,255,255,.06); color: #fff; border: 1px solid rgba(255,255,255,.14); border-radius: 10px; padding: 6px 10px; }
+.market-bank__pick select { background: rgba(255,255,255,.06); color: #fff; border: 1px solid rgba(255,255,255,.14); border-radius: var(--r-md); padding: 6px 10px; }
 .market-bank__hint, .market-bank__mail { margin: 0; color: rgba(239,247,255,.6); font-size: 13px; }
-.market-bank__note { margin: 0; padding: 8px 12px; border-radius: 12px; background: rgba(85,255,140,.10); color: #9dffbf; font-weight: 600; }
+.market-bank__note { margin: 0; padding: 8px 12px; border-radius: var(--r-md); background: rgba(85,255,140,.10); color: #9dffbf; font-weight: 600; }
 .market-bank__note.is-error { background: rgba(255,85,85,.12); color: #ff9d9d; }
 .market-bank__trades { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 13px; color: rgba(239,247,255,.8); }
 .market-bank__trades li { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; }
@@ -41,7 +28,7 @@
 .market-grid { grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; }
 .market-card {
   display: flex; flex-direction: column; gap: 10px; min-width: 0;
-  padding: 14px; border-radius: 20px;
+  padding: 14px; border-radius: var(--r-lg);
   border: 1px solid rgba(255,255,255,.095);
   background: linear-gradient(135deg, rgba(10,12,22,.6), rgba(3,5,10,.68)), rgba(5,7,13,.46);
   box-shadow: 0 12px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.07);
@@ -50,7 +37,7 @@
 .market-card:hover { border-color: color-mix(in srgb, var(--accent) 30%, transparent); background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 6%, rgba(10,12,22,.6)), rgba(3,5,10,.68)), rgba(5,7,13,.46); }
 .market-card__top { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .market-card__top > .profile-market-card__icon {
-  flex: none; width: 44px; height: 44px; padding: 6px; border-radius: 13px;
+  flex: none; width: 44px; height: 44px; padding: 6px; border-radius: var(--r-md);
   background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
 }
 .market-card__top > .profile-market-card__icon--none { font-size: 18px; }
@@ -67,7 +54,7 @@
 
 /* Amount and Buy as one pill, like the site's "View Details" button: glass with an accent icon chip. */
 .market-buy {
-  flex: none; display: inline-flex; align-items: center; padding: 3px; border-radius: 16px;
+  flex: none; display: inline-flex; align-items: center; padding: 3px; border-radius: var(--r-lg);
   background: linear-gradient(135deg, rgba(10,12,22,.6), rgba(3,5,10,.68));
   border: 1px solid rgba(255,255,255,.1);
   box-shadow: 0 8px 18px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.06);
@@ -80,12 +67,12 @@
 .market-buy__amount input::-webkit-inner-spin-button, .market-buy__amount input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 .market-buy__amount input:focus { outline: none; color: var(--accent); }
 .market-buy__btn, .market-confirm__btn {
-  display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 3px; border: 0; border-radius: 13px;
+  display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 3px; border: 0; border-radius: var(--r-md);
   background: transparent; color: #fff; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer;
   transition: background .16s ease, color .16s ease;
 }
 .market-buy__icon {
-  display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 10px; font-size: 13px;
+  display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: var(--r-md); font-size: 13px;
   background: color-mix(in srgb, var(--accent) 18%, rgba(5,7,13,.62));
   border: 1px solid color-mix(in srgb, var(--accent) 42%, rgba(255,255,255,.14));
   color: var(--accent); transition: box-shadow .16s ease;
@@ -97,13 +84,13 @@
 .market-buy.is-off { opacity: .5; }
 .market-buy__btn:disabled { cursor: not-allowed; }
 .market-buy__note {
-  flex: none; margin: 0; padding: 6px 10px; border-radius: 12px; color: var(--muted); opacity: .8; font-size: 12px; font-weight: 700;
+  flex: none; margin: 0; padding: 6px 10px; border-radius: var(--r-md); color: var(--muted); opacity: .8; font-size: 12px; font-weight: 700;
   background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); white-space: nowrap;
 }
 
 /* The confirmation before buying: one of the site's glass cards. */
 .market-confirm {
-  width: min(400px, calc(100vw - 32px)); padding: 20px; border-radius: 22px; color: #fff;
+  width: min(400px, calc(100vw - 32px)); padding: 20px; border-radius: var(--r-xl); color: #fff;
   border: 1px solid rgba(255,255,255,.11);
   background: linear-gradient(135deg, rgba(14,17,30,.96), rgba(4,6,12,.97));
   box-shadow: 0 24px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.075);
@@ -112,14 +99,14 @@
 .market-confirm__head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
 .market-confirm__head h3 { margin: 0; font-size: 16px; font-weight: 900; }
 .market-confirm__icon {
-  display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 13px; font-size: 16px;
+  display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: var(--r-md); font-size: 16px;
   background: color-mix(in srgb, var(--accent) 18%, rgba(5,7,13,.62));
   border: 1px solid color-mix(in srgb, var(--accent) 42%, rgba(255,255,255,.14)); color: var(--accent);
 }
 .market-confirm__text { margin: 0 0 18px; color: var(--muted); font-size: 14px; font-weight: 600; line-height: 1.55; }
 .market-confirm__text b { color: #fff; font-weight: 900; }
 .market-confirm__actions { display: flex; justify-content: flex-end; gap: 8px; }
-.market-confirm__btn { height: 40px; padding: 0 16px; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(255,255,255,.04); }
+.market-confirm__btn { height: 40px; padding: 0 16px; border: 1px solid rgba(255,255,255,.1); border-radius: var(--r-lg); background: rgba(255,255,255,.04); }
 .market-confirm__btn:hover { background: rgba(255,255,255,.08); }
 .market-confirm__btn--buy { padding-left: 6px; background: linear-gradient(135deg, rgba(10,12,22,.6), rgba(3,5,10,.68)); }
 .market-confirm__btn--buy .market-buy__icon { width: 28px; height: 28px; }
@@ -130,6 +117,6 @@
 
 /* Spotlight (a reward, one listing per seller): comes first, with a gold star. */
 .market-card--spot { position: relative; border-color: rgba(255,209,102,.45) !important; box-shadow: 0 0 0 1px rgba(255,209,102,.18), 0 14px 30px rgba(255,190,80,.12) !important; }
-.market-card__spot { position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 900; color: #2a1d00; background: linear-gradient(135deg, #ffe08a, #ffbf47); box-shadow: 0 4px 12px rgba(255,180,60,.35); }
-.market-confirm__coupon { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 12px; border-radius: 12px; background: rgba(255,209,102,.08); border: 1px solid rgba(255,209,102,.25); font-size: 14px; }
+.market-card__spot { position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: var(--r-pill); font-size: 11px; font-weight: 900; color: #2a1d00; background: linear-gradient(135deg, #ffe08a, #ffbf47); box-shadow: 0 4px 12px rgba(255,180,60,.35); }
+.market-confirm__coupon { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 12px; border-radius: var(--r-md); background: rgba(255,209,102,.08); border: 1px solid rgba(255,209,102,.25); font-size: 14px; }
 .market-confirm__coupon input { accent-color: #ffbf47; width: 16px; height: 16px; }
