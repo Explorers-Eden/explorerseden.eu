@@ -125,7 +125,7 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   width: 3px;
   height: 3px;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   background: rgba(235,247,255,.95);
   box-shadow: 0 0 8px rgba(186,217,255,.9), 0 0 18px rgba(255,255,255,.34);
   animation: star-drift var(--dur,7s) ease-in-out infinite alternate, star-twinkle var(--blink,2.8s) ease-in-out infinite;
@@ -371,7 +371,7 @@ a { color: inherit; text-decoration: none; }
   padding: 6px;
   background: rgba(5,7,13,.88);
   border: 1px solid rgba(255,255,255,.14);
-  border-radius: 14px;
+  border-radius: var(--r-md);
   box-shadow: 0 16px 40px rgba(0,0,0,.5);
   backdrop-filter: blur(16px);
   min-width: 160px;
@@ -414,7 +414,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 8px;
   border: 0;
-  border-radius: 9px;
+  border-radius: var(--r-sm);
   background: none;
   color: rgba(255,255,255,.85);
   font: inherit;
@@ -455,7 +455,7 @@ a { color: inherit; text-decoration: none; }
   width: 38px;
   height: 38px;
   flex: 0 0 auto;
-  border-radius: 10px;
+  border-radius: var(--r-md);
   border: 1px solid rgba(255,255,255,.14);
   background: rgba(255,255,255,.05);
   color: #fff;
@@ -517,15 +517,6 @@ a { color: inherit; text-decoration: none; }
 
 /* ── Hero ──────────────────────────────────────────────────────────────────── */
 
-.hero {
-  width: calc(100% - 32px);
-  margin: 0 auto;
-  padding: 48px 0 14px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
 .hero-intro {
   position: relative;
   display: flex;
@@ -560,123 +551,17 @@ a { color: inherit; text-decoration: none; }
   filter: drop-shadow(0 18px 24px rgba(0,0,0,.62));
 }
 
-/* ── Showcase (data pack carousel stage) ───────────────────────────────────── */
+/* ── Home sections: .ee-panel with the standard head, a gold eyebrow and a bigger title ── */
 
-.showcase {
-  width: 100%;
-  max-width: 1180px;
-  margin: 48px auto 0;
-  padding: 34px 30px 32px;
-  border-radius: 32px;
-  background: linear-gradient(180deg, rgba(8,10,18,.5), rgba(4,5,10,.62));
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: 0 24px 60px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.05);
-  backdrop-filter: blur(10px);
-}
-
-.showcase__head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin: 0 0 22px;
-  text-align: left;
-}
-
-.showcase__head-text {
-  min-width: 0;
-  max-width: 640px;
-}
-
-/* Rebuilds the actual .quick-dock__item structure (icon badge + label +
-   chevron) up top, not just its color palette - that's what reads as "the
-   same style of button" rather than a smaller generic pill. It needs its
-   own background/border/shadow here since, unlike the dock items, it
-   isn't nested inside a shared glass panel. */
-.showcase__action {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 16px 8px 8px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(10,12,22,.6), rgba(3,5,10,.68));
-  border: 1px solid rgba(255,255,255,.1);
-  box-shadow: 0 10px 22px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.06);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 800;
-  text-decoration: none;
-  transition: transform .16s ease, background .16s ease, border-color .16s ease;
-}
-
-.showcase__action-icon {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 13px;
-  background: color-mix(in srgb, var(--accent) 18%, rgba(5,7,13,.62));
-  border: 1px solid color-mix(in srgb, var(--accent) 42%, rgba(255,255,255,.14));
-  color: var(--accent);
-  font-size: 16px;
-}
-
-.showcase__action-chevron {
-  color: rgba(255,255,255,.4);
-  font-size: 12px;
-  transition: transform .16s ease, color .16s ease;
-}
-
-.showcase__action:hover {
-  transform: translateY(-2px);
-  background: color-mix(in srgb, var(--accent) 14%, rgba(10,12,22,.6));
-  border-color: color-mix(in srgb, var(--accent) 42%, transparent);
-}
-
-.showcase__action:hover .showcase__action-icon {
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 14%, transparent);
-}
-
-.showcase__action:hover .showcase__action-chevron {
-  transform: translateX(3px);
-  color: var(--accent);
-}
-
-.showcase__eyebrow {
-  display: inline-block;
-  font-size: clamp(19px, 2.4vw, 25px);
-  font-weight: 900;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  /* Warm gold to match the Explorer's Eden logo/branding, darkened a bit
-     from the raw --accent-2 token - this is the visually-larger "title"
-     text now that the sizes are swapped, even though the element is still
-     named __eyebrow. */
-  color: color-mix(in srgb, var(--accent-2) 65%, #8a5a00);
-}
-
-.showcase__title {
-  margin: 6px 0 0;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: -.01em;
-  line-height: 1.3;
-}
-
-@media (max-width: 640px) {
-  .showcase__head {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
+.home-shell { gap: var(--sp-4); }
+.home-head { gap: 0; padding-top: 22px; overflow-x: clip; }
+.showcase .ee-panel__head { padding: 22px 26px; }
+.showcase .ee-panel__head h2 { font-size: 20px; }
+.showcase .ee-panel__body { padding: 22px 26px 26px; }
 
 .smp-stat-grid {
   width: 100%;
-  margin: 28px auto 0;
+  margin: 22px auto 0;
   /* .hero sets text-align:center for the hero-logo/eyebrow text above, and
      .profile-stat-tile's value/label paragraphs would otherwise inherit
      it - centering each one under the other instead of the flush-left
@@ -723,7 +608,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .translate-overview__votes {
-  flex: 0 0 auto;
+  flex: 0 0 300px;
 }
 
 @media (max-width: 640px) {
@@ -731,6 +616,9 @@ a { color: inherit; text-decoration: none; }
     flex-direction: column;
     align-items: stretch;
   }
+  .translate-overview__votes { flex-basis: auto; }
+  .showcase .ee-panel__head,
+  .showcase .ee-panel__body { padding-left: 16px; padding-right: 16px; }
 }
 
 .translate-top-packs {
@@ -859,7 +747,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 4px;
   padding: 2px 8px;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   background: rgba(5,7,13,.5);
   border: 1px solid rgba(255,255,255,.12);
   color: var(--accent);
@@ -902,7 +790,7 @@ a { color: inherit; text-decoration: none; }
   color: rgba(255,255,255,.82);
   background: rgba(5,7,13,.52);
   border: 1px solid rgba(255,255,255,.10);
-  border-radius: 16px;
+  border-radius: var(--r-lg);
   font-size: 13px;
   font-weight: 750;
   text-align: center;
@@ -954,7 +842,7 @@ a { color: inherit; text-decoration: none; }
   height: clamp(280px, 38vh, 380px);
   padding: 18px 20px;
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: var(--r-xl);
   background: var(--bg);
   box-shadow: 0 24px 56px rgba(0,0,0,.32);
   color: inherit;
@@ -993,7 +881,7 @@ a { color: inherit; text-decoration: none; }
   flex: 0 0 auto;
   width: 64px;
   height: 64px;
-  border-radius: 18px;
+  border-radius: var(--r-lg);
   overflow: hidden;
   background: rgba(5,7,13,.6);
   border: 1px solid rgba(255,255,255,.18);
@@ -1058,7 +946,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 7px;
   padding: 9px 14px;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   color: rgba(255,255,255,.96);
   background: rgba(5,7,13,.58);
   border: 1px solid rgba(255,255,255,.16);
@@ -1107,13 +995,11 @@ a { color: inherit; text-decoration: none; }
   max-width: 920px;
   margin: 16px auto 0;
   padding: 8px;
-  border-radius: 28px;
-  background:
-    linear-gradient(135deg, rgba(10,12,22,.6), rgba(3,5,10,.68)),
-    rgba(5,7,13,.44);
-  border: 1px solid rgba(255,255,255,.1);
-  box-shadow: 0 20px 48px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.06);
-  backdrop-filter: blur(16px) saturate(1.1);
+  border-radius: var(--r-xl);
+  background: var(--surface-panel);
+  border: 1px solid var(--line-soft);
+  box-shadow: var(--shadow-panel);
+  backdrop-filter: blur(16px);
 }
 
 .quick-dock__item {
@@ -1124,7 +1010,7 @@ a { color: inherit; text-decoration: none; }
   gap: 14px;
   min-width: 0;
   padding: 14px 18px;
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   color: inherit;
   text-decoration: none;
   text-align: left;
@@ -1147,7 +1033,7 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   width: 42px;
   height: 42px;
-  border-radius: 13px;
+  border-radius: var(--r-md);
   background: color-mix(in srgb, var(--dock-accent) 18%, rgba(5,7,13,.62));
   border: 1px solid color-mix(in srgb, var(--dock-accent) 42%, rgba(255,255,255,.14));
   font-size: 18px;
@@ -1257,7 +1143,7 @@ a { color: inherit; text-decoration: none; }
   gap: 20px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,.095);
-  border-radius: 30px;
+  border-radius: var(--r-xl);
   background:
     linear-gradient(135deg, rgba(10,12,22,.62), rgba(3,5,10,.70)),
     rgba(5,7,13,.48);
@@ -1305,7 +1191,7 @@ a { color: inherit; text-decoration: none; }
 .mod-icon-tile {
   width: 112px;
   height: 112px;
-  border-radius: 24px;
+  border-radius: var(--r-xl);
   margin: 0 auto;
   overflow: hidden;
   display: flex;
@@ -1410,7 +1296,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 850;
   letter-spacing: .01em;
   padding: 7px 10px;
-  border-radius: 14px;
+  border-radius: var(--r-md);
   background: rgba(5,7,13,.34);
   border: 1px solid rgba(255,255,255,.10);
   white-space: nowrap;
@@ -1521,7 +1407,7 @@ body > .structures-shell {
     padding: 10px;
     background: rgba(5,7,13,.94);
     border: 1px solid rgba(255,255,255,.12);
-    border-radius: 16px;
+    border-radius: var(--r-lg);
     box-shadow: 0 20px 44px rgba(0,0,0,.5);
     backdrop-filter: blur(16px);
     z-index: 400;
@@ -1539,7 +1425,7 @@ body > .structures-shell {
     max-height: none;
     justify-content: flex-start;
     padding: 0 12px;
-    border-radius: 10px;
+    border-radius: var(--r-md);
   }
 
   .nav-links > a:hover,
@@ -1587,7 +1473,7 @@ body > .structures-shell {
     min-height: 136px;
     padding: 14px;
     gap: 14px;
-    border-radius: 24px;
+    border-radius: var(--r-xl);
   }
 
   .mod-card--loading {
@@ -1597,7 +1483,7 @@ body > .structures-shell {
   .mod-icon-tile {
     width: 92px;
     height: 92px;
-    border-radius: 20px;
+    border-radius: var(--r-lg);
     margin: 0 auto;
   }
 
@@ -1781,7 +1667,9 @@ body > .structures-shell {
   font-weight: 700;
 }
 .ee-panel__head > .ee-btn,
+.ee-panel__head > .ee-action,
 .ee-panel__head > .ee-panel__aside { margin-left: auto; }
+.ee-panel__head .ee-eyebrow { margin: 0 0 3px; color: var(--accent-2); opacity: 1; font-size: 11px; font-weight: 900; }
 .ee-panel__body { padding: 20px 22px; }
 .ee-panel__body--flush { padding: 0; }
 .ee-panel__foot {

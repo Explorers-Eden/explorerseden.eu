@@ -1,4 +1,5 @@
-<main id="page-top" class="hero">
+<main id="page-top" class="ee-shell home-shell">
+  <header class="ee-page-head home-head">
     <div class="hero-intro">
       <img class="hero-logo" src="/assets/images/branding/hi_res_banner_3d.png" alt="Explorer's Eden">
     </div>
@@ -38,19 +39,19 @@
         <i class="bi bi-box-arrow-up-right quick-dock__chevron"></i>
       </a>
     </nav>
+  </header>
 
-    <section class="showcase showcase--smp">
-      <div class="showcase__head">
-        <div class="showcase__head-text">
-          <span class="showcase__eyebrow">A Realm Recrafted</span>
-          <h2 class="showcase__title">A small Minecraft survival server we put together as a place to play, build, and share some time together.</h2>
+    <section class="ee-panel showcase showcase--smp">
+      <div class="ee-panel__head showcase__head">
+        <span class="ee-icon"><i class="bi bi-broadcast-pin" aria-hidden="true"></i></span>
+        <div>
+          <p class="ee-eyebrow">Java SMP</p>
+          <h2>A Realm Recrafted</h2>
+          <p>A small Minecraft survival server we put together as a place to play, build, and share some time together.</p>
         </div>
-        <a class="showcase__action" href="/overview/">
-          <span class="showcase__action-icon"><i class="bi bi-broadcast-pin"></i></span>
-          View Details
-          <i class="bi bi-chevron-right showcase__action-chevron"></i>
-        </a>
+        <a class="ee-action" href="/overview/"><span class="ee-action__icon"><i class="bi bi-broadcast-pin" aria-hidden="true"></i></span>View details</a>
       </div>
+      <div class="ee-panel__body">
 
       <div class="skin-row" id="skin-row" aria-hidden="true"></div>
 
@@ -84,20 +85,20 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
-    <section class="showcase">
-      <div class="showcase__head">
-        <div class="showcase__head-text">
-          <span class="showcase__eyebrow">Data Packs</span>
-          <h2 class="showcase__title">Our current projects published on Modrinth. Built with passion, forever free to enjoy.</h2>
+    <section class="ee-panel showcase">
+      <div class="ee-panel__head showcase__head">
+        <span class="ee-icon"><i class="bi bi-box-seam" aria-hidden="true"></i></span>
+        <div>
+          <p class="ee-eyebrow">On Modrinth</p>
+          <h2>Data Packs</h2>
+          <p>Our current projects published on Modrinth. Built with passion, forever free to enjoy.</p>
         </div>
-        <a class="showcase__action" href="https://modrinth.com/organization/explorers-eden" target="_blank" rel="noreferrer">
-          <span class="showcase__action-icon"><i class="bi bi-box-seam"></i></span>
-          View on Modrinth
-          <i class="bi bi-chevron-right showcase__action-chevron"></i>
-        </a>
+        <a class="ee-action" href="https://modrinth.com/organization/explorers-eden" target="_blank" rel="noreferrer"><span class="ee-action__icon"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></span>View on Modrinth</a>
       </div>
+      <div class="ee-panel__body">
 
       <div class="mod-list" id="mod-list" aria-label="Explorer's Eden data packs" data-modrinth-source="modrinth-projects.php">
         <article class="mod-card mod-card--loading" aria-live="polite">
@@ -108,20 +109,20 @@
           </div>
         </article>
       </div>
+      </div>
     </section>
 
-    <section class="showcase">
-      <div class="showcase__head">
-        <div class="showcase__head-text">
-          <span class="showcase__eyebrow">Translations</span>
-          <h2 class="showcase__title">Help us translate our data packs to more languages - every suggestion and vote helps.</h2>
+    <section class="ee-panel showcase">
+      <div class="ee-panel__head showcase__head">
+        <span class="ee-icon"><i class="bi bi-translate" aria-hidden="true"></i></span>
+        <div>
+          <p class="ee-eyebrow">Community</p>
+          <h2>Translations</h2>
+          <p>Help us translate our data packs to more languages - every suggestion and vote helps.</p>
         </div>
-        <a class="showcase__action" href="/translate/">
-          <span class="showcase__action-icon"><i class="bi bi-translate"></i></span>
-          View Details
-          <i class="bi bi-chevron-right showcase__action-chevron"></i>
-        </a>
+        <a class="ee-action" href="/translate/"><span class="ee-action__icon"><i class="bi bi-translate" aria-hidden="true"></i></span>View details</a>
       </div>
+      <div class="ee-panel__body">
 
       <div class="translate-overview" id="translate-overview">
         <div class="translate-overview__progress">
@@ -144,5 +145,6 @@
       </div>
 
       <div class="translate-top-packs" id="translate-top-packs" aria-label="Most translated data packs"></div>
+      </div>
     </section>
-  </main>
+</main>
