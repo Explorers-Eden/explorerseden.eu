@@ -14,5 +14,7 @@
 
   <div class="profile-groups" id="statistics-groups" aria-label="Combined statistics and advancements"></div>
 
+  <section class="statistics-weekly" id="statistics-weekly" aria-label="Weekly leaderboards" hidden></section>
+
   <div class="statistics-leaderboards" id="statistics-leaderboards" aria-label="Top players"></div>
 </main>

@@ -84,7 +84,7 @@ $routes = [
   ],
   'statistics' => [
     'title' => "Explorer's Eden: Statistics",
-    'description' => "Community-wide stats for the A Realm Recrafted SMP - totals, leaderboards, and race/class breakdowns.",
+    'description' => "Community-wide stats for the A Realm Recrafted SMP - totals, leaderboards, weekly game boards, and race/class breakdowns.",
     'file' => __DIR__ . '/pages/statistics.php',
   ],
 ];

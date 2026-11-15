@@ -320,3 +320,21 @@
   color: var(--muted);
   font-weight: 600;
 }
+
+/* Weekly leaderboards (games, dungeons, Rogue Runs) */
+.statistics-weekly { margin: 2rem 0; }
+.stats-weekly__tabs { display: inline-flex; gap: 2px; padding: 3px; border-radius: 10px; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .08); margin: .25rem 0 .5rem; }
+.stats-weekly__tabs button { font: inherit; font-size: .9rem; border: 0; background: none; color: inherit; opacity: .7; padding: .35rem .9rem; border-radius: 8px; cursor: pointer; }
+.stats-weekly__tabs button[aria-selected="true"] { opacity: 1; background: rgba(255, 255, 255, .1); }
+.stats-weekly__tabs button:disabled { opacity: .35; cursor: default; }
+.stats-weekly__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.stats-weekly__list { list-style: none; margin: .5rem 0 0; padding: 0; display: grid; gap: .3rem; }
+.stats-weekly__row { display: flex; align-items: center; gap: .6rem; padding: .4rem .6rem; border-radius: 8px; background: rgba(255, 255, 255, .03); }
+.stats-weekly__row--top1 { background: rgba(255, 200, 61, .12); }
+.stats-weekly__row--top2 { background: rgba(200, 210, 225, .1); }
+.stats-weekly__row--top3 { background: rgba(205, 127, 50, .12); }
+.stats-weekly__rank { width: 1.6rem; text-align: center; font-weight: 700; opacity: .85; }
+.stats-weekly__row--top1 .stats-weekly__rank { color: #ffc83d; }
+.stats-weekly__row--top3 .stats-weekly__rank { color: #cd7f32; }
+.stats-weekly__name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.stats-weekly__score { font-variant-numeric: tabular-nums; opacity: .85; white-space: nowrap; }

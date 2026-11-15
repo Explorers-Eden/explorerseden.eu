@@ -199,7 +199,72 @@
       + advancementsGroupHtml(data.advancementsDetailed || [], data.playerCount);
   }
 
+  // ── Weekly leaderboards (games, dungeons, Rogue Runs from the server panel) ──
+
+  const weekly = document.getElementById('statistics-weekly');
+  const WEEK_ICONS = { game: 'bi-controller', dungeon: 'bi-door-closed', rogue: 'bi-shuffle' };
+
+  function clock(ms) {
+    const s = Math.floor(Math.max(0, ms) / 1000);
+    const p = (n) => String(n).padStart(2, '0');
+    return s >= 3600 ? `${p(Math.floor(s / 3600))}:${p(Math.floor(s / 60) % 60)}:${p(s % 60)}` : `${p(Math.floor(s / 60))}:${p(s % 60)}`;
+  }
+
+  // A board's result as the game shows it: jumps, waves, points, a time, rooms (and the time for those).
+  function weeklyScore(board, row) {
+    const u = board.unit;
+    if (board.kind === 'dungeon' || u === 'race' || u === 'maze') return clock(row.best);
+    if (board.kind === 'rogue') return `${row.best} rooms · ${clock(row.tie)}`;
+    if (u === 'anvils' || u === 'lava') return clock(row.best * 1000);
+    const word = { parkour: 'jumps', waves: 'waves', ghasts: 'ghasts', colorfloor: 'colours', heads: 'heads' }[u] || 'points';
+    return `${Number(row.best).toLocaleString()} ${word}`;
+  }
+
+  function weeklyBoardHtml(board) {
+    const rows = board.top.map((row, i) => `
+      <li class="stats-weekly__row${i < 3 ? ` stats-weekly__row--top${i + 1}` : ''}">
+        <span class="stats-weekly__rank">${i < 3 ? `<i class="bi ${RANK_ICONS[i]}"></i>` : i + 1}</span>
+        <span class="stats-weekly__name">${esc(row.name)}</span>
+        <span class="stats-weekly__score">${esc(weeklyScore(board, row))}</span>
+      </li>`).join('');
+    return `
+      <section class="stats-leaderboard-card stats-weekly__card">
+        <h3 class="statistics-section-title"><i class="bi ${WEEK_ICONS[board.kind] || 'bi-controller'}"></i> ${esc(board.name)}</h3>
+        ${rows ? `<ol class="stats-weekly__list">${rows}</ol>` : '<p class="profile-empty-note">Nobody yet this week.</p>'}
+      </section>
+    `;
+  }
+
+  function renderWeekly(data, which) {
+    const boards = Object.values(which === 'last' ? data.last || {} : data.boards || {}).filter((b) => b.top && b.top.length);
+    const week = which === 'last' ? data.lastWeek : data.week;
+    weekly.innerHTML = `
+      <h2 class="statistics-section-title"><i class="bi bi-calendar-week"></i> Weekly Leaderboards
+        <span class="profile-count-badge">${esc(week || '')}</span></h2>
+      <div class="stats-weekly__tabs" role="tablist">
+        <button type="button" role="tab" data-week="this" aria-selected="${which !== 'last'}">This week</button>
+        <button type="button" role="tab" data-week="last" aria-selected="${which === 'last'}" ${data.lastWeek ? '' : 'disabled'}>Last week</button>
+      </div>
+      <p class="ee-note">${which === 'last' ? 'The final boards of last week. Its top players got their weekly rewards.' : 'Games, dungeons and Rogue Runs. The week ends Monday at midnight (server time); the top players get a reward.'}</p>
+      ${boards.length ? `<div class="stats-weekly__grid">${boards.map(weeklyBoardHtml).join('')}</div>` : `<p class="profile-empty-note">${which === 'last' ? 'No results last week.' : 'No results yet this week. Be the first!'}</p>`}
+    `;
+    weekly.hidden = false;
+    weekly.querySelectorAll('[data-week]').forEach((b) => b.addEventListener('click', () => renderWeekly(data, b.dataset.week)));
+  }
+
+  async function loadWeekly() {
+    try {
+      const response = await fetch('/api/weekly.php', { cache: 'no-store' });
+      const data = await response.json();
+      if (!response.ok || data.error) return;
+      renderWeekly(data, 'this');
+    } catch (err) {
+      // The panel can't be reached: the section stays hidden.
+    }
+  }
+
   async function init() {
+    loadWeekly();
     try {
       const response = await fetch('/profiles/api/aggregate.php', { cache: 'no-store' });
       const data = await response.json();
